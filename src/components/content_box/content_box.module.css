@@ -1,0 +1,13 @@
+@value deepGreen, southSeaGreen from '../../common/colors.css';
+
+.content_box {
+	display: flex;
+	flex-direction: column;
+}
+
+.navbar_top {
+	background-color: southSeaGreen;
+	height: 15vh;
+}
+.section {
+}
