@@ -10,7 +10,7 @@ const App = () =>{
 
 
   return <section className={styles.myApp}>
-    <div className={styles.navbar_left}><NabvarLeft/></div>
+    <div className={styles.left}><NabvarLeft/></div>
     <div className={styles.content_box}><ContentBox/></div>
     
 

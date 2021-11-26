@@ -1,3 +1,25 @@
-.h1 {
+.navbar_top {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.button_container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+}
+
+.top_button {
+	outline: 0;
+	cursor: pointer;
+	border: 0;
+	margin-right: 2vw;
+	margin-left: 2vw;
+	background-color: transparent;
+	height: 3rem;
+	/* width: 5rem; */
+	font-size: 1.3rem;
 	color: white;
 }
