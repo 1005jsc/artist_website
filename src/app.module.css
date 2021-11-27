@@ -10,13 +10,16 @@
 }
 
 .left {
+	position: fixed;
 	height: 100%;
 	/* min-height: 100vh; */
-	flex: 1;
-	border: 1px solid black;
+	width: 20%;
+}
+
+.left_empty {
+	width: 20%;
 }
 
 .content_box {
-	flex: 4;
-	border: 1px solid black;
+	width: 80%;
 }

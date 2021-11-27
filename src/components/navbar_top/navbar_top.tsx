@@ -8,7 +8,7 @@ type NavbarTopProps = {
 
 const NavbarTop = () => {
 
-  return <nav className={styles.navbar_top}>
+  return <nav className={styles.navbar_top_container}>
 
   <div className={styles.button_container}>
     <button className={`${styles.introdution} ${styles.top_button}`}>작가소개</button>

@@ -1,12 +1,18 @@
 import React from 'react';
+import BiographyPicture from '../biography_picture/biography_picture';
+import BiographyWords from '../biography_words/biography_words';
 import styles from './section.module.css'
 
 
 const Section = () => {
 
   return <section className={styles.section}>
-    <h1>section</h1>
-
+    <div className={styles.bio_words_container}>
+    <BiographyWords/>
+    </div>
+    <div className={styles.bio_picture_container}>
+    <BiographyPicture/>
+    </div>
   </section>
 
 }

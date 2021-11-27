@@ -1,7 +1,9 @@
-.navbar_top {
+.navbar_top_container {
 	height: 100%;
 	display: flex;
 	justify-content: center;
+	background-color: southSeaGreen;
+	height: 10rem;
 }
 
 .button_container {

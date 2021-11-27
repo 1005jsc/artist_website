@@ -3,11 +3,12 @@
 .content_box {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 }
 
 .navbar_top {
 	background-color: southSeaGreen;
-	height: 16vh;
 }
 .section {
+	height: 100%;
 }
