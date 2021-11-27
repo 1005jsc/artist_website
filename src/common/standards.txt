@@ -1,0 +1,10 @@
+작가소개
+  -작가노트 
+
+  margin-top: 3rem;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  line-height: 39px;
+
+
