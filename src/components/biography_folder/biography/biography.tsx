@@ -1,13 +1,13 @@
 import React from 'react';
 import BiographyBio from '../biography_bio/biography_bio';
-import BiographyPicture from '../biography_picture/biography_picture';
 import BiographyWords from '../biography_words/biography_words';
-import styles from './section.module.css'
+import styles from './biography.module.css'
+import BiographyPicture from '../biography_picture/biography_picture';
 
 
-const Section = () => {
+const Biography = () => {
 
-  return <section className={styles.section}>
+  return <section className={styles.biography}>
     {/* <div className={styles.bio_words_container}>
     <BiographyWords/>
     </div> */}
@@ -22,4 +22,4 @@ const Section = () => {
 
 }
 
-export default Section;
+export default Biography;
