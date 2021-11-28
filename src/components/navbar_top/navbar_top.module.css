@@ -14,11 +14,8 @@
 }
 
 .top_button {
-	outline: 0;
-	cursor: pointer;
-	border: 0;
-	margin-right: 2vw;
-	margin-left: 2vw;
+	margin-right: 2.1vw;
+	margin-left: 2.1vw;
 	background-color: transparent;
 	height: 3rem;
 	/* width: 5rem; */

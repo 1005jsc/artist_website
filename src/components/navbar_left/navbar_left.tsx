@@ -17,7 +17,7 @@ return <nav className={styles.navbar_left}>
     </div>
     
     <span className={`${styles.works_left} ${styles.span_first} ${styles.works_left_onclick}`}>작품</span>
-      <div className={`${styles.works_container} ${styles.works_left_onclick_invisible_on}`}>
+      {/* <div className={`${styles.works_container} ${styles.works_left_onclick_invisible_on}`}>
       
         <div className={`${styles.work} ${styles.work_국윤미술관_기획초대전}`}>
           <span className={styles.h2}>- 국윤미술관 기획초대전</span>
@@ -36,8 +36,13 @@ return <nav className={styles.navbar_left}>
         </div>
       </div>
 
-      </div>
+      </div> */}
     
+      <span className={`${styles.exhibition_left} ${styles.span_first}`}>전시</span>
+
+
+
+
     <span className={`${styles.critics_left} ${styles.span_first} ${styles.critics_left_onclick}`}>평론가의 글</span>
       <div className={`${styles.critics_container} ${styles.critics_left_onclick_invisible_on}`}>
         <span className={styles.h2}>- 시간속에 담아낸 내면의 추상언어 &lt;조인호&gt;</span>

@@ -23,3 +23,9 @@
 .content_box {
 	width: 80%;
 }
+
+button {
+	outline: 0;
+	cursor: pointer;
+	border: 0;
+}
