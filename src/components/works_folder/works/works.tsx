@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './works.module.css'
 import Work from './../work/work';
+import WorkYear from './../work_year/work_year';
 
 const Works = () => {
 
@@ -21,21 +22,7 @@ const Works = () => {
       </div>
 
     </div>
-    <p className={styles.year}>2021</p>
-    <div className={`${styles.work_bundle}`}>
-      <Work/>
-      <Work/>
-      <Work/>
-      <Work/>
-      <Work/>
-    </div>
-    <p className={styles.year}>2020</p>
-    <div className={`${styles.work_bundle}`}></div>
-    <p className={styles.year}>2019</p>
-    <div className={`${styles.work_bundle}`}></div>
-    <p className={styles.year}>1988</p>
-    <div className={`${styles.work_bundle}`}></div>
-
+    <WorkYear/>
 
   </section>
 
