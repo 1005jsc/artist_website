@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './works.module.css'
 import Work from './../work/work';
 import WorkYear from './../work_year/work_year';
+import WorkSize from '../work_size/work_size';
 
 const Works = () => {
 
@@ -22,8 +23,8 @@ const Works = () => {
       </div>
 
     </div>
-    <WorkYear/>
-
+    {/* <WorkYear/> */}
+    <WorkSize/>
   </section>
 
 }
