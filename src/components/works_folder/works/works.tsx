@@ -3,6 +3,8 @@ import styles from './works.module.css'
 import Work from './../work/work';
 import WorkYear from './../work_year/work_year';
 import WorkSize from '../work_size/work_size';
+import WorkExhibition from '../work_exhibition/work_exhibition';
+import WorkExhibitionWorks from '../work_exhibition_works/work_exhibition_works';
 
 const Works = () => {
 
@@ -24,7 +26,9 @@ const Works = () => {
 
     </div>
     {/* <WorkYear/> */}
-    <WorkSize/>
+    {/* <WorkSize/> */}
+    <WorkExhibition/>
+    {/* <WorkExhibitionWorks/> */}
   </section>
 
 }
