@@ -25,9 +25,9 @@ const Works = () => {
       </div>
 
     </div>
-    {/* <WorkYear/> */}
+    <WorkYear/>
     {/* <WorkSize/> */}
-    <WorkExhibition/>
+    {/* <WorkExhibition/> */}
     {/* <WorkExhibitionWorks/> */}
   </section>
 

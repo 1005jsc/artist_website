@@ -22,9 +22,9 @@
       "body":[
         "import React from \"react\"",
         
-        "import styles from \"./myComponent.module.css\";",
+        "import styles from \"./${TM_FILENAME_BASE}.module.css\";",
         "",
-        "const MyComponent = () => {",
+        "const ${TM_FILENAME_BASE} = () => {",
         "",
         "  return <>",
         "",
@@ -32,7 +32,7 @@
         "",
         "}",
         
-        "export default MyComponent;",
+        "export default ${TM_FILENAME_BASE};",
       ],
       "description": "Jaesin's personal custom react component builder for javascript and typescript"
 

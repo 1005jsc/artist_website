@@ -10,12 +10,12 @@ const Exhibitions = () => {
   return <section className={styles.exhibitions_container}>
   <h1 className={styles.title}>전시</h1>
 
-{/* <p className={styles.year}>2021</p>
+<p className={styles.year}>2021</p>
 <div className={`${styles.exhibitions_bundle}`}>
       <Exhibition/>
       <Exhibition/>
-    </div> */}
-    <ExhibitionInfo/>
+    </div>
+    {/* <ExhibitionInfo/> */}
 
 
   
