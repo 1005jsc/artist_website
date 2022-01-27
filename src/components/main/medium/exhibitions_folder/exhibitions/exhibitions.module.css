@@ -1,0 +1,17 @@
+.exhibitions_container {
+	width: 100%;
+	/* height: 100%; */
+	border: 1px solid black;
+}
+
+.exhibitions_division_container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.exhibitions_bundle {
+	width: 72vw;
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+}

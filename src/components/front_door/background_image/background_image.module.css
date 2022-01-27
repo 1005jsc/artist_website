@@ -1,0 +1,24 @@
+.background_image_container {
+	position: relative;
+	overflow: hidden;
+}
+
+.img_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: -1;
+}
+
+.background_image {
+	width: 107%;
+}
+
+.test_text {
+	color: white;
+}
+
+/* .background_image_container {
+	background-image: url('../../../img/DSC05012.jpg');
+	width: 100%;
+} */

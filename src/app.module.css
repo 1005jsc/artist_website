@@ -29,3 +29,7 @@ button {
 	cursor: pointer;
 	border: 0;
 }
+
+.full_screen {
+	height: 100%;
+}

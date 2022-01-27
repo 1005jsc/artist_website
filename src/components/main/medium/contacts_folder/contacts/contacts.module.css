@@ -1,0 +1,16 @@
+.contacts_container {
+	display: flex;
+	height: 100%;
+}
+
+.contacts_pics_container {
+	width: 46%;
+	height: 100%;
+	/* border: 1px solid black; */
+}
+
+.contacts_words_container {
+	width: 54%;
+	height: 100%;
+	/* border: 1px solid black; */
+}

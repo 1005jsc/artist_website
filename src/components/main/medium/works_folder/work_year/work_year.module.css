@@ -1,0 +1,6 @@
+.work_bundle {
+	width: 72vw;
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+}

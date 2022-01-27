@@ -1,0 +1,24 @@
+.navbar_top_container {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	background-color: southSeaGreen;
+	height: 10rem;
+}
+
+.button_container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 100%;
+}
+
+.top_button {
+	margin-right: 2.1vw;
+	margin-left: 2.1vw;
+	background-color: transparent;
+	height: 3rem;
+	/* width: 5rem; */
+	font-size: 1.3rem;
+	color: white;
+}

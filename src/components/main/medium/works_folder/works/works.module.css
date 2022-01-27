@@ -1,0 +1,10 @@
+.works_container {
+	width: 100%;
+	/* height: 100%; */
+	border: 1px solid black;
+}
+
+.work_division_container {
+	display: flex;
+	justify-content: space-between;
+}

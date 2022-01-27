@@ -1,0 +1,10 @@
+.contacts_picture_container {
+	display: flex;
+	justify-content: center;
+}
+
+.contacts_picture_img {
+	width: 100%;
+	opacity: 0.8;
+	overflow: hidden;
+}

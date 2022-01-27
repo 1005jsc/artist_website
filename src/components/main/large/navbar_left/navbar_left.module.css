@@ -1,0 +1,111 @@
+@value coolToneIvory from '../../common/colors.css';
+
+.navbar_left {
+	background-color: coolToneIvory;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.logo_sample {
+	text-align: center;
+	width: 12rem;
+	height: 7rem;
+	border: 1px solid black;
+	margin-top: 0.3rem;
+	margin-bottom: 3rem;
+}
+
+.navbar_container {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+}
+
+.span_first {
+	margin-bottom: 1rem;
+}
+
+/* ////////////////////////////////////////// */
+/* navbar css */
+/* /////////////////////////////////////////// */
+
+.h2 {
+	display: block;
+	font-size: 0.85rem;
+	margin-left: 0.8rem;
+	margin-bottom: 0.4rem;
+}
+
+.h3 {
+	display: block;
+	font-size: 0.7rem;
+	margin-left: 1.4rem;
+	margin-bottom: 0.1rem;
+}
+
+/* ////////////////// */
+/* 작가소개 */
+/* ///////////////// */
+
+.biography_container {
+	margin-bottom: 0.5rem;
+}
+
+/* 이 온클릭 클래스는 클릭할때 만들어 줄수 있도록 */
+.biography_left_onclick {
+	margin-bottom: 0.8rem;
+}
+/* 그리고 밑에 invisible클래스는 클릭되면 지워질수 있도록
+서로 반대다  */
+.biography_left_onclick_invisible_on {
+	/* display: none; */
+}
+
+/* ////////////////// */
+/* 작품 */
+/* ///////////////// */
+
+.works_left_onclick {
+	margin-bottom: 0.8rem;
+}
+
+.works_left_onclick_invisible_on {
+	/* display: none; */
+}
+
+.work_국윤미술관_기획초대전_onclick {
+	/* display: none; */
+}
+
+/* 작품 */
+
+.work {
+	margin-bottom: 0.7rem;
+}
+
+/* work container */
+
+.works_container {
+	margin-bottom: 0.7rem;
+}
+
+/* //////////////// */
+/* 평론가의 글 */
+/* ////////////// */
+
+/* 평론가의글 클릭되었을때 css 처리*/
+
+.critics_left_onclick {
+	margin-bottom: 0.8rem;
+}
+
+.critics_left_onclick_invisible_on {
+	/* display: none; */
+}
+
+.critics_container {
+	margin-bottom: 0.8rem;
+}
