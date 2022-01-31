@@ -10,15 +10,6 @@
 	z-index: -1;
 }
 
-.background_image {
-	width: 107%;
-}
-
-.test_text {
-	color: white;
-}
-
-/* .background_image_container {
-	background-image: url('../../../img/DSC05012.jpg');
+.video {
 	width: 100%;
-} */
+}

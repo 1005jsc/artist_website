@@ -1,5 +1,7 @@
 html {
-	height: 100%;
+	/* height: 100vh; */
+	font-size: 62.5%;
+	/* 여기서는 1440으로 만들어도되 어짜피 반응형으로 줄어드니까  */
 }
 
 body {
@@ -11,6 +13,13 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	height: 100%;
 	overflow: auto;
+	min-width: 1190px;
+	width: 1440px;
+	/* 일단 1440으로 정해놓고, 
+  rem단위로 만들고 
+  다 만들었을때
+  width를 지워버리면 
+  정비례하게 반응형으로 저절로 된다  */
 }
 
 #root {
@@ -20,4 +29,11 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
+}
+
+@media screen and (max-width: 1190px) {
+	html {
+		font-size: 62.5%;
+		/* 이 퍼센트값은 나중에 정해도 됨  */
+	}
 }

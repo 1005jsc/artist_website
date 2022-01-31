@@ -11,6 +11,9 @@
 # production
 /build
 
+#not_used_asset
+/public/not_used_asset
+
 #env
 .env
 

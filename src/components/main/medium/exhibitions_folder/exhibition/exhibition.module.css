@@ -2,11 +2,36 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-width: 24vw;
+	max-width: 32.5rem;
 	flex: 1;
-	border: 1px solid black;
+	border: 1px solid rgb(199, 199, 199, 0.5);
+}
+
+.exhibition_container:hover {
+	cursor: pointer;
+	border: 1px solid rgb(199, 199, 199, 0.8);
+}
+
+.image_container {
+	width: 100%;
+	height: 26.6rem;
 }
 
 .exhibition_img {
-	width: 20vw;
+	height: 100%;
+}
+
+.exhibition_metadata {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.p1 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.6rem;
+}
+
+.total_count {
+	color: red;
 }

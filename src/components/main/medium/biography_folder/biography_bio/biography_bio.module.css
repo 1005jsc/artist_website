@@ -1,24 +1,32 @@
-.bio_note_container {
+.container {
 	display: flex;
 	flex-direction: column;
 	padding: 4rem;
 	padding-top: 5rem;
 }
 
-.bio_title {
-	font-size: 1.9rem;
+.title {
+	font-size: 3rem;
+}
+
+.bio {
+	margin-top: 3rem;
+	letter-spacing: 0.1rem;
+	word-spacing: 0.2rem;
+	line-height: 4rem;
 }
 
 .name_container {
 	margin: 1rem;
+	margin-bottom: 1.8rem;
 	display: flex;
 	flex-direction: column;
 }
 
-.h2 {
+.profile {
 	display: block;
-	font-size: 1.1rem;
-	margin-bottom: 0.2rem;
+	font-size: 2.6rem;
+	margin-bottom: 0.5rem;
 }
 
 .bio_note {
@@ -29,16 +37,24 @@
 	line-height: 39px;
 }
 
-.containers {
+.dividers {
 	border-top: 1px solid lightgray;
 	display: flex;
 }
 
-.container_title {
+.p1 {
 	display: block;
 	flex: 1;
+	font-size: 1.6rem;
+	text-align: center;
+}
+
+.p2 {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 1.6rem;
 }
 
 .contents {
-	flex: 3.5;
+	flex: 3;
 }

@@ -1,4 +1,4 @@
-@value deepGreen, southSeaGreen from '../../common/colors.css';
+@value deepGreen, southSeaGreen from '../../../../common/colors.css';
 
 .content_box {
 	display: flex;

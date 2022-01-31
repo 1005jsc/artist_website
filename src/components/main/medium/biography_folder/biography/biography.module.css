@@ -4,13 +4,14 @@
 }
 
 .bio_words_container {
-	width: 54%;
+	width: 622rem;
 	height: 100%;
+	/* padding: 4rem;
+	padding-top: 5rem; */
 	/* border: 1px solid black; */
 }
 
 .bio_picture_container {
-	width: 46%;
+	width: 530rem;
 	height: 100%;
-	/* border: 1px solid black; */
 }

@@ -1,6 +1,7 @@
 .work_bundle {
-	width: 72vw;
+	width: 99rem;
 	display: flex;
 	margin: auto;
 	flex-wrap: wrap;
+	padding-top: 2rem;
 }
