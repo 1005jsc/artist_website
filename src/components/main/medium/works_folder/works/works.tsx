@@ -31,7 +31,7 @@ const Works = () => {
   return <section className={styles.container}>
     {array2.includes(true)&&<div className={styles.background_img}></div>}
     
-    <div className={styles.works_container}>
+    <div className={styles.container2}>
     <span className={styles.title}>작품</span>
     <div className={styles.works_button_container}>
       <div className={styles.works_sort}>

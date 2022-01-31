@@ -8,7 +8,7 @@ type WorkYearProps ={
 
 const WorkYear = () => {
 
-  return <div className={styles.work_year_container}>
+  return <div className={styles.container3}>
     <div className={styles.work_bundle_container}>
       <p className={styles.year}>2021</p>
       <div className={`${styles.work_bundle}`}>

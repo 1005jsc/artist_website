@@ -16,6 +16,7 @@ import WorkYear from './components/main/medium/works_folder/work_year/work_year'
 import WorkSize from './components/main/medium/works_folder/work_size/work_size';
 import WorkExhibition from './components/main/medium/works_folder/work_exhibition/work_exhibition';
 import WorkExhibitionWorks from './components/main/medium/works_folder/work_exhibition_works/work_exhibition_works';
+import Exhibitions from './components/main/medium/exhibitions_folder/exhibitions/exhibitions';
 
 
 const App = () =>{
@@ -57,10 +58,12 @@ const App = () =>{
         </Route>
 
         
-        <Route path="exhibition" element={<Exhibition/>}>
+        <Route path="exhibitions" element={<Exhibitions/>}>
           <Route path="" element={<WorkExhibition/>}/>
           <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
         </Route>
+
+
         <Route path="critics" element={<Critics/>}/>
         <Route path="contacts" element={<Contacts/>}/>
       

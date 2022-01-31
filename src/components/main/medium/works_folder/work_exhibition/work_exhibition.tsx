@@ -18,7 +18,7 @@ const WorkExhibition = () => {
   }
 
 
-  return <div className={styles.container}>
+  return <div className={styles.container3}>
       <p className={styles.poster_click_please}>- 포스터를 클릭하시면 전시된 작품들을 확인하실 수 있습니다 -</p>
 
 
