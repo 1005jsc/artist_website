@@ -7,15 +7,7 @@ import styles from "./work_exhibition.module.css";
 
 const WorkExhibition = () => {
 
-  const navigate = useNavigate()
-
-  const navigateTo:React.MouseEventHandler<HTMLDivElement> = (e) => {
-    e.preventDefault()
-    const path = e.currentTarget.dataset.path
-    if(path){
-      navigate(`/main/works/${path}`)
-    }
-  }
+  
 
 
   return <div className={styles.container3}>
@@ -30,13 +22,13 @@ const WorkExhibition = () => {
         </div>
 
 
-        <div className={styles.exhibition_bundle_container} data-path='exhibition_works'onClick={navigateTo}>
+        <div className={styles.exhibition_bundle_container} >
 
-            <div className={`${styles.exhibition_bundle}`}>
+            <div className={`${styles.exhibition_bundle}`} >
               <Exhibition/>
               
             </div>
-            <div className={`${styles.exhibition_bundle}`}>
+            <div className={`${styles.exhibition_bundle}`} >
               <Exhibition/>
               
             </div>
@@ -52,9 +44,9 @@ const WorkExhibition = () => {
         </div>
 
 
-        <div className={styles.exhibition_bundle_container}  data-path='exhibition_works' onClick={navigateTo}>
+        <div className={styles.exhibition_bundle_container} >
 
-            <div className={`${styles.exhibition_bundle}`}>
+            <div className={`${styles.exhibition_bundle}`}  >
               <Exhibition/>
               
             </div>

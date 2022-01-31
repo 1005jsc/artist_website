@@ -37,7 +37,7 @@ return <nav className={styles.navbar_left}>
         <span className={`${styles.s1} `} data-path="works" onClick={navigateTo}>작품</span>
       </div>
       <div className={`${styles.critics} ${styles.c1} `}>
-        <span className={`${styles.s1}`} data-path="exhibition" onClick={navigateTo}>전시</span>
+        <span className={`${styles.s1}`} data-path="exhibitions" onClick={navigateTo}>전시</span>
       </div>
       
       <div className={`${styles.critics} ${styles.c1} `}>

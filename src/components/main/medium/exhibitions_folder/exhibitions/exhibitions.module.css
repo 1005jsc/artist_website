@@ -17,3 +17,12 @@
 .year {
 	font-size: 2.4rem;
 }
+
+.background_img {
+	width: 115.2rem;
+	height: 100%;
+	overflow: hidden;
+	position: fixed;
+	opacity: 0.1;
+	z-index: -1;
+}

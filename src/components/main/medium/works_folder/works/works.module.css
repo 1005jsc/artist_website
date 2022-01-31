@@ -7,8 +7,8 @@
 .background_img {
 	width: 115.2rem;
 	height: 100%;
-	background-image: url('../../../../../asset/img/artist_img/old_img/cho_yong_nam10.jpg');
-	background-repeat: no-repeat;
+	/* background-image: url('../../../../../asset/img/artist_img/old_img/cho_yong_nam10.jpg');
+	background-repeat: no-repeat; */
 	overflow: hidden;
 	position: fixed;
 	opacity: 0.3;

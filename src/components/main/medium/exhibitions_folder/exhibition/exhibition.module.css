@@ -5,6 +5,7 @@
 	max-width: 32.5rem;
 	flex: 1;
 	border: 1px solid rgb(199, 199, 199, 0.5);
+	background-color: white;
 }
 
 .exhibition_container:hover {

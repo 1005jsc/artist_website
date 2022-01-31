@@ -22,14 +22,25 @@ const Works = () => {
     }
   }
 
+  const urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
+  const urlNow = window.location.href 
+  
+  const result = urlNow.match(urlWordSearchRegex)
+  let yes
+  if(result![1]=='/works'&&result![2]==undefined){
+    yes=true
+  }
   
   const array1 = ['year', 'larger', 'smaller']
   const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word)})
 
 
-  console.log(array2)
   return <section className={styles.container}>
-    {array2.includes(true)&&<div className={styles.background_img}></div>}
+    {array2.includes(true)&&<div className={styles.background_img}>
+    <img src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/>
+      </div>}
+    {yes&&<div className={styles.background_img}>
+      <img src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/></div>}
     
     <div className={styles.container2}>
     <span className={styles.title}>작품</span>
