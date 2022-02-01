@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './works.module.css'
 import Work from '../work/work';
 import WorkYear from '../work_year/work_year';
@@ -11,7 +11,11 @@ import { myFunctions } from './../../../../../common/project_functions';
 const Works = () => {
 
   const navigate = useNavigate()
+  const [url, setUrl] = useState<string|null>()
 
+  useEffect(() => {
+    setUrl(window.location.href)
+  })
   
 
   const navigateTo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -32,7 +36,8 @@ const Works = () => {
   }
   
   const array1 = ['year', 'larger', 'smaller']
-  const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word)})
+  
+  const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word, url)})
 
 
   return <section className={styles.container}>
@@ -43,7 +48,9 @@ const Works = () => {
       <img src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/></div>}
     
     <div className={styles.container2}>
+    <div className={styles.title_container}>
     <span className={styles.title}>작품</span>
+    </div>
     <div className={styles.works_button_container}>
       <div className={styles.works_sort}>
         <button className={`${styles.works_buttons} ${styles.works_buttons_onClick} ${styles.year}`}data-path="year" onClick={navigateTo}>연도별</button>

@@ -12,8 +12,9 @@ const Exhibitions = () => {
   {<div className={styles.background_img}>
     <img src="/img/asset_img/exhibitions/20210507guk_yoon/museum_photo/guk_yoon_photo.jpg" alt="" /></div>}
   <div className={styles.container2}>
+    <div className={styles.title_container}>
   <span className={styles.title}>전시</span>
-
+  </div>
     <Outlet/>
 
 

@@ -2,13 +2,45 @@
 	font-size: 2.2rem;
 }
 
-.critics_container {
-	padding: 3rem;
+.container {
+	width: 100%;
+	min-height: 1100px;
+	position: relative;
 }
 
 .title {
-	font-size: 2rem;
+	font-size: 3rem;
+	font-weight: 700;
 }
+.title_container {
+	height: 6rem;
+}
+
+.container2 {
+	padding: 4rem;
+	padding-top: 5rem;
+}
+
+.container3 {
+	margin-top: 6rem;
+}
+
+.article_title_container {
+	display: flex;
+	flex-direction: column;
+}
+
+.article_title {
+	font-size: 2.8rem;
+	font-weight: 600;
+	margin-bottom: 2.5rem;
+}
+
+.article_writer {
+	font-size: 2rem;
+	font-weight: 600;
+}
+
 .title2 {
 	font-size: 1.4rem;
 }

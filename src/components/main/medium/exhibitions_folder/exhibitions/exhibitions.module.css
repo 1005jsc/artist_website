@@ -13,6 +13,9 @@
 	padding: 4rem;
 	padding-top: 5rem;
 }
+.title_container {
+	height: 6rem;
+}
 
 .year {
 	font-size: 2.4rem;

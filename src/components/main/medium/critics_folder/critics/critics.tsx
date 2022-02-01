@@ -3,17 +3,23 @@ import styles from "./critics.module.css";
 
 const Critics = () => {
 
-  return <article className={styles.critics_container}>
-    <span className={styles.critics_title}>평론가의 글 </span>
-    <br/>
-    <br/>
-    <br/>
+  return <article className={styles.container}>
+
+    <div className={styles.container2}>
     <div className={styles.title_container}>
-      {/* 여기에 예쁘게 만들어서 넣기 */}
-    <span className={styles.title}>시간속에 담아낸 내면의 추상언어 : 조용남 개인전 </span>
+    <span className={styles.title}>평론가의 글 </span>
     </div>
-    <br/>
-    <span className={styles.title2}>조인호 &lt;광주미술문화연구소 대표&gt;</span>
+    <div className={styles.container3}>
+    
+    <div className={styles.article_title_container}>
+    <span className={styles.article_title}>&nbsp;&nbsp;시간속에 담아낸 내면의 추상언어 : 조용남 개인전 </span>
+    <span className={styles.article_writer}> &nbsp;&nbsp;&nbsp;조인호 &lt;광주미술문화연구소 대표&gt;</span>
+    </div>
+    
+    
+    
+    
+    
     <div className={styles.text_container}>
     <p >
     <br/> &nbsp; &nbsp; &nbsp; &nbsp;‘시간을 담다.’ 조용남 회화세계의 기본 명제다. 화폭을 일궈 온 지 40여 년만의 첫 발표전이다. 1983년 대학 졸업 후 작업을 꾸준히 해오면서도 그동안 단체전도, 개인전도, 어디에도 작품을 내보인 적이 없었다. 그러다가 회갑 지나고서야 첫 전시회를 갖게 되었으니 늦어도 한참 늦은 늦깎이 신예의 등단이다.<br/> &nbsp; &nbsp; &nbsp; &nbsp; <br/>
@@ -30,9 +36,11 @@ const Critics = () => {
 
     </p>
     </div>
-    
-
+    </div>
+    </div>
 </article>
 
 }
 export default Critics;
+
+

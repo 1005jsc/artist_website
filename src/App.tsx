@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styles from "./app.module.css"
 import ContentBox from './components/main/large/content_box/content_box';
@@ -19,10 +19,14 @@ import WorkExhibitionWorks from './components/main/medium/works_folder/work_exhi
 import Exhibitions from './components/main/medium/exhibitions_folder/exhibitions/exhibitions';
 
 
+
+
+
+
 const App = () =>{
 
 
-  console.log(window.innerWidth)
+  
 
   return <section className={styles.myApp}>
       
@@ -64,8 +68,16 @@ const App = () =>{
         </Route>
 
 
-        <Route path="critics" element={<Critics/>}/>
-        <Route path="contacts" element={<Contacts/>}/>
+        <Route path="critics" element={<Critics/>}>
+          <Route path="" element={<Critics/>}/>
+
+        </Route>
+
+
+
+        <Route path="contacts" element={<Contacts/>}>
+          
+        </Route>
       
       </Route>
     

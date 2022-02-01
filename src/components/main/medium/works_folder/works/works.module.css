@@ -20,6 +20,10 @@
 	padding-top: 5rem;
 }
 
+.title_container {
+	height: 6rem;
+}
+
 .title {
 	font-size: 3rem;
 	font-weight: 700;
@@ -29,7 +33,7 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 2rem;
-	margin-top: 3rem;
+	margin-top: 2rem;
 	margin-bottom: 3rem;
 }
 

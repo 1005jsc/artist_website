@@ -1,2 +1,17 @@
 .contact_data_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.contact_data_container2 {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.s1 {
+	font-size: 2.6rem;
 }

@@ -10,8 +10,11 @@
 
 .bio_note {
 	font-size: 2rem;
-	margin-top: 3rem;
 	letter-spacing: 0.1rem;
 	word-spacing: 0.2rem;
 	line-height: 4rem;
+}
+
+.title_container {
+	height: 6rem;
 }
