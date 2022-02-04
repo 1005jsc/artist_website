@@ -1,0 +1,61 @@
+.login {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height: 56rem;
+	position: relative;
+}
+
+.private_login_container {
+	height: 40rem;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.notice {
+	font-size: 2.4rem;
+	margin: 4rem;
+}
+
+.s1 {
+	font-size: 2.2rem;
+	margin: 4rem;
+}
+
+.for {
+	display: flex;
+	align-items: center;
+	width: 40rem;
+	position: relative;
+	left: 4rem;
+}
+
+.login_input {
+	display: block;
+	/* margin-top: 1rem; */
+	border: 1px solid black;
+	border-radius: 0.3rem;
+	height: 3rem;
+	width: 30rem;
+	margin-right: 0.6rem;
+}
+
+.submit_button {
+	display: block;
+	/* outline: 0; */
+	cursor: pointer;
+	/* border: 1px solid black; */
+	width: 4.6rem;
+	height: 3rem;
+}
+
+.notice_wrong_password {
+	position: absolute;
+	bottom: 8rem;
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
+}

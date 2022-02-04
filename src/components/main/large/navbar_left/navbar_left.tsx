@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthService from '../../../../services/auth';
 import styles from './navbar_left.module.css'
 
+type NavbarLeftProps = {
+  loginState:boolean;
+}
 
-const NabvarLeft = () => {
+
+
+
+const NabvarLeft = ({loginState}:NavbarLeftProps) => {
 
   const navigate = useNavigate()
 
-  
+  const login = loginState
 
   const navigateTo:React.MouseEventHandler<HTMLSpanElement> = (e) => {
     e.preventDefault()
@@ -16,16 +23,16 @@ const NabvarLeft = () => {
       navigate(`/main/${path}`)
     }
 
-
   }
 
 
 return <nav className={styles.navbar_left}>
   
   <div className={styles.logo_sample}>Logo</div>
-
+  {login&&<span className={styles.loggedin_banner}>로그인 되었습니다 -작가 조용남-</span>
+  } 
   <div className={styles.navbar_container}>
-
+    
       <div className={`${styles.biography} ${styles.c1} `}>
         <span className={` ${styles.s1} `}data-path="biography" onClick={navigateTo}>작가소개</span>
         <span className={`${styles.s2}`}data-path="biography/note" onClick={navigateTo}>- 작가노트</span>

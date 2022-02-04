@@ -21,7 +21,6 @@ class artWebsiteExportFunctions{
   if(result?.includes(wordWithSlash)){
     return true
   }else{
-    console.log('hi')
     return false
   }
   }
