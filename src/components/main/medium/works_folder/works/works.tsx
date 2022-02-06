@@ -39,6 +39,8 @@ const Works = () => {
   
   const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word, url)})
 
+  // console.log(array1)
+  // console.log(array2)
 
   return <section className={styles.container}>
     {array2.includes(true)&&<div className={styles.background_img}>

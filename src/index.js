@@ -9,12 +9,12 @@ const authService = new AuthService()
 
 
 
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <App authService={authService}/>
     </BrowserRouter>
   </React.StrictMode>,
+  
   document.getElementById('root')
 );

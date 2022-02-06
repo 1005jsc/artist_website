@@ -16,10 +16,6 @@ const Main = ({handleLogin, login}:MainProps) => {
 
   
 
-  
-
-
-
 
   return <section className={styles.main}>
     <div className={styles.left}><NabvarLeft loginState={login}/></div>

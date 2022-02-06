@@ -34,3 +34,16 @@
 .year {
 	font-size: 2.4rem;
 }
+
+:root {
+	--animation-duration: 300ms;
+}
+
+.private_s1 {
+}
+
+.private_s2 {
+}
+
+.private_input {
+}

@@ -1,0 +1,36 @@
+.login_success_container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+}
+
+.login_success_banner {
+	position: relative;
+	top: 7rem;
+	font-size: 2.4rem;
+}
+
+.button_container {
+	position: relative;
+	top: 18rem;
+	display: flex;
+	flex-wrap: wrap;
+	width: 70rem;
+	height: 70rem;
+}
+
+.square_btn {
+	flex: 1 1 30%;
+	width: 100%;
+	border: 1px solid black;
+	margin: 4rem;
+	background-color: white;
+	font-size: 3rem;
+}
+
+.square_btn:hover {
+	transition: all 20ms ease-in;
+	transform: scale(1.03);
+}

@@ -1,0 +1,19 @@
+.container {
+	width: 100%;
+	min-height: 1100px;
+	position: relative;
+}
+
+.title_container {
+	height: 6rem;
+}
+
+.title {
+	font-size: 3rem;
+	font-weight: 700;
+}
+
+.container2 {
+	padding: 4rem;
+	padding-top: 5rem;
+}

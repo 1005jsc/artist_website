@@ -18,11 +18,20 @@ import WorkExhibition from './components/main/medium/works_folder/work_exhibitio
 import WorkExhibitionWorks from './components/main/medium/works_folder/work_exhibition_works/work_exhibition_works';
 import Exhibitions from './components/main/medium/exhibitions_folder/exhibitions/exhibitions';
 import Private from './components/main/medium/private_folder/private/private';
-import LoggedIn from './components/main/medium/private_folder/logged_in/logged_in';
 import AuthService from './services/auth';
 import PrivateRoute from './components/utility/private_route/private_route';
 import PrivateRoute2 from './components/utility/private_route2/private_route2';
 import Login from './components/main/medium/private_folder/login/login';
+import LoginSuccess from './components/main/medium/private_folder/login_success/login_success';
+import WorkUpload from './components/main/medium/private_folder/work_upload/work_upload';
+import WorkUploadDone from './components/main/medium/private_folder/work_upload_done/work_upload_done';
+import WorkFix1 from './components/main/medium/private_folder/work_fix_1/work_fix_1';
+import WorkFix2 from './components/main/medium/private_folder/work_fix_2/work_fix_2';
+import WorkFixDone from './components/main/medium/private_folder/work_fix_done/work_fix_done';
+import ExhibitionUpload from './components/main/medium/private_folder/exhibition_upload/exhibition_upload';
+import ExhibitionUploadDone from './components/main/medium/private_folder/exhibition_upload_done/exhibition_upload_done';
+import SuggestionBox from './components/main/medium/private_folder/suggestion_box/suggestion_box';
+import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
 
 
 
@@ -48,6 +57,24 @@ const App = ({authService}:AppProps) =>{
   
 }, [login])
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const handleLogin = (password:string|number) => {
   
@@ -116,19 +143,24 @@ const hi = 'hi'
         
         <Route path="private" element={<Private authService={authService} />}>
           <Route path="" element={<Login authService={authService}/>}/>
-            <Route path="loggedin" element={<PrivateRoute login={login}/>}>
-              <Route path="" element={<LoggedIn />}/>
-              <Route path="work_data_upload" element={<></>}/>
-              <Route path="work_data_upload_done" element={<></>}/>
+          <Route path="loggedin" element={<PrivateRoute login={login}/>}>
+              <Route path="" element={<LoginSuccess />}/>
+              <Route path="work_upload" element={<WorkUpload/>}>
+                <Route path="" element={<WorkUploadForm />}/>
+                <Route path="work_upload_done" element={<WorkUploadDone/>}/>
+              </Route>
 
-              <Route path="work_data_fix_1" element={<></>}/>
-              <Route path="work_data_fix_2" element={<></>}/>
-              <Route path="work_data_fix_done" element={<></>}/>
+              <Route path="work_fix_1" element={<WorkFix1/>}/>
+              <Route path="work_fix_2" element={<WorkFix2/>}/>
+              <Route path="work_fix_done" element={<WorkFixDone/>}/>
 
-              <Route path="exhibition_data_upload" element={<></>}/>
-              <Route path="exhibition_data_upload_done" element={<></>}/>
+              <Route path="exhibition_upload" element={<ExhibitionUpload/>}/>
+              <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>
+              
+              <Route path="suggestion_box" element={<SuggestionBox/>}/>
 
-            </Route>
+              
+          </Route>
 
 
 

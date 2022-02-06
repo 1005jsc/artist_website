@@ -1,0 +1,48 @@
+.container3 {
+	padding: 8rem;
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}
+.poster_click_container {
+	width: 100%;
+	position: relative;
+}
+
+.year {
+	font-size: 2.4rem;
+	/* margin-top: 1rem; */
+	margin-bottom: 0;
+}
+
+.poster_click_please {
+	margin-top: 0;
+	position: relative;
+	font-size: 2rem;
+	left: 46rem;
+}
+
+.exhibition_bundle_container {
+	width: 90rem;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+	padding-right: 0;
+	margin-bottom: 6rem;
+}
+
+.exhibition_bundle {
+	/* margin: auto; */
+	display: flex;
+	justify-content: center;
+	width: 45rem;
+	/* flex: 1 1 50%; */
+	padding-top: 2rem;
+}
+/* 
+.measurement {
+	width: 90rem;
+	margin: auto;
+	height: 10rem;
+	background-color: aqua;
+} */
