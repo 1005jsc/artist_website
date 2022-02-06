@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from "react"
-import styles from "./private_login.module.css";
+import styles from "./login.module.css";
 import 'dotenv/config'
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import AuthService from './../../../../../services/auth';
 import { HandleLoginType, LoginContextType } from '../../../../../common/project_types';
 
 
-type PrivateLoginProps = {
+type LoginProps = {
   authService : AuthService;  
 }
 
 
 
-const PrivateLogin = ({authService}:PrivateLoginProps) => {
+const Login = ({authService}:LoginProps) => {
   const [passwordCheck, setPasswordCheck] = useState<boolean>(true)
   const inputRef = useRef<HTMLInputElement|null>(null)
   const handleLogin = useOutletContext<HandleLoginType>()
@@ -68,4 +68,4 @@ const PrivateLogin = ({authService}:PrivateLoginProps) => {
 </section>
 
 }
-export default PrivateLogin;
+export default Login;

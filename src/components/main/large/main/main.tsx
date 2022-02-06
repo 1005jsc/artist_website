@@ -4,40 +4,20 @@ import ContentBox from '../content_box/content_box';
 import NabvarLeft from '../navbar_left/navbar_left';
 import styles from "./main.module.css";
 
+import { HandleLoginType } from '../../../../common/project_types';
+
 type MainProps = {
-  authService:AuthService;
+  login: boolean;
+  handleLogin: HandleLoginType;
 }
 
 
-const Main = ({authService}:MainProps) => {
-
-  const [login, setLogin] = useState<boolean>(false)
-
-  useEffect(() => {
-    authService.AuthUserCheck((result:any) => {
-      if(result){
-        
-        setLogin(true)
-      }else{
-        setLogin(false)
-      }
-    })
-    
-  
-}, [login])
+const Main = ({handleLogin, login}:MainProps) => {
 
   
 
-const handleLogin = (password:string|number) => {
   
-  if(password==process.env.REACT_APP_ART_WEBSITE_PRIVATE_ADMIN_PASSWORD){
-    authService.AuthGooglePopupLogin()
-    setLogin(true)
-    return true
-  }else{
-    return false
-  }
-}
+
 
 
 
