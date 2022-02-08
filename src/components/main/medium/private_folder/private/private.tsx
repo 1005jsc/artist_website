@@ -27,7 +27,7 @@ const Private = ({authService}:PrivateProps) => {
   }
   
   
-  const array1 = ['work_upload', 'work_upload_done', 'work_fix_1', "work_fix_2", "work_fix_done","exhibition_upload", "exhibition_upload_done", "suggestion_box" ]  
+  const array1 = ['work_upload', 'work_upload_done', 'work_fix', "work_fix_form_two", "work_fix_done","exhibition_upload", "exhibition_upload_done", "suggestion_box" ]  
   const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word, url)})
   
 

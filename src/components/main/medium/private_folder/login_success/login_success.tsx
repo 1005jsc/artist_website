@@ -26,7 +26,7 @@ const LoginSuccess = ({}:LoginSuccess) => {
     
     <div className={styles.button_container}>
     <button className={styles.square_btn}data-path="work_upload" onClick={navigateTo}>작품 <br/> 업로드하기</button>
-    <button className={styles.square_btn}data-path="work_fix_1" onClick={navigateTo}>작품정보<br/>수정하기</button>
+    <button className={styles.square_btn}data-path="work_fix" onClick={navigateTo}>작품정보<br/>수정하기</button>
     <button className={styles.square_btn}data-path="exhibition_upload" onClick={navigateTo}>전시회 <br/>업로드하기</button>
     <button className={styles.square_btn}data-path="suggestion_box" onClick={navigateTo}>건의함</button>
     </div>

@@ -30,3 +30,7 @@
 	border-radius: 1.6rem;
 	background-color: #65f273;
 }
+
+.navigate_to_work_btn:hover {
+	transform: scale(1.02);
+}

@@ -1,0 +1,41 @@
+.fix_from_sec {
+	padding: 4rem;
+	padding-top: 3rem;
+}
+
+.explanations_container {
+	padding-left: 4rem;
+}
+
+.explanation {
+	font-size: 2rem;
+	font-weight: 600;
+	margin: 0;
+}
+
+.s1 {
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.works_to_fix_container {
+	margin-top: 4rem;
+	/* border: 1px solid black; */
+}
+
+.grey_container {
+	margin-top: 4rem;
+	border: 1px solid rgb(0, 0, 0, 0.4);
+	padding-top: 4rem;
+	padding-bottom: 6rem;
+	border-radius: 2.6rem;
+	background-color: #f4f4f4;
+}
+
+.work_bundle {
+	width: 90rem;
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+}

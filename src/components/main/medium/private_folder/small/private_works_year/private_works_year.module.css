@@ -1,0 +1,19 @@
+.container3 {
+	padding: 3rem;
+	padding-top: 3rem;
+	max-height: 64rem;
+	overflow-y: auto;
+	/* border: 1px solid black; */
+}
+
+.work_bundle {
+	width: 90rem;
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+}
+
+.year {
+	font-size: 2.4rem;
+}

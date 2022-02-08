@@ -1,8 +1,13 @@
+/* main color */
 @value deepGreen: #071c1b;
 @value southSeaGreen: #063842;
-@value coolToneIvory: #F4F4F4;
+/* grey */
+@value coolToneIvoryGray: #F4F4F4;
+@value ivoryGray: #EDEDED;
 @value borderSoftGrey: rgb(199, 199, 199, 0.5);
 @value borderSoftGray: #c7c7c7;
+/* border color */
 @value skyblue: rgb(159, 205, 247);
 @value skyblue: #9fcdf7;
+/* button color */
 @value pastelgreen: #65f273;

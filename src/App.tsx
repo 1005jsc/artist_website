@@ -25,13 +25,14 @@ import Login from './components/main/medium/private_folder/login/login';
 import LoginSuccess from './components/main/medium/private_folder/login_success/login_success';
 import WorkUpload from './components/main/medium/private_folder/work_upload/work_upload';
 import WorkUploadDone from './components/main/medium/private_folder/work_upload_done/work_upload_done';
-import WorkFix1 from './components/main/medium/private_folder/work_fix_1/work_fix_1';
-import WorkFix2 from './components/main/medium/private_folder/work_fix_2/work_fix_2';
 import WorkFixDone from './components/main/medium/private_folder/work_fix_done/work_fix_done';
 import ExhibitionUpload from './components/main/medium/private_folder/exhibition_upload/exhibition_upload';
 import ExhibitionUploadDone from './components/main/medium/private_folder/exhibition_upload_done/exhibition_upload_done';
 import SuggestionBox from './components/main/medium/private_folder/suggestion_box/suggestion_box';
 import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
+import WorkFix from './components/main/medium/private_folder/work_fix/work_fix';
+import WorkFixFormOne from './components/main/medium/private_folder/work_fix_form_one/work_fix_form_one';
+import WorkFixFormTwo from './components/main/medium/private_folder/work_fix_form_two/work_fix_form_two';
 
 
 
@@ -150,9 +151,12 @@ const hi = 'hi'
                 <Route path="work_upload_done" element={<WorkUploadDone/>}/>
               </Route>
 
-              <Route path="work_fix_1" element={<WorkFix1/>}/>
-              <Route path="work_fix_2" element={<WorkFix2/>}/>
-              <Route path="work_fix_done" element={<WorkFixDone/>}/>
+              <Route path="work_fix" element={<WorkFix/>}>
+                <Route path="" element={<WorkFixFormOne/>}/>
+                <Route path="work_fix_form_two" element={<WorkFixFormTwo/>}/>
+                <Route path="work_fix_done" element={<WorkFixDone/>}/>
+
+              </Route>
 
               <Route path="exhibition_upload" element={<ExhibitionUpload/>}/>
               <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>

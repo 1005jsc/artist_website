@@ -1,7 +1,5 @@
-@value coolToneIvory from '../../../../common/colors.css';
-
 .navbar_left {
-	background-color: coolToneIvory;
+	background-color: #f4f4f4;
 	width: 100%;
 	height: 100%;
 	display: flex;

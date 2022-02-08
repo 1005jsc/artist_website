@@ -8,8 +8,8 @@ const WorkUpload = () => {
 
 
 
-  return <article className={styles.container}>
-    <div className={styles.container2}>
+  return <article className={styles.containe}>
+    <div className={styles.container_quaiquai}>
     <div className={styles.title_container}>
   <span className={styles.title}>작품 업로드하기</span>
   </div>
