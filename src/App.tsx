@@ -26,13 +26,14 @@ import LoginSuccess from './components/main/medium/private_folder/login_success/
 import WorkUpload from './components/main/medium/private_folder/work_upload/work_upload';
 import WorkUploadDone from './components/main/medium/private_folder/work_upload_done/work_upload_done';
 import WorkFixDone from './components/main/medium/private_folder/work_fix_done/work_fix_done';
-import ExhibitionUpload from './components/main/medium/private_folder/exhibition_upload/exhibition_upload';
 import ExhibitionUploadDone from './components/main/medium/private_folder/exhibition_upload_done/exhibition_upload_done';
 import SuggestionBox from './components/main/medium/private_folder/suggestion_box/suggestion_box';
 import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
 import WorkFix from './components/main/medium/private_folder/work_fix/work_fix';
 import WorkFixFormOne from './components/main/medium/private_folder/work_fix_form_one/work_fix_form_one';
 import WorkFixFormTwo from './components/main/medium/private_folder/work_fix_form_two/work_fix_form_two';
+import ExhibitionUpload from './components/main/medium/private_folder/exhibition_upload/exhibition_upload';
+import ExhibitionUploadForm from './components/main/medium/private_folder/exhibition_upload_form/exhibition_upload_form';
 
 
 
@@ -158,12 +159,16 @@ const hi = 'hi'
 
               </Route>
 
-              <Route path="exhibition_upload" element={<ExhibitionUpload/>}/>
-              <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>
+              <Route path="exhibition_upload" element={<ExhibitionUpload/>}>
+                
+                <Route path="" element={<ExhibitionUploadForm/>}/>
+                <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>
+
+              </Route>
               
-              <Route path="suggestion_box" element={<SuggestionBox/>}/>
 
               
+              <Route path="suggestion_box" element={<SuggestionBox/>}/>
           </Route>
 
 
