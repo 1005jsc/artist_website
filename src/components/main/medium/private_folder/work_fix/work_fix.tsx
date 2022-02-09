@@ -1,8 +1,16 @@
 import React from "react"
 import { Outlet } from 'react-router-dom';
+import Database from '../../../../../services/database';
 import styles from "./work_fix.module.css";
 
-const WorkFix = () => {
+type WorkFixProps = {
+  databaseService:Database
+}
+
+
+
+
+const WorkFix = ({databaseService}:WorkFixProps) => {
 
   return <article className={styles.containe}>
   <div className={styles.container_quaiquai}>
@@ -11,7 +19,7 @@ const WorkFix = () => {
 </div>
   </div>
 
-<Outlet/>
+<Outlet context={databaseService}/>
 
 
 

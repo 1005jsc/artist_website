@@ -1,11 +1,22 @@
-import React, { useRef, useState } from "react"
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react"
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { myFunctions } from '../../../../../common/project_functions';
 import { TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
+import Database from '../../../../../services/database';
 import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
 import styles from "./work_upload_form.module.css";
 
-const WorkUploadForm = () => {
+// type WorkUploadFormProps = {
+//   databaseService: Database;
+// }
 
+const WorkUploadForm = () => {
+  const databaseService= useOutletContext<Database>();
+  const [url, setUrl] = useState<string|null>()
+
+  useEffect(() => {
+    setUrl(window.location.href)
+  })
 
   const [otherSelected, setOtherSelected]= useState<boolean>(false)
   const [soldSelected, setSoldSelected]= useState<boolean>(false)
@@ -41,8 +52,16 @@ const WorkUploadForm = () => {
 
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
-  
-    navigate('/main/private/loggedin/work_upload/work_upload_done')
+
+    if(myFunctions.checkWordFromUrl('work_fix', url)){
+      navigate('/main/private/loggedin/work_fix/work_fix_done')
+
+    }else if(myFunctions.checkWordFromUrl('work_upload', url)){
+
+      navigate('/main/private/loggedin/work_upload/work_upload_done')
+    }else{
+      console.log('url or navigate error')
+    }
 
 
     let workNameValue
@@ -187,7 +206,7 @@ const WorkUploadForm = () => {
     }
 
   
-    console.log(workData)
+    databaseService.uploadWorkData(workData.workSerialNumber, workData)
    
 
 
@@ -236,35 +255,6 @@ const WorkUploadForm = () => {
 }
 
 
-
-
-  // const yes = {
-  //     workSerialNumber
-  //     workPhotoUrl
-  //     workName
-  //     workCompletionDate
-  //     workSize
-  //     workMaterial
-  //     workOnSale
-  //     workSold
-  //     workExhibitionHistory
-  //     workMemo
-  //   }
-
-    // const yes2 = {
-
-    //   buyerName
-    //   buyerPhoneNumber
-    //   buyerEmail
-    //   purchaseLocation
-    //   purchaseDate
-    //   purchasePrize
-
-    // }
-
-
-
-   
 
 
 

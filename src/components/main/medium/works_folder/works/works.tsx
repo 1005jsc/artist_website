@@ -7,8 +7,14 @@ import WorkExhibition from '../work_exhibition/work_exhibition';
 import WorkExhibitionWorks from '../work_exhibition_works/work_exhibition_works';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { myFunctions } from './../../../../../common/project_functions';
+import Database from '../../../../../services/database';
 
-const Works = () => {
+type WorksProps = {
+  databaseService:Database;
+}
+
+
+const Works = ({databaseService}:WorksProps) => {
 
   const navigate = useNavigate()
   const [url, setUrl] = useState<string|null>()

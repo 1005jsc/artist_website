@@ -4,8 +4,14 @@ import ExhibitionInfo from '../exhibition_info/exhibition_info';
 import styles from "./exhibitions.module.css";
 import WorkExhibition from './../../works_folder/work_exhibition/work_exhibition';
 import { Outlet } from 'react-router-dom';
+import Database from '../../../../../services/database';
 
-const Exhibitions = () => {
+type ExhibitionProps = {
+  databaseService: Database;
+}
+
+
+const Exhibitions = ({databaseService}:ExhibitionProps) => {
 
   return <section className={styles.container}>
   

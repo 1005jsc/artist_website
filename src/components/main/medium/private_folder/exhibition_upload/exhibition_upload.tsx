@@ -1,8 +1,13 @@
 import React from "react"
 import { Outlet } from 'react-router-dom';
+import Database from '../../../../../services/database';
 import styles from "./exhibition_upload.module.css";
 
-const ExhibitionUpload = () => {
+type ExhibitionUploadProps={
+  databaseService:Database;
+}
+
+const ExhibitionUpload = ({databaseService}:ExhibitionUploadProps) => {
 
   return <article className={styles.containe}>
   <div className={styles.container_quaiquai}>
@@ -11,7 +16,7 @@ const ExhibitionUpload = () => {
 </div>
   </div>
 
-<Outlet/>
+<Outlet context={databaseService}/>
 
 
 

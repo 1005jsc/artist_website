@@ -1,8 +1,14 @@
 import styles from "./work_upload.module.css";
 import WorkUploadForm from '../work_upload_form/work_upload_form';
 import { Outlet } from 'react-router-dom';
+import Database from '../../../../../services/database';
 
-const WorkUpload = () => {
+
+type WorkUploadProps = {
+  databaseService:Database;
+}
+
+const WorkUpload = ({databaseService}:WorkUploadProps) => {
  
 
 
@@ -15,7 +21,7 @@ const WorkUpload = () => {
   </div>
     </div>
 
-  <Outlet/>
+  <Outlet context={databaseService}/>
 
 
 

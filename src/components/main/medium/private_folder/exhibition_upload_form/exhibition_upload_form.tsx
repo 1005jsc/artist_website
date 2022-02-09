@@ -1,11 +1,16 @@
 import React, { useRef, useState } from "react"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { TypeOfExhibition } from '../../../../../common/project_types';
 import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
 import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
+import Database from './../../../../../services/database';
 
 const ExhibitionUploadForm = () => {
+
+  const databaseService= useOutletContext<Database>();
+  
+
 
   const navigate = useNavigate()
  
@@ -88,9 +93,7 @@ const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
       
     }
 
-
-
-console.log(exhibitionData)
+    databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
 
 
 
