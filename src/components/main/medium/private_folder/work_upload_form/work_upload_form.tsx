@@ -6,9 +6,6 @@ import Database from '../../../../../services/database';
 import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
 import styles from "./work_upload_form.module.css";
 
-// type WorkUploadFormProps = {
-//   databaseService: Database;
-// }
 
 const WorkUploadForm = () => {
   const databaseService= useOutletContext<Database>();

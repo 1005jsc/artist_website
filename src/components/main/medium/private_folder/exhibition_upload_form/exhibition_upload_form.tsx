@@ -5,15 +5,19 @@ import PrivateExhibitionsSelect from '../small/private_exhibitions_select/privat
 import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
+import ImageUpload from '../../../../../services/image_uploads';
 
 const ExhibitionUploadForm = () => {
 
   const databaseService= useOutletContext<Database>();
-  
-
+  const imageUploader = new ImageUpload();
 
   const navigate = useNavigate()
  
+// 포스터 등록하기 
+
+
+
 //  전시회 데이터 만들기
   
 
@@ -23,6 +27,46 @@ const exhibitionLocationRef = useRef<HTMLInputElement | null>(null)
 const exhibitionPeriodRef = useRef<HTMLInputElement | null>(null)
 const exhibitionSponserRef = useRef<HTMLInputElement | null>(null)
 const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
+
+
+
+
+const handlePosterUpload:React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+e.preventDefault()
+let file;
+if(e.target.files){
+  console.log(e.target.files)
+  console.log(e.target.files[0])
+  file = e.target.files[0]
+  // single일 경우에는 files에 [0]을 꼭 명시해줘야한다 
+  // files 는 FileList이다 
+  // files[0]이 파일이다 
+
+  // multiple일 경우에는 files로 넘겨준다 
+}
+
+const result =  await imageUploader.uploadSingleImage(file)
+console.log(result)
+console.log(result.url)
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -139,6 +183,8 @@ const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
       <span>여긴 나중에</span>
+      <input  type="file" name="file" accept="image/*" multiple onChange={handlePosterUpload}/>
+
 
     </div>
   </div>  
