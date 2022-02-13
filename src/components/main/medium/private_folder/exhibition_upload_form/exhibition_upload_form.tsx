@@ -1,19 +1,21 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { TypeOfExhibition } from '../../../../../common/project_types';
-import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
 import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
-import ImageUpload from '../../../../../services/image_uploads';
+import PreviewImage from '../../../small/preview_image/preview_image';
 
 const ExhibitionUploadForm = () => {
 
   const databaseService= useOutletContext<Database>();
-  const imageUploader = new ImageUpload();
+  const [imageUrl1, setImageUrl1] = useState<string|null>(null)
+  const [imageUrl2, setImageUrl2] = useState<Array<string>|null>(null)
+
+  const [arrayUrl, setArrayUrl] = useState<string[]>([])
+  const [arrayUrl2, setArrayUrl2] = useState<string[]>([])
 
   const navigate = useNavigate()
- 
 // 포스터 등록하기 
 
 
@@ -31,32 +33,27 @@ const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
 
 
 
-const handlePosterUpload:React.ChangeEventHandler<HTMLInputElement> = async (e) => {
+
+
+const handlePosterUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
 e.preventDefault()
 let file;
 if(e.target.files){
-  console.log(e.target.files)
-  console.log(e.target.files[0])
+  // console.log(e.target.files)
+  // console.log(e.target.files[0])
   file = e.target.files[0]
   // single일 경우에는 files에 [0]을 꼭 명시해줘야한다 
   // files 는 FileList이다 
   // files[0]이 파일이다 
-
+  
   // multiple일 경우에는 files로 넘겨준다 
-}
-
-const result =  await imageUploader.uploadSingleImage(file)
-console.log(result)
-console.log(result.url)
-
-
-
-
-
-
-
-
-
+  let reader = new FileReader()
+  
+  reader.readAsDataURL(file)
+  reader.onload = () => {
+    setImageUrl1(reader.result as string)
+    }
+  }
 }
 
 
@@ -145,31 +142,76 @@ console.log(result.url)
 
   
   }
+ 
+
+  useEffect(() => {
+    console.log(arrayUrl)
+  }, [arrayUrl])
+  useEffect(() => {
+    console.log(arrayUrl2)
+  }, [arrayUrl2])
+  
+
+const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  e.preventDefault()
 
 
-
-
-
-
-
-//
-
-
-// console.log(exhibitionData)
-
-
-
-
-
-
-
-// 버튼 활성화하기
-
-// React.MouseEventHandler<HTMLButtonElement>
-  const handleToNext:React.MouseEventHandler<HTMLInputElement> =(e) => {
-    e.preventDefault()
+  // console.log(e.target.files)
+  const array1:string[] = []
+  const files = e.target.files
+  if(files){
     
+    console.log(files)
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader()
+      reader.readAsDataURL(files[i])
+      reader.onload=() => {
+        array1.push(reader.result as string)
+        const array2 = arrayUrl.concat(array1)
+        setArrayUrl(array2 as string[])
+      }
+    }
+
+    let array3 
+    if(arrayUrl){
+      array3 = arrayUrl2.concat(arrayUrl)
+    }else{
+      array3 = arrayUrl2
+    }
+    setArrayUrl2(array3 as string[])
+
+
+
+
+
+
+
+
+
+
   }
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -183,8 +225,11 @@ console.log(result.url)
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
       <span>여긴 나중에</span>
-      <input  type="file" name="file" accept="image/*" multiple onChange={handlePosterUpload}/>
+      <input  type="file" name="file" accept="image/*"  onChange={handlePosterUpload}/>
+      <div className={styles.preview_images}>
+          {imageUrl1&&<PreviewImage url={imageUrl1}/>}
 
+      </div>
 
     </div>
   </div>  
@@ -254,7 +299,11 @@ console.log(result.url)
     <div className={styles.div2}>
       <span className={styles.div2_title}>4. 전시장 건물사진 등록하기</span>
     </div>
-    <h1>여긴 나중에</h1>
+    <input  type="file" name="file" accept="image/*" multiple onChange={handleExhibitionBuildingPhotoUpload}/>
+    <div className={styles.preview_images}>
+          {imageUrl2&&imageUrl2.map(url => {return <PreviewImage key={url} url={url}/>})}
+
+      </div>
   </div>  
   
   <div className={styles.div1}>
