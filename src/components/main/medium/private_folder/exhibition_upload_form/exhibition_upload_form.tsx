@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { TypeOfExhibition, TypeOfPhotoAssets } from '../../../../../common/project_types';
+import { TypeOfExhibition } from '../../../../../common/project_types';
 import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
@@ -18,35 +18,48 @@ const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) =>
   const [posterPreviewUrl, setPosterPreviewUrl] = useState<string|null>(null)
   const [posterFile, setPosterFile] = useState<File|null>(null)
   
-  const [exhibitionArray1, setExhibitionArray1] = useState<Array<string>>([])
-  const [exhibitionArray2, setExhibitionArray2] = useState<Array<string>>([])
+  const [museumPreviewArray1, setMuseumPreviewArray1] = useState<Array<string>>([])
+  const [museumPreviewArray2, setMuseumPreviewArray2] = useState<Array<string>>([])
 
+  const [museumUploadArray1, setMuseumUploadArray1] = useState<Array<File>>([])
+  const [museumUploadArray2, setMuseumUploadArray2] = useState<Array<File>>([])
+  
   const navigate = useNavigate()
 
 
 // 포스터 등록하기 
 
 
-
   useEffect(() => {
-    if(exhibitionArray1){
+    if(museumPreviewArray1){
       
-      const array2 = exhibitionArray2.concat(exhibitionArray1)
-      const array3 = [... new Set(array2)]
-      setExhibitionArray2(array3)
+      const array3 = museumPreviewArray2.concat(museumPreviewArray1)
+      const array4 = [... new Set(array3)]
+      setMuseumPreviewArray2(array4)
     }
-
-
-  }, [exhibitionArray1])
-
-
-
+  }, [museumPreviewArray1])
 
 
   useEffect(() => {
-    if(exhibitionArray2){
+    if(museumUploadArray1){
+      
+      const aray3 = museumUploadArray2.concat(museumUploadArray1)
+      // 여기에 로직을 만들어야됨 
+      // console.log(aray3)
+
+      const aray4 = aray3.map((file) => {return file.name})
+      const aray5 =  [... new Set(aray4)]
+      const aray6 = [] as File[]
+      for (let i = 0; i < aray5.length; i++) {
+        
+        const fileValue = aray3.find(file => file.name == aray5[i])
+        if(fileValue){
+          aray6.push(fileValue)
+        }
+      }
+      setMuseumUploadArray2(aray6)
     }
-  }, [exhibitionArray2])
+  }, [museumUploadArray1])
 
 
 
@@ -97,15 +110,21 @@ if(e.target.files){
 const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = async(e) => {
   e.preventDefault()
   const array1 = [] as string[]
+  const aray1 = [] as File[]
+
   const files =  e.target.files
+  
   if(files){
     for (let i = 0; i < files.length; i++) {
+      aray1.push(files[i])
+      const aray2 = [...aray1]
+      setMuseumUploadArray1(aray2)
       const reader = new FileReader()
       reader.readAsDataURL(files[i])
       reader.onload= () => {
         array1.push(reader.result as string)
         const array2 = [...array1]
-        setExhibitionArray1(array2)
+        setMuseumPreviewArray1(array2)
       }
     }
   }
@@ -156,14 +175,36 @@ const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElem
 
   }
 try{
-  const exhibitionPoster = await imageUploadService.uploadSingleImage(posterFile)
+
+  let exhibitionPoster
+  if(posterFile){
+    exhibitionPoster = await imageUploadService.uploadSingleImage(posterFile)
+  }else{
+    exhibitionPoster = null
+  }
+
+
+  let museumPhotos
+
+
+
+  if (museumUploadArray2){
+    
+    museumPhotos = await imageUploadService.uploadMultipleImage(museumUploadArray2)
+
+  }else{
+    museumPhotos = null
+
+  }
+  console.log(museumPhotos)
+
 
   const exhibitionData:TypeOfExhibition = {
 
 
     exhibitionSerialNumber : Date.now(),
     lastUpdate: new Date().toLocaleString(),
-    exhibitionPosterUrl : exhibitionPoster.url,
+    exhibitionPosterUrl : exhibitionPoster?{[Date.now()]:exhibitionPoster.url}:null,
     exhibitionName : exhibitionNameValue,
     exhibitionLocation :exhibitionLocationValue,
     exhibitionPeriod :exhibitionPeriodValue,
@@ -288,8 +329,8 @@ try{
     </div>
     <input  type="file" name="file" accept="image/*" multiple onChange={handleExhibitionBuildingPhotoUpload}/>
     <div className={styles.preview_images}>
-        { exhibitionArray2&&exhibitionArray2.map((url) => {
-          return <PreviewImage key={exhibitionArray2.indexOf(url)} url={url}/>
+        { museumPreviewArray2&&museumPreviewArray2.map((url) => {
+          return <PreviewImage key={museumPreviewArray2.indexOf(url)} url={url}/>
         }) }
     </div>
   </div>  
