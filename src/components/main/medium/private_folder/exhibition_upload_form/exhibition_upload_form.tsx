@@ -1,26 +1,59 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { TypeOfExhibition } from '../../../../../common/project_types';
+import { TypeOfExhibition, TypeOfPhotoAssets } from '../../../../../common/project_types';
 import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
+import ImageUpload from '../../../../../services/image_uploads';
 
-const ExhibitionUploadForm = () => {
+type ExhibitionUploadFormProps = {
+  imageUploadService:ImageUpload;
+}
+
+const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) => {
 
   const databaseService= useOutletContext<Database>();
-  const [imageUrl1, setImageUrl1] = useState<string|null>(null)
-  const [imageUrl2, setImageUrl2] = useState<Array<string>|null>(null)
 
-  const [arrayUrl, setArrayUrl] = useState<string[]>([])
-  const [arrayUrl2, setArrayUrl2] = useState<string[]>([])
+  const [posterPreviewUrl, setPosterPreviewUrl] = useState<string|null>(null)
+  const [posterFile, setPosterFile] = useState<File|null>(null)
+  
+  const [exhibitionArray1, setExhibitionArray1] = useState<Array<string>>([])
+  const [exhibitionArray2, setExhibitionArray2] = useState<Array<string>>([])
 
   const navigate = useNavigate()
+
+
 // 포스터 등록하기 
 
 
 
-//  전시회 데이터 만들기
+  useEffect(() => {
+    if(exhibitionArray1){
+      
+      const array2 = exhibitionArray2.concat(exhibitionArray1)
+      const array3 = [... new Set(array2)]
+      setExhibitionArray2(array3)
+    }
+
+
+  }, [exhibitionArray1])
+
+
+
+
+
+  useEffect(() => {
+    if(exhibitionArray2){
+    }
+  }, [exhibitionArray2])
+
+
+
+
+  // //  전시회 데이터 만들기
+
+  
   
 
   
@@ -35,23 +68,45 @@ const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
 
 
 
+
+
+
+
+
+
 const handlePosterUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
 e.preventDefault()
 let file;
 if(e.target.files){
-  // console.log(e.target.files)
-  // console.log(e.target.files[0])
   file = e.target.files[0]
-  // single일 경우에는 files에 [0]을 꼭 명시해줘야한다 
-  // files 는 FileList이다 
-  // files[0]이 파일이다 
-  
-  // multiple일 경우에는 files로 넘겨준다 
+  setPosterFile(file)
   let reader = new FileReader()
-  
   reader.readAsDataURL(file)
   reader.onload = () => {
-    setImageUrl1(reader.result as string)
+    setPosterPreviewUrl(reader.result as string)
+    }
+  }
+
+
+
+
+}
+
+
+
+const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = async(e) => {
+  e.preventDefault()
+  const array1 = [] as string[]
+  const files =  e.target.files
+  if(files){
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader()
+      reader.readAsDataURL(files[i])
+      reader.onload= () => {
+        array1.push(reader.result as string)
+        const array2 = [...array1]
+        setExhibitionArray1(array2)
+      }
     }
   }
 }
@@ -60,17 +115,10 @@ if(e.target.files){
 
 
 
-
-
-
-
-
-
-
-  const handleSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit:React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
 
-    navigate('/main/private/loggedin/exhibition_upload/exhibition_upload_done')
+    
   
   let exhibitionNameValue
   let exhibitionLocationValue
@@ -107,99 +155,38 @@ if(e.target.files){
   }else{exhibitionMemoValue = null
 
   }
-
-
+try{
+  const exhibitionPoster = await imageUploadService.uploadSingleImage(posterFile)
 
   const exhibitionData:TypeOfExhibition = {
 
 
-
-
-      exhibitionSerialNumber : Date.now(),
-      lastUpdate: new Date().toLocaleString(),
-      exhibitionPosterUrl : null,
-      exhibitionName : exhibitionNameValue,
-      exhibitionLocation :exhibitionLocationValue,
-      exhibitionPeriod :exhibitionPeriodValue,
-      exhibitionSponser :exhibitionSponserValue,
-      exhibitionWorks: null,
-      exhibitionBuildingPhotoUrl : null,
-      exhibitionPhotoUrl : null,
-      exhibitionMemo :exhibitionMemoValue,
-    
-    
-      
-      
-      
-      
-    }
-
-    databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
-
-
-
-
-
-  
+    exhibitionSerialNumber : Date.now(),
+    lastUpdate: new Date().toLocaleString(),
+    exhibitionPosterUrl : exhibitionPoster.url,
+    exhibitionName : exhibitionNameValue,
+    exhibitionLocation :exhibitionLocationValue,
+    exhibitionPeriod :exhibitionPeriodValue,
+    exhibitionSponser :exhibitionSponserValue,
+    exhibitionWorks: null,
+    exhibitionBuildingPhotoUrl : null,
+    exhibitionPhotoUrl : null,
+    exhibitionMemo :exhibitionMemoValue,
+        
   }
- 
+  databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
 
-  useEffect(() => {
-    console.log(arrayUrl)
-  }, [arrayUrl])
-  useEffect(() => {
-    console.log(arrayUrl2)
-  }, [arrayUrl2])
-  
-
-const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-  e.preventDefault()
+  navigate('/main/private/loggedin/exhibition_upload/exhibition_upload_done')
 
 
-  // console.log(e.target.files)
-  const array1:string[] = []
-  const files = e.target.files
-  if(files){
-    
-    console.log(files)
-    for (let i = 0; i < files.length; i++) {
-      const reader = new FileReader()
-      reader.readAsDataURL(files[i])
-      reader.onload=() => {
-        array1.push(reader.result as string)
-        const array2 = arrayUrl.concat(array1)
-        setArrayUrl(array2 as string[])
-      }
-    }
-
-    let array3 
-    if(arrayUrl){
-      array3 = arrayUrl2.concat(arrayUrl)
-    }else{
-      array3 = arrayUrl2
-    }
-    setArrayUrl2(array3 as string[])
-
-
-
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
+}catch(err){
+  console.log(err)
+  console.log('failed')
 }
 
 
 
+  }
 
 
 
@@ -227,7 +214,7 @@ const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElem
       <span>여긴 나중에</span>
       <input  type="file" name="file" accept="image/*"  onChange={handlePosterUpload}/>
       <div className={styles.preview_images}>
-          {imageUrl1&&<PreviewImage url={imageUrl1}/>}
+          {posterPreviewUrl&&<PreviewImage url={posterPreviewUrl}/>}
 
       </div>
 
@@ -301,9 +288,10 @@ const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElem
     </div>
     <input  type="file" name="file" accept="image/*" multiple onChange={handleExhibitionBuildingPhotoUpload}/>
     <div className={styles.preview_images}>
-          {imageUrl2&&imageUrl2.map(url => {return <PreviewImage key={url} url={url}/>})}
-
-      </div>
+        { exhibitionArray2&&exhibitionArray2.map((url) => {
+          return <PreviewImage key={exhibitionArray2.indexOf(url)} url={url}/>
+        }) }
+    </div>
   </div>  
   
   <div className={styles.div1}>

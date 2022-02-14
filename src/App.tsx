@@ -31,16 +31,18 @@ import WorkFixFormTwo from './components/main/medium/private_folder/work_fix_for
 import ExhibitionUpload from './components/main/medium/private_folder/exhibition_upload/exhibition_upload';
 import ExhibitionUploadForm from './components/main/medium/private_folder/exhibition_upload_form/exhibition_upload_form';
 import Database from './services/database';
+import ImageUpload from './services/image_uploads';
 
 
 
 type AppProps = {
   authService : AuthService;
   databaseService:Database;
+  imageUploadService:ImageUpload;
 }
 
 
-const App = ({authService, databaseService}:AppProps) =>{
+const App = ({authService, databaseService, imageUploadService}:AppProps) =>{
 
   const [login, setLogin] = useState<boolean>(false)
 
@@ -61,21 +63,6 @@ const App = ({authService, databaseService}:AppProps) =>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const handleLogin = (password:string|number) => {
   
   if(password==process.env.REACT_APP_ART_WEBSITE_PRIVATE_ADMIN_PASSWORD){
@@ -86,9 +73,6 @@ const handleLogin = (password:string|number) => {
     return false
   }
 }
-
-
-
 
 
 
@@ -156,7 +140,7 @@ const handleLogin = (password:string|number) => {
 
               <Route path="exhibition_upload" element={<ExhibitionUpload databaseService={databaseService}/>}>
                 
-                <Route path="" element={<ExhibitionUploadForm/>}/>
+                <Route path="" element={<ExhibitionUploadForm imageUploadService={imageUploadService}/>}/>
                 <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>
 
               </Route>

@@ -5,15 +5,17 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import AuthService from './services/auth';
 import Database from './services/database';
+import ImageUpload from './services/image_uploads';
 
 const authService = new AuthService()
 const databaseService = new Database()
+const imageUploadService = new ImageUpload()
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <App authService={authService} databaseService={databaseService}/>
+    <App authService={authService} databaseService={databaseService} imageUploadService={imageUploadService}/>
     </BrowserRouter>
   </React.StrictMode>,
   
