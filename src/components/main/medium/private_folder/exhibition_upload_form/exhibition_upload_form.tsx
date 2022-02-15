@@ -6,6 +6,7 @@ import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
 import ImageUpload from '../../../../../services/image_uploads';
+import { myFunctions } from '../../../../../common/project_functions';
 
 type ExhibitionUploadFormProps = {
   imageUploadService:ImageUpload;
@@ -182,29 +183,27 @@ try{
   }else{
     exhibitionPoster = null
   }
-
-
   let museumPhotos
 
 
 
   if (museumUploadArray2){
-    
     museumPhotos = await imageUploadService.uploadMultipleImage(museumUploadArray2)
-
   }else{
-    museumPhotos = null
-
+  museumPhotos = null
   }
   console.log(museumPhotos)
 
 
+  // const obj = museumPhotos?.map(asset => {return {[Date.now()]:asset.url}})
+  // const obj2 = {...obj}
+  const exhibitionSerialNumberNum = myFunctions.generateAKey(0)
   const exhibitionData:TypeOfExhibition = {
 
 
-    exhibitionSerialNumber : Date.now(),
+    exhibitionSerialNumber : exhibitionSerialNumberNum,
     lastUpdate: new Date().toLocaleString(),
-    exhibitionPosterUrl : exhibitionPoster?{[Date.now()]:exhibitionPoster.url}:null,
+    exhibitionPosterUrl : exhibitionPoster?{[myFunctions.generateAKey(1)]:exhibitionPoster.url}:null,
     exhibitionName : exhibitionNameValue,
     exhibitionLocation :exhibitionLocationValue,
     exhibitionPeriod :exhibitionPeriodValue,
@@ -216,6 +215,32 @@ try{
         
   }
   databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
+
+  // museum photo 를 firebase로  업로드 하기
+  let  idAndUrls 
+  if(museumPhotos){
+    idAndUrls= museumPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+2), asset.url]})
+    idAndUrls.forEach((value) => {databaseService.uploadExhibitionBuildingPhotoUrl(exhibitionSerialNumberNum, value[0], value[1])})
+  }
+
+  console.log(idAndUrls)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   navigate('/main/private/loggedin/exhibition_upload/exhibition_upload_done')
 

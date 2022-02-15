@@ -18,6 +18,10 @@ class Database {
     set(ref(this.myDatabase, `root/works/${id}`), inputData)
   }
 
+  uploadExhibitionBuildingPhotoUrl(id, museumPhotoId, url){
+    set(ref(this.myDatabase,
+      `root/exhibitions/${id}/exhibitionBuildingPhotoUrl/${museumPhotoId}`), url)
+  }
 
  
 

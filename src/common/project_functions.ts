@@ -43,9 +43,20 @@ class artWebsiteExportFunctions{
   }
   }
 
+
+  generateAKey = (i:number) => {
+    const dateNow = Math.floor(Date.now()/10)+i
+    return dateNow
+  }
 }
 
 export const myFunctions = new artWebsiteExportFunctions()
+
+
+
+
+
+
 
 
 class artWebsiteExportLogics{
