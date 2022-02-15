@@ -54,7 +54,7 @@ export type TypeOfExhibition = {
 export type TypeOfWork = {
   workSerialNumber: number;
   lastUpdate:number|string|null;
-  workPhotoUrl: string|null;
+  workImageUrl: TypeOfPhotoAssets|null;
   workName:string|null;
   workCompletionDate:string|number|null;
   workSize:string|null;

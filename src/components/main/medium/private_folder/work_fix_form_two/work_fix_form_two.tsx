@@ -1,11 +1,17 @@
 import React from "react"
 import { useOutletContext } from 'react-router-dom';
 import Database from '../../../../../services/database';
+import ImageUpload from '../../../../../services/image_uploads';
 import PrivateWork from '../small/private_work/private_work';
 import WorkUploadForm from '../work_upload_form/work_upload_form';
 import styles from "./work_fix_form_two.module.css";
 
-const WorkFixFormTwo = () => {
+type WorkFixFormTwo = {
+  imageUploadService:ImageUpload;
+
+}
+
+const WorkFixFormTwo = ({imageUploadService}:WorkFixFormTwo) => {
   
 
 
@@ -32,7 +38,7 @@ const WorkFixFormTwo = () => {
 
 
     </div>
-    <WorkUploadForm/>
+    <WorkUploadForm imageUploadService={imageUploadService}/>
 
   </div>
 

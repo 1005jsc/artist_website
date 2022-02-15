@@ -127,13 +127,13 @@ const handleLogin = (password:string|number) => {
           <Route path="loggedin" element={<PrivateRoute login={login}/>}>
               <Route path="" element={<LoginSuccess />}/>
               <Route path="work_upload" element={<WorkUpload databaseService={databaseService}/>}>
-                <Route path="" element={<WorkUploadForm />}/>
+                <Route path="" element={<WorkUploadForm imageUploadService={imageUploadService}/>}/>
                 <Route path="work_upload_done" element={<WorkUploadDone/>}/>
               </Route>
 
               <Route path="work_fix" element={<WorkFix databaseService={databaseService}/>}>
                 <Route path="" element={<WorkFixFormOne/>}/>
-                <Route path="work_fix_form_two" element={<WorkFixFormTwo/>}/>
+                <Route path="work_fix_form_two" element={<WorkFixFormTwo imageUploadService={imageUploadService}/>}/>
                 <Route path="work_fix_done" element={<WorkFixDone/>}/>
 
               </Route>

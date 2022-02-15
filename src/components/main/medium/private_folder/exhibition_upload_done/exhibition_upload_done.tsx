@@ -10,7 +10,7 @@ const ExhibitionUploadDone = () => {
   const handleClickOne:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate('/main/exhibitions')
+    navigate('/main/exhibitions', {replace:true})
 
 
   }
@@ -18,7 +18,7 @@ const ExhibitionUploadDone = () => {
   const handleClickTwo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate('/main/private/loggedin/')
+    navigate('/main/private/loggedin/', {replace:true})
 
 
   }

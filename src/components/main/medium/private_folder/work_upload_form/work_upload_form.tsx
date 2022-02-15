@@ -3,17 +3,30 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
 import { TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
+import ImageUpload from '../../../../../services/image_uploads';
+import PreviewImage from '../../../small/preview_image/preview_image';
 import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
 import styles from "./work_upload_form.module.css";
 
 
-const WorkUploadForm = () => {
+type WorkUploadFormProps = {
+  imageUploadService: ImageUpload;
+}
+
+const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
   const databaseService= useOutletContext<Database>();
   const [url, setUrl] = useState<string|null>()
 
   useEffect(() => {
     setUrl(window.location.href)
   })
+
+// 작품 사진 (1/)
+  const [workPreviewUrl, setWorkPreviewUrl] = useState<string|null>(null)
+  const [workFile, setWorkFile] = useState<File|null>(null)
+
+
+  
 
   const [otherSelected, setOtherSelected]= useState<boolean>(false)
   const [soldSelected, setSoldSelected]= useState<boolean>(false)
@@ -43,11 +56,30 @@ const WorkUploadForm = () => {
   const purchasePrizeRef = useRef<HTMLInputElement | null>(null)
 
 
+// 
+  const handleWorkUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    e.preventDefault()
+    let file;
+    if(e.target.files){
+      file = e.target.files[0]
+      setWorkFile(file)
+      let reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        setWorkPreviewUrl(reader.result as string)
+        }
+      }
+    
+    
+    }
 
 
 
 
-  const handleSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
+
+
+
+  const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
     e.preventDefault()
 
     if(myFunctions.checkWordFromUrl('work_fix', url)){
@@ -182,41 +214,46 @@ const WorkUploadForm = () => {
 
     }
 
+      // 포스터 클라우디너리에 업로드
+  try{
+    
+    let workImage
+    if(workFile){
+      workImage = await imageUploadService.uploadSingleImage(workFile)
+    }else{
+      workImage = null
+    }
+    
+  
+    const workSerialNumberNum = myFunctions.generateAKey(0)
+  
+    const workOnSaleData =workOnSaleValue
+  
+      const workData:TypeOfWork = {
+        workSerialNumber :workSerialNumberNum,
+        lastUpdate: new Date().toLocaleString(),
+        workImageUrl: workImage?{[myFunctions.generateAKey(1)]:workImage.url}:null, 
+        workName: workNameValue,
+        workCompletionDate: workCompletionDateValue,
+        workSize : workSizeData,
+        workMaterial: workMaterialData,
+        workOnSale: workOnSaleData,
+        workSold: workSoldData,
+        workExhibitionHistory: null,
+        workMemo: workMemoValue
+      }
+  
+    
+      databaseService.uploadWorkData(workData.workSerialNumber, workData)
     
 
-
-
-  const workOnSaleData =workOnSaleValue
-
-    const workData:TypeOfWork = {
-      workSerialNumber :Date.now(),
-      lastUpdate: new Date().toLocaleString(),
-      workPhotoUrl: null, 
-      workName: workNameValue,
-      workCompletionDate: workCompletionDateValue,
-      workSize : workSizeData,
-      workMaterial: workMaterialData,
-      workOnSale: workOnSaleData,
-      workSold: workSoldData,
-      workExhibitionHistory: null,
-      workMemo: workMemoValue
-    }
-
-  
-    databaseService.uploadWorkData(workData.workSerialNumber, workData)
-   
-
-
-
-
-
+  }catch(err){
+  console.log(err)
+  console.log('failed')
   }
-  
-  
 
 
-  
-  
+}
 
 
 
@@ -264,7 +301,11 @@ const WorkUploadForm = () => {
     </div>
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
-      <span>여긴 나중에</span>
+      <input  type="file" name="file" accept="image/*"  onChange={handleWorkUpload}/>
+      <div className={styles.preview_images}>
+          {workPreviewUrl&&<PreviewImage url={workPreviewUrl}/>}
+
+      </div>
 
     </div>
   </div>  

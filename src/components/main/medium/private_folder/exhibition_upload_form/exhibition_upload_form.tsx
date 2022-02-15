@@ -15,16 +15,19 @@ type ExhibitionUploadFormProps = {
 const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) => {
 
   const databaseService= useOutletContext<Database>();
-
+  
+  // 포스터 (1/3)
   const [posterPreviewUrl, setPosterPreviewUrl] = useState<string|null>(null)
   const [posterFile, setPosterFile] = useState<File|null>(null)
   
+  // 전시관 사진 (1/5)
   const [museumPreviewArray1, setMuseumPreviewArray1] = useState<Array<string>>([])
   const [museumPreviewArray2, setMuseumPreviewArray2] = useState<Array<string>>([])
 
   const [museumUploadArray1, setMuseumUploadArray1] = useState<Array<File>>([])
   const [museumUploadArray2, setMuseumUploadArray2] = useState<Array<File>>([])
   
+  // 전시회 사진 (1/5)
   const [exhibitionPreviewArray1, setExhibitionPreviewArray1] = useState<Array<string>>([])
   const [exhibitionPreviewArray2, setExhibitionPreviewArray2] = useState<Array<string>>([])
 
@@ -33,96 +36,9 @@ const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) =>
   const navigate = useNavigate()
 
 
-// 포스터 등록하기 
-
-// 전시회 외부사진 업로드
-  useEffect(() => {
-    if(museumPreviewArray1){
-      
-      const array3 = museumPreviewArray2.concat(museumPreviewArray1)
-      const array4 = [... new Set(array3)]
-      setMuseumPreviewArray2(array4)
-    }
-  }, [museumPreviewArray1])
-
-
-  useEffect(() => {
-    if(museumUploadArray1){
-      
-      const aray3 = museumUploadArray2.concat(museumUploadArray1)
-      // 여기에 로직을 만들어야됨 
-      // console.log(aray3)
-
-      const aray4 = aray3.map((file) => {return file.name})
-      const aray5 =  [... new Set(aray4)]
-      const aray6 = [] as File[]
-      for (let i = 0; i < aray5.length; i++) {
-        
-        const fileValue = aray3.find(file => file.name == aray5[i])
-        if(fileValue){
-          aray6.push(fileValue)
-        }
-      }
-      setMuseumUploadArray2(aray6)
-    }
-  }, [museumUploadArray1])
-
-
-  // 전시회 사진 업로드 
-
-  useEffect(() => {
-    if(exhibitionPreviewArray1){
-      
-      const array3 = exhibitionPreviewArray2.concat(exhibitionPreviewArray1)
-      const array4 = [... new Set(array3)]
-      setExhibitionPreviewArray2(array4)
-    }
-  }, [exhibitionPreviewArray1])
-
-  useEffect(() => {
-    if(exhibitionUploadArray1){
-      
-      const aray3 = exhibitionUploadArray2.concat(exhibitionUploadArray1)
-      // 여기에 로직을 만들어야됨 
-      // console.log(aray3)
-
-      const aray4 = aray3.map((file) => {return file.name})
-      const aray5 =  [... new Set(aray4)]
-      const aray6 = [] as File[]
-      for (let i = 0; i < aray5.length; i++) {
-        
-        const fileValue = aray3.find(file => file.name == aray5[i])
-        if(fileValue){
-          aray6.push(fileValue)
-        }
-      }
-      setExhibitionUploadArray2(aray6)
-    }
-  }, [exhibitionUploadArray1])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // //  전시회 데이터 만들기
-
   
-  
+
+  // //  전시회 데이터 (1/3)
 
   
 const exhibitionNameRef = useRef<HTMLInputElement | null>(null)
@@ -142,6 +58,11 @@ const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
 
 
 
+
+
+
+// 포스터 (2/3)
+
 const handlePosterUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
 e.preventDefault()
 let file;
@@ -154,13 +75,22 @@ if(e.target.files){
     setPosterPreviewUrl(reader.result as string)
     }
   }
-
-
-
-
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// 전시관 외부사진 (2/5)
 
 const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = async(e) => {
   e.preventDefault()
@@ -185,6 +115,56 @@ const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElem
   }
 }
 
+// 전시회 외부사진 (3/5)
+useEffect(() => {
+  if(museumPreviewArray1){
+    
+    const array3 = museumPreviewArray2.concat(museumPreviewArray1)
+    const array4 = [... new Set(array3)]
+    setMuseumPreviewArray2(array4)
+  }
+}, [museumPreviewArray1])
+
+
+useEffect(() => {
+  if(museumUploadArray1){
+    
+    const aray3 = museumUploadArray2.concat(museumUploadArray1)
+    const aray4 = aray3.map((file) => {return file.name})
+    const aray5 =  [... new Set(aray4)]
+    const aray6 = [] as File[]
+    for (let i = 0; i < aray5.length; i++) {
+      
+      const fileValue = aray3.find(file => file.name == aray5[i])
+      if(fileValue){
+        aray6.push(fileValue)
+      }
+    }
+    setMuseumUploadArray2(aray6)
+  }
+}, [museumUploadArray1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 전시회 사진 (2/5)
+
 const handleExhibitionPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = async(e) => {
   e.preventDefault()
   const array1 = [] as string[]
@@ -208,9 +188,41 @@ const handleExhibitionPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = a
   }
 }
 
+ // 전시회 사진 (3/5)
+
+ useEffect(() => {
+  if(exhibitionPreviewArray1){
+    
+    const array3 = exhibitionPreviewArray2.concat(exhibitionPreviewArray1)
+    const array4 = [... new Set(array3)]
+    setExhibitionPreviewArray2(array4)
+  }
+}, [exhibitionPreviewArray1])
+
+useEffect(() => {
+  if(exhibitionUploadArray1){
+    
+    const aray3 = exhibitionUploadArray2.concat(exhibitionUploadArray1)
+    const aray4 = aray3.map((file) => {return file.name})
+    const aray5 =  [... new Set(aray4)]
+    const aray6 = [] as File[]
+    for (let i = 0; i < aray5.length; i++) {
+      
+      const fileValue = aray3.find(file => file.name == aray5[i])
+      if(fileValue){
+        aray6.push(fileValue)
+      }
+    }
+    setExhibitionUploadArray2(aray6)
+  }
+}, [exhibitionUploadArray1])
 
 
 
+
+
+
+// 전시회 데이터 (2/3)
 
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
@@ -254,24 +266,24 @@ const handleExhibitionPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = a
   }
 try{
 
-  // 포스터 클라우디너리에 업로드
+  // 포스터 (3/3)
   let exhibitionPoster
   if(posterFile){
     exhibitionPoster = await imageUploadService.uploadSingleImage(posterFile)
   }else{
     exhibitionPoster = null
   }
+  
+  
+  // 전시관 외부사진 (4/5)
   let museumPhotos
-
-
-  // 외부사진 클라우디너리에 업로드
   if (museumUploadArray2){
     museumPhotos = await imageUploadService.uploadMultipleImage(museumUploadArray2)
   }else{
   museumPhotos = null
   }
 
-  // 전시회사진 클라우디너리에 업로드
+  // 전시회 사진 (4/5)
   let exhibitionPhotos
   if (exhibitionUploadArray2){
     exhibitionPhotos = await imageUploadService.uploadMultipleImage(exhibitionUploadArray2)
@@ -279,6 +291,8 @@ try{
   exhibitionPhotos = null
   }
   
+
+  // 전시회 데이터(3/3)
   const exhibitionSerialNumberNum = myFunctions.generateAKey(0)
   const exhibitionData:TypeOfExhibition = {
 
@@ -291,14 +305,14 @@ try{
     exhibitionPeriod :exhibitionPeriodValue,
     exhibitionSponser :exhibitionSponserValue,
     exhibitionWorks: null,
-    exhibitionBuildingPhotoUrl : null, // 완성
-    exhibitionPhotoUrl : null, // buliding photo랑 로직을 아예 똑같이 하면 된다 
+    exhibitionBuildingPhotoUrl : null, // 완성 더 손댈 필요 없음
+    exhibitionPhotoUrl : null, // 완성 더 손댈 필요 없음 
     exhibitionMemo :exhibitionMemoValue,
         
   }
   databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
 
-  // 전시장 건물사진 를 firebase로  업로드 하기
+  // 전시장 외부사진 (5/5)
   let  idAndUrls 
   if(museumPhotos){
     idAndUrls= museumPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+2), asset.url]})
@@ -307,7 +321,7 @@ try{
     })
   }
 
-  //전시회사진을 firebase에 업로드하기
+  //전시회 사진 (5/5)
   let  idAndUrls2 
   if(exhibitionPhotos){
     idAndUrls2= exhibitionPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+3), asset.url]})
