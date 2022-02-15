@@ -7,6 +7,8 @@ import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
 import ImageUpload from '../../../../../services/image_uploads';
 import { myFunctions } from '../../../../../common/project_functions';
+import DeleteButton from '../../../../utility/delete_button/delete_button';
+import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
 
 type ExhibitionUploadFormProps = {
   imageUploadService:ImageUpload;
@@ -353,17 +355,70 @@ try{
   console.log('failed')
 }
 
+  }
+
+
+// const handleDelete = (e) => {
+//   e.preventDefault()
+// }
+
+  useEffect(() => {
+
+  }, [museumUploadArray2]) 
+
+console.log()
+  const handleDeleteSelected = (datasetPhotoType:string, datasetIndex:string) => {
+
+    if(datasetPhotoType == 'museum'){
+
+      const aray1 = [...museumUploadArray2]
+      const aray2 = aray1.filter(val => aray1.indexOf(val) !== parseInt(datasetIndex) )
+      setMuseumUploadArray2(aray2)
+
+      const array1 = [...museumPreviewArray2]
+      const array2 = array1.filter(val => array1.indexOf(val) !== parseInt(datasetIndex) )
+      setMuseumPreviewArray2(array2)
+
+
+    }else if(datasetPhotoType == 'exhibition'){
+      
+      const aray1 = [...exhibitionUploadArray2]
+      const aray2 = aray1.filter(val => aray1.indexOf(val) !== parseInt(datasetIndex) )
+      setExhibitionUploadArray2(aray2)
+
+      const array1 = [...exhibitionPreviewArray2]
+      const array2 = array1.filter(val => array1.indexOf(val) !== parseInt(datasetIndex) )
+      setExhibitionPreviewArray2(array2)
+
+
+
+    }
 
 
   }
 
 
+  const handleDelete:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    const datasetIndex =e.currentTarget.parentNode?.parentElement?.dataset.index 
+    const datasetPhotoType=e.currentTarget.parentNode?.parentElement?.parentElement?.dataset.photo 
+    if(datasetPhotoType){
+      if(datasetIndex){
 
+        handleDeleteSelected(datasetPhotoType, datasetIndex)
+      }
 
+    }
+    
 
+  }
 
+  const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    const yes:HTMLElement =  e.currentTarget.nextElementSibling as HTMLInputElement
+    yes.click()
 
-
+  }
 
 
 
@@ -380,9 +435,11 @@ try{
     </div>
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
+    <button className={styles.image_upload_button}
+    onClick={handleInputClick} >이미지파일 선택</button>
       <input className={styles.input_file} type="file" name="file" accept="image/*"  onChange={handlePosterUpload}/>
-      <div className={styles.preview_images}>
-          {posterPreviewUrl&&<PreviewImage url={posterPreviewUrl}/>}
+      <div className={styles.preview_images}  >
+          {posterPreviewUrl&&<PreviewImageSingle  url={posterPreviewUrl}/>}
 
       </div>
 
@@ -454,10 +511,12 @@ try{
     <div className={styles.div2}>
       <span className={styles.div2_title}>4. 전시장 건물사진 등록하기</span>
     </div>
+    <button className={styles.image_upload_button}
+    onClick={handleInputClick} >이미지파일 선택</button>
     <input className={styles.input_file} type="file" name="file" accept="image/*" multiple onChange={handleExhibitionBuildingPhotoUpload}/>
-    <div className={styles.preview_images}>
-        { museumPreviewArray2&&museumPreviewArray2.map((url) => {
-          return <PreviewImage key={museumPreviewArray2.indexOf(url)} url={url}/>
+    <div className={styles.preview_images} data-photo="museum">
+        { museumPreviewArray2&&museumPreviewArray2.map((url, index) => {
+          return <PreviewImage handleDelete={handleDelete} key={index} index={index} url={url}/>
         }) }
     </div>
   </div>  
@@ -466,10 +525,12 @@ try{
     <div className={styles.div2}>
       <span className={styles.div2_title}>5. 전시회 사진 등록하기</span>
     </div>
+    <button className={styles.image_upload_button}
+    onClick={handleInputClick} >이미지파일 선택</button>
     <input className={styles.input_file} type="file" name="file" accept="image/*" multiple onChange={handleExhibitionPhotoUpload}/>
-    <div className={styles.preview_images}>
-        { exhibitionPreviewArray2&&exhibitionPreviewArray2.map((url) => {
-          return <PreviewImage key={exhibitionPreviewArray2.indexOf(url)} url={url}/>
+    <div className={styles.preview_images} data-photo="exhibition">
+        { exhibitionPreviewArray2&&exhibitionPreviewArray2.map((url, index) => {
+          return <PreviewImage handleDelete={handleDelete} key={index} index={index} url={url}/>
         }) }
     </div>
   </div>  

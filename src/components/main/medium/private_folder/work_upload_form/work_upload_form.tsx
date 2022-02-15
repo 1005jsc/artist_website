@@ -288,6 +288,25 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
 
 
 
+const handleDelete:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  e.preventDefault()
+
+
+
+}
+
+
+const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  e.preventDefault()
+  const yes:HTMLElement =  e.currentTarget.nextElementSibling as HTMLInputElement
+  yes.click()
+
+}
+
+
+
+
+
 
 
   return <form className={styles.form} onSubmit={handleSubmit}>
@@ -299,9 +318,11 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
     </div>
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
-      <input  type="file" name="file" accept="image/*"  onChange={handleWorkUpload}/>
+    <button className={styles.image_upload_button}
+    onClick={handleInputClick} >이미지파일 선택</button>
+      <input className={styles.input_file} type="file" name="file" accept="image/*"  onChange={handleWorkUpload}/>
       <div className={styles.preview_images}>
-          {workPreviewUrl&&<PreviewImage url={workPreviewUrl}/>}
+          {workPreviewUrl&&<PreviewImage index={1} handleDelete={handleDelete} url={workPreviewUrl}/>}
 
       </div>
 

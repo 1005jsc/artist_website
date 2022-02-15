@@ -34,6 +34,7 @@
 .input_file {
 	margin-left: 6rem;
 	margin-bottom: 3rem;
+	display: none;
 }
 
 .preview_images {
@@ -42,6 +43,16 @@
 	padding: 2rem;
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.image_upload_button {
+	font-size: 1.6rem;
+	margin-left: 5rem;
+	height: 3.6rem;
+	width: 14rem;
+	border-radius: 0.8rem;
+	background-color: rgb(199, 199, 199, 0.6);
+	margin-bottom: 1rem;
 }
 
 /* 두번째 div */
