@@ -30,6 +30,20 @@
 .div3 {
 }
 
+/* 사진 등록하기(공통) */
+.input_file {
+	margin-left: 6rem;
+	margin-bottom: 3rem;
+}
+
+.preview_images {
+	width: 100rem;
+	margin: auto;
+	padding: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+
 /* 두번째 div */
 
 .caution_2 {

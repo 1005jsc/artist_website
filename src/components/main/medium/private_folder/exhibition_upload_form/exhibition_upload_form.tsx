@@ -15,7 +15,7 @@ type ExhibitionUploadFormProps = {
 const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) => {
 
   const databaseService= useOutletContext<Database>();
-  
+
   // 포스터 (1/3)
   const [posterPreviewUrl, setPosterPreviewUrl] = useState<string|null>(null)
   const [posterFile, setPosterFile] = useState<File|null>(null)
@@ -380,8 +380,7 @@ try{
     </div>
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
-      <span>여긴 나중에</span>
-      <input  type="file" name="file" accept="image/*"  onChange={handlePosterUpload}/>
+      <input className={styles.input_file} type="file" name="file" accept="image/*"  onChange={handlePosterUpload}/>
       <div className={styles.preview_images}>
           {posterPreviewUrl&&<PreviewImage url={posterPreviewUrl}/>}
 
@@ -455,7 +454,7 @@ try{
     <div className={styles.div2}>
       <span className={styles.div2_title}>4. 전시장 건물사진 등록하기</span>
     </div>
-    <input  type="file" name="file" accept="image/*" multiple onChange={handleExhibitionBuildingPhotoUpload}/>
+    <input className={styles.input_file} type="file" name="file" accept="image/*" multiple onChange={handleExhibitionBuildingPhotoUpload}/>
     <div className={styles.preview_images}>
         { museumPreviewArray2&&museumPreviewArray2.map((url) => {
           return <PreviewImage key={museumPreviewArray2.indexOf(url)} url={url}/>
@@ -467,7 +466,7 @@ try{
     <div className={styles.div2}>
       <span className={styles.div2_title}>5. 전시회 사진 등록하기</span>
     </div>
-    <input  type="file" name="file" accept="image/*" multiple onChange={handleExhibitionPhotoUpload}/>
+    <input className={styles.input_file} type="file" name="file" accept="image/*" multiple onChange={handleExhibitionPhotoUpload}/>
     <div className={styles.preview_images}>
         { exhibitionPreviewArray2&&exhibitionPreviewArray2.map((url) => {
           return <PreviewImage key={exhibitionPreviewArray2.indexOf(url)} url={url}/>

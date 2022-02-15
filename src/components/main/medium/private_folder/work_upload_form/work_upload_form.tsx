@@ -25,14 +25,11 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
   const [workPreviewUrl, setWorkPreviewUrl] = useState<string|null>(null)
   const [workFile, setWorkFile] = useState<File|null>(null)
 
-
-  
-
   const [otherSelected, setOtherSelected]= useState<boolean>(false)
   const [soldSelected, setSoldSelected]= useState<boolean>(false)
   const navigate = useNavigate()
 
-  // work 정보 ref
+  // 작품 데이터  (1/)
 
 
   const workNameRef = useRef<HTMLInputElement | null>(null)
@@ -46,7 +43,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
 
 
 
-  // purchase정보Ref
+  // 구매정보 데이터 (1/3)
 
   const buyerNameRef = useRef<HTMLInputElement | null>(null)
   const buyerPhoneNumberRef = useRef<HTMLInputElement | null>(null)
@@ -56,7 +53,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
   const purchasePrizeRef = useRef<HTMLInputElement | null>(null)
 
 
-// 
+// 작품 사진(2/3)
   const handleWorkUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault()
     let file;
@@ -79,6 +76,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
 
 
 
+    // 작품 데이터(2/3)
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
     e.preventDefault()
 
@@ -203,7 +201,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
     }else{
       workMaterialData=workMaterialSelectValue
     }  
-  
+    // 구매 여부 데이터 (3/3)
     const workSoldData:TypeOfWorkSold = {
       buyerName:  buyerNameValue,
       buyerPhoneNumber:     buyerPhoneNumberValue,
@@ -214,9 +212,9 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
 
     }
 
-      // 포스터 클라우디너리에 업로드
+      
   try{
-    
+    // 작품 사진 (3/3)
     let workImage
     if(workFile){
       workImage = await imageUploadService.uploadSingleImage(workFile)
@@ -224,7 +222,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
       workImage = null
     }
     
-  
+  // 작품 데이터(3/3)
     const workSerialNumberNum = myFunctions.generateAKey(0)
   
     const workOnSaleData =workOnSaleValue
