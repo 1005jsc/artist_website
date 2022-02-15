@@ -25,12 +25,17 @@ const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) =>
   const [museumUploadArray1, setMuseumUploadArray1] = useState<Array<File>>([])
   const [museumUploadArray2, setMuseumUploadArray2] = useState<Array<File>>([])
   
+  const [exhibitionPreviewArray1, setExhibitionPreviewArray1] = useState<Array<string>>([])
+  const [exhibitionPreviewArray2, setExhibitionPreviewArray2] = useState<Array<string>>([])
+
+  const [exhibitionUploadArray1, setExhibitionUploadArray1] = useState<Array<File>>([])
+  const [exhibitionUploadArray2, setExhibitionUploadArray2] = useState<Array<File>>([])
   const navigate = useNavigate()
 
 
 // 포스터 등록하기 
 
-
+// 전시회 외부사진 업로드
   useEffect(() => {
     if(museumPreviewArray1){
       
@@ -61,6 +66,55 @@ const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) =>
       setMuseumUploadArray2(aray6)
     }
   }, [museumUploadArray1])
+
+
+  // 전시회 사진 업로드 
+
+  useEffect(() => {
+    if(exhibitionPreviewArray1){
+      
+      const array3 = exhibitionPreviewArray2.concat(exhibitionPreviewArray1)
+      const array4 = [... new Set(array3)]
+      setExhibitionPreviewArray2(array4)
+    }
+  }, [exhibitionPreviewArray1])
+
+  useEffect(() => {
+    if(exhibitionUploadArray1){
+      
+      const aray3 = exhibitionUploadArray2.concat(exhibitionUploadArray1)
+      // 여기에 로직을 만들어야됨 
+      // console.log(aray3)
+
+      const aray4 = aray3.map((file) => {return file.name})
+      const aray5 =  [... new Set(aray4)]
+      const aray6 = [] as File[]
+      for (let i = 0; i < aray5.length; i++) {
+        
+        const fileValue = aray3.find(file => file.name == aray5[i])
+        if(fileValue){
+          aray6.push(fileValue)
+        }
+      }
+      setExhibitionUploadArray2(aray6)
+    }
+  }, [exhibitionUploadArray1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -131,6 +185,29 @@ const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElem
   }
 }
 
+const handleExhibitionPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = async(e) => {
+  e.preventDefault()
+  const array1 = [] as string[]
+  const aray1 = [] as File[]
+
+  const files =  e.target.files
+  
+  if(files){
+    for (let i = 0; i < files.length; i++) {
+      aray1.push(files[i])
+      const aray2 = [...aray1]
+      setExhibitionUploadArray1(aray2)
+      const reader = new FileReader()
+      reader.readAsDataURL(files[i])
+      reader.onload= () => {
+        array1.push(reader.result as string)
+        const array2 = [...array1]
+        setExhibitionPreviewArray1(array2)
+      }
+    }
+  }
+}
+
 
 
 
@@ -177,6 +254,7 @@ const handleExhibitionBuildingPhotoUpload:React.ChangeEventHandler<HTMLInputElem
   }
 try{
 
+  // 포스터 클라우디너리에 업로드
   let exhibitionPoster
   if(posterFile){
     exhibitionPoster = await imageUploadService.uploadSingleImage(posterFile)
@@ -186,17 +264,21 @@ try{
   let museumPhotos
 
 
-
+  // 외부사진 클라우디너리에 업로드
   if (museumUploadArray2){
     museumPhotos = await imageUploadService.uploadMultipleImage(museumUploadArray2)
   }else{
   museumPhotos = null
   }
-  console.log(museumPhotos)
 
-
-  // const obj = museumPhotos?.map(asset => {return {[Date.now()]:asset.url}})
-  // const obj2 = {...obj}
+  // 전시회사진 클라우디너리에 업로드
+  let exhibitionPhotos
+  if (exhibitionUploadArray2){
+    exhibitionPhotos = await imageUploadService.uploadMultipleImage(exhibitionUploadArray2)
+  }else{
+  exhibitionPhotos = null
+  }
+  
   const exhibitionSerialNumberNum = myFunctions.generateAKey(0)
   const exhibitionData:TypeOfExhibition = {
 
@@ -209,22 +291,29 @@ try{
     exhibitionPeriod :exhibitionPeriodValue,
     exhibitionSponser :exhibitionSponserValue,
     exhibitionWorks: null,
-    exhibitionBuildingPhotoUrl : null,
-    exhibitionPhotoUrl : null,
+    exhibitionBuildingPhotoUrl : null, // 완성
+    exhibitionPhotoUrl : null, // buliding photo랑 로직을 아예 똑같이 하면 된다 
     exhibitionMemo :exhibitionMemoValue,
         
   }
   databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
 
-  // museum photo 를 firebase로  업로드 하기
+  // 전시장 건물사진 를 firebase로  업로드 하기
   let  idAndUrls 
   if(museumPhotos){
     idAndUrls= museumPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+2), asset.url]})
-    idAndUrls.forEach((value) => {databaseService.uploadExhibitionBuildingPhotoUrl(exhibitionSerialNumberNum, value[0], value[1])})
+    idAndUrls.forEach((value) => {databaseService.
+      uploadPhotoUrl('exhibitions', exhibitionSerialNumberNum, 'exhibitionBuildingPhotoUrl', value[0], value[1])
+    })
   }
 
-  console.log(idAndUrls)
-
+  //전시회사진을 firebase에 업로드하기
+  let  idAndUrls2 
+  if(exhibitionPhotos){
+    idAndUrls2= exhibitionPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+3), asset.url]})
+    idAndUrls2.forEach((value) => {databaseService.
+      uploadPhotoUrl('exhibitions',exhibitionSerialNumberNum, 'exhibitionPhotoUrl',value[0], value[1] )})
+  }
 
 
 
@@ -364,7 +453,12 @@ try{
     <div className={styles.div2}>
       <span className={styles.div2_title}>5. 전시회 사진 등록하기</span>
     </div>
-    <h1>여기도 나중에</h1>
+    <input  type="file" name="file" accept="image/*" multiple onChange={handleExhibitionPhotoUpload}/>
+    <div className={styles.preview_images}>
+        { exhibitionPreviewArray2&&exhibitionPreviewArray2.map((url) => {
+          return <PreviewImage key={exhibitionPreviewArray2.indexOf(url)} url={url}/>
+        }) }
+    </div>
   </div>  
   
   

@@ -11,6 +11,10 @@ export type LoginContextType = {
 
 }
 
+export type AllImageOrPhotoList = 
+'exhibitionPosterUrl'|'exhibitionWorks'|
+'exhibitionBuildingPhotoUrl'|
+'exhibitionPhotoUrl'|'workPhotoUrl'
 
 export type TypeOfPhotoAssets = {
   [index:number]: string
@@ -28,7 +32,7 @@ export type TypeOfSoldNotSold = 'not_sold'|'sold'|null;
 
 export type TypeOfExhibition = {
 
-  exhibitionSerialNumber: number|null;
+  exhibitionSerialNumber: number;
   lastUpdate:number|string|null;
   exhibitionPosterUrl: TypeOfPhotoAssets|null;
   exhibitionName:string|null;
@@ -48,7 +52,7 @@ export type TypeOfExhibition = {
 // work 타입 
 
 export type TypeOfWork = {
-  workSerialNumber: number|null;
+  workSerialNumber: number;
   lastUpdate:number|string|null;
   workPhotoUrl: string|null;
   workName:string|null;

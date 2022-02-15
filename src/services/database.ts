@@ -1,6 +1,7 @@
 
 import { myApp } from './firebase';
 import { getDatabase, off, onValue, ref, remove, set } from "firebase/database";
+import { AllImageOrPhotoList } from '../common/project_types';
 
 
 class Database {
@@ -9,23 +10,26 @@ class Database {
 
 
 
-  uploadExhibitionData(id, inputData){
+  uploadExhibitionData(id:string|number, inputData:any){
     set(ref(this.myDatabase, `root/exhibitions/${id}`), inputData)
   }
 
 
-  uploadWorkData(id, inputData){
+  uploadWorkData(id:string|number, inputData:any){
     set(ref(this.myDatabase, `root/works/${id}`), inputData)
   }
 
-  uploadExhibitionBuildingPhotoUrl(id, museumPhotoId, url){
+
+
+  uploadPhotoUrl(worksOrExhibitions:'works'|'exhibitions',workOrExhibitionid:string|number, imageOrPhotoType:AllImageOrPhotoList,museumPhotoId:string|number, url:string){
     set(ref(this.myDatabase,
-      `root/exhibitions/${id}/exhibitionBuildingPhotoUrl/${museumPhotoId}`), url)
+      `root/${worksOrExhibitions}/${workOrExhibitionid}/${imageOrPhotoType}/${museumPhotoId}`), url)
   }
+  
 
  
 
-  getExhibitionData(callback){
+  getExhibitionData(callback:(sth:any)=> void){
     const readDataRef = ref(this.myDatabase, `root/exhibitions/`)
     onValue(readDataRef, (snapshot)=> {
       const data = snapshot.val()
@@ -35,7 +39,7 @@ class Database {
   }
 
 
-  getWorkData(callback){
+  getWorkData(callback:(sth:any)=> void){
     const readDataRef = ref(this.myDatabase, `root/works/`)
     onValue(readDataRef, (snapshot)=> {
       const data = snapshot.val()
@@ -45,12 +49,12 @@ class Database {
   }
 
 
-  deleteWorkData(id){
+  deleteWorkData(id:string|number){
     remove(ref(this.myDatabase, `root/works/${id}`))
   }
 
 
-  deleteExhibitionData(id){
+  deleteExhibitionData(id:string|number){
     remove(ref(this.myDatabase, `root/exhibitions/${id}`))
   }
 
