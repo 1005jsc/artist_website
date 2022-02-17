@@ -5,6 +5,7 @@ import { TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../co
 import Database from '../../../../../services/database';
 import ImageUpload from '../../../../../services/image_uploads';
 import PreviewImage from '../../../small/preview_image/preview_image';
+import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
 import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
 import styles from "./work_upload_form.module.css";
 
@@ -322,7 +323,7 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     onClick={handleInputClick} >이미지파일 선택</button>
       <input className={styles.input_file} type="file" name="file" accept="image/*"  onChange={handleWorkUpload}/>
       <div className={styles.preview_images}>
-          {workPreviewUrl&&<PreviewImage index={1} handleDelete={handleDelete} url={workPreviewUrl}/>}
+          {workPreviewUrl&&<PreviewImageSingle  url={workPreviewUrl}/>}
 
       </div>
 

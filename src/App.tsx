@@ -32,6 +32,7 @@ import ExhibitionUpload from './components/main/medium/private_folder/exhibition
 import ExhibitionUploadForm from './components/main/medium/private_folder/exhibition_upload_form/exhibition_upload_form';
 import Database from './services/database';
 import ImageUpload from './services/image_uploads';
+import Navbar from './components/front_door/navbar/navbar';
 
 
 
@@ -82,7 +83,9 @@ const handleLogin = (password:string|number) => {
     <Routes>
 
     
-      <Route index element={<BackgroundImage/>}/>
+      <Route path='' element={<BackgroundImage/>}>
+          <Route path='' element={<Navbar/>}/>
+      </Route>
 
       <Route path="/main" element={<Main login={login} handleLogin={handleLogin} />} >
 
