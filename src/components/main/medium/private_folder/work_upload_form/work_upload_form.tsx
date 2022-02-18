@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
-import { TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
+import { TypeOfHorizontalOrVertical, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import ImageUpload from '../../../../../services/image_uploads';
 import PreviewImage from '../../../small/preview_image/preview_image';
@@ -193,8 +193,16 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
 
 
   const workSizeData = 
-      `${workSizeOneValue}x cm ${workSizeTwoValue}x cm`
-    
+      `${workSizeOneValue}cm x ${workSizeTwoValue}cm`
+
+  let workHorizontalOrVertical:TypeOfHorizontalOrVertical = null
+  if(workSizeOneValue&&workSizeTwoValue){
+    if(parseInt(workSizeOneValue) >= parseInt(workSizeTwoValue)){
+      workHorizontalOrVertical = 'horizontal'
+    }else{
+      workHorizontalOrVertical = 'vertical'
+    }
+  }
     
   let workMaterialData 
     if(workMaterialSelectValue=='other'){
@@ -227,6 +235,8 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
     const workSerialNumberNum = myFunctions.generateAKey(0)
   
     const workOnSaleData =workOnSaleValue
+
+
   
       const workData:TypeOfWork = {
         workSerialNumber :workSerialNumberNum,
@@ -239,7 +249,8 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
         workOnSale: workOnSaleData,
         workSold: workSoldData,
         workExhibitionHistory: null,
-        workMemo: workMemoValue
+        workMemo: workMemoValue,
+        workHorizontalOrVertical: workHorizontalOrVertical
       }
   
     
@@ -289,12 +300,6 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
 
 
 
-const handleDelete:React.MouseEventHandler<HTMLButtonElement> = (e) => {
-  e.preventDefault()
-
-
-
-}
 
 
 const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -367,6 +372,8 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
         </select>
         {otherSelected&&<input className={styles.input} ref={workMaterialOtherRef}type="text" name="work_material_other" placeholder='기타 재료이름'/>}
       </div>
+
+      
       
       
       

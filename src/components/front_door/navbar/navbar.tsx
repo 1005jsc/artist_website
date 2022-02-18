@@ -23,9 +23,6 @@ const Navbar = () => {
   }, [])
 
 
-  useEffect(() => {
-    console.log(onHover)
-  }, [onHover])
 
 
 

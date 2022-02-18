@@ -1,19 +1,36 @@
 import React from "react"
+import { myFunctions } from '../../../../../common/project_functions';
+import { TypeOfWork } from '../../../../../common/project_types';
 import styles from "./work.module.css";
 
 
-const Work = () => {
+type WorkProps = {
+  work: TypeOfWork;
+  year: string|number;
+}
+
+const Work = ({work, year}:WorkProps) => {
+
+  
+  
+  let workUrl
+  if(work.workImageUrl !==null){
+    workUrl = myFunctions.imageUrlMakerByRequestedQuality
+    (work.workImageUrl[work.workSerialNumber+1],'small', 216)
+  }
 
   return <div className={styles.work_container} >
     <div className={styles.work_frame}>
       <div className={styles.image_frame}>
-          <img className={styles.work_img} src="/img/works_img/A_9528658.jpg" alt="" />
+              
+        <img className={styles.work_img} src={workUrl} alt='' />
+
       </div>
     <div className={styles.work_metadata}>
-      <p className={styles.p1}>시간을 담다 VIII</p>
-      <p className={styles.p1}>162×112cm</p>
-      <p className={styles.p1}>Acrylic on canvas</p>
-      <p className={styles.p1}>2020</p>
+      <p className={styles.p1}>{work.workName}</p>
+      <p className={styles.p1}>{work.workSize}</p>
+      <p className={styles.p1}>{work.workMaterial}</p>
+      <p className={styles.p1}>{year}</p>
     </div>
 
 
@@ -23,5 +40,3 @@ const Work = () => {
 
 }
 export default Work;
-
-

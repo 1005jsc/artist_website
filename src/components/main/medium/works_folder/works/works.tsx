@@ -31,7 +31,7 @@ const Works = ({databaseService}:WorksProps) => {
       navigate(`/main/works/${path}`)
     }
   }
-
+  
   const urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
   const urlNow = window.location.href 
   
@@ -45,8 +45,6 @@ const Works = ({databaseService}:WorksProps) => {
   
   const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word, url)})
 
-  // console.log(array1)
-  // console.log(array2)
 
   return <section className={styles.container}>
     {array2.includes(true)&&<div className={styles.background_img}>
@@ -71,7 +69,7 @@ const Works = ({databaseService}:WorksProps) => {
     </div>
     <div className={styles.works}>
 
-      <Outlet/>
+      <Outlet context={databaseService}/>
       {/* 이동용 <WorkYear/><WorkSize/><WorkExhibition/> */}
     </div>
     </div>

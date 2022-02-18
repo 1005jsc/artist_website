@@ -24,6 +24,7 @@ export type TypeOfWorks = {
   [index:number]: TypeOfWork
 }
 
+export type TypeOfHorizontalOrVertical = 'horizontal'|'vertical'|null
 
 export type TypeOfSoldNotSold = 'not_sold'|'sold'|null;
 
@@ -63,6 +64,7 @@ export type TypeOfWork = {
   workSold:TypeOfWorkSold|null;
   workExhibitionHistory:TypeOfExhibitionHistory|null;
   workMemo: string|null
+  workHorizontalOrVertical: TypeOfHorizontalOrVertical;
 }
 
 
@@ -81,8 +83,9 @@ export type TypeOfExhibitionHistory = {
 }
 
 
+// image
 
-
+export type ImageQualityTypes = 'mini'|'small'|'medium'|'large'|'full-screen'|'almost-original'
 
 
 
