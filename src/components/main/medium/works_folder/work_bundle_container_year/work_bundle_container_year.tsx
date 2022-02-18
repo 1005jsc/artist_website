@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import Work from '../work/work';
 import WorkVertical from '../work_vertical/work_vertical';
-import styles from "./work_bundle_container.module.css";
+import styles from "./work_bundle_container_year.module.css";
 
-type WorkBundleContainerProps = {
+type WorkBundleContainerYearProps = {
   arrayAboutWorkYearAndWork: any[]
 }
 
-const WorkBundleContainer = ({arrayAboutWorkYearAndWork}:WorkBundleContainerProps) => {
+const WorkBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkBundleContainerYearProps) => {
   const string1 = arrayAboutWorkYearAndWork[0]
   const array1 = arrayAboutWorkYearAndWork.slice(1)
   
@@ -32,4 +32,4 @@ const WorkBundleContainer = ({arrayAboutWorkYearAndWork}:WorkBundleContainerProp
   
 
 }
-export default WorkBundleContainer;
+export default WorkBundleContainerYear;

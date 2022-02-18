@@ -6,7 +6,7 @@ import WorkSize from '../work_size/work_size';
 import WorkExhibition from '../work_exhibition/work_exhibition';
 import WorkExhibitionWorks from '../work_exhibition_works/work_exhibition_works';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { myFunctions } from './../../../../../common/project_functions';
+import { myFunctions, myLogics } from './../../../../../common/project_functions';
 import Database from '../../../../../services/database';
 
 type WorksProps = {
@@ -32,7 +32,7 @@ const Works = ({databaseService}:WorksProps) => {
     }
   }
   
-  const urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
+  const urlWordSearchRegex = myLogics.urlWordSearchRegex
   const urlNow = window.location.href 
   
   const result = urlNow.match(urlWordSearchRegex)

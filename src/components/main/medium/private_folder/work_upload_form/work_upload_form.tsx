@@ -235,6 +235,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
     const workSerialNumberNum = myFunctions.generateAKey(0)
   
     const workOnSaleData =workOnSaleValue
+    
 
 
   
