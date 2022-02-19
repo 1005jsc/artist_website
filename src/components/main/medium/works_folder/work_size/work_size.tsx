@@ -15,7 +15,7 @@ const WorkSize = () => {
   const [checkSmallerOrLarger, setCheckSmallerOrLarger] = useState<boolean|undefined>(undefined)
   useEffect(() => {
     setUrl(window.location.href)
-    const bool = myFunctions.checkWordFromUrl('larger', url)
+    const bool = myFunctions.checkWordFromUrl('smaller', url)
     setCheckSmallerOrLarger(bool)
     
   })
@@ -32,7 +32,6 @@ const WorkSize = () => {
   }, [])
 
   
-  console.log(checkSmallerOrLarger)
   
   
   // 크기가 큰순 로직
@@ -113,9 +112,9 @@ const WorkSize = () => {
       <div className={`${styles.work_bundle}`}>
       
       {checkSmallerOrLarger?<>
-      {workSizeBigToSmall&& <WorkBundleContainerSize works={workSizeBigToSmall}/>}
-      </> :<>
       {workSizeSmallToBig&&<WorkBundleContainerSize works={workSizeSmallToBig}/>}
+      </> :<>
+      {workSizeBigToSmall&& <WorkBundleContainerSize works={workSizeBigToSmall}/>}
       </>}
       
       

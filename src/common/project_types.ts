@@ -24,6 +24,11 @@ export type TypeOfWorks = {
   [index:number]: TypeOfWork
 }
 
+export type TypeOfExhibitions = {
+  [index:number]: TypeOfExhibition
+}
+
+
 export type TypeOfHorizontalOrVertical = 'horizontal'|'vertical'|null
 
 export type TypeOfSoldNotSold = 'not_sold'|'sold'|null;
@@ -36,9 +41,11 @@ export type TypeOfExhibition = {
   exhibitionSerialNumber: number;
   lastUpdate:number|string|null;
   exhibitionPosterUrl: TypeOfPhotoAssets|null;
+  exhibitionTitle:string|null;
   exhibitionName:string|null;
   exhibitionLocation: string|null;
-  exhibitionPeriod:string|null;
+  exhibitionStartDate:string|null;
+  exhibitionEndDate:string|null;
   exhibitionSponser:string|null;
   exhibitionWorks: TypeOfWorks|null;
   exhibitionBuildingPhotoUrl:TypeOfPhotoAssets|null;

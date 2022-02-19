@@ -5,9 +5,7 @@ import Database from '../../../../../services/database';
 import WorkBundleContainerYear from '../work_bundle_container_year/work_bundle_container_year';
 import styles from "./work_year.module.css";
 
-type WorkYearProps ={
 
-}
 
 const WorkYear = () => {
   const [works, setWorks] = useState<TypeOfWorks|null>(null)

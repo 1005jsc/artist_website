@@ -18,7 +18,7 @@ const WorkBundleContainerSize = ({works}:WorkBundleContainerSizeProps) => {
     {works&&works.map((object, index) => {
       
       const object2 = works[index]
-      let year1= object2.workCompletionDate
+      let year1= object2.workCompletionDate!.toString().substring(0,4)
       
       if(object2.workHorizontalOrVertical=='horizontal'){
           return <Work year={year1!} key={index} work={object}/>

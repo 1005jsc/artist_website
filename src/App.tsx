@@ -31,19 +31,21 @@ import WorkFixFormTwo from './components/main/medium/private_folder/work_fix_for
 import ExhibitionUpload from './components/main/medium/private_folder/exhibition_upload/exhibition_upload';
 import ExhibitionUploadForm from './components/main/medium/private_folder/exhibition_upload_form/exhibition_upload_form';
 import Database from './services/database';
-import ImageUpload from './services/image_uploads';
+import WorkImageUpload from './services/work_image_uploads';
 import Navbar from './components/front_door/navbar/navbar';
+import ExhibitionImageUpload from './services/exhibition_image_uploads';
 
 
 
 type AppProps = {
   authService : AuthService;
   databaseService:Database;
-  imageUploadService:ImageUpload;
+  workImageUploadService:WorkImageUpload;
+  exhibitionImageUploadService:ExhibitionImageUpload;
 }
 
 
-const App = ({authService, databaseService, imageUploadService}:AppProps) =>{
+const App = ({authService, databaseService,exhibitionImageUploadService, workImageUploadService}:AppProps) =>{
 
   const [login, setLogin] = useState<boolean>(false)
 
@@ -130,20 +132,20 @@ const handleLogin = (password:string|number) => {
           <Route path="loggedin" element={<PrivateRoute login={login}/>}>
               <Route path="" element={<LoginSuccess />}/>
               <Route path="work_upload" element={<WorkUpload databaseService={databaseService}/>}>
-                <Route path="" element={<WorkUploadForm imageUploadService={imageUploadService}/>}/>
+                <Route path="" element={<WorkUploadForm workImageUploadService={workImageUploadService}/>}/>
                 <Route path="work_upload_done" element={<WorkUploadDone/>}/>
               </Route>
 
               <Route path="work_fix" element={<WorkFix databaseService={databaseService}/>}>
                 <Route path="" element={<WorkFixFormOne/>}/>
-                <Route path="work_fix_form_two" element={<WorkFixFormTwo imageUploadService={imageUploadService}/>}/>
+                <Route path="work_fix_form_two" element={<WorkFixFormTwo workImageUploadService={workImageUploadService}/>}/>
                 <Route path="work_fix_done" element={<WorkFixDone/>}/>
 
               </Route>
 
               <Route path="exhibition_upload" element={<ExhibitionUpload databaseService={databaseService}/>}>
                 
-                <Route path="" element={<ExhibitionUploadForm imageUploadService={imageUploadService}/>}/>
+                <Route path="" element={<ExhibitionUploadForm exhibitionImageUploadService={exhibitionImageUploadService}/>}/>
                 <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>
 
               </Route>

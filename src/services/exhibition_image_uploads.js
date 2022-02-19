@@ -1,12 +1,12 @@
 
-class ImageUpload {
+class ExhibitionImageUpload {
   static url = "https://api.cloudinary.com/v1_1/koreachief/auto/upload";
 
   uploadSingleImage = async (imageData) => {
     const formData = new FormData();
     
     formData.append("file", imageData )
-    formData.append("upload_preset", "xriivumv")
+    formData.append("upload_preset", "lj67huqj")
     
     // fetch(this.uploadImageurl, {
     //   method: "POST",
@@ -15,12 +15,11 @@ class ImageUpload {
     //   return res.json();
     // })
 
-    const res = await fetch(ImageUpload.url, {
+    const res = await fetch(ExhibitionImageUpload.url, {
       method: "POST",
       body: formData
     })
 
-//then 붙어 있던것들은 다 await으로 하나씩 붙여줘야 된다 
     return await res.json();
 
   }  
@@ -34,8 +33,8 @@ class ImageUpload {
       let imageData = multipleImageData[i];
 
     formData.append("file", imageData)
-    formData.append("upload_preset", "xriivumv")
-    const res = await fetch(ImageUpload.url, {
+    formData.append("upload_preset", "lj67huqj")
+    const res = await fetch(ExhibitionImageUpload.url, {
       method: "POST",
       body: formData
     })
@@ -53,7 +52,7 @@ class ImageUpload {
 
 
 }
-export default ImageUpload
+export default ExhibitionImageUpload
 
 
 

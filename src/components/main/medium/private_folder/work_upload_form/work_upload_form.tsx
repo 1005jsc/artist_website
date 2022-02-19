@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
 import { TypeOfHorizontalOrVertical, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
-import ImageUpload from '../../../../../services/image_uploads';
+import WorkImageUpload from '../../../../../services/work_image_uploads';
 import PreviewImage from '../../../small/preview_image/preview_image';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
 import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
@@ -11,10 +11,10 @@ import styles from "./work_upload_form.module.css";
 
 
 type WorkUploadFormProps = {
-  imageUploadService: ImageUpload;
+  workImageUploadService: WorkImageUpload;
 }
 
-const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
+const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUploadFormProps) => {
   const databaseService= useOutletContext<Database>();
   const [url, setUrl] = useState<string|null>()
 
@@ -226,7 +226,7 @@ const WorkUploadForm = ({imageUploadService}:WorkUploadFormProps) => {
     // 작품 사진 (3/3)
     let workImage
     if(workFile){
-      workImage = await imageUploadService.uploadSingleImage(workFile)
+      workImage = await workImageUploadService.uploadSingleImage(workFile)
     }else{
       workImage = null
     }

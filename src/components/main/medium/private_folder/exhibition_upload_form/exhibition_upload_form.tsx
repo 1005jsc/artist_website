@@ -5,16 +5,16 @@ import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
-import ImageUpload from '../../../../../services/image_uploads';
+import WorkImageUpload from '../../../../../services/work_image_uploads';
 import { myFunctions } from '../../../../../common/project_functions';
 import DeleteButton from '../../../../utility/delete_button/delete_button';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
 
 type ExhibitionUploadFormProps = {
-  imageUploadService:ImageUpload;
+  exhibitionImageUploadService:WorkImageUpload;
 }
 
-const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) => {
+const ExhibitionUploadForm = ({exhibitionImageUploadService}:ExhibitionUploadFormProps) => {
 
   const databaseService= useOutletContext<Database>();
 
@@ -43,9 +43,11 @@ const ExhibitionUploadForm = ({imageUploadService}:ExhibitionUploadFormProps) =>
   // //  전시회 데이터 (1/3)
 
   
+const exhibitionTitleRef = useRef<HTMLInputElement | null>(null)
 const exhibitionNameRef = useRef<HTMLInputElement | null>(null)
 const exhibitionLocationRef = useRef<HTMLInputElement | null>(null)
-const exhibitionPeriodRef = useRef<HTMLInputElement | null>(null)
+const exhibitionStartDateRef = useRef<HTMLInputElement | null>(null)
+const exhibitionEndDateRef = useRef<HTMLInputElement | null>(null)
 const exhibitionSponserRef = useRef<HTMLInputElement | null>(null)
 const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -231,12 +233,19 @@ useEffect(() => {
 
     
   
+  let exhibitionTitleValue
   let exhibitionNameValue
   let exhibitionLocationValue
-  let exhibitionPeriodValue
+  let exhibitionStartDateValue
+  let exhibitionEndDateValue
   let exhibitionSponserValue
   let exhibitionMemoValue
   
+  if(exhibitionTitleRef.current){
+      exhibitionTitleValue = exhibitionTitleRef.current.value
+  }else{exhibitionTitleValue = null
+    
+  }
   if(exhibitionNameRef.current){
       exhibitionNameValue = exhibitionNameRef.current.value
   }else{exhibitionNameValue = null
@@ -249,9 +258,14 @@ useEffect(() => {
 
   }
   
-  if(exhibitionPeriodRef.current){
-      exhibitionPeriodValue = exhibitionPeriodRef.current.value
-  }else{exhibitionPeriodValue = null
+  if(exhibitionStartDateRef.current){
+      exhibitionStartDateValue = exhibitionStartDateRef.current.value
+  }else{exhibitionStartDateValue = null
+
+  }
+  if(exhibitionEndDateRef.current){
+      exhibitionEndDateValue = exhibitionEndDateRef.current.value
+  }else{exhibitionEndDateValue = null
 
   }
   
@@ -271,7 +285,7 @@ try{
   // 포스터 (3/3)
   let exhibitionPoster
   if(posterFile){
-    exhibitionPoster = await imageUploadService.uploadSingleImage(posterFile)
+    exhibitionPoster = await exhibitionImageUploadService.uploadSingleImage(posterFile)
   }else{
     exhibitionPoster = null
   }
@@ -280,7 +294,7 @@ try{
   // 전시관 외부사진 (4/5)
   let museumPhotos
   if (museumUploadArray2){
-    museumPhotos = await imageUploadService.uploadMultipleImage(museumUploadArray2)
+    museumPhotos = await exhibitionImageUploadService.uploadMultipleImage(museumUploadArray2)
   }else{
   museumPhotos = null
   }
@@ -288,7 +302,7 @@ try{
   // 전시회 사진 (4/5)
   let exhibitionPhotos
   if (exhibitionUploadArray2){
-    exhibitionPhotos = await imageUploadService.uploadMultipleImage(exhibitionUploadArray2)
+    exhibitionPhotos = await exhibitionImageUploadService.uploadMultipleImage(exhibitionUploadArray2)
   }else{
   exhibitionPhotos = null
   }
@@ -303,8 +317,10 @@ try{
     lastUpdate: new Date().toLocaleString(),
     exhibitionPosterUrl : exhibitionPoster?{[myFunctions.generateAKey(1)]:exhibitionPoster.url}:null,
     exhibitionName : exhibitionNameValue,
+    exhibitionTitle : exhibitionTitleValue,
     exhibitionLocation :exhibitionLocationValue,
-    exhibitionPeriod :exhibitionPeriodValue,
+    exhibitionStartDate :exhibitionStartDateValue,
+    exhibitionEndDate :exhibitionEndDateValue,
     exhibitionSponser :exhibitionSponserValue,
     exhibitionWorks: null,
     exhibitionBuildingPhotoUrl : null, // 완성 더 손댈 필요 없음
@@ -450,14 +466,19 @@ console.log()
     <div className={styles.div2}>
       <span className={styles.div2_title}>2. 전시회 정보 등록하기</span>
     </div>
-      <span className={`${styles.caution} ${styles.caution_2}`}>- 주의: 하나라도 빠지면 관리가 힘들어 질 수 있으니까 
-      <br/> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;최대한 빼먹지 말고 가입하기</span>
+      <span className={`${styles.caution} ${styles.caution_2}`}>- 주의: 형식에 맞춰서 작성하고,  
+      <br/> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;데이터를 최대한 채워서 작성할 것</span>
     <div className={`${styles.div3} ${styles.div3_2}`}>
       
       <div className={styles.lable_div}>
 
+        <label className={styles.lable}>전시회 타이틀:</label>
+        <input ref={exhibitionTitleRef} className={styles.input}type="text" name="exhibition_title" placeholder='예: 국윤미술관 기획초대전'/>
+      </div>
+      <div className={styles.lable_div}>
+
         <label className={styles.lable}>전시회 이름:</label>
-        <input ref={exhibitionNameRef} className={styles.input}type="text" name="exhibition_name" placeholder='전시회 이름 입력'/>
+        <input ref={exhibitionNameRef} className={styles.input}type="text" name="exhibition_name" placeholder='예: 조용남 展 -시간을 담다-'/>
       </div>
       
       <div className={styles.lable_div}>
@@ -467,8 +488,13 @@ console.log()
       </div>
 
       <div className={styles.lable_div}>
-        <label className={styles.lable}>전시회 기간:</label>
-          <input ref={exhibitionPeriodRef} className={styles.input}type="text" name="exhibition_period" placeholder='형식: 20210401~20210501'/>
+        <label className={styles.lable}>전시회 시작일:</label>
+          <input ref={exhibitionStartDateRef} className={styles.input}type="text" name="exhibition_start_date" placeholder='형식: 20210401'/>
+      </div>
+
+      <div className={styles.lable_div}>
+        <label className={styles.lable}>전시회 종료일:</label>
+          <input ref={exhibitionEndDateRef} className={styles.input}type="text" name="exhibition_end_date" placeholder='형식: 20210501'/>
       </div>
 
       <div className={styles.lable_div}>

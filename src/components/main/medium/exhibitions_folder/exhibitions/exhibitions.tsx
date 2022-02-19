@@ -21,7 +21,7 @@ const Exhibitions = ({databaseService}:ExhibitionProps) => {
     <div className={styles.title_container}>
   <span className={styles.title}>전시</span>
   </div>
-    <Outlet/>
+    <Outlet context={databaseService}/>
 
 
     </div>

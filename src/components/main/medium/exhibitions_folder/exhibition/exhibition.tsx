@@ -1,8 +1,20 @@
+import 'moment/locale/ko'
+import moment from 'moment';
 import React from "react"
 import { useNavigate } from 'react-router-dom';
+import { TypeOfExhibition } from '../../../../../common/project_types';
 import styles from "./exhibition.module.css";
 
-const Exhibition = () => {
+
+type ExhibitionProps = {
+  exhibition:TypeOfExhibition;
+}
+
+
+const Exhibition = ({exhibition}:ExhibitionProps) => {
+
+
+
   const navigate = useNavigate()
 
   const navigateTo:React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -24,23 +36,39 @@ const Exhibition = () => {
     navigate(`/main/exhibitions/${path!}`)
     console.log('exhibitions')
   }
-
-
   }
 
-  return <div className={styles.exhibition_container} data-path='exhibition_works'onClick={navigateTo}>
+  console.log(exhibition.exhibitionStartDate)
+  console.log(exhibition.exhibitionEndDate)
+  const startDate1 = moment(`${exhibition.exhibitionStartDate}`, "YYYYMMDD").format('L') 
+  const endDate1 = moment(`${exhibition.exhibitionEndDate}`, "YYYYMMDD").format('L') 
+  const startDate2 = startDate1.substring(0, startDate1.length-1)
+  const endDate2 = endDate1.substring(0, endDate1.length-1)
+  
+  
+  
+  
+
+
+
+
+
+
+
+  return <div className={styles.exhibition_bundle} >
+    <div className={styles.exhibition_container} data-path='exhibition_works'onClick={navigateTo}>
   <div className={styles.image_container}>
-  <img className={styles.exhibition_img}src="/img/asset_img/exhibitions/20210507guk_yoon/poster/guk_yoon_poster.jpg" alt="" />
+  <img className={styles.exhibition_img}src={Object.values(exhibition.exhibitionPosterUrl!)[0]} alt="" />
   </div>  
   <div className={styles.exhibition_metadata}>
-    <p className={styles.p1}>국윤미술관 기획초대전</p>
-    <p className={styles.p1}>조용남 展 -시간을 담다-</p>
-    <p className={styles.p1}>2021.5.7 ~ 6.6.</p>
-    <p className={`${styles.p1} ${styles.total_count}`}>총 36점</p>
+    <p className={styles.p1}>{exhibition.exhibitionTitle}</p>
+    <p className={styles.p1}>{exhibition.exhibitionName}</p>
+    <p className={styles.p1}>{`${startDate2} ~ ${endDate2}`}</p>
+    <p className={`${styles.p1} ${styles.total_count}`}>총 점</p>
 
   </div>
 
 </div>
-
+</div>
 }
 export default Exhibition;
