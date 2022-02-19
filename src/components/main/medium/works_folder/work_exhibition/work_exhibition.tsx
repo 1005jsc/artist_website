@@ -57,19 +57,6 @@ const WorkExhibition = () => {
       exhibitionsByYearFilter4.push(exhibitionsByYearFilter3)
     }
   }
-console.log(exhibitionsByYearFilter4)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -30,10 +30,16 @@ const Exhibition = ({exhibition}:ExhibitionProps) => {
   if(result?.includes('/works')){
     console.log('works')
 
-    navigate(`/main/works/${path!}`)
+    navigate(`/main/works/${path!}`, {
+      state: [exhibition]
+      
+    } )
   }else if(result?.includes('/exhibitions')){
 
-    navigate(`/main/exhibitions/${path!}`)
+    navigate(`/main/exhibitions/${path!}`, {
+      state: [exhibition]
+      
+    })
     console.log('exhibitions')
   }
   }

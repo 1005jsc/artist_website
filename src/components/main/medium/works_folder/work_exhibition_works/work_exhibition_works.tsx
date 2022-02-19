@@ -1,36 +1,68 @@
-import React from "react"
-import Work from '../work/work';
+import 'moment/locale/ko'
+import moment from 'moment';
+import { useLocation } from 'react-router-dom';
+import { TypeOfExhibition } from '../../../../../common/project_types';
 import WorkSize from '../work_size/work_size';
 import styles from "./work_exhibition_works.module.css";
+import ExhibitionPhoto from '../../../small/exhibition_photo/exhibition_photo';
+type TypeOfLocation = {
+  state: TypeOfExhibition[]
+}
+
+
+
 
 const WorkExhibitionWorks = () => {
+
+  const location = useLocation()
+  const exhibition1 = location.state as TypeOfExhibition[]
+  const exhibition2 = exhibition1[0]
+
+
+  const posterUrl1 = exhibition2.exhibitionPosterUrl
+  const posterUrl2 = Object.values(posterUrl1?posterUrl1:'')[0]
+
+
+  const startDate1 = moment(`${exhibition2.exhibitionStartDate}`, "YYYYMMDD").format('L') 
+  const endDate1 = moment(`${exhibition2.exhibitionEndDate}`, "YYYYMMDD").format('L') 
+  const startDate2 = startDate1.substring(0, startDate1.length-1)
+  const endDate2 = endDate1.substring(0, endDate1.length-1)
+
+
+
+  const exhibitionPhotoUrls = Object.values(exhibition2.exhibitionPhotoUrl?exhibition2.exhibitionPhotoUrl:'')
+
+
+
+
+
+
 
   return <div className={styles.work_exhibition_works_container}>
     <div className={styles.metadata_container}>
 
       <div className={styles.img_container}>
-        <img className={styles.exhibition_img}src="/img/asset_img/exhibitions/20210507guk_yoon/poster/guk_yoon_poster.jpg" alt="" />
+        <img className={styles.exhibition_img} src={posterUrl2  } alt="" />
       </div>
 
       <div className={styles.data_container}>
-          <p className={styles.p1}>국윤미술관 기획초대전</p>
-          <p className={styles.p1}>조용남 展 -시간을 담다-</p>
-          <p className={styles.p1}>2021.5.7 ~ 6.6.</p>
-          <p className={styles.p1}>장소 : 광주 동구 의재로 82</p>
-          <p className={styles.p1}>총 36점</p>
+          <p className={styles.p1}>{exhibition2.exhibitionTitle}</p>
+          <p className={styles.p1}>{exhibition2.exhibitionName}</p>
+          <p className={styles.p1}>{`${startDate2} ~ ${endDate2}`}</p>
+          <p className={styles.p1}>장소 : {exhibition2.exhibitionLocation}</p>
+          <p className={styles.p1}>총 점</p>
       </div>
       
     </div>
-      <div className={styles.exhibition_photo_cont}>
 
-        <div className={styles.photo_container} data-number='1'>
-          <img className={styles.exhibition_img}src="\img\asset_img\exhibitions\20210507guk_yoon\exhibition_photo\guk_yoon1.JPG" alt="" />
-        </div>
+    <div className={styles.exhibition_photo_cont}>
+
+    {exhibitionPhotoUrls&&exhibitionPhotoUrls.map((url, index) => {
+      return <ExhibitionPhoto url={url}datanumber={index}/>})}
+        
 
 
-        <div className={styles.photo_container}data-number='2'>
-          <img className={styles.exhibition_img}src="\img\asset_img\exhibitions\20210507guk_yoon\exhibition_photo\guk_yoon2.JPG" alt="" />
-        </div>
+        
       </div>
 
     <WorkSize/>
