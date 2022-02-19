@@ -2,15 +2,3 @@
 	padding: 2rem;
 	padding-top: 1rem;
 }
-
-.work_bundle {
-	width: 99rem;
-	display: flex;
-	margin: auto;
-	flex-wrap: wrap;
-	padding-top: 2rem;
-}
-
-.year {
-	font-size: 2.4rem;
-}

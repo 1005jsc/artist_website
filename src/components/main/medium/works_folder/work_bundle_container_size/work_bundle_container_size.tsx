@@ -11,16 +11,19 @@ type WorkBundleContainerSizeProps = {
 const WorkBundleContainerSize = ({works}:WorkBundleContainerSizeProps) => {
   
   
+
+  
     return <div className={styles.work_bundle_container}>
     <div className={`${styles.work_bundle}`}>
-    {works.map((object, index) => {
+    {works&&works.map((object, index) => {
       
       const object2 = works[index]
+      let year1= object2.workCompletionDate
       
       if(object2.workHorizontalOrVertical=='horizontal'){
-          // return <Work year={string1} key={index} work={object}/>
+          return <Work year={year1!} key={index} work={object}/>
         }else{
-          // return <WorkVertical year={string1} key={index} work={object}/>
+          return <WorkVertical year={year1!} key={index} work={object}/>
         }
   })}
     </div>
