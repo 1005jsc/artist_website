@@ -1,4 +1,6 @@
 .photo_container {
+	position: relative;
+	left: 27rem;
 	height: 30rem;
 	margin-bottom: 12rem;
 	margin-top: 12rem;

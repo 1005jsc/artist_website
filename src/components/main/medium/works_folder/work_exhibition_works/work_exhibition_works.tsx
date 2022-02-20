@@ -4,7 +4,8 @@ import { useLocation } from 'react-router-dom';
 import { TypeOfExhibition } from '../../../../../common/project_types';
 import WorkSize from '../work_size/work_size';
 import styles from "./work_exhibition_works.module.css";
-import ExhibitionPhoto from '../../../small/exhibition_photo/exhibition_photo';
+import ExhibitionPhotoRight from '../../../small/exhibition_photo_right/exhibition_photo_right';
+import ExhibitionPhotoLeft from '../../../small/exhibition_photo_left/exhibition_photo_left';
 type TypeOfLocation = {
   state: TypeOfExhibition[]
 }
@@ -58,7 +59,14 @@ const WorkExhibitionWorks = () => {
     <div className={styles.exhibition_photo_cont}>
 
     {exhibitionPhotoUrls&&exhibitionPhotoUrls.map((url, index) => {
-      return <ExhibitionPhoto url={url}datanumber={index}/>})}
+if(index%2==0){
+  return <ExhibitionPhotoLeft url={url}datanumber={index}/>
+}else{
+  return <ExhibitionPhotoRight url={url}datanumber={index}/>
+
+}
+
+      })}
         
 
 
