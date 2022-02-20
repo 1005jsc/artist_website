@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { TypeOfExhibition } from '../../../../../common/project_types';
-import PrivateWorksYear from '../small/private_works_year/private_works_year';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
@@ -374,13 +373,10 @@ try{
   }
 
 
-// const handleDelete = (e) => {
-//   e.preventDefault()
-// }
 
-  useEffect(() => {
 
-  }, [museumUploadArray2]) 
+
+
 
 console.log()
   const handleDeleteSelected = (datasetPhotoType:string, datasetIndex:string) => {
@@ -518,7 +514,7 @@ console.log()
     </div>
     <span className={`${styles.caution} ${styles.caution_3}`}>- 주의: 작품이 아직 등록이 안됬다면 
       <br/> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작품 등록먼저 하고 와야 됨</span>
-      <PrivateWorksYear/>
+      {/* <PrivateWorksYear/> */}
 
     <div className={styles.empty_container_third_last}></div>
 

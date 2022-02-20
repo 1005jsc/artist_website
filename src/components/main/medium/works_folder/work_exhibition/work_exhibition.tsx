@@ -10,7 +10,6 @@ const WorkExhibition = () => {
   const databaseService= useOutletContext<Database>();
 
   useEffect(() => {
-    console.log('1')
     const yes = databaseService.getExhibitionData((data) => {
       setExhibitions(data)
       
@@ -18,7 +17,6 @@ const WorkExhibition = () => {
     return () => yes()
   }, [])
 
-  console.log(exhibitions)
 
   let exhibitionsKeys
   let exhibitionYears: string[] 
@@ -37,7 +35,6 @@ const WorkExhibition = () => {
     exhibitionsYears = [... new Set(exhibitionYears)]
     exhibitionsYears.sort((a,b) => parseInt(b)-parseInt(a))
   }
-  console.log(exhibitionsYears)
 
   let exhibitionsByYear = [] as any[]
   let exhibitionsByYearFilter = [] as any[]

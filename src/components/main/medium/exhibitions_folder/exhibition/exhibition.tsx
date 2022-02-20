@@ -28,7 +28,6 @@ const Exhibition = ({exhibition}:ExhibitionProps) => {
   const path = e.currentTarget.dataset.path
   
   if(result?.includes('/works')){
-    console.log('works')
 
     navigate(`/main/works/${path!}`, {
       state: [exhibition]
@@ -40,12 +39,9 @@ const Exhibition = ({exhibition}:ExhibitionProps) => {
       state: [exhibition]
       
     })
-    console.log('exhibitions')
   }
   }
 
-  console.log(exhibition.exhibitionStartDate)
-  console.log(exhibition.exhibitionEndDate)
   const startDate1 = moment(`${exhibition.exhibitionStartDate}`, "YYYYMMDD").format('L') 
   const endDate1 = moment(`${exhibition.exhibitionEndDate}`, "YYYYMMDD").format('L') 
   const startDate2 = startDate1.substring(0, startDate1.length-1)

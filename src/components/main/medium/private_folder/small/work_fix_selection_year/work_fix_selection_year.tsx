@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react"
-import { useOutletContext } from 'react-router-dom';
-import { TypeOfWorks } from '../../../../../common/project_types';
-import Database from '../../../../../services/database';
-import WorkBundleContainerYear from '../work_bundle_container_year/work_bundle_container_year';
-import styles from "./work_year.module.css";
+import { TypeOfWorks } from '../../../../../../common/project_types';
+import Database from '../../../../../../services/database';
+import WorkFixSelectionBundleContainer from '../work_fix_selection_bundle_container_year/work_fix_selection_bundle_container_year';
+import styles from "./work_fix_selection_year.module.css";
+
+type WorkFixSelectionYearProps = {
+  databaseService:Database;
+}
 
 
 
-const WorkYear = () => {
+const WorkFixSelectionYear = ({databaseService}:WorkFixSelectionYearProps) => {
   const [works, setWorks] = useState<TypeOfWorks|null>(null)
-  const databaseService= useOutletContext<Database>();
-
   useEffect(() => {
     const yes = databaseService.getWorkData((data) => {
       setWorks(data)
@@ -18,7 +19,6 @@ const WorkYear = () => {
     })
     return () => yes()
   }, [])
-
 
   let worksKeys
   let workYears: string[] 
@@ -59,16 +59,24 @@ const WorkYear = () => {
     }
   }
 
-
-
+console.log(worksByYearFilter4)
 
   return <div className={styles.container3}>
 
-    {worksByYearFilter4&&worksByYearFilter4.map((array, index) => 
-    {return <WorkBundleContainerYear key={index} arrayAboutWorkYearAndWork={array}/>})}
 
-    
+
+{worksByYearFilter4&&worksByYearFilter4.map((array, index) => 
+    {return <WorkFixSelectionBundleContainer key={index} arrayAboutWorkYearAndWork={array}/>})}
+
+
+
+  
+
+ 
+
+
+  
 </div>
 
 }
-export default WorkYear;
+export default WorkFixSelectionYear;

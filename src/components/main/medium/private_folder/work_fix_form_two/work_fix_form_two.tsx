@@ -1,8 +1,5 @@
 import React from "react"
-import { useOutletContext } from 'react-router-dom';
-import Database from '../../../../../services/database';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
-import PrivateWork from '../small/private_work/private_work';
 import WorkUploadForm from '../work_upload_form/work_upload_form';
 import styles from "./work_fix_form_two.module.css";
 
@@ -27,11 +24,11 @@ const WorkFixFormTwo = ({workImageUploadService: workImageUploadService}:WorkFix
     <div className={styles.grey_container}>
 
     <div className={`${styles.work_bundle}`}>
-      <PrivateWork/>
-      <PrivateWork/>
-      <PrivateWork/>
-      <PrivateWork/>
-      <PrivateWork/>
+      {/* <WorkFixSelectionWork/>
+      <WorkFixSelectionWork/>
+      <WorkFixSelectionWork/>
+      <WorkFixSelectionWork/>
+      <WorkFixSelectionWork/> */}
     </div>
     
     

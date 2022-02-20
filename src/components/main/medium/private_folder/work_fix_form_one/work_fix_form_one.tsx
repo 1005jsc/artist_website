@@ -1,11 +1,14 @@
 import React from "react"
-import { Outlet, useNavigate } from 'react-router-dom';
-import PrivateWorksYear from '../small/private_works_year/private_works_year';
+import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
+import Database from '../../../../../services/database';
+import WorkFixSelectionExhibition from '../small/work_fix_selection_exhibition/work_fix_selection_exhibition';
+import WorkFixSelectionSize from '../small/work_fix_selection_size/work_fix_selection_size';
+import WorkFixSelectionYear from '../small/work_fix_selection_year/work_fix_selection_year';
 import styles from "./work_fix_form_one.module.css";
 
 const WorkFixFormOne = () => {
   const navigate = useNavigate()
-
+  const databaseService= useOutletContext<Database>();
 
   const handleToNext:React.MouseEventHandler<HTMLButtonElement> =(e) => {
     e.preventDefault()
@@ -35,8 +38,11 @@ const WorkFixFormOne = () => {
       </div>
 
     </div>
-
-    <PrivateWorksYear/>
+    {/* 여기에 스위치 문으로 4가지 연도별, 크기가큰순, 크기가 작은순, 전시출품작*/}
+    
+    <WorkFixSelectionYear databaseService={databaseService}/>
+    {/* <WorkFixSelectionSize databaseService={databaseService}/> */}
+    {/* <WorkFixSelectionExhibition databaseService={databaseService}/> */}
 
   </div>
 

@@ -13,7 +13,6 @@ const ExhibitionBundleContainer = ({arrayAboutWorkYearAndWork}:ExhibitionBundleC
 
 
 
-  console.log(array1)
   return <div className={styles.poster_container} >
 
   <div className={styles.poster_click_container}>

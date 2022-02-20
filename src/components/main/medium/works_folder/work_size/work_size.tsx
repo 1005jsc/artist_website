@@ -23,7 +23,6 @@ const WorkSize = () => {
   
 
   useEffect(() => {
-    console.log('1')
     const yes = databaseService.getWorkData((data) => {
       setWorks(data)
       

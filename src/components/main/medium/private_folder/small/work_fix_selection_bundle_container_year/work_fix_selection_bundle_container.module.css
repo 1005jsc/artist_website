@@ -1,0 +1,11 @@
+.work_bundle {
+	width: 90rem;
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+}
+
+.year {
+	font-size: 2.4rem;
+}

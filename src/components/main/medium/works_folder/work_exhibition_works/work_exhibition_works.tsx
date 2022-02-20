@@ -60,9 +60,9 @@ const WorkExhibitionWorks = () => {
 
     {exhibitionPhotoUrls&&exhibitionPhotoUrls.map((url, index) => {
 if(index%2==0){
-  return <ExhibitionPhotoLeft url={url}datanumber={index}/>
+  return <ExhibitionPhotoLeft key={index}url={url} datanumber={index}/>
 }else{
-  return <ExhibitionPhotoRight url={url}datanumber={index}/>
+  return <ExhibitionPhotoRight key={index} url={url} datanumber={index}/>
 
 }
 

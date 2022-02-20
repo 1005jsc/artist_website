@@ -70,7 +70,6 @@ const Works = ({databaseService}:WorksProps) => {
     <div className={styles.works}>
 
       <Outlet context={databaseService}/>
-      {/* 이동용 <WorkYear/><WorkSize/><WorkExhibition/> */}
     </div>
     </div>
     
