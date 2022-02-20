@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 import Database from '../../../../../services/database';
 import WorkFixSelectionExhibition from '../small/work_fix_selection_exhibition/work_fix_selection_exhibition';
@@ -7,6 +7,9 @@ import WorkFixSelectionYear from '../small/work_fix_selection_year/work_fix_sele
 import styles from "./work_fix_form_one.module.css";
 
 const WorkFixFormOne = () => {
+
+  const [dataPathValue , setDataPathValue] = useState<string>('year')
+
   const navigate = useNavigate()
   const databaseService= useOutletContext<Database>();
 
@@ -20,6 +23,18 @@ const WorkFixFormOne = () => {
 
   }
 
+  const handleClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    const datapath = e.currentTarget.dataset.path 
+  
+    if(datapath){
+      setDataPathValue(datapath)
+
+    }
+  
+  }
+
+
 
 
 
@@ -31,19 +46,18 @@ const WorkFixFormOne = () => {
 
   <div className={styles.works_button_container}>
       <div className={styles.works_sort}>
-        <button className={`${styles.works_buttons} ${styles.works_buttons_onClick} ${styles.year}`}data-path="year" >연도별</button>
-        <button className={`${styles.works_buttons} ${styles.bigger}`} data-path="larger" >크기가 큰 순</button>
-        <button className={`${styles.works_buttons} ${styles.smaller}`} data-path="smaller" >크기가 작은 순</button>
-        <button className={`${styles.works_buttons} ${styles.exhibition}`} data-path="exhibition" >전시 출품작</button>
+        <button className={`${styles.works_buttons} ${styles.works_buttons_onClick} ${styles.year}`}data-path="year" onClick={handleClick}>연도별</button>
+        <button className={`${styles.works_buttons} ${styles.bigger}`} data-path="larger" onClick={handleClick}>크기가 큰 순</button>
+        <button className={`${styles.works_buttons} ${styles.smaller}`} data-path="smaller" onClick={handleClick}>크기가 작은 순</button>
+        <button className={`${styles.works_buttons} ${styles.exhibition}`} data-path="exhibition" onClick={handleClick}>전시 출품작</button>
       </div>
 
     </div>
-    {/* 여기에 스위치 문으로 4가지 연도별, 크기가큰순, 크기가 작은순, 전시출품작*/}
     
-    <WorkFixSelectionYear databaseService={databaseService}/>
-    {/* <WorkFixSelectionSize databaseService={databaseService}/> */}
-    {/* <WorkFixSelectionExhibition databaseService={databaseService}/> */}
-
+    {dataPathValue=='year'&&<WorkFixSelectionYear databaseService={databaseService}/>}
+    {dataPathValue=='smaller'&&<WorkFixSelectionSize dataPathValue={dataPathValue} databaseService={databaseService}/>}
+    {dataPathValue=='larger'&&<WorkFixSelectionSize dataPathValue={dataPathValue} databaseService={databaseService}/>}
+    {dataPathValue=='year'&&<WorkFixSelectionExhibition />}
   </div>
 
 

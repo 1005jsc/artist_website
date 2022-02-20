@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { TypeOfWorks } from '../../../../../../common/project_types';
 import Database from '../../../../../../services/database';
-import WorkFixSelectionBundleContainer from '../work_fix_selection_bundle_container_year/work_fix_selection_bundle_container_year';
+import WorkFixSelectionBundleContainerYear from '../work_fix_selection_bundle_container_year/work_fix_selection_bundle_container_year';
 import styles from "./work_fix_selection_year.module.css";
 
 type WorkFixSelectionYearProps = {
@@ -59,14 +59,13 @@ const WorkFixSelectionYear = ({databaseService}:WorkFixSelectionYearProps) => {
     }
   }
 
-console.log(worksByYearFilter4)
 
   return <div className={styles.container3}>
 
 
 
 {worksByYearFilter4&&worksByYearFilter4.map((array, index) => 
-    {return <WorkFixSelectionBundleContainer key={index} arrayAboutWorkYearAndWork={array}/>})}
+    {return <WorkFixSelectionBundleContainerYear key={index} arrayAboutWorkYearAndWork={array}/>})}
 
 
 

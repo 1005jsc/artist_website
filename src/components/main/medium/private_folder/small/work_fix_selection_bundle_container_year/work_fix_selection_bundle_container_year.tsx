@@ -7,7 +7,7 @@ type WorkFixSelectionBundleContainerProps = {
   arrayAboutWorkYearAndWork: any[]
 }
 
-const WorkFixSelectionBundleContainer = ({arrayAboutWorkYearAndWork}:WorkFixSelectionBundleContainerProps) => {
+const WorkFixSelectionBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkFixSelectionBundleContainerProps) => {
 
   const string1 = arrayAboutWorkYearAndWork[0]
   const array1 = arrayAboutWorkYearAndWork.slice(1)
@@ -49,7 +49,7 @@ const WorkFixSelectionBundleContainer = ({arrayAboutWorkYearAndWork}:WorkFixSele
   
 
 }
-export default WorkFixSelectionBundleContainer;
+export default WorkFixSelectionBundleContainerYear;
 
 
 

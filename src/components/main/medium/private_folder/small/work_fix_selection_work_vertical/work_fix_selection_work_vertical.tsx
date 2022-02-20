@@ -22,8 +22,6 @@ const WorkFixSelectionWorkVertical = ({work}:WorkFixSelectionWorkProps) => {
     <div className={styles.image_frame}>
         <img className={styles.work_img} src={workUrl} alt="" />
     </div>
- 
-
 
   </div>
 

@@ -15,7 +15,6 @@ const WorkFixSelectionWork = ({work}:WorkFixSelectionWorkProps) => {
     (work.workImageUrl[work.workSerialNumber+1],'small', 216)
   }
 
-  console.log(work)
   return <div className={styles.work_container} >
   <div className={styles.work_frame}>
     <div className={styles.image_frame}>
