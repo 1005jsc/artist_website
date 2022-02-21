@@ -12,10 +12,12 @@ type WorkFixSelectionSizeProps = {
   dataPathValue: string;
   databaseService : Database;
   passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void
+  exhibitionWorksOnClickArray:  number[]
+
 
 }
 
-const WorkFixSelectionSize = ({dataPathValue, databaseService, passSelectedWorkToUpper}:WorkFixSelectionSizeProps) => {
+const WorkFixSelectionSize = ({dataPathValue,exhibitionWorksOnClickArray, databaseService, passSelectedWorkToUpper}:WorkFixSelectionSizeProps) => {
   const [works, setWorks] = useState<TypeOfWorks|null>(null)
   
   const [checkSmallerOrLarger, setCheckSmallerOrLarger] = useState<boolean|undefined>(undefined)
@@ -57,9 +59,9 @@ const WorkFixSelectionSize = ({dataPathValue, databaseService, passSelectedWorkT
       <div className={`${styles.work_bundle}`}>
       
       {checkSmallerOrLarger?<>
-      {checkSmallerOrLarger&&<WorkFixSelectionBundleContainerSize passSelectedWorkToUpper={passSelectedWorkToUpper} works={workSizeSmallToBig!}/>}
+      {checkSmallerOrLarger&&<WorkFixSelectionBundleContainerSize exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} works={workSizeSmallToBig!}/>}
       </> :<>
-      {!checkSmallerOrLarger&& <WorkFixSelectionBundleContainerSize  passSelectedWorkToUpper={passSelectedWorkToUpper}works={workSizeBigToSmall!}/>}
+      {!checkSmallerOrLarger&& <WorkFixSelectionBundleContainerSize exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper}works={workSizeBigToSmall!}/>}
       </>}
       
       

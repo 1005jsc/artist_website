@@ -63,8 +63,10 @@ const ExhibitionUploadFormWorkSelection = ({exhibitionWorksOnClickArray, passSel
     
     {dataPathValue=='year'&&<WorkFixSelectionYear exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} 
     passSelectedWorkToUpper={passSelectedWorkToUpper} databaseService={databaseService}/>}
-    {dataPathValue=='smaller'&&<WorkFixSelectionSize passSelectedWorkToUpper={passSelectedWorkToUpper} dataPathValue={dataPathValue} databaseService={databaseService}/>}
-    {dataPathValue=='larger'&&<WorkFixSelectionSize   passSelectedWorkToUpper={passSelectedWorkToUpper} dataPathValue={dataPathValue} databaseService={databaseService}/>}
+    {dataPathValue=='smaller'&&<WorkFixSelectionSize exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper}
+     dataPathValue={dataPathValue} databaseService={databaseService}/>}
+    {dataPathValue=='larger'&&<WorkFixSelectionSize  exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper}
+     dataPathValue={dataPathValue} databaseService={databaseService}/>}
     {dataPathValue=='exhibition'&&<WorkFixSelectionExhibitions sendExhibitionToUpperComponent={getExhibitionSerialNumber}/>}
     {dataPathValue==exhibitionSerialNumberOnClickData?.toString()&&
     //  exhibition에 exhibition work 표기되는 로직 만들어야됨   아직 여기는 못함 

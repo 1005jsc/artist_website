@@ -336,7 +336,7 @@ try{
     exhibitionStartDate :exhibitionStartDateValue,
     exhibitionEndDate :exhibitionEndDateValue,
     exhibitionSponser :exhibitionSponserValue,
-    exhibitionWorks: exhibitionWorksOnClickUrls, // 이제 이것만 하면 끝임 여기 해줘야됨 
+    exhibitionWorks: exhibitionWorksOnClickUrls, 
     exhibitionBuildingPhotoUrl : null, // null이라고 놀라지말고 바로 밑에 firebase를 이용해서 데이터를 다시 올리는 로직을 이용해서 데이터를 집어 넣고 있으니 안심하셈  
     exhibitionPhotoUrl : null, // 완성 더 손댈 필요 없음 
     exhibitionMemo :exhibitionMemoValue,

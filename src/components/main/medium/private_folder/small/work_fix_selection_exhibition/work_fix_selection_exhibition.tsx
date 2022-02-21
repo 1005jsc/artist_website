@@ -35,7 +35,7 @@ const WorkFixSelectionExhibition = ({exhibition, sendExhibitionToUpperComponent}
   return <div className={styles.exhibition_bundle} >
     <div className={styles.exhibition_container}  onClick={sendExhibitionData}>
   <div className={styles.image_container}>
-  <img className={styles.exhibition_img}src={Object.values(exhibition.exhibitionPosterUrl!)[0]} alt="" />
+  <img className={styles.exhibition_img}src={exhibition.exhibitionPosterUrl?Object.values(exhibition.exhibitionPosterUrl)[0]:''} alt="" />
   </div>  
   <div className={styles.exhibition_metadata}>
     <p className={styles.p1}>{exhibition.exhibitionTitle}</p>

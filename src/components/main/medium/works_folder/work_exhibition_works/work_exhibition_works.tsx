@@ -2,18 +2,18 @@ import 'moment/locale/ko'
 import moment from 'moment';
 import { useLocation } from 'react-router-dom';
 import { TypeOfExhibition } from '../../../../../common/project_types';
-import WorkSize from '../work_size/work_size';
 import styles from "./work_exhibition_works.module.css";
 import ExhibitionPhotoRight from '../../../small/exhibition_photo_right/exhibition_photo_right';
 import ExhibitionPhotoLeft from '../../../small/exhibition_photo_left/exhibition_photo_left';
-type TypeOfLocation = {
-  state: TypeOfExhibition[]
-}
+import WorkExhibitionWorksBySize from '../work_exhibition_works_by_size/work_exhibition_works_by_size';
 
 
 
 
 const WorkExhibitionWorks = () => {
+
+
+
 
   const location = useLocation()
   const exhibition1 = location.state as TypeOfExhibition[]
@@ -72,8 +72,7 @@ if(index%2==0){
 
         
       </div>
-      {/* exhibition에 exhibition work 표기되는 로직 만들어야됨   */}
-    <WorkSize/>
+      <WorkExhibitionWorksBySize exhibition={exhibition2}/>
   </div>
 
 }

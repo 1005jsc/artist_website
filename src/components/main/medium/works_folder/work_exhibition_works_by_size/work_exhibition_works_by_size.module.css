@@ -1,0 +1,11 @@
+.work_size_container {
+	margin-bottom: 24rem;
+}
+
+.work_bundle {
+	width: 99rem;
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+}

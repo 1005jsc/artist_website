@@ -60,7 +60,6 @@ const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSel
     }
   }
 
-  console.log(exhibitionsByYearFilter4)
 
 
   return <div className={styles.container3}>

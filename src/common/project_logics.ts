@@ -9,7 +9,7 @@ class artistWebsiteExportLogics {
 
   worksByYearSort=(works:TypeOfWorks|null) => {
     if(works==null){
-      console.log('database is null')
+      // console.log('database is null')
       return
     }
     let worksKeys
@@ -59,7 +59,7 @@ class artistWebsiteExportLogics {
 
   returnWorkSizeBigToSmallArray = (works:TypeOfWorks|null) => {
     if(works==null){
-      console.log('database is null')
+      // console.log('database is null')
       return
     }
 
@@ -119,7 +119,7 @@ class artistWebsiteExportLogics {
 
   returnWorkSizeSmallToBigArray = (works:TypeOfWorks|null) => {
     if(works==null){
-      console.log('database is null')
+      // console.log('database is null')
       return
     }
     let worksKeys
