@@ -72,7 +72,7 @@ if(index%2==0){
 
         
       </div>
-
+      {/* exhibition에 exhibition work 표기되는 로직 만들어야됨   */}
     <WorkSize/>
   </div>
 

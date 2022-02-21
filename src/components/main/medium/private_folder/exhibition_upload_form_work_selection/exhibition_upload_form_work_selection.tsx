@@ -1,29 +1,27 @@
 import React, { useState } from "react"
-import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
-import { TypeOfExhibition } from '../../../../../common/project_types';
+import { useOutletContext } from 'react-router-dom';
+import {  TypeOfWork } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkFixSelectionExhibitions from '../small/work_fix_selection_exhibitions/work_fix_selection_exhibitions';
 import WorkFixSelectionSize from '../small/work_fix_selection_size/work_fix_selection_size';
 import WorkFixSelectionYear from '../small/work_fix_selection_year/work_fix_selection_year';
-import styles from "./work_fix_form_one.module.css";
+import styles from "./exhibition_upload_form_work_selection.module.css";
 
-const WorkFixFormOne = () => {
+type ExhibitionUploadFormWorkSelectionProps = {
+  passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void
+  exhibitionWorksOnClickArray:  number[]
+
+
+}
+
+const ExhibitionUploadFormWorkSelection = ({exhibitionWorksOnClickArray, passSelectedWorkToUpper}:ExhibitionUploadFormWorkSelectionProps) => {
 
   const [dataPathValue , setDataPathValue] = useState<string>('year')
   const [exhibitionSerialNumberOnClickData, setExhibitionSerialNumberOnClickData] = useState<number|null>(null)
 
-  const navigate = useNavigate()
   const databaseService= useOutletContext<Database>();
 
-  const handleToNext:React.MouseEventHandler<HTMLButtonElement> =(e) => {
-    e.preventDefault()
-
-
-    navigate('/main/private/loggedin/work_fix/work_fix_form_two')
-
-
-
-  }
+  
 
   const handleClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -45,13 +43,13 @@ const WorkFixFormOne = () => {
 
   }
 
-  console.log(exhibitionSerialNumberOnClickData)
 
-  return <section className={styles.work_fix_section}>
 
-  <span className={styles.title}>수정하려는 작품을 모두 클릭하시오</span>
 
-  <div className={styles.works_container}>
+
+
+
+  return <div className={styles.works_container}>
 
   <div className={styles.works_button_container}>
       <div className={styles.works_sort}>
@@ -63,22 +61,18 @@ const WorkFixFormOne = () => {
 
     </div>
     
-    {/* {dataPathValue=='year'&&<WorkFixSelectionYear databaseService={databaseService}/>}
-    {dataPathValue=='smaller'&&<WorkFixSelectionSize dataPathValue={dataPathValue} databaseService={databaseService}/>}
-    {dataPathValue=='larger'&&<WorkFixSelectionSize dataPathValue={dataPathValue} databaseService={databaseService}/>}
+    {dataPathValue=='year'&&<WorkFixSelectionYear exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} 
+    passSelectedWorkToUpper={passSelectedWorkToUpper} databaseService={databaseService}/>}
+    {dataPathValue=='smaller'&&<WorkFixSelectionSize passSelectedWorkToUpper={passSelectedWorkToUpper} dataPathValue={dataPathValue} databaseService={databaseService}/>}
+    {dataPathValue=='larger'&&<WorkFixSelectionSize   passSelectedWorkToUpper={passSelectedWorkToUpper} dataPathValue={dataPathValue} databaseService={databaseService}/>}
     {dataPathValue=='exhibition'&&<WorkFixSelectionExhibitions sendExhibitionToUpperComponent={getExhibitionSerialNumber}/>}
     {dataPathValue==exhibitionSerialNumberOnClickData?.toString()&&
     //  exhibition에 exhibition work 표기되는 로직 만들어야됨   아직 여기는 못함 
     console.log(exhibitionSerialNumberOnClickData)
     
     
-    } */}
+    }
   </div>
 
-
-  <button className={styles.to_next} onClick={handleToNext}>다음</button>
-
-</section>
-
 }
-export default WorkFixFormOne;
+export default ExhibitionUploadFormWorkSelection;

@@ -6,8 +6,9 @@ import WorkSize from '../work_size/work_size';
 import WorkExhibition from '../work_exhibition/work_exhibition';
 import WorkExhibitionWorks from '../work_exhibition_works/work_exhibition_works';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { myFunctions, myLogics } from './../../../../../common/project_functions';
+import { myFunctions} from './../../../../../common/project_functions';
 import Database from '../../../../../services/database';
+import { myLogics } from '../../../../../common/project_logics';
 
 type WorksProps = {
   databaseService:Database;

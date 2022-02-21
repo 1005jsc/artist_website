@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { TypeOfExhibition } from '../../../../../common/project_types';
+import { TypeOfExhibition, TypeOfPhotoAssets, TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
@@ -8,6 +8,7 @@ import WorkImageUpload from '../../../../../services/work_image_uploads';
 import { myFunctions } from '../../../../../common/project_functions';
 import DeleteButton from '../../../../utility/delete_button/delete_button';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
+import ExhibitionUploadFormWorkSelection from '../exhibition_upload_form_work_selection/exhibition_upload_form_work_selection';
 
 type ExhibitionUploadFormProps = {
   exhibitionImageUploadService:WorkImageUpload;
@@ -39,7 +40,7 @@ const ExhibitionUploadForm = ({exhibitionImageUploadService}:ExhibitionUploadFor
 
   
 
-  // //  전시회 데이터 (1/3)
+  //  전시회 데이터 (1/3)
 
   
 const exhibitionTitleRef = useRef<HTMLInputElement | null>(null)
@@ -51,6 +52,9 @@ const exhibitionSponserRef = useRef<HTMLInputElement | null>(null)
 const exhibitionMemoRef = useRef<HTMLTextAreaElement | null>(null)
 
 
+// // 전시회 데이터 (작품) (1/2)
+const [exhibitionWorksOnClick, setExhibitionWorksOnClick]= useState<Array<number>>([])
+const [exhibitionWorksOnClickUrls, setExhibitionWorksOnClickUrls] = useState<TypeOfWorks|null>(null)
 
 
 
@@ -305,6 +309,17 @@ try{
   }else{
   exhibitionPhotos = null
   }
+
+
+  // // 전시회 작품 데이터 (2/2)
+
+
+  
+  // exhibitionWorksOnClick
+
+
+
+
   
 
   // 전시회 데이터(3/3)
@@ -321,8 +336,8 @@ try{
     exhibitionStartDate :exhibitionStartDateValue,
     exhibitionEndDate :exhibitionEndDateValue,
     exhibitionSponser :exhibitionSponserValue,
-    exhibitionWorks: null,
-    exhibitionBuildingPhotoUrl : null, // 완성 더 손댈 필요 없음
+    exhibitionWorks: exhibitionWorksOnClickUrls, // 이제 이것만 하면 끝임 여기 해줘야됨 
+    exhibitionBuildingPhotoUrl : null, // null이라고 놀라지말고 바로 밑에 firebase를 이용해서 데이터를 다시 올리는 로직을 이용해서 데이터를 집어 넣고 있으니 안심하셈  
     exhibitionPhotoUrl : null, // 완성 더 손댈 필요 없음 
     exhibitionMemo :exhibitionMemoValue,
         
@@ -378,7 +393,6 @@ try{
 
 
 
-console.log()
   const handleDeleteSelected = (datasetPhotoType:string, datasetIndex:string) => {
 
     if(datasetPhotoType == 'museum'){
@@ -433,7 +447,33 @@ console.log()
   }
 
 
+let array1 = [] as number[]
+let obj1 = {} as TypeOfWorks
+let obj2 = {} as TypeOfWorks
+  const handleExhibitionWorksUpdate = (workSerialNumber:number, work:TypeOfWork) => {
+    array1 = [...exhibitionWorksOnClick]
+    obj1 = {...exhibitionWorksOnClickUrls}
+    if(array1.find((value) => value === workSerialNumber)){
+      const array2 = array1.filter(value => value !== workSerialNumber)
+      delete obj1[workSerialNumber]
+      
 
+      setExhibitionWorksOnClick(array2)
+      setExhibitionWorksOnClickUrls(obj1)
+      
+    }else{
+      array1.push(workSerialNumber)
+      obj2[workSerialNumber]= work
+      obj1= {...exhibitionWorksOnClickUrls, ...obj2}
+      setExhibitionWorksOnClickUrls(obj1)
+      setExhibitionWorksOnClick(array1)
+
+    }
+
+
+    
+  }
+  
 
 
 
@@ -514,7 +554,8 @@ console.log()
     </div>
     <span className={`${styles.caution} ${styles.caution_3}`}>- 주의: 작품이 아직 등록이 안됬다면 
       <br/> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작품 등록먼저 하고 와야 됨</span>
-      {/* <PrivateWorksYear/> */}
+      <ExhibitionUploadFormWorkSelection exhibitionWorksOnClickArray={exhibitionWorksOnClick} 
+      passSelectedWorkToUpper={handleExhibitionWorksUpdate}/>
 
     <div className={styles.empty_container_third_last}></div>
 

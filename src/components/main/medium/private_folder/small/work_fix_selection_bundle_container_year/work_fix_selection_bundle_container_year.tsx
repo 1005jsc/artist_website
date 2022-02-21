@@ -1,13 +1,18 @@
 import React from "react"
+import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../../common/project_types';
 import WorkFixSelectionWork from '../work_fix_selection_work/work_fix_selection_work';
 import WorkFixSelectionWorkVertical from '../work_fix_selection_work_vertical/work_fix_selection_work_vertical';
 import styles from "./work_fix_selection_bundle_container.module.css";
 
 type WorkFixSelectionBundleContainerProps = {
   arrayAboutWorkYearAndWork: any[]
+  passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void
+  exhibitionWorksOnClickArray:  number[]
 }
 
-const WorkFixSelectionBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkFixSelectionBundleContainerProps) => {
+const WorkFixSelectionBundleContainerYear = ({arrayAboutWorkYearAndWork, exhibitionWorksOnClickArray,passSelectedWorkToUpper}:WorkFixSelectionBundleContainerProps) => {
+
+  
 
   const string1 = arrayAboutWorkYearAndWork[0]
   const array1 = arrayAboutWorkYearAndWork.slice(1)
@@ -22,28 +27,13 @@ const WorkFixSelectionBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkFix
       const object2 = array1[index]
       
       if(object2.workHorizontalOrVertical=='horizontal'){
-          return <WorkFixSelectionWork  key={index} work={work}/>
+          return <WorkFixSelectionWork exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={work}/>
         }else{
-          return <WorkFixSelectionWorkVertical  key={index} work={work} />
+          return <WorkFixSelectionWorkVertical exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={work} />
         }
   })}
   </div>
 </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -56,13 +46,3 @@ export default WorkFixSelectionBundleContainerYear;
 
 
 
-
-
-
-
- {/* <div className={styles.work_metadata}>
-    <p className={styles.p1}>시간을 담다 VIII</p>
-    <p className={styles.p1}>162×112cm</p>
-    <p className={styles.p1}>Acrylic on canvas</p>
-    <p className={styles.p1}>2020</p>
-  </div> */}

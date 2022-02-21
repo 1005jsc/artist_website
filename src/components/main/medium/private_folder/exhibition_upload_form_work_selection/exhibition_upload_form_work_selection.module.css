@@ -1,0 +1,28 @@
+.works_container {
+	padding-left: 3rem;
+	padding-right: 3rem;
+	padding-bottom: 3rem;
+}
+
+/* 버튼들 */
+.works_button_container {
+	display: flex;
+	justify-content: space-between;
+	margin: 2rem;
+	/* padding-left: rem; */
+	margin-top: 2rem;
+	margin-bottom: 3rem;
+}
+
+.works_sort {
+	display: flex;
+	justify-content: space-between;
+	width: 46rem;
+}
+
+.works_buttons {
+	font-size: 1.8rem;
+	background-color: transparent;
+	font-weight: 500;
+	height: 3.8rem;
+}

@@ -1,7 +1,6 @@
 import { ImageQualityTypes } from './project_types'
 
 
-export {}
 
 
 
@@ -117,16 +116,9 @@ export const myFunctions = new artWebsiteExportFunctions()
 
 
 
-class artWebsiteExportLogics{
-
-  urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
 
 
 
-}
-
-
-export const myLogics = new artWebsiteExportLogics()
 
 
 

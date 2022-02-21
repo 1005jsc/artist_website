@@ -25,6 +25,9 @@
 .work_frame:hover {
 	outline: 0.5rem solid rgb(159, 205, 247);
 }
+.work_frame_onclick {
+	outline: 0.5rem solid rgb(69, 159, 243);
+}
 
 .image_frame {
 	width: 19.63rem;
