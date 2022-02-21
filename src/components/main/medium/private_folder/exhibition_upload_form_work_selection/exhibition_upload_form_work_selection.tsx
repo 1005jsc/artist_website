@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 import {  TypeOfWork } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkFixSelectionExhibitions from '../small/work_fix_selection_exhibitions/work_fix_selection_exhibitions';
+import WorkFixSelectionExhibitionWorksBySize from '../small/work_fix_selection_exhibition_works_by_size/work_fix_selection_exhibition_works_by_size';
 import WorkFixSelectionSize from '../small/work_fix_selection_size/work_fix_selection_size';
 import WorkFixSelectionYear from '../small/work_fix_selection_year/work_fix_selection_year';
 import styles from "./exhibition_upload_form_work_selection.module.css";
@@ -70,7 +71,8 @@ const ExhibitionUploadFormWorkSelection = ({exhibitionWorksOnClickArray, passSel
     {dataPathValue=='exhibition'&&<WorkFixSelectionExhibitions sendExhibitionToUpperComponent={getExhibitionSerialNumber}/>}
     {dataPathValue==exhibitionSerialNumberOnClickData?.toString()&&
     //  exhibition에 exhibition work 표기되는 로직 만들어야됨   아직 여기는 못함 
-    console.log(exhibitionSerialNumberOnClickData)
+    <WorkFixSelectionExhibitionWorksBySize exhibitionSerialNumberOnClickData={exhibitionSerialNumberOnClickData} exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper}
+     dataPathValue={dataPathValue} databaseService={databaseService}/>
     
     
     }
