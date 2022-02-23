@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { myFunctions } from '../../../../../common/project_functions';
-import { TypeOfWork } from '../../../../../common/project_types';
-import styles from "./work_fix_form_two_work_vertical.module.css";
+import { myFunctions } from '../../../../../../common/project_functions';
+import { TypeOfWork } from '../../../../../../common/project_types';
+import styles from "./work_fix_form_two_work_square.module.css";
 
-type WorkFixFormTwoWorkVerticalProps = {
+type WorkFixFormTwoWorkSquareProps = {
   work: TypeOfWork;
   passSelectedWorkToUpper:(work:TypeOfWork) => void
   workOnSelected: TypeOfWork|null;
-
 }
 
-const WorkFixFormTwoWorkVertical = ({workOnSelected,passSelectedWorkToUpper,work}:WorkFixFormTwoWorkVerticalProps) => {
-
- 
+const WorkFixFormTwoWorkSquare = ({workOnSelected, passSelectedWorkToUpper,work}:WorkFixFormTwoWorkSquareProps) => {
 
   const [selected, setSelected] = useState<boolean>(false)
 
@@ -23,6 +20,7 @@ const WorkFixFormTwoWorkVertical = ({workOnSelected,passSelectedWorkToUpper,work
       setSelected(false)
     }
   }, [workOnSelected])
+
 
   let workUrl
   if(work.workImageUrl !==null){
@@ -47,7 +45,6 @@ const WorkFixFormTwoWorkVertical = ({workOnSelected,passSelectedWorkToUpper,work
 
   return <div className={styles.work_container} >
   <div className={selected?`${styles.work_frame} ${styles.work_frame_onclick}`:`${styles.work_frame}`} onClick={handleClick} >
-
     <div className={styles.image_frame}>
         <img className={styles.work_img} src={workUrl} alt="" />
     </div>
@@ -59,4 +56,4 @@ const WorkFixFormTwoWorkVertical = ({workOnSelected,passSelectedWorkToUpper,work
 </div>
 
 }
-export default WorkFixFormTwoWorkVertical;
+export default WorkFixFormTwoWorkSquare;

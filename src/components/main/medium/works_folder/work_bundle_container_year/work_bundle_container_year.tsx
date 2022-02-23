@@ -1,5 +1,7 @@
 import React, { useState } from "react"
+import { TypeOfWork } from '../../../../../common/project_types';
 import Work from '../work/work';
+import WorkSquare from '../work_square/work_square';
 import WorkVertical from '../work_vertical/work_vertical';
 import styles from "./work_bundle_container_year.module.css";
 
@@ -17,11 +19,14 @@ const WorkBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkBundleContainer
     <div className={`${styles.work_bundle}`}>
     {array1.map((object, index) => {
       
-      const object2 = array1[index]
+      const object2 = array1[index] as TypeOfWork
       
-      if(object2.workHorizontalOrVertical=='horizontal'){
+      if(object2.workHorizontalOrVerticalOrSquare=='horizontal'){
           return <Work year={string1} key={index} work={object}/>
-        }else{
+        }else if(object2.workHorizontalOrVerticalOrSquare=='square'){
+          return <WorkSquare year={string1} key={index} work={object}/>
+        }
+        else{
           return <WorkVertical year={string1} key={index} work={object}/>
         }
   })}

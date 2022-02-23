@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
-import { TypeOfHorizontalOrVertical, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
+import { TypeOfExhibitionHistory, TypeOfExhibitions, TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
 import PreviewImage from '../../../small/preview_image/preview_image';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
-import PrivateExhibitionsSelect from '../small/private_exhibitions_select/private_exhibitions_select';
+import WorkFormExhibitionsSelect from '../small/work_form_exhibitions_select/work_form_exhibitions_select';
 import styles from "./work_upload_form.module.css";
 
 
@@ -195,13 +195,17 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
   const workSizeData = 
       `${workSizeOneValue}cm x ${workSizeTwoValue}cm`
 
-  let workHorizontalOrVertical:TypeOfHorizontalOrVertical = null
+  let workHorizontalOrVerticalOrSquare:TypeOfHorizontalOrVerticalOrSquare = null
   if(workSizeOneValue&&workSizeTwoValue){
-    if(parseInt(workSizeOneValue) >= parseInt(workSizeTwoValue)){
-      workHorizontalOrVertical = 'horizontal'
+    if(parseInt(workSizeTwoValue)/parseInt(workSizeOneValue) < 7/9){
+      workHorizontalOrVerticalOrSquare = 'horizontal'
+    }else if(7/9<=parseInt(workSizeTwoValue)/parseInt(workSizeOneValue)&&parseInt(workSizeTwoValue)/parseInt(workSizeOneValue)<=9/7){
+      workHorizontalOrVerticalOrSquare = 'square'
     }else{
-      workHorizontalOrVertical = 'vertical'
+      workHorizontalOrVerticalOrSquare = 'vertical'
+
     }
+  
   }
     
   let workMaterialData 
@@ -249,12 +253,13 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
         workMaterial: workMaterialData,
         workOnSale: workOnSaleData,
         workSold: workSoldData,
-        workExhibitionHistory: null,
+        workExhibitionHistory: exhibitionOnClickUrls,
         workMemo: workMemoValue,
-        workHorizontalOrVertical: workHorizontalOrVertical
+        workHorizontalOrVerticalOrSquare: workHorizontalOrVerticalOrSquare
       }
   
-    
+      
+      
       databaseService.uploadWorkData(workData.workSerialNumber, workData)
     
 
@@ -312,6 +317,48 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+const [exhibitionOnClick, setExhibitionOnClick]= useState<Array<number>>([])
+const [exhibitionOnClickUrls, setExhibitionOnClickUrls] = useState<TypeOfExhibitionHistory|null>(null)
+
+
+
+
+let array1 = [] as number[]
+let obj1 = {} as TypeOfExhibitionHistory
+let obj2 = {} as TypeOfExhibitionHistory
+  const handleExhibitionSelect = (exhibitionSerialNumber:number, exhibitionName:string) => {
+    array1 = [...exhibitionOnClick]
+    obj1 = {...exhibitionOnClickUrls}
+    if(array1.find((value) => value === exhibitionSerialNumber)){
+      const array2 = array1.filter(value => value !== exhibitionSerialNumber)
+      delete obj1[exhibitionSerialNumber]
+      
+
+      setExhibitionOnClick(array2)
+      setExhibitionOnClickUrls(obj1)
+      
+    }else{
+      array1.push(exhibitionSerialNumber)
+      obj2[exhibitionName]= exhibitionSerialNumber
+      obj1= {...exhibitionOnClickUrls, ...obj2}
+      setExhibitionOnClickUrls(obj1)
+      setExhibitionOnClick(array1)
+
+    }
+
+    
+    
+  }
 
 
 
@@ -463,7 +510,10 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     <span className={`${styles.caution} ${styles.caution_4}`}>- 아래 전시회들 가운데 본 작품이 출전한 전시회가 있을 시 
     클릭</span>
     <div className={styles.div3_4}>
-        <PrivateExhibitionsSelect/>
+        <WorkFormExhibitionsSelect 
+        exhibitionOnClickArray={exhibitionOnClick}
+        
+        sendExhibitionToUpperComponent={handleExhibitionSelect}/>
 
     </div>
   </div>  

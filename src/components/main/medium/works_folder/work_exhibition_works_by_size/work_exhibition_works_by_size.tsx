@@ -8,7 +8,7 @@ import WorkBundleContainerSize from '../work_bundle_container_size/work_bundle_c
 import styles from "./work_exhibition_works_by_size.module.css";
 
 type WorkExhibitionWorksBySize = {
-  exhibition: TypeOfExhibition
+  exhibition: TypeOfExhibition|null
 }
 
 const WorkExhibitionWorksBySize = ({exhibition}:WorkExhibitionWorksBySize) => {
@@ -22,9 +22,15 @@ const WorkExhibitionWorksBySize = ({exhibition}:WorkExhibitionWorksBySize) => {
 
   useEffect(() => {
     const yes = databaseService.getExhibitionData(data => {
-      const thisExhibition = data[exhibition.exhibitionSerialNumber]
-      setWorks(thisExhibition.exhibitionWorks)
-    
+      if(data){
+        if(exhibition){
+          const thisExhibition = data[exhibition.exhibitionSerialNumber]
+          setWorks(thisExhibition.exhibitionWorks)
+        
+        }
+      }
+      
+      
     })
     return () => yes()
   }, [])

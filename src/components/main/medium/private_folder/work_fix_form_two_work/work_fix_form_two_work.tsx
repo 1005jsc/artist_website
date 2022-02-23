@@ -5,21 +5,38 @@ import styles from "./work_fix_form_two_work.module.css";
 
 type WorkFixFormTwoWorkProps = {
   work: TypeOfWork;
+  passSelectedWorkToUpper:(work:TypeOfWork) => void
+  workOnSelected: TypeOfWork|null;
 }
 
-const WorkFixFormTwoWork = ({work}:WorkFixFormTwoWorkProps) => {
+const WorkFixFormTwoWork = ({workOnSelected, passSelectedWorkToUpper,work}:WorkFixFormTwoWorkProps) => {
 
- 
+  const [selected, setSelected] = useState<boolean>(false)
 
+  useEffect(() => {
+    if(workOnSelected === work){
+      setSelected(true)
+    }else{
+      setSelected(false)
+    }
+  }, [workOnSelected])
 
 
   let workUrl
   if(work.workImageUrl !==null){
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
-    (work.workImageUrl[work.workSerialNumber+1],'small', 216)
+    (Object.values(work.workImageUrl)[0],'small', 216)
   }
 
- 
+  const handleClick:React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+    if(work){
+
+      passSelectedWorkToUpper(work)
+    }
+    
+  }
+  
 
 
 
@@ -27,7 +44,7 @@ const WorkFixFormTwoWork = ({work}:WorkFixFormTwoWorkProps) => {
 
 
   return <div className={styles.work_container} >
-  <div className={`${styles.work_frame}`} >
+  <div className={selected?`${styles.work_frame} ${styles.work_frame_onclick}`:`${styles.work_frame}`} onClick={handleClick} >
     <div className={styles.image_frame}>
         <img className={styles.work_img} src={workUrl} alt="" />
     </div>

@@ -3,6 +3,7 @@ import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../../common/project_
 import WorkFixSelectionWork from '../work_fix_selection_work/work_fix_selection_work';
 import WorkFixSelectionWorkVertical from '../work_fix_selection_work_vertical/work_fix_selection_work_vertical';
 import styles from "./work_fix_selection_bundle_container_size.module.css";
+import WorkFixSelectionWorkSquare from './../work_fix_selection_work_square/work_fix_selection_work_square';
 
 type WorkFixSelectionBundleContainerSize = {
   passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void
@@ -17,9 +18,12 @@ const WorkFixSelectionBundleContainerSize = ({works, exhibitionWorksOnClickArray
       
       const object2 = works[index]
       
-      if(object2.workHorizontalOrVertical=='horizontal'){
+      if(object2.workHorizontalOrVerticalOrSquare=='horizontal'){
           return <WorkFixSelectionWork exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={object}/>
-        }else{
+        }else if(object2.workHorizontalOrVerticalOrSquare=='square'){
+          return <WorkFixSelectionWorkSquare exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={object}/>
+        }
+        else{
           return <WorkFixSelectionWorkVertical exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={object}/>
         }
   })}

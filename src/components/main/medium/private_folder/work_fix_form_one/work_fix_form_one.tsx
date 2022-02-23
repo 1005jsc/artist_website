@@ -110,8 +110,7 @@ const WorkFixFormOne = () => {
       </div>
     </div>
     
-    {dataPathValue=='year'&&<WorkFixSelectionYear exhibitionWorksOnClickArray={exhibitionWorksOnClick
-} 
+    {dataPathValue=='year'&&<WorkFixSelectionYear exhibitionWorksOnClickArray={exhibitionWorksOnClick} 
     passSelectedWorkToUpper={handleExhibitionWorksUpdate} databaseService={databaseService}/>}
     {dataPathValue=='smaller'&&<WorkFixSelectionSize exhibitionWorksOnClickArray={exhibitionWorksOnClick} passSelectedWorkToUpper={handleExhibitionWorksUpdate}
      dataPathValue={dataPathValue} databaseService={databaseService}/>}

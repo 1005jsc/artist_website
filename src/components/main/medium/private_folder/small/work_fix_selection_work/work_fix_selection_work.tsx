@@ -31,7 +31,7 @@ const WorkFixSelectionWork = ({work, exhibitionWorksOnClickArray, passSelectedWo
   let workUrl
   if(work.workImageUrl !==null){
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
-    (work.workImageUrl[work.workSerialNumber+1],'small', 216)
+    (Object.values(work.workImageUrl)[0],'small', 216)
   }
 
   const handleClick:React.MouseEventHandler<HTMLDivElement> = (e) => {

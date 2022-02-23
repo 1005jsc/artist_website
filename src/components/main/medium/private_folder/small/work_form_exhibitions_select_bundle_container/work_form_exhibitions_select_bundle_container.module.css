@@ -1,0 +1,13 @@
+.exhibition_bundle_container {
+	width: 103.2rem;
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 2rem;
+	padding-right: 0;
+	margin: 0;
+}
+
+.year {
+	font-size: 2.4rem;
+	margin-bottom: 0;
+}

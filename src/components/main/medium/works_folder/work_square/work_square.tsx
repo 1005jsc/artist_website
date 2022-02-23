@@ -1,15 +1,16 @@
 import React from "react"
 import { myFunctions } from '../../../../../common/project_functions';
 import { TypeOfWork } from '../../../../../common/project_types';
-import styles from "./work.module.css";
+import styles from "./work_square.module.css";
 
 
-type WorkProps = {
+type WorkSquareProps = {
   work: TypeOfWork;
   year: string|number;
 }
 
-const Work = ({work, year}:WorkProps) => {
+const WorkSquare = ({work, year}:WorkSquareProps) => {
+
   
   let workUrl
   if(work.workImageUrl !==null){
@@ -39,4 +40,4 @@ const Work = ({work, year}:WorkProps) => {
 </div>
 
 }
-export default Work;
+export default WorkSquare;

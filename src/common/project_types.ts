@@ -29,7 +29,7 @@ export type TypeOfExhibitions = {
 }
 
 
-export type TypeOfHorizontalOrVertical = 'horizontal'|'vertical'|null
+export type TypeOfHorizontalOrVerticalOrSquare = 'horizontal'|'vertical'|'square'|null
 
 export type TypeOfSoldNotSold = 'not_sold'|'sold'|null;
 
@@ -67,11 +67,11 @@ export type TypeOfWork = {
   workCompletionDate:string|number|null;
   workSize:string|null;
   workMaterial:string|null;
-  workOnSale: TypeOfSoldNotSold|null;
+  workOnSale: TypeOfSoldNotSold;
   workSold:TypeOfWorkSold|null;
   workExhibitionHistory:TypeOfExhibitionHistory|null;
   workMemo: string|null
-  workHorizontalOrVertical: TypeOfHorizontalOrVertical;
+  workHorizontalOrVerticalOrSquare: TypeOfHorizontalOrVerticalOrSquare;
 }
 
 
@@ -86,7 +86,7 @@ export type TypeOfWorkSold = {
 }
 
 export type TypeOfExhibitionHistory = {
-  [exhibitionName:string]: number|null;
+  [exhibitionName:string]: number;
 }
 
 

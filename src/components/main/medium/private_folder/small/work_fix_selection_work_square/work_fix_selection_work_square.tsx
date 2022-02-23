@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react"
 import { myFunctions } from '../../../../../../common/project_functions';
-import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../../common/project_types';
-import styles from "./work_fix_selection_work_vertical.module.css";
+import {  TypeOfWork } from '../../../../../../common/project_types';
+import styles from "./work_fix_selection_work_square.module.css";
 
-type WorkFixSelectionWorkProps = {
+type WorkFixSelectionWorkSquareProps = {
   work: TypeOfWork;
-  passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void;
+  passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void
   exhibitionWorksOnClickArray:  number[]
 }
 
-
-
-const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSelectedWorkToUpper}:WorkFixSelectionWorkProps) => {
+const WorkFixSelectionWorkSquare = ({work, exhibitionWorksOnClickArray, passSelectedWorkToUpper}:WorkFixSelectionWorkSquareProps) => {
 
   const [workOnClick, setWorkOnClick] = useState<boolean>(false)
+
+
 
   useEffect(() => {
     if(exhibitionWorksOnClickArray.find((value) => value === work.workSerialNumber)){
@@ -22,7 +22,11 @@ const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSel
       setWorkOnClick(false)
     
     }
+  
+
   }, [exhibitionWorksOnClickArray])
+
+
 
   let workUrl
   if(work.workImageUrl !==null){
@@ -33,10 +37,19 @@ const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSel
   const handleClick:React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
     if(work.workImageUrl){
+
       passSelectedWorkToUpper(work.workSerialNumber, work)
     }
-      
+    
   }
+  
+  
+  
+
+
+
+
+
 
 
   return <div className={styles.work_container} >
@@ -44,10 +57,12 @@ const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSel
     <div className={styles.image_frame}>
         <img className={styles.work_img} src={workUrl} alt="" />
     </div>
+ 
+
 
   </div>
 
 </div>
 
 }
-export default WorkFixSelectionWorkVertical;
+export default WorkFixSelectionWorkSquare;

@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react"
 import { useOutletContext } from 'react-router-dom';
 import { TypeOfExhibitions } from '../../../../../../common/project_types';
 import Database from '../../../../../../services/database';
-import styles from "./work_fix_selection_exhibitions.module.css";
+import styles from "./work_form_exhibitions_select.module.css";
 import WorkFixSelectionBundleContainerExhibition from '../work_fix_selection_bundle_container_exhibition/work_fix_selection_bundle_container_exhibition';
+import WorkFormExhibitionsSelectBundleContainer from './../work_form_exhibitions_select_bundle_container/work_form_exhibitions_select_bundle_container';
 
-type WorkFixSelectionExhibitionsProps = {
-  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number) => void
+type WorkFormExhibitionsSelectProps = {
+  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number, exhibitionName:string) => void
+  exhibitionOnClickArray: number[];
 }
 
-const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSelectionExhibitionsProps) => {
+const WorkFormExhibitionsSelect = ({sendExhibitionToUpperComponent, exhibitionOnClickArray}:WorkFormExhibitionsSelectProps) => {
 
   const [exhibitions, setExhibitions] = useState<TypeOfExhibitions|null>(null)
   const databaseService= useOutletContext<Database>();
@@ -67,10 +69,10 @@ const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSel
 
 
       {exhibitionsByYearFilter4&&exhibitionsByYearFilter4.map((array, index) => 
-    {return <WorkFixSelectionBundleContainerExhibition 
-      
-    sendExhibitionToUpperComponent={sendExhibitionToUpperComponent}
-    key={index} arrayAboutWorkYearAndWork={array}/>})}
+    {return <WorkFormExhibitionsSelectBundleContainer
+      exhibitionOnClickArray={exhibitionOnClickArray}
+      sendExhibitionToUpperComponent={sendExhibitionToUpperComponent}
+     key={index} arrayAboutWorkYearAndWork={array}/>})}
 
 
 
@@ -79,4 +81,4 @@ const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSel
   </div>
 
 }
-export default WorkFixSelectionExhibitions;
+export default WorkFormExhibitionsSelect;

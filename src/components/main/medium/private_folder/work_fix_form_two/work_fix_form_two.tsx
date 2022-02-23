@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useLocation } from 'react-router-dom';
-import { TypeOfWorks } from '../../../../../common/project_types';
+import { TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
+import WorkFixFormTwoWorkSquare from '../small/work_fix_form_two_work_square/work_fix_form_two_work_square';
+import WorkFixSelectionWorkSquare from '../small/work_fix_selection_work_square/work_fix_selection_work_square';
+import WorkFixForm from '../work_fix_form/work_fix_form';
 import WorkFixFormTwoWork from '../work_fix_form_two_work/work_fix_form_two_work';
 import WorkFixFormTwoWorkVertical from '../work_fix_form_two_work_vertical/work_fix_form_two_work_vertical';
 import WorkUploadForm from '../work_upload_form/work_upload_form';
@@ -14,9 +17,10 @@ type WorkFixFormTwo = {
 
 const WorkFixFormTwo = ({workImageUploadService: workImageUploadService}:WorkFixFormTwo) => {
   
-  const [exhibitionWorksOnClick, setExhibitionWorksOnClick]= useState<Array<number>>([])
-  const [exhibitionWorksOnClickUrls, setExhibitionWorksOnClickUrls] = useState<TypeOfWorks|null>(null)
+  const [exhibitionWorksSerialNumbers, setExhibitionWorksSerialNumbers]= useState<Array<number>>([])
+  const [exhibitionWorks, setExhibitionWorks] = useState<TypeOfWorks|null>(null)
   
+  const [exhibitionWorkOnSelect, setExhibitionWorkOnSelect] = useState<TypeOfWork|null>(null)
   const location = useLocation()
   
   useEffect(() => {
@@ -26,17 +30,31 @@ const WorkFixFormTwo = ({workImageUploadService: workImageUploadService}:WorkFix
     const array2 = [...array1]
     const object2 = {...object1}
     
-    setExhibitionWorksOnClick(array2)
-    setExhibitionWorksOnClickUrls(object2)
+    setExhibitionWorksSerialNumbers(array2)
+    setExhibitionWorks(object2)
     
 
 
   }, [])
-  const worksArray = exhibitionWorksOnClick.map((serialNumber) => {
-    if(exhibitionWorksOnClickUrls){
-      return exhibitionWorksOnClickUrls[serialNumber]
+
+  const worksArray = exhibitionWorksSerialNumbers.map((serialNumber) => {
+    if(exhibitionWorks){
+      return exhibitionWorks[serialNumber]
     }
   })
+
+
+
+
+  const receiveWork = (work:TypeOfWork) => {
+    setExhibitionWorkOnSelect(work)
+  }
+
+
+
+
+
+
 
 
   return <section className={styles.fix_from_sec}>
@@ -54,10 +72,12 @@ const WorkFixFormTwo = ({workImageUploadService: workImageUploadService}:WorkFix
 
       const object2 = worksArray[index]
   if(object2){
-    if(object2.workHorizontalOrVertical=='horizontal'){
-        return <WorkFixFormTwoWork  key={index} work={work!}/>
+    if(object2.workHorizontalOrVerticalOrSquare=='horizontal'){
+        return <WorkFixFormTwoWork  key={index} work={work!} workOnSelected={exhibitionWorkOnSelect} passSelectedWorkToUpper={receiveWork}/>
+      }else if(object2.workHorizontalOrVerticalOrSquare=='square'){
+        return <WorkFixFormTwoWorkSquare key={index} work={work!} workOnSelected={exhibitionWorkOnSelect} passSelectedWorkToUpper={receiveWork} />
       }else{
-        return <WorkFixFormTwoWorkVertical  key={index} work={work!} />
+        return <WorkFixFormTwoWorkVertical  key={index} work={work!} workOnSelected={exhibitionWorkOnSelect} passSelectedWorkToUpper={receiveWork} />
       }
   }      
   })}
@@ -67,7 +87,7 @@ const WorkFixFormTwo = ({workImageUploadService: workImageUploadService}:WorkFix
 
 
     </div>
-    <WorkUploadForm workImageUploadService={workImageUploadService}/>
+    {exhibitionWorkOnSelect&& <WorkFixForm workToFix={exhibitionWorkOnSelect} workImageUploadService={workImageUploadService}/>}
 
   </div>
 

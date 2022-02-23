@@ -1,0 +1,200 @@
+.form {
+	width: 100%;
+	margin-top: 5rem;
+}
+
+/* div들의 공통 스펙 */
+.div1 {
+	width: 100%;
+	min-height: 10rem;
+	position: relative;
+	/* border: 1px solid black; */
+}
+
+.div2 {
+	padding: 4rem;
+	padding-top: 3rem;
+}
+.div2_title {
+	font-size: 2.3rem;
+	font-weight: 600;
+}
+.caution {
+	position: relative;
+	top: -6.4rem;
+	left: 62rem;
+	font-size: 1.8rem;
+}
+
+.div3 {
+}
+
+/* 사진 등록하기(공통) */
+.input_file {
+	margin-left: 6rem;
+	margin-bottom: 3rem;
+	display: none;
+}
+
+.preview_images {
+	width: 100rem;
+	margin: auto;
+	padding: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+.image_upload_button {
+	font-size: 1.6rem;
+	margin-left: 5rem;
+	height: 3.6rem;
+	width: 14rem;
+	border-radius: 0.8rem;
+	background-color: rgb(199, 199, 199, 0.6);
+	margin-bottom: 1rem;
+}
+
+/* 두번째 div */
+
+.caution_2 {
+	left: 58rem;
+	line-height: 3rem;
+}
+
+.div3_2 {
+	display: flex;
+	flex-direction: column;
+}
+
+.lable_div {
+	margin-bottom: 2rem;
+	margin-left: 6rem;
+}
+
+.lable {
+	display: inline-block;
+	width: 20rem;
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+.input {
+	font-size: 2rem;
+	border: 0;
+}
+
+.number_input {
+	font-size: 2rem;
+	border: 0;
+	width: 4rem;
+}
+
+.units {
+	font-size: 2rem;
+}
+
+.select {
+	border: 0;
+	font-size: 2rem;
+	margin-right: 2rem;
+	/* color: #757575; */
+}
+
+.select:hover {
+	cursor: pointer;
+}
+
+.empty_container_two {
+	width: 100%;
+	height: 6rem;
+}
+
+/* 세번째 div */
+
+.customer_info {
+	width: 96rem;
+	border: 1px solid rgb(199, 199, 199, 0.8);
+	border-radius: 1.2rem;
+	margin: auto;
+	margin-top: 8rem;
+	padding: 3rem;
+}
+
+.customer_info_title_wrapper {
+	margin: 2rem;
+	margin-bottom: 4rem;
+	margin-top: 3rem;
+}
+
+.customer_info_title {
+	display: block;
+	font-size: 2.2rem;
+	font-weight: 500;
+}
+
+.three {
+	margin-bottom: 2rem;
+	margin-left: 2.8rem;
+}
+
+.empty_container_three {
+	width: 100%;
+	height: 2rem;
+}
+
+.empty_container_third_last {
+	width: 100%;
+	height: 7rem;
+}
+
+/* 네번쨰 div */
+
+.caution_4 {
+	position: relative;
+	top: 0rem;
+	left: 10rem;
+	font-size: 1.8rem;
+	line-height: 3rem;
+}
+
+/* 다섯번째 div */
+
+.textarea {
+	border: 1px solid rgb(0, 0, 0, 0.4);
+	overflow: auto;
+	outline: none;
+
+	margin-left: 8rem;
+	width: 84%;
+	height: 30rem;
+	font-size: 1.8rem;
+}
+
+.empty_container_sixth_last {
+	width: 100%;
+	height: 10rem;
+}
+/* 여섯번째 div */
+.button_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 9rem;
+	margin-bottom: 9rem;
+}
+
+.fifth_buttons {
+	width: 70%;
+	height: 7rem;
+	margin-bottom: 3rem;
+	border-radius: 1.6rem;
+	background-color: #65f273;
+	font-size: 2.2rem;
+	font-weight: 550;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+}
+
+.fifth_buttons:hover {
+	transform: scale(1.02);
+}
