@@ -46,6 +46,11 @@ const Works = ({databaseService}:WorksProps) => {
   
   const array2 = array1.map((word)=> {return myFunctions.checkWordFromUrl(word, url)})
 
+//  useOutletContext 를 맞춰줘야하기 때문에 이걸 임시로 넣음 
+  const backgroundImageUpdate = (backgroundImageUrl:string) => {      
+    }
+
+
 
   return <section className={styles.container}>
     {array2.includes(true)&&<div className={styles.background_img}>
@@ -70,7 +75,7 @@ const Works = ({databaseService}:WorksProps) => {
     </div>
     <div className={styles.works}>
 
-      <Outlet context={databaseService}/>
+      <Outlet context={{databaseService, backgroundImageUpdate}}/>
     </div>
     </div>
     

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Exhibition from '../exhibition/exhibition';
 import ExhibitionInfo from '../exhibition_info/exhibition_info';
 import styles from "./exhibitions.module.css";
@@ -13,15 +13,31 @@ type ExhibitionProps = {
 
 const Exhibitions = ({databaseService}:ExhibitionProps) => {
 
+  const [bulidingPhotoUrl, setBulidingPhotoUrl] = useState<string|null>(null)
+
+
+  const backgroundImageUpdate = (backgroundImageUrl:string) => {
+  if(backgroundImageUrl){
+    setBulidingPhotoUrl(backgroundImageUrl)
+  }
+    
+  }
+
+
+
+
+
+
+
   return <section className={styles.container}>
   
   {<div className={styles.background_img}>
-    <img src="/img/asset_img/exhibitions/20210507guk_yoon/museum_photo/guk_yoon_photo.jpg" alt="" /></div>}
+    <img src={bulidingPhotoUrl?bulidingPhotoUrl:''} alt="" /></div>}
   <div className={styles.container2}>
     <div className={styles.title_container}>
   <span className={styles.title}>전시</span>
   </div>
-    <Outlet context={databaseService}/>
+    <Outlet context={{databaseService, backgroundImageUpdate}}/>
 
 
     </div>

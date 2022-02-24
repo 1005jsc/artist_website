@@ -1,8 +1,8 @@
 .metadata_container {
 	display: flex;
-	justify-content: space-between;
-	padding-left: 12rem;
-	padding-right: 14rem;
+	justify-content: space-around;
+	/* padding-left: 12rem;
+	padding-right: 14rem; */
 	margin-top: 8rem;
 	margin-bottom: 6rem;
 }

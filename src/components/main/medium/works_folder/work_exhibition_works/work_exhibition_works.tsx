@@ -1,18 +1,21 @@
 import 'moment/locale/ko'
 import moment from 'moment';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useOutletContext } from 'react-router-dom';
 import { TypeOfExhibition } from '../../../../../common/project_types';
 import styles from "./work_exhibition_works.module.css";
 import ExhibitionPhotoRight from '../../../small/exhibition_photo_right/exhibition_photo_right';
 import ExhibitionPhotoLeft from '../../../small/exhibition_photo_left/exhibition_photo_left';
 import WorkExhibitionWorksBySize from '../work_exhibition_works_by_size/work_exhibition_works_by_size';
+import { useEffect, useState } from 'react';
+import { ContextType } from '../work_exhibition/work_exhibition';
 
 
 
 
 const WorkExhibitionWorks = () => {
 
-
+  const {databaseService, backgroundImageUpdate}= useOutletContext<ContextType>();
+  const [exhibitionWorksCount, setExhibitionWorksCount] = useState<number|null>(null)
 
 
   const location = useLocation()
@@ -33,11 +36,23 @@ const WorkExhibitionWorks = () => {
 
   const exhibitionPhotoUrls = Object.values(exhibition2.exhibitionPhotoUrl?exhibition2.exhibitionPhotoUrl:'')
 
+  useEffect(() => {
 
+    if(exhibition2.exhibitionBuildingPhotoUrl){
 
+      const backgroundImgUrl = exhibition2.exhibitionBuildingPhotoUrl[parseInt(Object.keys(exhibition2.exhibitionBuildingPhotoUrl)[0])] 
+      backgroundImageUpdate(backgroundImgUrl)
+    }
 
+  }, [])
+  useEffect(() => {
+    if(exhibition2.exhibitionWorks){
+      setExhibitionWorksCount(Object.keys(exhibition2.exhibitionWorks).length)
+  
+    }
+  }, [])
 
-
+  
 
   return <div className={styles.work_exhibition_works_container}>
     <div className={styles.metadata_container}>
@@ -51,7 +66,7 @@ const WorkExhibitionWorks = () => {
           <p className={styles.p1}>{exhibition2.exhibitionName}</p>
           <p className={styles.p1}>{`${startDate2} ~ ${endDate2}`}</p>
           <p className={styles.p1}>장소 : {exhibition2.exhibitionLocation}</p>
-          <p className={styles.p1}>총 점</p>
+          <p className={styles.p1}>총 {exhibitionWorksCount?exhibitionWorksCount:0}점</p>
       </div>
       
     </div>

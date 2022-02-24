@@ -4,13 +4,14 @@ import { myLogics } from '../../../../../common/project_logics';
 import { TypeOfWorks } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkBundleContainerYear from '../work_bundle_container_year/work_bundle_container_year';
+import { ContextType } from '../work_exhibition/work_exhibition';
 import styles from "./work_year.module.css";
 
 
 
 const WorkYear = () => {
   const [works, setWorks] = useState<TypeOfWorks|null>(null)
-  const databaseService= useOutletContext<Database>();
+  const {databaseService}= useOutletContext<ContextType>();
 
   useEffect(() => {
     const yes = databaseService.getWorkData((data) => {

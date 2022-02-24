@@ -57,7 +57,7 @@ class artistWebsiteExportLogics {
 
 
 
-  returnWorkSizeBigToSmallArray = (works:TypeOfWorks|null) => {
+  returnWorkSizeSmallToBigArray = (works:TypeOfWorks|null) => {
     if(works==null){
       // console.log('database is null')
       return
@@ -117,7 +117,7 @@ class artistWebsiteExportLogics {
   }
 }
 
-  returnWorkSizeSmallToBigArray = (works:TypeOfWorks|null) => {
+  returnWorkSizeBigToSmallArray = (works:TypeOfWorks|null) => {
     if(works==null){
       // console.log('database is null')
       return

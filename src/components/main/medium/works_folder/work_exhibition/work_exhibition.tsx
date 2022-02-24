@@ -6,9 +6,11 @@ import Database from '../../../../../services/database';
 import ExhibitionBundleContainer from '../../exhibitions_folder/exhibition_bundle_container/exhibition_bundle_container';
 import styles from "./work_exhibition.module.css";
 
+export type ContextType = {databaseService:Database, backgroundImageUpdate: (backgroundImageUrl:string) => void }
+
 const WorkExhibition = () => {
   const [exhibitions, setExhibitions] = useState<TypeOfExhibitions|null>(null)
-  const databaseService= useOutletContext<Database>();
+  const {databaseService, backgroundImageUpdate}= useOutletContext<ContextType>();
 
   useEffect(() => {
     const yes = databaseService.getExhibitionData((data) => {
