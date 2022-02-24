@@ -15,6 +15,8 @@ const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSel
 
   const [workOnClick, setWorkOnClick] = useState<boolean>(false)
 
+
+
   useEffect(() => {
     if(exhibitionWorksOnClickArray.find((value) => value === work.workSerialNumber)){
     setWorkOnClick(true)

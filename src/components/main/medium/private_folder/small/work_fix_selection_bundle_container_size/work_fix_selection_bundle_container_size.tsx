@@ -20,8 +20,6 @@ const WorkFixSelectionBundleContainerSize = ({works, exhibitionWorksOnClickArray
       
       if(object2.workHorizontalOrVerticalOrSquare=='horizontal'){
           return <WorkFixSelectionWork exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={object}/>
-        }else if(object2.workHorizontalOrVerticalOrSquare=='square'){
-          return <WorkFixSelectionWorkSquare exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={object}/>
         }
         else{
           return <WorkFixSelectionWorkVertical exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={object}/>

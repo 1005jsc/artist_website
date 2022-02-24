@@ -24,9 +24,9 @@ const WorkFixSelectionBundleContainerYear = ({arrayAboutWorkYearAndWork, exhibit
   <div className={`${styles.work_bundle}`}>
   {array1.map((work, index) => {
       
-      const object2 = array1[index]
+      const object2 = array1[index] as TypeOfWork
       
-      if(object2.workHorizontalOrVertical=='horizontal'){
+      if(object2.workHorizontalOrVerticalOrSquare =='horizontal'){
           return <WorkFixSelectionWork exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={work}/>
         }else{
           return <WorkFixSelectionWorkVertical exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={work} />
