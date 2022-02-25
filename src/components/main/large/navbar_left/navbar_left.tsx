@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthService from '../../../../services/auth';
 import styles from './navbar_left.module.css'
+import { myFunctions } from './../../../../common/project_functions';
 
 type NavbarLeftProps = {
   loginState:boolean;
@@ -12,18 +13,41 @@ type NavbarLeftProps = {
 
 const NabvarLeft = ({loginState}:NavbarLeftProps) => {
 
+  const [biographyOnClick, setBiographyOnClick]= useState<boolean|undefined>(false)
+  const [criticsOnClick, setCriticsOnClick]= useState<boolean|undefined>(false)
+  const [path, setPath]= useState<string|null>(null)
+  const [url, setUrl] = useState<string|null>()
+
+  useEffect(() => {
+    setUrl(window.location.href)
+  })
+
+
   const navigate = useNavigate()
 
   const login = loginState
 
   const navigateTo:React.MouseEventHandler<HTMLSpanElement> = (e) => {
     e.preventDefault()
-    const path = e.currentTarget.dataset.path
-    if(path){
-      navigate(`/main/${path}`)
+    const thisPath = e.currentTarget.dataset.path
+    // setPath(path)
+    if(thisPath){
+      setPath(thisPath)
     }
+    if(thisPath){
+      navigate(`/main/${thisPath}`)
+    }
+    
 
   }
+
+  useEffect(() => {
+      setBiographyOnClick(myFunctions.checkWordFromUrl('biography', url)) 
+      setCriticsOnClick(myFunctions.checkWordFromUrl('critics', url))
+    
+
+  }, [url])
+
 
 
 return <nav className={styles.navbar_left}>
@@ -33,26 +57,40 @@ return <nav className={styles.navbar_left}>
   } 
   <div className={styles.navbar_container}>
     
-      <div className={`${styles.biography} ${styles.c1} `}>
+      <div className={` ${styles.c1} `}>
         <span className={` ${styles.s1} `}data-path="biography" onClick={navigateTo}>작가소개</span>
-        <span className={`${styles.s2}`}data-path="biography/note" onClick={navigateTo}>- 작가노트</span>
-        <span className={`${styles.s2}`}data-path="biography/bio" onClick={navigateTo}>- 작가연혁</span>
+       
+        {biographyOnClick&&<div className={styles.c2}>
+          <span className={`${styles.s2}`}data-path="biography/note" onClick={navigateTo}>- 작가노트</span>
+          <span className={`${styles.s2}`}data-path="biography/bio" onClick={navigateTo}>- 작가연혁</span>
+
+        </div>
+
+         }        
+
       </div>
 
-      <div className={`${styles.works} ${styles.c1} `}>
+      <div className={` ${styles.c1} `}>
       
         <span className={`${styles.s1} `} data-path="works" onClick={navigateTo}>작품</span>
       </div>
-      <div className={`${styles.critics} ${styles.c1} `}>
+      <div className={` ${styles.c1} `}>
         <span className={`${styles.s1}`} data-path="exhibitions" onClick={navigateTo}>전시</span>
       </div>
       
       <div className={`${styles.critics} ${styles.c1} `}>
         <span className={`${styles.critics_left} ${styles.s1}`} data-path="critics" onClick={navigateTo}> 평론가의 글</span>
-        <span className={`${styles.s2}`} data-path="critics" onClick={navigateTo}>- 시간속에 담아낸 내면의 추상언어 &lt;조인호&gt;</span>
+        
+        {criticsOnClick&&<div className={styles.c2}>
+          <span className={`${styles.s2}`} data-path="critics" onClick={navigateTo}>- 시간속에 담아낸 내면의 추상언어 &lt;조인호&gt;</span>
+        </div>}
+
+     
+        
+
       </div>
 
-      <div className={`${styles.critics} ${styles.c1} `}>
+      <div className={` ${styles.c1} `}>
         <span className={`${styles.contacts_left} ${styles.s1}`} data-path="contacts" onClick={navigateTo}>연락처</span>
       </div>
 

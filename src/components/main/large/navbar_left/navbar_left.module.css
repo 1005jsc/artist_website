@@ -1,3 +1,14 @@
+@keyframes fadeInDown {
+	0% {
+		opacity: 0;
+		transform: translate3d(0, -30%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translateZ(0);
+	}
+}
+
 .navbar_left {
 	background-color: #f4f4f4;
 	width: 100%;
@@ -5,6 +16,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: relative;
 }
 
 .logo_sample {
@@ -17,6 +29,7 @@
 }
 
 .navbar_container {
+	position: absolute;
 	display: flex;
 	flex-direction: column;
 	width: 21.4rem;
@@ -25,18 +38,21 @@
 	padding-right: 2.2rem;
 	padding-top: 4.2rem;
 	padding-bottom: 4.2rem;
-	margin-top: 10rem;
-}
-
-.loggedin_banner {
+	top: 30rem;
+	/* margin-top: 10rem; */
 }
 
 /* c1 container의 1번째라는 말 */
 
 .c1 {
+	margin-bottom: 2.4rem;
+}
+
+.c2 {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 2.2rem;
+	animation: fadeInDown 1s;
+	margin-top: 0.8rem;
 }
 
 /* s1 span의 1번째라는 말  */
