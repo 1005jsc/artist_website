@@ -54,10 +54,14 @@ const ExhibitionUploadFormWorkSelection = ({exhibitionWorksOnClickArray, passSel
 
   <div className={styles.works_button_container}>
       <div className={styles.works_sort}>
-        <button className={`${styles.works_buttons} ${styles.works_buttons_onClick} ${styles.year}`}data-path="year" onClick={handleClick}>연도별</button>
-        <button className={`${styles.works_buttons} ${styles.bigger}`} data-path="larger" onClick={handleClick}>크기가 큰 순</button>
-        <button className={`${styles.works_buttons} ${styles.smaller}`} data-path="smaller" onClick={handleClick}>크기가 작은 순</button>
-        <button className={`${styles.works_buttons} ${styles.exhibition}`} data-path="exhibition" onClick={handleClick}>전시 출품작</button>
+        <button className={dataPathValue=='year'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        :`${styles.works_buttons} ` }data-path="year" onClick={handleClick}>연도별</button>
+        <button className={dataPathValue=='larger'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        :`${styles.works_buttons} ` } data-path="larger" onClick={handleClick}>크기가 큰 순</button>
+        <button className={dataPathValue=='smaller'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        :`${styles.works_buttons} ` } data-path="smaller" onClick={handleClick}>크기가 작은 순</button>
+        <button className={dataPathValue=='exhibition'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        :`${styles.works_buttons} ` } data-path="exhibition" onClick={handleClick}>전시 출품작</button>
       </div>
 
     </div>

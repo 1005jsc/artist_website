@@ -30,16 +30,51 @@
 }
 
 .works_buttons {
+	position: relative;
 	font-size: 1.8rem;
 	background-color: transparent;
 	font-weight: 500;
 	height: 3.8rem;
 }
-
-.works_buttons_onClick {
-	border-bottom: 2px solid blue;
+.works_buttons_onclick::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 45%;
+	height: 0.4rem;
+	background-color: #c195f3;
+	transition: all 0.5s;
+	animation: middleToBothSidesAfter 0.5s;
 }
 
+.works_buttons_onclick::before {
+	content: '';
+	position: absolute;
+	right: 50%;
+	bottom: 0;
+	animation: middleToBothSidesBefore 0.5s;
+	width: 45%;
+	height: 0.4rem;
+	background-color: #c195f3;
+	transition: all 0.5s;
+}
+@keyframes middleToBothSidesAfter {
+	0% {
+		width: 0;
+	}
+	to {
+		width: 45%;
+	}
+}
+@keyframes middleToBothSidesBefore {
+	0% {
+		width: 0;
+	}
+	to {
+		width: 45%;
+	}
+}
 .to_next {
 	margin-top: 6rem;
 	margin-left: 4rem;

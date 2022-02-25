@@ -1,6 +1,11 @@
 /* main color */
 @value deepGreen: #071c1b;
 @value southSeaGreen: #063842;
+/* point color */
+
+@value lightPurple: #6d4b94;
+@value purple: #3f2266;
+
 /* grey */
 @value coolToneIvoryGray: #F4F4F4;
 @value ivoryGray: #EDEDED;

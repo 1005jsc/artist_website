@@ -197,9 +197,9 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
   let workHorizontalOrVerticalOrSquare:TypeOfHorizontalOrVerticalOrSquare = null
   if(workSizeOneValue&&workSizeTwoValue){
-    if(parseInt(workSizeTwoValue)/parseInt(workSizeOneValue) < 7/9){
+    if(parseInt(workSizeTwoValue)/parseInt(workSizeOneValue) < 8/9){
       workHorizontalOrVerticalOrSquare = 'horizontal'
-    }else if(7/9<=parseInt(workSizeTwoValue)/parseInt(workSizeOneValue)&&parseInt(workSizeTwoValue)/parseInt(workSizeOneValue)<=9/7){
+    }else if(8/9<=parseInt(workSizeTwoValue)/parseInt(workSizeOneValue)&&parseInt(workSizeTwoValue)/parseInt(workSizeOneValue)<=9/8){
       workHorizontalOrVerticalOrSquare = 'square'
     }else{
       workHorizontalOrVerticalOrSquare = 'vertical'

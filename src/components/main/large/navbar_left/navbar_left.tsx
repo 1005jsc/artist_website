@@ -15,7 +15,6 @@ const NabvarLeft = ({loginState}:NavbarLeftProps) => {
 
   const [biographyOnClick, setBiographyOnClick]= useState<boolean|undefined>(false)
   const [criticsOnClick, setCriticsOnClick]= useState<boolean|undefined>(false)
-  const [path, setPath]= useState<string|null>(null)
   const [url, setUrl] = useState<string|null>()
 
   useEffect(() => {
@@ -30,10 +29,7 @@ const NabvarLeft = ({loginState}:NavbarLeftProps) => {
   const navigateTo:React.MouseEventHandler<HTMLSpanElement> = (e) => {
     e.preventDefault()
     const thisPath = e.currentTarget.dataset.path
-    // setPath(path)
-    if(thisPath){
-      setPath(thisPath)
-    }
+    
     if(thisPath){
       navigate(`/main/${thisPath}`)
     }
