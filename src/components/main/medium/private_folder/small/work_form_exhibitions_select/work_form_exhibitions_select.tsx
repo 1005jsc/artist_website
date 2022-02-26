@@ -21,7 +21,7 @@ const WorkFormExhibitionsSelect = ({sendExhibitionToUpperComponent, exhibitionOn
       
     })
     return () => yes()
-  }, [])
+  }, [databaseService])
 
 
   let exhibitionsKeys
@@ -38,7 +38,7 @@ const WorkFormExhibitionsSelect = ({sendExhibitionToUpperComponent, exhibitionOn
       yes =exhibitionsDates[i] as string
       exhibitionYears.push(yes.substring(0,4))
     } 
-    exhibitionsYears = [... new Set(exhibitionYears)]
+    exhibitionsYears = [...new Set(exhibitionYears)]
     exhibitionsYears.sort((a,b) => parseInt(b)-parseInt(a))
   }
 
@@ -47,7 +47,7 @@ const WorkFormExhibitionsSelect = ({sendExhibitionToUpperComponent, exhibitionOn
   let exhibitionsByYearFilter2 = [] as any[]
   let exhibitionsByYearFilter3 = [] as any[]
   let exhibitionsByYearFilter4 = [] as any[]
-  {for(let i = 0; i< exhibitionsYears.length; i++){
+  for(let i = 0; i< exhibitionsYears.length; i++){
       exhibitionsByYear.push(exhibitionsYears[i])
       if(exhibitions){
         exhibitionsByYearFilter = Object.values(exhibitions).filter((exhibition) => 
@@ -59,7 +59,7 @@ const WorkFormExhibitionsSelect = ({sendExhibitionToUpperComponent, exhibitionOn
       exhibitionsByYearFilter3= [exhibitionsByYear[i], ...exhibitionsByYearFilter2[i]]
       exhibitionsByYearFilter4.push(exhibitionsByYearFilter3)
     }
-  }
+  
 
 
 

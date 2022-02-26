@@ -37,7 +37,7 @@ const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSel
       yes =exhibitionsDates[i] as string
       exhibitionYears.push(yes.substring(0,4))
     } 
-    exhibitionsYears = [... new Set(exhibitionYears)]
+    exhibitionsYears = [...new Set(exhibitionYears)]
     exhibitionsYears.sort((a,b) => parseInt(b)-parseInt(a))
   }
 
@@ -46,7 +46,7 @@ const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSel
   let exhibitionsByYearFilter2 = [] as any[]
   let exhibitionsByYearFilter3 = [] as any[]
   let exhibitionsByYearFilter4 = [] as any[]
-  {for(let i = 0; i< exhibitionsYears.length; i++){
+  for(let i = 0; i< exhibitionsYears.length; i++){
       exhibitionsByYear.push(exhibitionsYears[i])
       if(exhibitions){
         exhibitionsByYearFilter = Object.values(exhibitions).filter((exhibition) => 
@@ -58,7 +58,7 @@ const WorkFixSelectionExhibitions = ({sendExhibitionToUpperComponent}:WorkFixSel
       exhibitionsByYearFilter3= [exhibitionsByYear[i], ...exhibitionsByYearFilter2[i]]
       exhibitionsByYearFilter4.push(exhibitionsByYearFilter3)
     }
-  }
+  
 
 
 

@@ -3,7 +3,6 @@ import 'moment/locale/ko'
 import moment from 'moment';
 import { TypeOfExhibition } from '../../../../../../common/project_types';
 import styles from "./work_fix_selection_exhibition.module.css";
-import { useNavigate } from 'react-router-dom';
 
 type WorkFixSelectionExhibitionProps = {
 

@@ -260,7 +260,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       let array1
       if(exhibitionOnClickUrls){
         array1 = Object.values(exhibitionOnClickUrls)
-        console.log(array1)
         array1.forEach((exhibitionId) => {
         databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)})
       }else{

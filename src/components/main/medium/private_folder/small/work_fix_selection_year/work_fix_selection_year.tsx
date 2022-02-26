@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import  { useEffect, useState } from "react"
 import { myLogics } from '../../../../../../common/project_logics';
-import { TypeOfPhotoAssets, TypeOfWork, TypeOfWorks } from '../../../../../../common/project_types';
+import {  TypeOfWork, TypeOfWorks } from '../../../../../../common/project_types';
 import Database from '../../../../../../services/database';
 import WorkFixSelectionBundleContainerYear from '../work_fix_selection_bundle_container_year/work_fix_selection_bundle_container_year';
 import styles from "./work_fix_selection_year.module.css";

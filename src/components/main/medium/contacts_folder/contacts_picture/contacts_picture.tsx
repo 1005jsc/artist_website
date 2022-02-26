@@ -5,7 +5,7 @@ const ContactsPicture = () => {
 
   return <div className={styles.contacts_picture_container}>
 
-  <img className={styles.contacts_picture_img} src="/img/works_img/A_9528671.jpg" alt="img not found" />
+  <img className={styles.contacts_picture_img} src="/img/works_img/contacts_picture.jpg" alt="img not found" />
 </div>
 
 }

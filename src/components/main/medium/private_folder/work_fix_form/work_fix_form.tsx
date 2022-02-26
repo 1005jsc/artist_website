@@ -155,7 +155,7 @@ useEffect(() => {
   const handleMaterial:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
       e.preventDefault()
     const selectValue= e.currentTarget.value
-    if(selectValue=='other'){
+    if(selectValue==='other'){
       setOtherSelected(true)
     }else{
       setOtherSelected(false)

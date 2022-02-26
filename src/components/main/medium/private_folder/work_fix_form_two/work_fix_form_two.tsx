@@ -10,12 +10,12 @@ import styles from "./work_fix_form_two.module.css";
 import Modal from 'react-modal';
 
 
-type WorkFixFormTwo = {
+type WorkFixFormTwoProps = {
   workImageUploadService:WorkImageUpload;
 
 }
 
-const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwo) => {
+const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
   
   const database = useOutletContext<Database>()
 
@@ -61,12 +61,7 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwo) => {
   }
 
 
-  const [exhibitions, setExhibitions] = useState<TypeOfExhibitions|null>(null)
-useEffect(() => {
-    database.getExhibitionData(
-      (exhibitions) => {
-        setExhibitions(exhibitions)})
-}, [])
+
 
 
 
@@ -81,9 +76,6 @@ useEffect(() => {
       let deleteWorkExhibitionHistory2
       if(workSerialNumberToDelete&&worksFromFormOne){
         deleteWorkExhibitionHistory1 = worksFromFormOne[workSerialNumberToDelete].workExhibitionHistory
-        console.log(worksFromFormOne)
-        console.log(worksFromFormOne[workSerialNumberToDelete])
-        console.log(worksFromFormOne[workSerialNumberToDelete].workExhibitionHistory)
       }
       if(deleteWorkExhibitionHistory1){
         deleteWorkExhibitionHistory2 = Object.values(deleteWorkExhibitionHistory1)

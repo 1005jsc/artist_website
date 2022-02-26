@@ -19,7 +19,7 @@ const WorkFixSelectionSize = ({dataPathValue,exhibitionWorksOnClickArray, databa
   
   const [checkSmallerOrLarger, setCheckSmallerOrLarger] = useState<boolean|undefined>(undefined)
   useEffect(() => {
-    if(dataPathValue=='smaller'){
+    if(dataPathValue==='smaller'){
 
       setCheckSmallerOrLarger(true)
     }else{
