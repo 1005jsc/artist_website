@@ -1,12 +1,9 @@
-import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useState } from "react"
-import { useOutletContext } from 'react-router-dom';
-import { myFunctions } from '../../../../../../common/project_functions';
-import { TypeOfPhotoAssets, TypeOfWork, TypeOfWorks } from '../../../../../../common/project_types';
+import  { useEffect, useState } from "react"
+import {  TypeOfWork, TypeOfWorks } from '../../../../../../common/project_types';
 import Database from '../../../../../../services/database';
 import styles from "./work_fix_selection_size.module.css";
-import WorkFixSelectionBundleContainerSize from '../work_fix_selection_bundle_container_size/work_fix_selection_bundle_container_size';
 import { myLogics } from '../../../../../../common/project_logics';
+import WorkFixSelectionBundleContainerSize from '../work_fix_selection_bundle_container_size/work_fix_selection_bundle_container_size';
 
 type WorkFixSelectionSizeProps = {
   dataPathValue: string;
@@ -30,8 +27,18 @@ const WorkFixSelectionSize = ({dataPathValue,exhibitionWorksOnClickArray, databa
 
     }
     
-  })
+  }, [dataPathValue])
 
+  // useEffect(() => {
+  //   if(dataPathValue=='smaller'){
+
+  //     setCheckSmallerOrLarger(true)
+  //   }else{
+  //     setCheckSmallerOrLarger(false)
+
+  //   }
+    
+  // })
   
 
   useEffect(() => {

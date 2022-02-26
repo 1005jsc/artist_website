@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react"
 import {  TypeOfWork, TypeOfWorks } from '../../../../../../common/project_types';
 import Database from '../../../../../../services/database';
 import styles from "./work_fix_selection_exhibition_works_by_size.module.css";
-import WorkFixSelectionBundleContainerSize from '../work_fix_selection_bundle_container_size/work_fix_selection_bundle_container_size';
 import { myLogics } from '../../../../../../common/project_logics';
+import WorkFixSelectionBundleContainerSize from '../work_fix_selection_bundle_container_size/work_fix_selection_bundle_container_size';
 
-type WorkFixSelectionExhibitionWorksBySize = {
+type WorkFixSelectionExhibitionWorksBySizeProps = {
   dataPathValue: string;
   databaseService : Database;
   passSelectedWorkToUpper: (workNumber:number, work:TypeOfWork) => void
@@ -14,7 +14,7 @@ type WorkFixSelectionExhibitionWorksBySize = {
 
 }
 
-const WorkFixSelectionExhibitionWorksBySize = ({exhibitionSerialNumberOnClickData,dataPathValue,exhibitionWorksOnClickArray, databaseService, passSelectedWorkToUpper}:WorkFixSelectionExhibitionWorksBySize) => {
+const WorkFixSelectionExhibitionWorksBySize = ({exhibitionSerialNumberOnClickData,dataPathValue,exhibitionWorksOnClickArray, databaseService, passSelectedWorkToUpper}:WorkFixSelectionExhibitionWorksBySizeProps) => {
   const [works, setWorks] = useState<TypeOfWorks|null>(null)
   
   

@@ -4,11 +4,9 @@ import styles from "./login_success.module.css";
 
 
 
-type LoginSuccess = {
-}
 
 
-const LoginSuccess = ({}:LoginSuccess) => {
+const LoginSuccess = () => {
 
   const navigate = useNavigate()
 

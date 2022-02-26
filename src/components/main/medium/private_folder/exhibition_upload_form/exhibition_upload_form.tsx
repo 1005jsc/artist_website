@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { TypeOfExhibition, TypeOfPhotoAssets, TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
+import { TypeOfExhibition,  TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import styles from "./exhibition_upload_form.module.css";
 import Database from './../../../../../services/database';
 import PreviewImage from '../../../small/preview_image/preview_image';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
 import { myFunctions } from '../../../../../common/project_functions';
-import DeleteButton from '../../../../utility/delete_button/delete_button';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
 import ExhibitionUploadFormWorkSelection from '../exhibition_upload_form_work_selection/exhibition_upload_form_work_selection';
 
@@ -127,7 +126,7 @@ useEffect(() => {
   if(museumPreviewArray1){
     
     const array3 = museumPreviewArray2.concat(museumPreviewArray1)
-    const array4 = [... new Set(array3)]
+    const array4 = [...new Set(array3)]
     setMuseumPreviewArray2(array4)
   }
 }, [museumPreviewArray1])
@@ -138,11 +137,11 @@ useEffect(() => {
     
     const aray3 = museumUploadArray2.concat(museumUploadArray1)
     const aray4 = aray3.map((file) => {return file.name})
-    const aray5 =  [... new Set(aray4)]
+    const aray5 =  [...new Set(aray4)]
     const aray6 = [] as File[]
     for (let i = 0; i < aray5.length; i++) {
       
-      const fileValue = aray3.find(file => file.name == aray5[i])
+      const fileValue = aray3.find(file => file.name === aray5[i])
       if(fileValue){
         aray6.push(fileValue)
       }
@@ -201,7 +200,7 @@ const handleExhibitionPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = a
   if(exhibitionPreviewArray1){
     
     const array3 = exhibitionPreviewArray2.concat(exhibitionPreviewArray1)
-    const array4 = [... new Set(array3)]
+    const array4 = [...new Set(array3)]
     setExhibitionPreviewArray2(array4)
   }
 }, [exhibitionPreviewArray1])
@@ -211,11 +210,11 @@ useEffect(() => {
     
     const aray3 = exhibitionUploadArray2.concat(exhibitionUploadArray1)
     const aray4 = aray3.map((file) => {return file.name})
-    const aray5 =  [... new Set(aray4)]
+    const aray5 =  [...new Set(aray4)]
     const aray6 = [] as File[]
     for (let i = 0; i < aray5.length; i++) {
       
-      const fileValue = aray3.find(file => file.name == aray5[i])
+      const fileValue = aray3.find(file => file.name === aray5[i])
       if(fileValue){
         aray6.push(fileValue)
       }
@@ -348,8 +347,7 @@ try{
   let  idAndUrls 
   if(museumPhotos){
     idAndUrls= museumPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+2), asset.url]})
-    idAndUrls.forEach((value) => {databaseService.
-      uploadPhotoUrl('exhibitions', exhibitionSerialNumberNum, 'exhibitionBuildingPhotoUrl', value[0], value[1])
+    idAndUrls.forEach((value) => {databaseService.uploadPhotoUrl('exhibitions', exhibitionSerialNumberNum, 'exhibitionBuildingPhotoUrl', value[0], value[1])
     })
   }
 
@@ -357,8 +355,7 @@ try{
   let  idAndUrls2 
   if(exhibitionPhotos){
     idAndUrls2= exhibitionPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+3), asset.url]})
-    idAndUrls2.forEach((value) => {databaseService.
-      uploadPhotoUrl('exhibitions',exhibitionSerialNumberNum, 'exhibitionPhotoUrl',value[0], value[1] )})
+    idAndUrls2.forEach((value) => {databaseService.uploadPhotoUrl('exhibitions',exhibitionSerialNumberNum, 'exhibitionPhotoUrl',value[0], value[1] )})
   }
 
 
@@ -395,7 +392,7 @@ try{
 
   const handleDeleteSelected = (datasetPhotoType:string, datasetIndex:string) => {
 
-    if(datasetPhotoType == 'museum'){
+    if(datasetPhotoType === 'museum'){
 
       const aray1 = [...museumUploadArray2]
       const aray2 = aray1.filter(val => aray1.indexOf(val) !== parseInt(datasetIndex) )
@@ -406,7 +403,7 @@ try{
       setMuseumPreviewArray2(array2)
 
 
-    }else if(datasetPhotoType == 'exhibition'){
+    }else if(datasetPhotoType === 'exhibition'){
       
       const aray1 = [...exhibitionUploadArray2]
       const aray2 = aray1.filter(val => aray1.indexOf(val) !== parseInt(datasetIndex) )

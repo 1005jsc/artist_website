@@ -1,5 +1,3 @@
-import React from 'react';
-import Biography from '../../medium/biography_folder/biography/biography';
 import NavbarTop from '../navbar_top/navbar_top';
 
 import styles from './content_box.module.css'

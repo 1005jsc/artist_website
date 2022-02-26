@@ -1,8 +1,5 @@
 import React, { useState } from "react"
-import Exhibition from '../exhibition/exhibition';
-import ExhibitionInfo from '../exhibition_info/exhibition_info';
 import styles from "./exhibitions.module.css";
-import WorkExhibition from './../../works_folder/work_exhibition/work_exhibition';
 import { Outlet } from 'react-router-dom';
 import Database from '../../../../../services/database';
 

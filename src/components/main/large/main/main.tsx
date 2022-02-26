@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react"
-import AuthService from '../../../../services/auth';
 import ContentBox from '../content_box/content_box';
 import NabvarLeft from '../navbar_left/navbar_left';
 import styles from "./main.module.css";

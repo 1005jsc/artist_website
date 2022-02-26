@@ -19,6 +19,8 @@ const Private = ({authService}:PrivateProps) => {
   useEffect(() => {
     setUrl(window.location.href)
   })
+
+
   const handleLogout:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 

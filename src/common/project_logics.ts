@@ -26,7 +26,7 @@ class artistWebsiteExportLogics {
         yes =worksDates[i] as string
         workYears.push(yes.substring(0,4))
       } 
-      worksYears = [... new Set(workYears)]
+      worksYears = [...new Set(workYears)]
       worksYears.sort((a,b) => parseInt(b)-parseInt(a))
     }
   
@@ -37,7 +37,7 @@ class artistWebsiteExportLogics {
     let worksByYearFilter2 = [] as any[]
     let worksByYearFilter3 = [] as any[]
     let worksByYearFilter4 = [] as any[]
-    {for(let i = 0; i< worksYears.length; i++){
+    for(let i = 0; i< worksYears.length; i++){
         worksByYear.push(worksYears[i])
         if(works){
           worksByYearFilter = Object.values(works).filter((work) => 
@@ -49,7 +49,7 @@ class artistWebsiteExportLogics {
         worksByYearFilter3= [worksByYear[i], ...worksByYearFilter2[i]]
         worksByYearFilter4.push(worksByYearFilter3)
       }
-    }
+    
 
     return worksByYearFilter4
 
@@ -59,7 +59,6 @@ class artistWebsiteExportLogics {
 
   returnWorkSizeSmallToBigArray = (works:TypeOfWorks|null) => {
     if(works==null){
-      // console.log('database is null')
       return
     }
 
@@ -194,7 +193,7 @@ class artistWebsiteExportLogics {
       yes =exhibitionsDates[i] as string
       exhibitionYears.push(yes.substring(0,4))
     } 
-    exhibitionsYears = [... new Set(exhibitionYears)]
+    exhibitionsYears = [...new Set(exhibitionYears)]
     exhibitionsYears.sort((a,b) => parseInt(b)-parseInt(a))
   }
 
@@ -203,7 +202,7 @@ class artistWebsiteExportLogics {
   let exhibitionsByYearFilter2 = [] as any[]
   let exhibitionsByYearFilter3 = [] as any[]
   let exhibitionsByYearFilter4 = [] as any[]
-  {for(let i = 0; i< exhibitionsYears.length; i++){
+  for(let i = 0; i< exhibitionsYears.length; i++){
       exhibitionsByYear.push(exhibitionsYears[i])
       if(exhibitions){
         exhibitionsByYearFilter = Object.values(exhibitions).filter((exhibition) => 
@@ -215,7 +214,7 @@ class artistWebsiteExportLogics {
       exhibitionsByYearFilter3= [exhibitionsByYear[i], ...exhibitionsByYearFilter2[i]]
       exhibitionsByYearFilter4.push(exhibitionsByYearFilter3)
     }
-  }
+  
   return exhibitionsByYearFilter4
 
 

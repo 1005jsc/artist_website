@@ -224,7 +224,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       purchasePrize:     purchasePrizeValue
 
     }
-
       
   try{
     // 작품 사진 (3/3)
@@ -257,9 +256,19 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
         workMemo: workMemoValue,
         workHorizontalOrVerticalOrSquare: workHorizontalOrVerticalOrSquare
       }
-  
-      
-      
+
+      let array1
+      if(exhibitionOnClickUrls){
+        array1 = Object.values(exhibitionOnClickUrls)
+        console.log(array1)
+        array1.forEach((exhibitionId) => {
+        databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)})
+      }else{
+        console.log('no exhibiton urls ')
+      }
+
+
+
       databaseService.uploadWorkData(workData.workSerialNumber, workData)
     
 
@@ -359,7 +368,6 @@ let obj2 = {} as TypeOfExhibitionHistory
     
     
   }
-
 
 
 
@@ -542,7 +550,7 @@ let obj2 = {} as TypeOfExhibitionHistory
           <div className={styles.button_container}>
 
         <input type="submit" className={styles.fifth_buttons} value='작품의 데이터만 우선 저장만 하고 나중에 보여주기' />
-        <button className={styles.fifth_buttons}>작품 업로드하고 웹사이트에도 바로 띄우기 </button>
+        {/* <button className={styles.fifth_buttons}>작품 업로드하고 웹사이트에도 바로 띄우기 </button> */}
 
           </div>
 

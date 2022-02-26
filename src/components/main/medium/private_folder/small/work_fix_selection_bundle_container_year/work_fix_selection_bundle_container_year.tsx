@@ -1,8 +1,8 @@
 import React from "react"
-import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../../common/project_types';
+import {  TypeOfWork } from '../../../../../../common/project_types';
 import WorkFixSelectionWork from '../work_fix_selection_work/work_fix_selection_work';
 import WorkFixSelectionWorkVertical from '../work_fix_selection_work_vertical/work_fix_selection_work_vertical';
-import styles from "./work_fix_selection_bundle_container.module.css";
+import styles from "./work_fix_selection_bundle_container_year.module.css";
 
 type WorkFixSelectionBundleContainerProps = {
   arrayAboutWorkYearAndWork: any[]
@@ -26,7 +26,7 @@ const WorkFixSelectionBundleContainerYear = ({arrayAboutWorkYearAndWork, exhibit
       
       const object2 = array1[index] as TypeOfWork
       
-      if(object2.workHorizontalOrVerticalOrSquare =='horizontal'){
+      if(object2.workHorizontalOrVerticalOrSquare ==='horizontal'){
           return <WorkFixSelectionWork exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={work}/>
         }else{
           return <WorkFixSelectionWorkVertical exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} work={work} />

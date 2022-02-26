@@ -3,7 +3,7 @@ import styles from "./login.module.css";
 import 'dotenv/config'
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import AuthService from './../../../../../services/auth';
-import { HandleLoginType, LoginContextType } from '../../../../../common/project_types';
+import { HandleLoginType} from '../../../../../common/project_types';
 
 
 type LoginProps = {

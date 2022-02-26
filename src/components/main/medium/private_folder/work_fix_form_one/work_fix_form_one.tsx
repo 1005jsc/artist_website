@@ -103,25 +103,25 @@ const WorkFixFormOne = () => {
 
   <div className={styles.works_button_container}>
       <div className={styles.works_sort}>
-        <button className={dataPathValue=='year'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        <button className={dataPathValue==='year'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
         :`${styles.works_buttons} ` }data-path="year" onClick={handleClick}>연도별</button>
-        <button className={dataPathValue=='larger'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        <button className={dataPathValue==='larger'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
         :`${styles.works_buttons} ` } data-path="larger" onClick={handleClick}>크기가 큰 순</button>
-        <button className={dataPathValue=='smaller'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        <button className={dataPathValue==='smaller'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
         :`${styles.works_buttons} ` } data-path="smaller" onClick={handleClick}>크기가 작은 순</button>
-        <button className={dataPathValue=='exhibition'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+        <button className={dataPathValue==='exhibition'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
         :`${styles.works_buttons} ` } data-path="exhibition" onClick={handleClick}>전시 출품작</button>
       </div>
     </div>
     
-    {dataPathValue=='year'&&<WorkFixSelectionYear exhibitionWorksOnClickArray={exhibitionWorksOnClick} 
+    {dataPathValue==='year'&&<WorkFixSelectionYear exhibitionWorksOnClickArray={exhibitionWorksOnClick} 
     passSelectedWorkToUpper={handleExhibitionWorksUpdate} databaseService={databaseService}/>}
-    {dataPathValue=='smaller'&&<WorkFixSelectionSize exhibitionWorksOnClickArray={exhibitionWorksOnClick} passSelectedWorkToUpper={handleExhibitionWorksUpdate}
+    {dataPathValue==='smaller'&&<WorkFixSelectionSize exhibitionWorksOnClickArray={exhibitionWorksOnClick} passSelectedWorkToUpper={handleExhibitionWorksUpdate}
      dataPathValue={dataPathValue} databaseService={databaseService}/>}
-    {dataPathValue=='larger'&&<WorkFixSelectionSize  exhibitionWorksOnClickArray={exhibitionWorksOnClick} passSelectedWorkToUpper={handleExhibitionWorksUpdate}
+    {dataPathValue==='larger'&&<WorkFixSelectionSize  exhibitionWorksOnClickArray={exhibitionWorksOnClick} passSelectedWorkToUpper={handleExhibitionWorksUpdate}
      dataPathValue={dataPathValue} databaseService={databaseService}/>}
-    {dataPathValue=='exhibition'&&<WorkFixSelectionExhibitions sendExhibitionToUpperComponent={getExhibitionSerialNumber}/>}
-    {dataPathValue==exhibitionSerialNumberOnClickData?.toString()&&
+    {dataPathValue==='exhibition'&&<WorkFixSelectionExhibitions sendExhibitionToUpperComponent={getExhibitionSerialNumber}/>}
+    {dataPathValue===exhibitionSerialNumberOnClickData?.toString()&&
     //  exhibition에 exhibition work 표기되는 로직 만들어야됨   아직 여기는 못함 
     <WorkFixSelectionExhibitionWorksBySize exhibitionSerialNumberOnClickData={exhibitionSerialNumberOnClickData} exhibitionWorksOnClickArray={exhibitionWorksOnClick
 } passSelectedWorkToUpper={handleExhibitionWorksUpdate}

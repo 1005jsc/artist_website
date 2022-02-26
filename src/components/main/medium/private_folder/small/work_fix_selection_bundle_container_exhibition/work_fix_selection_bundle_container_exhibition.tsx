@@ -1,6 +1,5 @@
 import React from "react"
 import styles from "./work_fix_selection_bundle_container_exhibition.module.css";
-import WorkFormExhibitionsSelectExhibition from './../work_form_exhibitions_select_exhibition/work_form_exhibitions_select_exhibition';
 import WorkFixSelectionExhibition from './../work_fix_selection_exhibition/work_fix_selection_exhibition';
 
 type WorkFixSelectionBundleContainerExhibitionProps = {

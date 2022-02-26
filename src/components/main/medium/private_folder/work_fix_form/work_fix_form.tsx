@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect,  useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
 import { TypeOfExhibitionHistory, TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
@@ -12,9 +12,10 @@ import styles from "./work_fix_form.module.css";
 type WorkFixFormProps = {
   workImageUploadService: WorkImageUpload;
   workToFix: TypeOfWork;
+  deleteWork: (workSerialNumber:number) => void
 }
 
-const WorkFixForm = ({workImageUploadService, workToFix}:WorkFixFormProps) => {
+const WorkFixForm = ({workImageUploadService, workToFix, deleteWork}:WorkFixFormProps) => {
   const databaseService= useOutletContext<Database>();
   const [url, setUrl] = useState<string|null>()
 
@@ -333,7 +334,7 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
   
 
 
-
+// 전시회 부분
 
 
 
@@ -348,7 +349,6 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
       setExhibitionOnClick(array1)
       setExhibitionOnClickUrls(workToFix.workExhibitionHistory)
     }else{
-      console.log('we dont have')
       setExhibitionOnClick([])
       setExhibitionOnClickUrls({})
 
@@ -375,7 +375,6 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
         setExhibitionOnClickUrls(obj1)
         
       }else{
-        console.log('new exhibiton!')
         array1.push(exhibitionSerialNumber)
         obj2[exhibitionName]= exhibitionSerialNumber
         
@@ -387,7 +386,14 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     }
   
   
+    const handleDeleteInfo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+      e.preventDefault()
 
+      
+      deleteWork(workToFix.workSerialNumber)
+
+
+    }
 
 
   
@@ -395,6 +401,11 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
 
 
   return <form className={styles.form} onSubmit={handleSubmit}>
+
+    <div className={styles.big_title}>
+      <span className={styles.s1}>수정하기</span>
+      <button className={styles.delete_info} onClick={handleDeleteInfo}>작품정보 지우기</button>
+    </div>
 
 
   <div className={styles.div1}>

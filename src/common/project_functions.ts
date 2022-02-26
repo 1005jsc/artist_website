@@ -8,9 +8,24 @@ class artWebsiteExportFunctions{
   static urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
   static cloudinaryImageUrlRegex = /(https?:\/\/res\.cloudinary\.com\/koreachief\/image\/upload\/)([a-zA-Z0-9\W]+)/
 
+  checkVacantUrl = ( url: string|null|undefined) => {
+    if(url===undefined){
+      return 
+    }
+    if(url==null){
+      return 
+    }
+  const result = url.match(artWebsiteExportFunctions.urlWordSearchRegex)
+  if(result![1]===undefined){
+    return true
+  }else{
+    return false
+  }
+  }
+
 
   checkWordFromUrl = (word:string, url: string|null|undefined) => {
-    if(url==undefined){
+    if(url===undefined){
       return 
     }
     if(url==null){
@@ -27,7 +42,7 @@ class artWebsiteExportFunctions{
 
   useWordFromUrl = (word:string, url: string|null|undefined, callback:(youDontHaveToAddAParam: string)=> void) => {
   
-    if(url==undefined){
+    if(url===undefined){
       return 
     }
     if(url==null){
@@ -53,7 +68,7 @@ class artWebsiteExportFunctions{
 
   imageUrlMakerByRequestedQuality = (url: string, quality:ImageQualityTypes,width?: number ) => {
 
-    if(url==undefined){
+    if(url===undefined){
       return '1'
     }
     if(url==null){

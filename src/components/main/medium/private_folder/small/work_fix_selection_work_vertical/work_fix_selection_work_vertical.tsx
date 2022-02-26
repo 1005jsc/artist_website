@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { myFunctions } from '../../../../../../common/project_functions';
-import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../../common/project_types';
+import { TypeOfWork } from '../../../../../../common/project_types';
 import styles from "./work_fix_selection_work_vertical.module.css";
 
 type WorkFixSelectionWorkProps = {
@@ -24,7 +24,7 @@ const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSel
       setWorkOnClick(false)
     
     }
-  }, [exhibitionWorksOnClickArray])
+  }, [exhibitionWorksOnClickArray, work.workSerialNumber])
 
   let workUrl
   if(work.workImageUrl !==null){

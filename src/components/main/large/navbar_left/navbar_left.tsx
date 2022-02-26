@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthService from '../../../../services/auth';
 import styles from './navbar_left.module.css'
 import { myFunctions } from './../../../../common/project_functions';
 
@@ -13,7 +12,8 @@ type NavbarLeftProps = {
 
 const NabvarLeft = ({loginState}:NavbarLeftProps) => {
 
-  const [biographyOnClick, setBiographyOnClick]= useState<boolean|undefined>(false)
+  const [emptyOnClick, setEmptyOnClick] = useState<boolean|undefined>(true)
+  const [biographyOnClick, setBiographyOnClick]= useState<boolean|undefined>(true)
   const [criticsOnClick, setCriticsOnClick]= useState<boolean|undefined>(false)
   const [url, setUrl] = useState<string|null>()
 
@@ -21,6 +21,7 @@ const NabvarLeft = ({loginState}:NavbarLeftProps) => {
     setUrl(window.location.href)
   })
 
+ 
 
   const navigate = useNavigate()
 
@@ -38,12 +39,13 @@ const NabvarLeft = ({loginState}:NavbarLeftProps) => {
   }
 
   useEffect(() => {
+      setEmptyOnClick(myFunctions.checkVacantUrl(url))
       setBiographyOnClick(myFunctions.checkWordFromUrl('biography', url)) 
       setCriticsOnClick(myFunctions.checkWordFromUrl('critics', url))
     
 
   }, [url])
-
+  
 
 
 return <nav className={styles.navbar_left}>
@@ -55,14 +57,14 @@ return <nav className={styles.navbar_left}>
     
       <div className={` ${styles.c1} `}>
         <span className={` ${styles.s1} `}data-path="biography" onClick={navigateTo}>작가소개</span>
-       
-        {biographyOnClick&&<div className={styles.c2}>
+      
+        {(emptyOnClick||biographyOnClick)&&<div className={styles.c2}>
           <span className={`${styles.s2}`}data-path="biography/note" onClick={navigateTo}>- 작가노트</span>
           <span className={`${styles.s2}`}data-path="biography/bio" onClick={navigateTo}>- 작가연혁</span>
 
         </div>
 
-         }        
+        }        
 
       </div>
 
@@ -98,45 +100,3 @@ return <nav className={styles.navbar_left}>
 }
 
 export default NabvarLeft;
-
-
-// <span className={`${styles.biography_left} ${styles.span_first} 
-// ${styles.biography_left_onclick}`}>작가소개</span>
-// <div className={`${styles.biography_container} ${styles.biography_left_onclick_invisible_on}`}>
-//   <span className={`${styles.artist_note} ${styles.h2}`}>- 작가노트</span>
-//   <span className={`${styles.bio} ${styles.h2}`}>- 작가연혁</span>
-// </div>
-
-// <span className={`${styles.works_left} ${styles.span_first} ${styles.works_left_onclick}`}>작품</span>
-//   {/* <div className={`${styles.works_container} ${styles.works_left_onclick_invisible_on}`}>
-  
-//     <div className={`${styles.work} ${styles.work_국윤미술관_기획초대전}`}>
-//       <span className={styles.h2}>- 국윤미술관 기획초대전</span>
-//       <div className={styles.work_국윤미술관_기획초대전_onclick}>
-//         <span className={styles.h3}>- 시간을 담다</span>
-//         <span className={styles.h3}>- 빛을 담다</span>
-//         <span className={styles.h3}>- 길을 걷다</span>
-//       </div>
-//     </div>
-//   <div className={`${styles.work} ${styles.work_국윤미술관_기획초대전}`}>
-//     <span className={styles.h2}>- 국윤미술관 기획초대전</span>
-//     <div className={styles.work_국윤미술관_기획초대전_onclick}>
-//       <span className={styles.h3}>- 시간을 담다</span>
-//       <span className={styles.h3}>- 빛을 담다</span>
-//       <span className={styles.h3}>- 길을 걷다</span>
-//     </div>
-//   </div>
-
-//   </div> */}
-
-//   <span className={`${styles.exhibition_left} ${styles.span_first}`}>전시</span>
-
-
-
-
-// <span className={`${styles.critics_left} ${styles.span_first} ${styles.critics_left_onclick}`}>평론가의 글</span>
-//   <div className={`${styles.critics_container} ${styles.critics_left_onclick_invisible_on}`}>
-//     <span className={styles.h2}>- 시간속에 담아낸 내면의 추상언어 &lt;조인호&gt;</span>
-//     <span className={styles.h2}>- 시간속에 담아낸 내면의 추상언어 &lt;조인호&gt;</span>
-//   </div>
-// <span className={`${styles.contacts_left} ${styles.span_first}`}>연락처</span>

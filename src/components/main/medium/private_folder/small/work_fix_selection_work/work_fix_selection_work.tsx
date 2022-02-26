@@ -23,7 +23,7 @@ const WorkFixSelectionWork = ({work, exhibitionWorksOnClickArray, passSelectedWo
     }
   
 
-  }, [exhibitionWorksOnClickArray])
+  }, [exhibitionWorksOnClickArray, work.workSerialNumber])
 
 
 

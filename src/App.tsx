@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styles from "./app.module.css"
 import BackgroundImage from './components/front_door/background_image/background_image';
@@ -34,7 +34,7 @@ import Database from './services/database';
 import WorkImageUpload from './services/work_image_uploads';
 import Navbar from './components/front_door/navbar/navbar';
 import ExhibitionImageUpload from './services/exhibition_image_uploads';
-
+import Modal from 'react-modal';
 
 
 type AppProps = {
@@ -60,7 +60,7 @@ const App = ({authService, databaseService,exhibitionImageUploadService, workIma
     })
     
   
-}, [login])
+}, [login, authService])
   
 
 
@@ -68,7 +68,7 @@ const App = ({authService, databaseService,exhibitionImageUploadService, workIma
 
 const handleLogin = (password:string|number) => {
   
-  if(password==process.env.REACT_APP_ART_WEBSITE_PRIVATE_ADMIN_PASSWORD){
+  if(password===process.env.REACT_APP_ART_WEBSITE_PRIVATE_ADMIN_PASSWORD){
     authService.AuthGooglePopupLogin()
     setLogin(true)
     return true
@@ -184,6 +184,7 @@ const handleLogin = (password:string|number) => {
 
 
 }
+Modal.setAppElement('#root')
 
 export default App;
 
