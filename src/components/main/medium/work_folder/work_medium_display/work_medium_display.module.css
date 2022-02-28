@@ -11,3 +11,7 @@
 .work {
 	height: 80%;
 }
+
+.work:hover {
+	cursor: pointer;
+}

@@ -1,0 +1,13 @@
+.delete_btn {
+	background-color: transparent;
+	font-size: 2.6rem;
+}
+
+.x_mark {
+	height: 2.6rem;
+	color: rgb(223, 222, 222);
+}
+
+.x_mark:hover {
+	color: rgb(180, 180, 180);
+}

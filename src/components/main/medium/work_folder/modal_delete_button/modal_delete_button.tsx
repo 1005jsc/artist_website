@@ -1,14 +1,13 @@
 import React from "react"
-import styles from "./delete_button.module.css";
+import styles from "./modal_delete_button.module.css";
 import { faXmark, faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-type DeleteButtonProps = {
-  handleDelete: React.MouseEventHandler<HTMLButtonElement>;
-  // hi: string
+type ModalDeleteButtonProps = {
+  handleDelete: () => void
 }
 
-const DeleteButton = ({handleDelete}:DeleteButtonProps) => {
+const ModalDeleteButton = ({handleDelete}:ModalDeleteButtonProps) => {
 
   return <button className={styles.delete_btn} onClick={handleDelete}>
 
@@ -16,4 +15,4 @@ const DeleteButton = ({handleDelete}:DeleteButtonProps) => {
   </button>
 
 }
-export default DeleteButton;
+export default ModalDeleteButton;
