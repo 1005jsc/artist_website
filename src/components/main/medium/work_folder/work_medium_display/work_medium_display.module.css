@@ -1,0 +1,13 @@
+.work_disp_cont_2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 92rem;
+	height: 64rem;
+	background-color: #ececec;
+}
+
+.work {
+	height: 80%;
+}

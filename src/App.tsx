@@ -35,6 +35,7 @@ import WorkImageUpload from './services/work_image_uploads';
 import Navbar from './components/front_door/navbar/navbar';
 import ExhibitionImageUpload from './services/exhibition_image_uploads';
 import Modal from 'react-modal';
+import SingleWork from './components/main/medium/work_folder/single_work/single_work';
 
 
 type AppProps = {
@@ -109,6 +110,7 @@ const handleLogin = (password:string|number) => {
           <Route path="smaller" element={<WorkSize/>}/>
           <Route path="exhibition" element={<WorkExhibition/>}/>
           <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
+          <Route path="work" element={<SingleWork/>}/>
         </Route>
 
         
