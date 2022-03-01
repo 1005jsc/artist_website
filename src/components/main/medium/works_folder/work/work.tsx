@@ -1,4 +1,5 @@
 import React from "react"
+import { useLocation, useNavigate } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
 import { TypeOfWork } from '../../../../../common/project_types';
 import styles from "./work.module.css";
@@ -11,6 +12,10 @@ type WorkProps = {
 
 const Work = ({work, year}:WorkProps) => {
   
+  const navigate = useNavigate()
+  const location = useLocation()
+  // console.log(location.pathname)
+
   let workUrl
   if(work.workImageUrl !==null){
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
@@ -19,7 +24,17 @@ const Work = ({work, year}:WorkProps) => {
   
 
 
-  return <div className={styles.work_container} >
+  const handleNavigate:React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+    navigate('/main/works/work')
+
+  }
+
+
+
+
+
+  return <div className={styles.work_container} onClick={handleNavigate} >
     <div className={styles.work_frame}>
       <div className={styles.image_frame}>
               

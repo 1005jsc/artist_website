@@ -18,28 +18,55 @@ type WorksProps = {
 
 const Works = ({databaseService}:WorksProps) => {
 
-
-  const [showBackgroundPic, setShowBackgroundPic] = useState<boolean>(false)
   const location = useLocation()
+  console.log(location.pathname)
+
+
   
+  const [url, setUrl] = useState<string|null>()
+
+
+
+
+
+
+
+  // url불러오기
+  useEffect(() => {
+    setUrl(window.location.href)
+  })
+
+  const handleGetUrl = ()=> {
+    setUrl(window.location.href)
+  }
+
+  //배경그림 보여주기 
+  const urlWordSearchRegex = myLogics.urlWordSearchRegex
+  const urlNow = window.location.href 
   
-  const urlNow = location.pathname
-  
+  const result = urlNow.match(urlWordSearchRegex)
+  let yes
+  if(result![1]=='/works'&&result![2]==undefined){
+    
+    yes=true
+  }
+
+const [array2, setArray2] = useState<any[]>([])
+const [wordWorkCheck, setWordWorkCheck] = useState<boolean>(false)
 
   useEffect(() => {
-    if(urlNow === '/main/works'||urlNow === '/main/works/year'||urlNow === '/main/works/larger'||urlNow === '/main/works/smaller'){
-      setShowBackgroundPic(true)
-    }else{
-      setShowBackgroundPic(false)
-    }
-  })
-    
-
-  // 조건 2. works_nav 에 전달해주가 
-  //배경그림 보여주기 
+    const array1 = ['year', 'larger', 'smaller']
+    setArray2(array1.map((word)=> {return myFunctions.checkWordFromUrl(word, url)}))
   
-
-
+    if(myFunctions.checkWordFromUrl('work', url)){
+      setWordWorkCheck(true)
+    }else{
+      
+      setWordWorkCheck(false)
+    }
+  
+  
+  }, [url])
 
   
 
@@ -52,9 +79,12 @@ const Works = ({databaseService}:WorksProps) => {
 
 
 
+
   return <section className={styles.container}>
-    
-    {showBackgroundPic&&<div className={styles.background_img}>
+    {array2.includes(true)&&<div className={styles.background_img}>
+    <img src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/>
+      </div>}
+    {yes&&<div className={styles.background_img}>
       <img src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/></div>}
     
     <div className={styles.container2}>
@@ -63,7 +93,7 @@ const Works = ({databaseService}:WorksProps) => {
     </div>
     
     {/* {!wordWorkCheck&&<WorksNav getUrl={handleGetUrl} />} */}
-    <WorksNav getUrl={urlNow}/>
+
 
     <div className={styles.works}>
 

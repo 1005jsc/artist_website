@@ -27,8 +27,6 @@ const handleKeyDetector = (keyValue:string) => {
     modalOff()
   }
 
-
-
 }
 
 
@@ -38,7 +36,7 @@ const handleKeyDetector = (keyValue:string) => {
       <div className={styles.grey_background}>
         <div className={styles.delete_button_cont}><ModalDeleteButton handleDelete={modalOff}/></div>
       
-          <img className={styles.work_large_image} src="/img/works_img/work_sample.jpg" alt="" />
+          <img className={styles.work_large_image} src="/img/works_img/work_sample2.jpg" alt="" />
       </div>
 
       <div className={styles.tip_container}>

@@ -6,6 +6,9 @@
 	height: 36rem;
 	flex: 1;
 }
+.work_container:hover {
+	cursor: pointer;
+}
 
 .work_frame {
 	display: flex;

@@ -5,7 +5,7 @@ import  Modal  from 'react-modal';
 import WorkModal from '../work_modal/work_modal';
 
 const SingleWork = () => {
-  const [modalOpen, setModalOpen] = useState<boolean>(true)
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
   const handleNextImg:React.MouseEventHandler<HTMLImageElement> = (e) => {
     e.preventDefault()
