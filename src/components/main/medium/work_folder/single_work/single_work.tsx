@@ -161,12 +161,18 @@ const navigate = useNavigate()
 
 
   <div className={styles.work_disp_cont_1}>
-  {workSubLeft&&<img onClick={handleNextImg}className={styles.icon} data-side='left'src="/icons/side_arrow_left.svg" alt="" />}
-    
-    {workMain&&<WorkMediumDisplay workUrl={workMain}imgClickModalOpen={handleModalOpen}/>}
 
-    {workSubRight&&<img onClick={handleNextImg} className={styles.icon}data-side='right' src="/icons/side_arrow_right.svg" alt="" />}
-  
+    <div className={styles.icon_container}>
+        {workSubLeft&&<img onClick={handleNextImg}className={styles.icon} data-side='left'src="/icons/side_arrow_left.svg" alt="" />}
+
+    </div>
+    
+      {workMain&&<WorkMediumDisplay workUrl={workMain}imgClickModalOpen={handleModalOpen}/>}
+
+    <div className={styles.icon_container}>
+
+      {workSubRight&&<img onClick={handleNextImg} className={styles.icon}data-side='right' src="/icons/side_arrow_right.svg" alt="" />}
+    </div>  
   
   </div>
 

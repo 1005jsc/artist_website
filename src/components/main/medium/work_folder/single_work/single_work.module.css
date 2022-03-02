@@ -16,9 +16,14 @@
 	align-items: center;
 }
 
-.icon {
+.icon_container {
 	margin: 2.7rem;
-	height: 12rem;
+	width: 7rem;
+	height: 100%;
+}
+
+.icon {
+	height: 13rem;
 	transition: transform;
 }
 
