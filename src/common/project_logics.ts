@@ -1,4 +1,5 @@
-import { TypeOfExhibitions, TypeOfWorks } from './project_types'
+import { myFunctions } from './project_functions'
+import { TypeOfExhibitions, TypeOfWork, TypeOfWorks } from './project_types'
 
 
 class artistWebsiteExportLogics {
@@ -32,11 +33,11 @@ class artistWebsiteExportLogics {
   
     
     // 1) worksByYear 만들기 
-    let worksByYear = [] as any[]
-    let worksByYearFilter = [] as any[]
-    let worksByYearFilter2 = [] as any[]
-    let worksByYearFilter3 = [] as any[]
-    let worksByYearFilter4 = [] as any[]
+    let worksByYear = [] as string[]
+    let worksByYearFilter = [] as TypeOfWork[]
+    let worksByYearFilter2 = [] as TypeOfWork[][]
+    let worksByYearFilter3 = [] as (string|TypeOfWork)[]
+    let worksByYearFilter4 = [] as (string|TypeOfWork)[][]
     for(let i = 0; i< worksYears.length; i++){
         worksByYear.push(worksYears[i])
         if(works){
@@ -54,6 +55,7 @@ class artistWebsiteExportLogics {
     return worksByYearFilter4
 
   }
+
 
 
 
@@ -221,7 +223,116 @@ class artistWebsiteExportLogics {
   }
 
 
+  singleWorkImageDistribute=(array1:TypeOfWork[], workId:number|null) => {
+    let workMain = '' as string|undefined|null
+    let workSubMain = '' as string|undefined|null
+    let workLeft = '' as string|undefined|null
+    let workRight = '' as string|undefined|null
+    
+    array1.forEach((work, index) => {
+      if(work.workSerialNumber === workId){
+
+
+        const workMain1 = array1[index]['workImageUrl']
+        if( workMain1 !== null){
+          workMain=myFunctions.imageUrlMakerByRequestedQuality(
+            Object.values(workMain1)[0],'medium'
+          )
+          
+        }else{
+          workMain = null
+        }
+
+
+          const workSubMain1 = array1[index]['workImageUrl']
+        
+          if( workSubMain1 !== null){
+            workSubMain=myFunctions.imageUrlMakerByRequestedQuality(
+              Object.values(workSubMain1)[0], 'mini', 'null', 90 )
+          }else{
+            workSubMain=null
+          }
+        
+
+        
+        if(index-1>=0){
+          const workLeft1 = array1[index-1]['workImageUrl']
+        
+          if( workLeft1 !== null){
+            workLeft=myFunctions.imageUrlMakerByRequestedQuality(
+              Object.values(workLeft1)[0], 'mini', 'null', 90 )
+
+          }else{
+            workLeft=null
+          }
+        }else{
+          workLeft=null
+        }
+        
+        
+        
+        if(index+1 < array1.length){
+          const workRight1 = array1[index+1]['workImageUrl']
+          const workRightSerialNumber = array1[index+1]['workSerialNumber']
+          if( workRight1 !== null){
+            workRight = 
+            myFunctions.imageUrlMakerByRequestedQuality(
+              Object.values(workRight1)[0], 'mini', 'null', 90 )
+            
+          }else{
+            workRight=null
+          }
+        }else{
+          workRight= null
+        }
+        
+      
+   
+        
+      }
+    }
+    )
+
+    return [workMain, workSubMain, workLeft, workRight] 
+  }
+
+  singleWorkComponentNextWorkData=(array1:TypeOfWork[], workId:number|null) => {
+    let workLeftSerialNumber = 0 as number|null
+    let workRightSerialNumber = 0 as number|null
+
+    array1.forEach((work, index) => {
+      if(work.workSerialNumber === workId){
+
+
+        
+        if(index-1>=0){
+          workLeftSerialNumber = array1[index-1]['workSerialNumber']
+        
+        }
+        
+        
+        
+        if(index+1 < array1.length){
+          workRightSerialNumber = array1[index+1]['workSerialNumber']
+          
+          }
+        }
+      }
+    )
+
+    return [workLeftSerialNumber,  workRightSerialNumber] 
+  }
+
+
+
   
+
+
+
+
+
+
+
 
 
 }

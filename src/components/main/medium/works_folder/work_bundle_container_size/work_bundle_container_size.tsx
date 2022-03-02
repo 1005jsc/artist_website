@@ -22,13 +22,13 @@ const WorkBundleContainerSize = ({works}:WorkBundleContainerSizeProps) => {
       let year1= object2.workCompletionDate!.toString().substring(0,4)
       
       if(object2.workHorizontalOrVerticalOrSquare=='horizontal'){
-          return <Work year={year1!} key={index} work={object}/>
+          return <Work year={year1!} key={index} work={object} works={works}/>
         }else if(object2.workHorizontalOrVerticalOrSquare=='square'){
-          return <WorkSquare year={year1!} key={index} work={object}/>
+          return <WorkSquare year={year1!} key={index} work={object} works={works}/>
         }
         
         else{
-          return <WorkVertical year={year1!} key={index} work={object}/>
+          return <WorkVertical year={year1!} key={index} work={object} works={works}/>
         }
   })}
     </div>

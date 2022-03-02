@@ -1,16 +1,141 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import WorkMediumDisplay from '../work_medium_display/work_medium_display';
 import styles from "./single_work.module.css";
-import  Modal  from 'react-modal';
 import WorkModal from '../work_modal/work_modal';
+import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { TypeOfWork } from '../../../../../common/project_types';
+import { myLogics } from '../../../../../common/project_logics';
 
 const SingleWork = () => {
+
   const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+
+
+  const [works, setWorks] = useState<Array<TypeOfWork>>([])
+  const [worksYear, setWorksYear] = useState<TypeOfWork[]>([])
+  const [workId, setWorkId] = useState<number|null>(null)
+  const [workNow, setWorkNow] = useState<TypeOfWork|null>(null)
+  
+
+  useEffect(() => {
+    // 작품들 다가져옴 두가지 (작품들, 작품아이디) 
+    const locationState = location.state as Array<TypeOfWork[]>
+
+    // 작품들
+    const arrayOfWorks = locationState[0]
+    const worksYearArray = locationState[1] as TypeOfWork[]
+    setWorks(arrayOfWorks)
+    setWorksYear(worksYearArray)
+
+    // 작품 아이디 
+    const work_id = searchParams.get('work_id')
+    if(work_id){
+      setWorkId(parseInt(work_id))
+    }
+
+
+  }, [])
+
+
+
+    useEffect(() => {
+      for(let i=0; i<works.length; i++ ){
+        if(works[i].workSerialNumber==workId){
+          setWorkNow(works[i])
+        }
+      }
+    }, [workId])
+
+
+
+  
+  // 삼총사 이미지 state
+  const [workMain, setWorkMain] = useState<string|null|undefined>(null)
+  const [workSubMain, setWorkSubMain] = useState<string|null|undefined>(null)
+  const [workSubLeft, setWorkSubLeft] = useState<string|null|undefined>(null)
+  const [workSubRight, setWorkSubRight] = useState<string|null|undefined>(null)
+    
+  // 화살표 눌렀을때 보내줘야할 것들 works, work id 
+  const [leftWorkId, setLeftWorkId] = useState<number|null>(null)
+  const [rightWorkId, setRightWorkId] = useState<number|null>(null)
+
+  useEffect(() => {
+    const arrayNotYear1 = [...works] 
+
+    if(worksYear == [] || worksYear ==undefined){  
+      // 연도별이 아닌 경우  
+
+      const result = myLogics.singleWorkImageDistribute(arrayNotYear1, workId)
+      const result2 = myLogics.singleWorkComponentNextWorkData(arrayNotYear1, workId)
+      setWorkMain(result[0])
+      setWorkSubMain(result[1])
+      setWorkSubLeft(result[2])
+      setWorkSubRight(result[3])
+      setLeftWorkId(result2[0])
+      setRightWorkId(result2[1])
+      
+    }else{
+      // 연도별일 경우
+      console.log(worksYear)
+      const arrayYear1 = [...worksYear]
+      
+      const result = myLogics.singleWorkImageDistribute(arrayYear1, workId)
+      const result2 = myLogics.singleWorkComponentNextWorkData(arrayYear1, workId)
+
+      setWorkMain(result[0])
+      setWorkSubMain(result[1])
+      setWorkSubLeft(result[2])
+      setWorkSubRight(result[3])
+      setLeftWorkId(result2[0])
+      setRightWorkId(result2[1])
+
+    }
+
+
+
+
+
+
+  }, [worksYear])
+  
+
+
+
+const navigate = useNavigate()
+
+// p 테그에 년도 붙이기 
+  let workNowYear
+  if(workNow){
+    if(workNow.workCompletionDate){
+      workNowYear = workNow.workCompletionDate.toString().substring(0,4)
+    }
+  }
+
+ 
+
+
 
   const handleNextImg:React.MouseEventHandler<HTMLImageElement> = (e) => {
     e.preventDefault()
+    // 양 사이드의 작은 이미지들, 누르면 다음 작품을 보여주게된다 
+    console.log(e.currentTarget.dataset.side )
 
-    console.log(e.currentTarget)
+    if(e.currentTarget.dataset.side === 'left'){
+      navigate(`/main/works/work?work_id=${leftWorkId}`, {
+        state:[works, worksYear]
+      })
+      window.location.reload()
+    }else if(e.currentTarget.dataset.side === 'right'){
+      navigate(`/main/works/work?work_id=${rightWorkId}`, {
+        state:[works, worksYear]
+      })
+      window.location.reload()
+      // navigate
+    }
+    
 
   }
   const handleModalOpen = () => {
@@ -36,32 +161,39 @@ const SingleWork = () => {
 
 
   <div className={styles.work_disp_cont_1}>
-  
-      <img onClick={handleNextImg}className={styles.icon}src="/icons/side_arrow_left.svg" alt="" />
+  {workSubLeft&&<img onClick={handleNextImg}className={styles.icon} data-side='left'src="/icons/side_arrow_left.svg" alt="" />}
     
-    <WorkMediumDisplay imgClickModalOpen={handleModalOpen}/>
+    {workMain&&<WorkMediumDisplay workUrl={workMain}imgClickModalOpen={handleModalOpen}/>}
 
-      <img onClick={handleNextImg} className={styles.icon}src="/icons/side_arrow_right.svg" alt="" />
+    {workSubRight&&<img onClick={handleNextImg} className={styles.icon}data-side='right' src="/icons/side_arrow_right.svg" alt="" />}
   
   
   </div>
 
   <div className={styles.small_works_display_container}>
+    <div className={styles.work_sub_container}>
+      {workSubLeft&&<img onClick={handleNextImg}className={styles.mini_img}src={workSubLeft}data-side='left' alt="" />}
 
-    <img className={styles.mini_img}src="/img/works_img/work_sample2.jpg" alt="" />
-    <img className={styles.mini_center_img}src="/img/works_img/work_sample3.jpg" alt="" />
-    <img className={styles.mini_img}src="/img/works_img/work_sample2.jpg" alt="" />
+    </div>
+    <div className={styles.work_sub_main}>
+      {workSubMain&&<img className={styles.mini_center_img}src={workSubMain} alt="" onClick={handleModalOpen} />}
 
+    </div>
+    <div className={styles.work_sub_container}>
+      {workSubRight&&<img onClick={handleNextImg}className={styles.mini_img}src={workSubRight}data-side='right' alt="" />}
+
+    </div>
+    
 
 
 
   </div>
 
   <div className={styles.metadata}>
-      <p className={styles.p1}>시간을 담다 5</p>
-      <p className={styles.p1}>162cm x 112cm</p>
-      <p className={styles.p1}>Acrylic on canvas</p>
-      <p className={styles.p1}>2021</p>
+      {workNow&&<p className={styles.p1}>{workNow.workName}</p>}
+      {workNow&&<p className={styles.p1}>{workNow.workSize}</p>}
+      {workNow&&<p className={styles.p1}>{workNow.workMaterial}</p>}
+      {workNowYear&&<p className={styles.p1}>{workNowYear}</p>}
   </div>
   <div className={styles.button_container}>
       <button className={styles.b1} onClick={handleModalOnClick}>확대하여 상세보기</button>
@@ -78,81 +210,3 @@ export default SingleWork;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <Modal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)}
-  style={{
-    overlay: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(255, 255, 255, 0.75)'
-    },
-    content: {
-      position: 'absolute',
-      top: '5rem',
-      left: '14rem',
-      right: '14rem',
-      bottom: '8rem',
-      border: '1px solid #ccc',
-      background: '#fff',
-      // overflow: 'auto',
-      WebkitOverflowScrolling: 'touch',
-      outline: 'none',
-      padding: 0,
-    }
-  }}
-  className={styles.modal}
-  >
-    <div className={styles.work_display_large_container}>
-        <div className={styles.background_grey}>
-              <img className={styles.work_display_large}src="/img/works_img/work_sample.jpg" alt="" />
-
-        </div>
-
-    <div className={styles.span_div}>
-        <span className={styles.tip}>Tip: 그림을 클릭하시면 해당영역을 더 상세하게 볼 수 있습니다</span>
-
-    </div>
-
-    </div>
-
-
-
-
-  </Modal> */}

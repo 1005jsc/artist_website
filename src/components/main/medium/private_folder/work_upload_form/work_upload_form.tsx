@@ -263,7 +263,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
         array1.forEach((exhibitionId) => {
         databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)})
       }else{
-        console.log('no exhibiton urls ')
+        // console.log('no exhibiton urls ')
       }
 
 

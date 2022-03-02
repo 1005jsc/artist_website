@@ -5,6 +5,12 @@ import styles from "./contacts.module.css";
 
 const Contacts = () => {
 
+
+  
+
+
+
+
   return <section className={styles.contacts_container}>
     
     <div className={styles.contacts_pics_container}>

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { TypeOfWork } from '../../../../../common/project_types';
+import { TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import Work from '../work/work';
 import WorkSquare from '../work_square/work_square';
 import WorkVertical from '../work_vertical/work_vertical';
@@ -7,9 +7,10 @@ import styles from "./work_bundle_container_year.module.css";
 
 type WorkBundleContainerYearProps = {
   arrayAboutWorkYearAndWork: any[]
+  worksYear?:TypeOfWork[]
 }
 
-const WorkBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkBundleContainerYearProps) => {
+const WorkBundleContainerYear = ({arrayAboutWorkYearAndWork, worksYear}:WorkBundleContainerYearProps) => {
   const string1 = arrayAboutWorkYearAndWork[0]
   const array1 = arrayAboutWorkYearAndWork.slice(1)
   
@@ -22,12 +23,12 @@ const WorkBundleContainerYear = ({arrayAboutWorkYearAndWork}:WorkBundleContainer
       const object2 = array1[index] as TypeOfWork
       
       if(object2.workHorizontalOrVerticalOrSquare=='horizontal'){
-          return <Work year={string1} key={index} work={object}/>
+          return <Work year={string1} key={index} work={object} works={array1} worksYear={worksYear}/>
         }else if(object2.workHorizontalOrVerticalOrSquare=='square'){
-          return <WorkSquare year={string1} key={index} work={object}/>
+          return <WorkSquare year={string1} key={index} work={object} works={array1} worksYear={worksYear}/>
         }
         else{
-          return <WorkVertical year={string1} key={index} work={object}/>
+          return <WorkVertical year={string1} key={index} work={object} works={array1} worksYear={worksYear}/>
         }
   })}
     </div>

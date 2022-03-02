@@ -60,13 +60,13 @@ class artWebsiteExportFunctions{
 
 
   generateAKey = (i:number) => {
-    const dateNow = Math.floor(Date.now()/10)+i
+    const dateNow = Math.floor(Date.now()/100)+i
     return dateNow
   }
 
 
 
-  imageUrlMakerByRequestedQuality = (url: string, quality:ImageQualityTypes,width?: number ) => {
+  imageUrlMakerByRequestedQuality = (url: string, quality:ImageQualityTypes,width?: number|'null', height?:number|'null' ) => {
 
     if(url===undefined){
       return '1'
@@ -81,12 +81,45 @@ class artWebsiteExportFunctions{
     const urlFormer = result[1]
     const urlLater = result[2]
 
+    let width1
+    let height1
+    if(width == 'null'){
+      width1 = null
+    }else{
+      width1 = width
+    }
+    if(height == 'null'){
+      height1 = null
+    }else{
+      height1 = height
+    }
 
     switch (quality) {
       case 'mini':
-        return `${urlFormer}q_auto:best/${urlLater}`
+        if(width1&&height1){
+          return `${urlFormer}w_${width1},h_${height1}/q_auto:best/${urlLater}`
+        }else if(width1&&!height1) { 
+          return `${urlFormer}w_${width}/q_auto:best/${urlLater}`
+          
+        }else if(!width1&&height1) { 
+          return `${urlFormer}h_${height1}/q_auto:best/${urlLater}`
+          
+        }else{
+          return `${urlFormer}/q_auto:best/${urlLater}`
+        }
+        
       case 'small':
-        return `${urlFormer}w_${width}/q_auto:best/${urlLater}`
+        if(width1&&height1){
+          return `${urlFormer}w_${width1},h_${height1}/q_auto:best/${urlLater}`
+        }else if(width1&&!height1) { 
+          return `${urlFormer}w_${width}/q_auto:best/${urlLater}`
+          
+        }else if(!width1&&height1) { 
+          return `${urlFormer}h_${height}/q_auto:best/${urlLater}`
+          
+        }else{
+          return `${urlFormer}/q_auto:best/${urlLater}`
+        }
       case 'medium':
         return `${urlFormer}q_15/${urlLater}`
       case 'large':
@@ -117,7 +150,7 @@ class artWebsiteExportFunctions{
 
 
 
-
+  
 
 
 

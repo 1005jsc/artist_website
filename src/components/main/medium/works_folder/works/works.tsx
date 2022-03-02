@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './works.module.css'
-import Work from '../work/work';
-import WorkYear from '../work_year/work_year';
-import WorkSize from '../work_size/work_size';
-import WorkExhibition from '../work_exhibition/work_exhibition';
-import WorkExhibitionWorks from '../work_exhibition_works/work_exhibition_works';
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { myFunctions} from './../../../../../common/project_functions';
+import { Outlet, useLocation } from 'react-router-dom';
 import Database from '../../../../../services/database';
-import { myLogics } from '../../../../../common/project_logics';
 import WorksNav from '../works_nav/works_nav';
 
 type WorksProps = {
@@ -35,15 +28,11 @@ const Works = ({databaseService}:WorksProps) => {
   })
     
 
-  // 조건 2. works_nav 에 전달해주가 
-  //배경그림 보여주기 
-  
-
 
 
   
 
-//  useOutletContext 를 맞춰줘야하기 때문에 이걸 임시로 넣음 
+//  useOutletContext 형식을 맞춰줘야하기 때문에 이걸 임시로 넣음 
   const backgroundImageUpdate = (backgroundImageUrl:string) => {      
     }
 // 이 함수에 손대지 마시오
@@ -62,7 +51,6 @@ const Works = ({databaseService}:WorksProps) => {
     <span className={styles.title}>작품</span>
     </div>
     
-    {/* {!wordWorkCheck&&<WorksNav getUrl={handleGetUrl} />} */}
     <WorksNav getUrl={urlNow}/>
 
     <div className={styles.works}>

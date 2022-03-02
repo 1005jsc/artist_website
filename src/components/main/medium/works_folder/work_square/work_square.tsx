@@ -1,26 +1,39 @@
 import React from "react"
+import { useNavigate } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
-import { TypeOfWork } from '../../../../../common/project_types';
+import { TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import styles from "./work_square.module.css";
 
 
 type WorkSquareProps = {
   work: TypeOfWork;
   year: string|number;
+  works: TypeOfWorks;
+  worksYear?:TypeOfWork[]
+
+
 }
 
-const WorkSquare = ({work, year}:WorkSquareProps) => {
-
+const WorkSquare = ({work, year, works, worksYear}:WorkSquareProps) => {
+  const navigate = useNavigate()
   
   let workUrl
   if(work.workImageUrl !==null){
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
     (Object.values(work.workImageUrl)[0],'small', 216)
   }
-  
+  const handleNavigate:React.MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault()
+    navigate(`/main/works/work?work_id=${work.workSerialNumber}`, {
+      state:[works, worksYear]
+    })
+
+  }
 
 
-  return <div className={styles.work_container} >
+
+
+  return <div className={styles.work_container} onClick={handleNavigate}>
     <div className={styles.work_frame}>
       <div className={styles.image_frame}>
               

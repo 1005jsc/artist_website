@@ -110,6 +110,7 @@ const handleLogin = (password:string|number) => {
           <Route path="smaller" element={<WorkSize/>}/>
           <Route path="exhibition" element={<WorkExhibition/>}/>
           <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
+          <Route path="work:work_id" element={<SingleWork/>}/>
           <Route path="work" element={<SingleWork/>}/>
         </Route>
 

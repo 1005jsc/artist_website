@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
-import { myFunctions } from '../../../../../common/project_functions';
-import Database from '../../../../../services/database';
 import styles from "./works_nav.module.css";
 
 

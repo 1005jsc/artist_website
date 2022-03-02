@@ -1,20 +1,20 @@
 import React from "react"
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
-import { TypeOfWork } from '../../../../../common/project_types';
+import { TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import styles from "./work.module.css";
 
 
 type WorkProps = {
   work: TypeOfWork;
   year: string|number;
+  works: TypeOfWorks;
+  worksYear?:TypeOfWork[]
 }
 
-const Work = ({work, year}:WorkProps) => {
+const Work = ({work, year, works, worksYear}:WorkProps) => {
   
   const navigate = useNavigate()
-  const location = useLocation()
-  // console.log(location.pathname)
 
   let workUrl
   if(work.workImageUrl !==null){
@@ -26,7 +26,9 @@ const Work = ({work, year}:WorkProps) => {
 
   const handleNavigate:React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
-    navigate('/main/works/work')
+    navigate(`/main/works/work?work_id=${work.workSerialNumber}`, {
+      state:[works, worksYear]
+    })
 
   }
 

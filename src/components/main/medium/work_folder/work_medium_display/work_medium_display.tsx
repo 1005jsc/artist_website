@@ -3,9 +3,10 @@ import styles from "./work_medium_display.module.css";
 
 type WorkMediumDisplayProps = {
   imgClickModalOpen : () => void
+  workUrl: string
 }
 
-const WorkMediumDisplay = ({imgClickModalOpen}:WorkMediumDisplayProps) => {
+const WorkMediumDisplay = ({imgClickModalOpen, workUrl}:WorkMediumDisplayProps) => {
 
   const handleOpen:React.MouseEventHandler<HTMLImageElement> = (e) => {
     e.preventDefault()
@@ -15,7 +16,7 @@ const WorkMediumDisplay = ({imgClickModalOpen}:WorkMediumDisplayProps) => {
 
   return<div className={styles.work_disp_cont_2}>
       
-      <img className={styles.work}src="/img/works_img/work_sample.jpg" onClick={handleOpen} alt="" />
+      <img className={styles.work}src={workUrl} onClick={handleOpen} alt="" />
 
 
   </div>
