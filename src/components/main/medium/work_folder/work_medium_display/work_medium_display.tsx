@@ -13,7 +13,6 @@ const WorkMediumDisplay = ({imgClickModalOpen, workUrl}:WorkMediumDisplayProps) 
     imgClickModalOpen()
   }
 
-
   return<div className={styles.work_disp_cont_2}>
       
       <img className={styles.work}src={workUrl} onClick={handleOpen} alt="" />

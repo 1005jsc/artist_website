@@ -58,6 +58,9 @@ const SingleWork = () => {
   const [workSubLeft, setWorkSubLeft] = useState<string|null|undefined>(null)
   const [workSubRight, setWorkSubRight] = useState<string|null|undefined>(null)
     
+    // 모달 이미지 제일 큰거
+    const [workMainAlmostOriginal, setWorkMainAlmostOriginal]  = useState<string|null|undefined>(null)
+
   // 화살표 눌렀을때 보내줘야할 것들 works, work id 
   const [leftWorkId, setLeftWorkId] = useState<number|null>(null)
   const [rightWorkId, setRightWorkId] = useState<number|null>(null)
@@ -74,8 +77,10 @@ const SingleWork = () => {
       setWorkSubMain(result[1])
       setWorkSubLeft(result[2])
       setWorkSubRight(result[3])
+      setWorkMainAlmostOriginal(result[4])
       setLeftWorkId(result2[0])
       setRightWorkId(result2[1])
+
       
     }else{
       // 연도별일 경우
@@ -89,6 +94,8 @@ const SingleWork = () => {
       setWorkSubMain(result[1])
       setWorkSubLeft(result[2])
       setWorkSubRight(result[3])
+      setWorkMainAlmostOriginal(result[4])
+
       setLeftWorkId(result2[0])
       setRightWorkId(result2[1])
 
@@ -114,7 +121,7 @@ const navigate = useNavigate()
     }
   }
 
- 
+
 
 
 
@@ -157,7 +164,7 @@ const navigate = useNavigate()
 
   return <section className={styles.single_work_container}>
 
-  {modalOpen&&<WorkModal modalOff={handleModalOff}/>}
+  {modalOpen&&<WorkModal workUrl={workMainAlmostOriginal} modalOff={handleModalOff}/>}
 
 
   <div className={styles.work_disp_cont_1}>
@@ -167,7 +174,7 @@ const navigate = useNavigate()
 
     </div>
     
-      {workMain&&<WorkMediumDisplay workUrl={workMain}imgClickModalOpen={handleModalOpen}/>}
+      {workMain&&<WorkMediumDisplay workUrl={workMain} imgClickModalOpen={handleModalOpen}/>}
 
     <div className={styles.icon_container}>
 

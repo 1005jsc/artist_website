@@ -6,11 +6,12 @@ import styles from "./work_modal.module.css";
 
 type WorkModalProps = {
   modalOff: () => void
+  workUrl: string|null|undefined
 }
 
 
 
-const WorkModal = ({modalOff}:WorkModalProps) => {
+const WorkModal = ({modalOff, workUrl}:WorkModalProps) => {
 
 
 const handleModalOff:React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -36,7 +37,7 @@ const handleKeyDetector = (keyValue:string) => {
       <div className={styles.grey_background}>
         <div className={styles.delete_button_cont}><ModalDeleteButton handleDelete={modalOff}/></div>
       
-          <img className={styles.work_large_image} src="/img/works_img/work_sample2.jpg" alt="" />
+          {workUrl&& <img className={styles.work_large_image} src={workUrl} alt="" />} 
       </div>
 
       <div className={styles.tip_container}>

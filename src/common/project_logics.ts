@@ -228,7 +228,7 @@ class artistWebsiteExportLogics {
     let workSubMain = '' as string|undefined|null
     let workLeft = '' as string|undefined|null
     let workRight = '' as string|undefined|null
-    
+    let workMainAlmostOriginal = '' as string|undefined|null
     array1.forEach((work, index) => {
       if(work.workSerialNumber === workId){
 
@@ -242,6 +242,17 @@ class artistWebsiteExportLogics {
         }else{
           workMain = null
         }
+
+        const workMainAlmostOriginal1 = array1[index]['workImageUrl']
+        if( workMainAlmostOriginal1 !== null){
+          workMainAlmostOriginal=myFunctions.imageUrlMakerByRequestedQuality(
+            Object.values(workMainAlmostOriginal1)[0],'almost-original'
+          )
+          
+        }else{
+          workMainAlmostOriginal = null
+        }
+
 
 
           const workSubMain1 = array1[index]['workImageUrl']
@@ -293,7 +304,7 @@ class artistWebsiteExportLogics {
     }
     )
 
-    return [workMain, workSubMain, workLeft, workRight] 
+    return [workMain, workSubMain, workLeft, workRight, workMainAlmostOriginal] 
   }
 
   singleWorkComponentNextWorkData=(array1:TypeOfWork[], workId:number|null) => {
