@@ -1,6 +1,7 @@
 .main {
 	display: flex;
 	height: 100%;
+	border: 1px solid black;
 }
 
 .left {
@@ -13,7 +14,11 @@
 .left_empty {
 	width: 28.8rem;
 }
+.left_empty_closed {
+	width: 2.88rem;
+}
 
 .content_box {
+	flex: 1;
 	width: 115.2rem;
 }

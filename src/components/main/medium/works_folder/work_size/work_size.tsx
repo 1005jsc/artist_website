@@ -3,7 +3,6 @@ import { useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
 import { myLogics } from '../../../../../common/project_logics';
 import { TypeOfWorks } from '../../../../../common/project_types';
-import Database from '../../../../../services/database';
 import WorkBundleContainerSize from '../work_bundle_container_size/work_bundle_container_size';
 import { ContextType } from '../work_exhibition/work_exhibition';
 import styles from "./work_size.module.css";
@@ -21,7 +20,6 @@ const WorkSize = () => {
     setCheckSmallerOrLarger(bool)
     
   })
-
   
 
   useEffect(() => {

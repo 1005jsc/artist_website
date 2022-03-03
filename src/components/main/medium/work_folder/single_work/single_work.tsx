@@ -140,7 +140,6 @@ const navigate = useNavigate()
         state:[works, worksYear]
       })
       window.location.reload()
-      // navigate
     }
     
 
