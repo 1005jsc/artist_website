@@ -84,7 +84,6 @@ const SingleWork = () => {
       
     }else{
       // 연도별일 경우
-      console.log(worksYear)
       const arrayYear1 = [...worksYear]
       
       const result = myLogics.singleWorkImageDistribute(arrayYear1, workId)

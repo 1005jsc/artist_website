@@ -43,7 +43,7 @@ const WorksNav = ({getUrl}:WorksNavProps) => {
 
   return<div className={styles.works_button_container}>
   <div className={styles.works_sort}>
-    <button className={buttonClickTarget=='year'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
+    <button className={buttonClickTarget=='year'||buttonClickTarget==null?`${styles.works_buttons} ${styles.works_buttons_onclick}`
     :`${styles.works_buttons} ` }data-path="year" onClick={(e) => {
       navigateTo(e)
       }}>연도별</button>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './navbar_left.module.css'
 import NavbarLeftInside from '../navbar_left_inside/navbar_left_inside';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 type NavbarLeftProps = {
   loginState:boolean;
@@ -15,17 +17,25 @@ type NavbarLeftProps = {
 const NabvarLeft = ({loginState, doorknobOpen, closeDoorknob, openDoorknob}:NavbarLeftProps) => {
 
  
-  
+  const [urlWordWorkCheck, setUrlWordWorkCheck] = useState<boolean>(false)
+  const location = useLocation()
+  useEffect(() => {
+      if(location.pathname === '/main/works/work'){
+        setUrlWordWorkCheck(true)
+      }
+      return () => {setUrlWordWorkCheck(false)}
 
-
-
+  }, [location])
 
 
 const handleDoorknobClose:React.MouseEventHandler<HTMLImageElement> = (e) => {
   e.preventDefault()
 
   closeDoorknob()
-
+  
+  setTimeAdd(false)
+  setAnimationing(true)
+  setTimeout(() => {setAnimationing(false)}, 500)
 
 }
 
@@ -34,18 +44,42 @@ const handleDoorknobOpen:React.MouseEventHandler<HTMLImageElement> = (e) => {
   e.preventDefault()
 
   openDoorknob()
-
-
+  
+  setAnimationing(true)
+  setTimeout(() => {setTimeAdd(true)}, 500)
+  setTimeout(() => {setAnimationing(false)}, 500)
 }
+
+
+
+
+const [onHoverOpenBubble, setOnHoverOpenBubble] = useState<boolean>(false)
+const [onHoverCloseBubble, setOnHoverCloseBubble] = useState<boolean>(false)
+const [timeAdd, setTimeAdd] = useState<boolean>(false)
+const [animationing, setAnimationing] = useState<boolean>(false)
+
+
 
 
 return <nav className={doorknobOpen? styles.navbar_shrink : styles.navbar_left}>
   
-  {!doorknobOpen&&<NavbarLeftInside loginState={loginState}/>}
+  {(!doorknobOpen&&timeAdd)&&<NavbarLeftInside loginState={loginState}/>}
   
-  {doorknobOpen&&<img data-tag='click-to-close'className={styles.open_door}src="/icons/open_door.svg" onClick={handleDoorknobOpen}alt="" />}
+  {(urlWordWorkCheck&&doorknobOpen)&& <div className={styles.open_cont}>
+    {(onHoverCloseBubble&&!animationing)&&<img className={styles.text_bubble_open} src="/icons/text_bubble_open.svg" alt="" />}
+    <img data-tag='click-to-open'className={styles.open}src="/icons/open.svg"
+    onMouseEnter={() => setOnHoverCloseBubble(true)}
+    onMouseLeave={() => setOnHoverCloseBubble(false)}
+    onClick={handleDoorknobOpen}alt="" />
+    </div>}
   
-  {!doorknobOpen&& <img data-tag='click-to-open'className={styles.doorknob_handle}src="/icons/door_handle5.svg" onClick={handleDoorknobClose}alt="" />}
+  {(urlWordWorkCheck&&!doorknobOpen)&& <div className={styles.close_cont}>
+    {(onHoverOpenBubble&&!animationing)&&<img className={styles.text_bubble_close} src="/icons/text_bubble_close.svg" alt="" />}
+    <img data-tag='click-to-close'className={styles.close}src="/icons/close.svg"
+    onMouseEnter={() => setOnHoverOpenBubble(true)}
+    onMouseLeave={() => setOnHoverOpenBubble(false)}
+    onClick={handleDoorknobClose}alt="" />
+    </div>}
 </nav>
 
 }

@@ -14,7 +14,6 @@ const WorkBundleContainerYear = ({arrayAboutWorkYearAndWork, worksYear}:WorkBund
   const string1 = arrayAboutWorkYearAndWork[0]
   const array1 = arrayAboutWorkYearAndWork.slice(1)
   
-  
     return <div className={styles.work_bundle_container}>
     <p className={styles.year}>{string1}</p>
     <div className={`${styles.work_bundle}`}>

@@ -1,7 +1,6 @@
 .main {
 	display: flex;
 	height: 100%;
-	border: 1px solid black;
 }
 
 .left {
@@ -13,9 +12,32 @@
 
 .left_empty {
 	width: 28.8rem;
+	animation: openEffect 0.5s;
+	transition: all ease-in 0.5s;
 }
+
+@keyframes openEffect {
+	0% {
+		width: 4.32rem;
+	}
+	to {
+		width: 28.8rem;
+	}
+}
+
 .left_empty_closed {
-	width: 2.88rem;
+	width: 4.32rem;
+	animation: closeEffect 0.5s;
+	transition: all ease-in 0.5s;
+}
+
+@keyframes closeEffect {
+	0% {
+		width: 28.8rem;
+	}
+	to {
+		width: 4.32rem;
+	}
 }
 
 .content_box {

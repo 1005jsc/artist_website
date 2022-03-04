@@ -28,7 +28,7 @@
 	width: 45%;
 	height: 0.4rem;
 	background-color: #c195f3;
-	transition: all 0.5s;
+	transition: all ease-in 0.5s;
 	animation: middleToBothSidesAfter 0.5s;
 }
 
@@ -41,7 +41,7 @@
 	width: 45%;
 	height: 0.4rem;
 	background-color: #c195f3;
-	transition: all 0.5s;
+	transition: all ease-in 0.5s;
 }
 @keyframes middleToBothSidesAfter {
 	0% {
