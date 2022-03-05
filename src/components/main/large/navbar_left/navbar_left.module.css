@@ -1,3 +1,23 @@
+.navbar_not_work {
+	background-color: #f4f4f4;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.navbar_first_render {
+	background-color: #f4f4f4;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
 .navbar_left {
 	background-color: #f4f4f4;
 	width: 100%;

@@ -10,6 +10,16 @@
 	width: 28.8rem;
 }
 
+.left_empty_not_work {
+	width: 28.8rem;
+	height: 100%;
+}
+
+.left_empty_first_render {
+	width: 28.8rem;
+	height: 100%;
+}
+
 .left_empty {
 	width: 28.8rem;
 	animation: openEffect 0.5s;

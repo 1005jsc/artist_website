@@ -16,14 +16,23 @@ type NavbarLeftProps = {
 
 const NabvarLeft = ({loginState, doorknobOpen, closeDoorknob, openDoorknob}:NavbarLeftProps) => {
 
- 
+  const [urlNotWork, setUrlNotWork] = useState<boolean>(true)
   const [urlWordWorkCheck, setUrlWordWorkCheck] = useState<boolean>(false)
+  const [firstRender, setFirstRender] = useState<boolean>(false)
   const location = useLocation()
   useEffect(() => {
       if(location.pathname === '/main/works/work'){
         setUrlWordWorkCheck(true)
+        setUrlNotWork(false)
+        setFirstRender(true)
+
+      }else{
+        setUrlNotWork(true)
       }
-      return () => {setUrlWordWorkCheck(false)}
+      return () => {
+        
+        setUrlWordWorkCheck(false)
+      }
 
   }, [location])
 
@@ -33,6 +42,7 @@ const handleDoorknobClose:React.MouseEventHandler<HTMLImageElement> = (e) => {
 
   closeDoorknob()
   
+  setFirstRender(false)
   setTimeAdd(false)
   setAnimationing(true)
   setTimeout(() => {setAnimationing(false)}, 500)
@@ -61,9 +71,9 @@ const [animationing, setAnimationing] = useState<boolean>(false)
 
 
 
-return <nav className={doorknobOpen? styles.navbar_shrink : styles.navbar_left}>
+return <nav className={firstRender?styles.navbar_first_render:(urlNotWork?styles.navbar_not_work:(doorknobOpen? styles.navbar_shrink : styles.navbar_left))}>
   
-  {(!doorknobOpen&&timeAdd)&&<NavbarLeftInside loginState={loginState}/>}
+  {( firstRender||urlNotWork ||(!doorknobOpen&&timeAdd))&&<NavbarLeftInside loginState={loginState}/>}
   
   {(urlWordWorkCheck&&doorknobOpen)&& <div className={styles.open_cont}>
     {(onHoverCloseBubble&&!animationing)&&<img className={styles.text_bubble_open} src="/icons/text_bubble_open.svg" alt="" />}
