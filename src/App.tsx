@@ -91,7 +91,7 @@ const handleLogin = (password:string|number) => {
           <Route path='' element={<Navbar/>}/>
       </Route>
 
-      <Route path="/main/works/fullscreen" element={<Fullscreen databaseService={databaseService}/>}/>
+      <Route path="/main/works/fullscreen" element={<Fullscreen />}/>
       
 
       <Route path="/main" element={<Main login={login} handleLogin={handleLogin} />} >

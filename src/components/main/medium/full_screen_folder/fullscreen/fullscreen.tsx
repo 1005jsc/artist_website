@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react"
 import styles from "./fullscreen.module.css";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import  styled  from 'styled-components';
-import { TypeOfPhotoAssets, TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
-import Database from '../../../../../services/database';
-import { myLogics } from '../../../../../common/project_logics';
+import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../common/project_types';
 import { myFunctions } from './../../../../../common/project_functions';
 
-type FullscreenProps = {
-  databaseService: Database
-}
 
 
 
-const Fullscreen = ({databaseService}: FullscreenProps) => {
+const Fullscreen = () => {
 
 
   const navigate = useNavigate()
+  const location = useLocation()
+
+
   
   const [works, setWorks] = useState<TypeOfWork[]>([])
   const [i, setI] = useState<number>(0)
@@ -26,21 +24,46 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
   const [autoPlay, setAutoPlay] = useState<boolean>(false)
 
 
-  // 작품 데이터 불러오기 
+  // 렌더링 시 작품 데이터 불러오기
+  
+
+
+
+  // works 에 typeofwork[]로만 집어 넣어주면 됨 
 
   useEffect(() => {
-    const yes = databaseService.getWorkData((data) => {
-      const yearAndWorksSortedByYearResult = myLogics.yearAndWorksSortedByYear(data)
-    setWorks(myLogics.worksSortedByYear(yearAndWorksSortedByYearResult))
-    })
-    return () => yes()
+    const locationState = location.state as (TypeOfWork[]|number|null)[]
+
+    const arrayOfWorks = locationState[0] as TypeOfWork[]
+    const workFirstSelected = locationState[1] as number|null
+    
+    setWorks(arrayOfWorks)
+
+    // workfirstselected 로 i 값을 설정해주기 
+
+    let k = 0
+    for(let i = 0; i< arrayOfWorks.length; i++){
+      arrayOfWorks.forEach((value, index) => {
+        if(value.workSerialNumber === workFirstSelected){
+            k = index
+        
+          } 
+          
+        
+
+      })
+      
+    }
+    setI(k)
+
   }, [])
+
+
+
 
 
   
 
-  // let workFullscreen
-  const [workFullscreen, setWorkFullscreen] = useState<string>()
   
   let firstFullScreenImg
   if(works !== []){
@@ -56,20 +79,17 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
   }
 
 
-  // const [tick, setTick] = useState<boolean>(false)
 
 
-  let workYes
+  let workFullscreen
 
   useEffect(() => {
-    console.log('value')
-    console.log(i)
     if(works !== []){
       if(works[i]){
         let yes2
         if(works[i].workImageUrl){
           yes2 = works[i].workImageUrl as TypeOfPhotoAssets
-          workYes = myFunctions.imageUrlMakerByRequestedQuality(
+          workFullscreen = myFunctions.imageUrlMakerByRequestedQuality(
             Object.values(yes2)[0], 'original')
           
         }
@@ -85,12 +105,9 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
 
 
   useEffect(() => {
-    console.log('interval')
-    // setTick(!tick)
     if(autoPlay){
       const yes = [i] 
       nInterval = window.setInterval(() => {
-        console.log(`yes ${yes[0]} `)
         if(yes[0] >= works.length -1){
           yes[0] = 0
           setI(yes[0])
@@ -99,14 +116,12 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
           setI(yes[0])
         }
         
-      }, 5000)
+      }, 3000)
     }else{
-      console.log('interval stop')
       clearInterval(nInterval)
     }
 
     return () => {
-      console.log('interval over')
       clearInterval(nInterval)}
 
   
@@ -127,12 +142,10 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
       const yes = [i]
       if(yes[0] <= 0){
         yes[0] = works.length -1;
-        console.log(yes[0])
         setI(yes[0])
       }else{
         yes[0] = yes[0]-1
         setI(yes[0])
-
       } 
     
     }else if (path === 'front'){
@@ -143,12 +156,8 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
       }else{
         yes[0] = yes[0]+1
         setI(yes[0])
-
       }
-
     }
-
-
   }
 
 
@@ -217,8 +226,7 @@ const Fullscreen = ({databaseService}: FullscreenProps) => {
 
   return <Fullscreen>
     <div className={styles.div_for_space}></div>
-            <img className={styles.work_img} src={workYes? workYes : firstFullScreenImg} alt="" />
-            {/* <img className={styles.work_img} src={workFullscreen? workFullscreen : firstFullScreenImg} alt="" /> */}
+            <img className={styles.work_img} src={workFullscreen? workFullscreen : firstFullScreenImg} alt="" />
     <div className={styles.div_for_space}>
 
       <div className={styles.remote_control}>

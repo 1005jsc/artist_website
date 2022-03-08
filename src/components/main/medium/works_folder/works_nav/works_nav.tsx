@@ -1,16 +1,42 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { myLogics } from '../../../../../common/project_logics';
+import { TypeOfWork } from '../../../../../common/project_types';
+import Database from '../../../../../services/database';
 import styles from "./works_nav.module.css";
 
 
 type WorksNavProps = {
   getUrl: string
+  databaseService: Database
 }
 
 
-const WorksNav = ({getUrl}:WorksNavProps) => {
+const WorksNav = ({getUrl, databaseService}:WorksNavProps) => {
 
-  
+  const [works, setWorks] = useState<TypeOfWork[]>([])
+
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const [toggleFullscreen, setToggleFullscreen] = useState<boolean>(true) 
+
+  useEffect(() => {
+    const work_id = searchParams.get('work_id')
+    if(work_id){
+      setToggleFullscreen(false)
+    }
+    return () => {setToggleFullscreen(true)}
+  })
+
+
+
+  useEffect(() => {
+    const yes = databaseService.getWorkData((data) => {
+      const yearAndWorksSortedByYearResult = myLogics.yearAndWorksSortedByYear(data)
+    setWorks(myLogics.worksSortedByYear(yearAndWorksSortedByYearResult))
+    })
+    return () => yes()
+  }, [])
   
   const navigate = useNavigate()
   
@@ -37,6 +63,19 @@ const WorksNav = ({getUrl}:WorksNavProps) => {
   
 
   })
+
+  const navigateToFullscreen:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+
+    navigate(`/main/works/fullscreen`,{
+      state:[works, null]
+    } )
+
+
+
+
+
+  }
   
 
   
@@ -61,9 +100,10 @@ const WorksNav = ({getUrl}:WorksNavProps) => {
       }}>전시 출품작</button>
   </div>
 
-  <button className={styles.fullscreen_button} data-path="fullscreen"onClick={(e) => {
-      navigateTo(e)
-      }} >풀스크린으로 모든 작품 보기</button>
+    {toggleFullscreen&&<button className={styles.fullscreen_button} data-path="fullscreen"onClick={(e) => {
+      navigateToFullscreen(e)
+      }} >풀스크린으로 모든 작품 보기</button>}
+  
 </div>
 
 

@@ -65,6 +65,10 @@ const SingleWork = () => {
   const [leftWorkId, setLeftWorkId] = useState<number|null>(null)
   const [rightWorkId, setRightWorkId] = useState<number|null>(null)
 
+
+
+
+
   useEffect(() => {
     const arrayNotYear1 = [...works] 
 
@@ -159,6 +163,38 @@ const navigate = useNavigate()
     setModalOpen(false)
   }
 
+  const handleGoToFullscreen:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+
+    if(worksYear == [] || worksYear ==undefined){
+      navigate(`/main/works/fullscreen`, 
+      {
+        state:[works, workId]
+      })
+    }else{
+      navigate(`/main/works/fullscreen`, 
+      {
+        state:[worksYear, workId]
+      })
+
+    }
+    
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   return <section className={styles.single_work_container}>
 
@@ -208,7 +244,7 @@ const navigate = useNavigate()
   </div>
   <div className={styles.button_container}>
       <button className={styles.b1} onClick={handleModalOnClick}>확대하여 상세보기</button>
-      <button className={styles.b1}>풀스크린으로 보기</button>
+      <button className={styles.b1} onClick={handleGoToFullscreen}>풀스크린으로 보기</button>
   </div>
 
   

@@ -51,7 +51,7 @@ const Works = ({databaseService}:WorksProps) => {
     <span className={styles.title}>작품</span>
     </div>
     
-    <WorksNav getUrl={urlNow}/>
+    <WorksNav databaseService={databaseService} getUrl={urlNow}/>
 
     <div className={styles.works}>
 
