@@ -1,14 +1,49 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./fullscreen.module.css";
 import { useNavigate } from 'react-router-dom';
 import  styled  from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { TypeOfPhotoAssets, TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
+import Database from '../../../../../services/database';
+import { myLogics } from '../../../../../common/project_logics';
+import { myFunctions } from './../../../../../common/project_functions';
+
+type FullscreenProps = {
+  databaseService: Database
+}
 
 
 
+const Fullscreen = ({databaseService}: FullscreenProps) => {
 
-const Fullscreen = () => {
+
+  const [works, setWorks] = useState<TypeOfWork[]>([])
+  const [i, setI] = useState<number[]>([0])
+  useEffect(() => {
+    const yes = databaseService.getWorkData((data) => {
+      const yearAndWorksSortedByYearResult = myLogics.yearAndWorksSortedByYear(data)
+    setWorks(myLogics.worksSortedByYear(yearAndWorksSortedByYearResult))
+
+
+    })
+    return () => yes()
+  }, [])
+
+
+  
+let workFullscreen
+  if(works !== []){
+    if(works[i[0]]){
+      // console.log(works)
+      let yes2
+      const iNumber = i[0]
+      if(works[iNumber].workImageUrl){
+        yes2 = works[iNumber].workImageUrl as TypeOfPhotoAssets
+        workFullscreen = (myFunctions.imageUrlMakerByRequestedQuality(
+          Object.values(yes2)[0], 'full-screen'))
+      }
+    }
+  }
+
 
 
   const Fullscreen = styled.div`
@@ -38,6 +73,41 @@ const Fullscreen = () => {
 
 
 
+  const handleArrowClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    const path = e.currentTarget.dataset.direction
+    
+    if(path === 'back'){
+      const yes = [...i]
+      if(yes[0] <= 0){
+
+        yes[0] = works.length -1;
+        console.log(yes[0])
+        setI(yes)
+      }else{
+        yes[0] = yes[0]-1
+        setI(yes)
+
+      } 
+    
+    }else if (path === 'front'){
+      const yes = [...i] 
+      if(yes[0] >= works.length -1){
+        yes[0] = 0
+        setI(yes)
+      }else{
+        yes[0] = yes[0]+1
+        setI(yes)
+
+      }
+
+    }
+
+
+  }
+
+
+
 
 
 
@@ -46,7 +116,7 @@ const Fullscreen = () => {
 
   return <Fullscreen>
     <div className={styles.div_for_space}></div>
-    <img className={styles.work_img} src="/img/works_img/work_sample4.jpg" alt="" />
+    <img className={styles.work_img} src={workFullscreen} alt="" />
     <div className={styles.div_for_space}>
       <div className={styles.remote_control}>
           <button className={styles.menu_button} onClick={navigateTo}>menu</button>
@@ -56,8 +126,8 @@ const Fullscreen = () => {
               <button className={styles.menu_option}>홈 화면</button>
           </div>
           <div className={styles.arrows}>
-              <button className={styles.arrow}><img className={styles.left}src="/icons/left_arrow_carot.svg" alt="" /> </button>
-              <button className={styles.arrow}><img className={styles.right}src="/icons/right_arrow_carot.svg" alt="" /></button>
+              <button className={styles.arrow} data-direction="back" onClick={handleArrowClick}><img className={styles.left}src="/icons/left_arrow_carot.svg" alt="" /> </button>
+              <button className={styles.arrow} data-direction="front" onClick={handleArrowClick}><img className={styles.right}src="/icons/right_arrow_carot.svg" alt="" /></button>
           </div>
       </div>
 

@@ -21,38 +21,13 @@ const WorkYear = () => {
 
 
 
-  const worksByYearFilter4 = myLogics.worksByYearSort(works)
+  const yearAndWorksSortedByYearResult = myLogics.yearAndWorksSortedByYear(works)
   
-
-  //// 일단 포기 
-
-
-  let worksByYearFilter5 = [] as (string|TypeOfWork)[][]
-  if(worksByYearFilter4){
-    worksByYearFilter5 = [...worksByYearFilter4]
-  }
-
-  let okay = [] as  TypeOfWork[]
-    if(worksByYearFilter5){
-
-      worksByYearFilter5.forEach((cocopop) => {
-        const array1 = cocopop.slice(1) as  TypeOfWork[]
-        let array2 = [] as TypeOfWork[]
-        if(okay){
-          array2 = [...okay, ...array1]
-        }else{
-          array2=[...array1]
-        }
-
-        okay = array2
-        
-      })
-    }
-    
+  const okay = myLogics.worksSortedByYear(yearAndWorksSortedByYearResult)
   
   
   return <div className={styles.container3}>
-    {worksByYearFilter4&&worksByYearFilter4.map((array, index) => 
+    {yearAndWorksSortedByYearResult&&yearAndWorksSortedByYearResult.map((array, index) => 
     {return <WorkBundleContainerYear key={index} arrayAboutWorkYearAndWork={array} worksYear={okay}/>})}
 
     

@@ -8,7 +8,7 @@ class artistWebsiteExportLogics {
 
 
 
-  worksByYearSort=(works:TypeOfWorks|null) => {
+  yearAndWorksSortedByYear=(works:TypeOfWorks|null) => {
     if(works==null){
       // console.log('database is null')
       return
@@ -335,14 +335,32 @@ class artistWebsiteExportLogics {
   }
 
 
-
+  worksSortedByYear = (yearAndWorksSortedByYearResult:(string|TypeOfWork)[][]|undefined) => {
+    let worksByYearFilter5 = [] as (string|TypeOfWork)[][]
+   
+   
+    if(yearAndWorksSortedByYearResult){
+      worksByYearFilter5 = [...yearAndWorksSortedByYearResult]
+    }
   
-
-
-
-
-
-
+    let okay = [] as  TypeOfWork[]
+      if(worksByYearFilter5){
+  
+        worksByYearFilter5.forEach((cocopop) => {
+          const array1 = cocopop.slice(1) as  TypeOfWork[]
+          let array2 = [] as TypeOfWork[]
+          if(okay){
+            array2 = [...okay, ...array1]
+          }else{
+            array2=[...array1]
+          }
+  
+          okay = array2
+          
+        })
+      }
+      return okay
+  }
 
 
 

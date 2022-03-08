@@ -125,7 +125,7 @@ class artWebsiteExportFunctions{
       case 'large':
         return `${urlFormer}q_20/${urlLater}`;
       case 'full-screen':
-        return `${urlFormer}q_40/${urlLater}`;
+        return `${urlFormer}q_60/${urlLater}`;
       case 'almost-original':
         return `${urlFormer}q_60/${urlLater}`;
       default:

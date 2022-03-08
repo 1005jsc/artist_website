@@ -61,7 +61,7 @@ const WorksNav = ({getUrl}:WorksNavProps) => {
       }}>전시 출품작</button>
   </div>
 
-  <button className={styles.fullscreen_button} data-path="full_screen"onClick={(e) => {
+  <button className={styles.fullscreen_button} data-path="fullscreen"onClick={(e) => {
       navigateTo(e)
       }} >풀스크린으로 모든 작품 보기</button>
 </div>

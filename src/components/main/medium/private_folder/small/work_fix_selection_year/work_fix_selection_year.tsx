@@ -25,14 +25,14 @@ const WorkFixSelectionYear = ({databaseService, exhibitionWorksOnClickArray, pas
   }, [])
 
 
-  const worksByYearFilter4 = myLogics.worksByYearSort(works)
+  const yearAndWorksSortedByYearResult = myLogics.yearAndWorksSortedByYear(works)
   
 
   return <div className={styles.container3}>
 
 
 
-{worksByYearFilter4&&worksByYearFilter4.map((array, index) => 
+{yearAndWorksSortedByYearResult&&yearAndWorksSortedByYearResult.map((array, index) => 
     {return <WorkFixSelectionBundleContainerYear exhibitionWorksOnClickArray={exhibitionWorksOnClickArray} passSelectedWorkToUpper={passSelectedWorkToUpper} key={index} arrayAboutWorkYearAndWork={array}/>})}
 
   
