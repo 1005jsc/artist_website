@@ -19,11 +19,73 @@
 	height: 100%;
 }
 
-.home_button {
+.remote_control {
 	position: absolute;
 	right: 6rem;
 	bottom: 5%;
-	width: 10rem;
-	height: 5rem;
+	width: 12.4rem;
+	height: 6.2rem;
 	margin-left: 3rem;
+	background-color: #c4c4c4;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.menu_button {
+	font-size: 1.6rem;
+	background-color: transparent;
+	margin-left: 0.4rem;
+}
+
+.arrow {
+	background-color: transparent;
+	margin-right: 0.4rem;
+}
+
+.left {
+	height: 1.2rem;
+}
+
+.right {
+	height: 1.2rem;
+}
+
+.menu {
+	position: fixed;
+	right: 11.6rem;
+	bottom: 6.4%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #c4c4c4;
+	width: 6.4rem;
+	height: 10rem;
+	border: 0.1rem solid #ababab;
+}
+
+/* .menu {
+	position: fixed;
+	right: 12.2rem;
+	bottom: 6.4%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #c4c4c4;
+	width: 5.6rem;
+	height: 8.4rem;
+	border: 0.1rem solid #b8b8b8;
+} */
+
+.menu_option {
+	flex: 1;
+	font-size: 1.2rem;
+	background-color: transparent;
+}
+
+.black_line {
+	width: 100%;
+	border-top: 0.1rem solid black;
 }

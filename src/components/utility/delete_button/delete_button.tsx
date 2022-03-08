@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "./delete_button.module.css";
-import { faXmark, faPlusSquare, faMinusSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faXmark} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type DeleteButtonProps = {
