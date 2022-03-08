@@ -92,7 +92,7 @@ export type TypeOfExhibitionHistory = {
 
 // image
 
-export type ImageQualityTypes = 'mini'|'small'|'medium'|'large'|'full-screen'|'almost-original'
+export type ImageQualityTypes = 'mini'|'small'|'medium'|'large'|'full-screen'|'almost-original'|'original'
 
 
 

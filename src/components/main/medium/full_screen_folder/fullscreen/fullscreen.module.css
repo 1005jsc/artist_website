@@ -42,7 +42,12 @@
 	background-color: transparent;
 	margin-right: 0.4rem;
 }
-
+.arrow:hover {
+	transition: all 20ms ease-in;
+	transform: scale(1.16);
+	/* border: 0.2rem solid  */
+	/* outline: 0.5rem solid rgb(69, 159, 243); */
+}
 .left {
 	height: 1.2rem;
 }
@@ -63,6 +68,16 @@
 	width: 6.4rem;
 	height: 10rem;
 	border: 0.1rem solid #ababab;
+	z-index: 9999;
+}
+
+.menu_click_off {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
 }
 
 /* .menu {

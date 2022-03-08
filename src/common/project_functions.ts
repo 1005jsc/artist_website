@@ -125,9 +125,11 @@ class artWebsiteExportFunctions{
       case 'large':
         return `${urlFormer}q_20/${urlLater}`;
       case 'full-screen':
-        return `${urlFormer}q_60/${urlLater}`;
+        return `${urlFormer}q_10/${urlLater}`;
       case 'almost-original':
         return `${urlFormer}q_60/${urlLater}`;
+      case 'original':
+        return   `${urlFormer}${urlLater}`
       default:
         console.log('no match ')
     }
