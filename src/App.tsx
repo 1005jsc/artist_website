@@ -36,6 +36,7 @@ import Navbar from './components/front_door/navbar/navbar';
 import ExhibitionImageUpload from './services/exhibition_image_uploads';
 import Modal from 'react-modal';
 import SingleWork from './components/main/medium/work_folder/single_work/single_work';
+import Fullscreen from './components/main/medium/full_screen_folder/fullscreen/fullscreen';
 
 
 type AppProps = {
@@ -90,6 +91,9 @@ const handleLogin = (password:string|number) => {
           <Route path='' element={<Navbar/>}/>
       </Route>
 
+      <Route path="/main/works/fullscreen" element={<Fullscreen/>}/>
+      
+
       <Route path="/main" element={<Main login={login} handleLogin={handleLogin} />} >
 
         <Route path='' element={<Biography/>}>
@@ -112,6 +116,7 @@ const handleLogin = (password:string|number) => {
           <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
           <Route path="work:work_id" element={<SingleWork/>}/>
           <Route path="work" element={<SingleWork/>}/>
+
         </Route>
 
         

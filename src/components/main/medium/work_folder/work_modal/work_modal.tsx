@@ -69,41 +69,8 @@ position: relative;
 
 `
 
-const moveScreenStart:React.DragEventHandler<HTMLDivElement> = (e) => {
-  // const img = new Image();
-  // e.dataTransfer.setDragImage(img, 0, 0);
-  console.log(e.clientX)
-  console.log(e.clientY)
-};
 
-// const moveScreen = e => {
-//   const limitX = e.target.offsetLeft + (e.clientX - posX) <= 0;
-//   const limitY = e.target.offsetTop + (e.clientY - posY) <= 0;
 
-//   e.target.style.left = limitX
-//     ? `${e.target.offsetLeft + (e.clientX - posX)}px`
-//     : '0px';
-//   e.target.style.top = limitY
-//     ? `${e.target.offsetTop + (e.clientY - posY)}px`
-//     : '0px';
-
-//   posX = limitX ? e.clientX : 0;
-//   posY = limitY ? e.clientY : 0;
-// };
-
-// const moveScreenEnd = e => {
-//   const limitX = e.target.offsetLeft + (e.clientX - posX) <= 0;
-//   const limitY = e.target.offsetTop + (e.clientY - posY) <= 0;
-
-//   e.target.style.left = limitX
-//     ? `${e.target.offsetLeft + (e.clientX - posX)}px`
-//     : '0px';
-//   e.target.style.top = limitY
-//     ? `${e.target.offsetTop + (e.clientY - posY)}px`
-//     : '0px';
-
-//   setScreen({ top: e.target.style.top, left: e.target.style.left });
-// };
 
 
   return <div className={styles.modal_background} onClick={handleModalOff} >
@@ -122,9 +89,6 @@ const moveScreenStart:React.DragEventHandler<HTMLDivElement> = (e) => {
             <Frame ratio={ratio}
             
             onWheel={wheelHandler}
-            onDragStart={moveScreenStart}
-            // onDrag={moveScreen}
-            // onDragEnd={moveScreenEnd}
             
             
             >
@@ -151,7 +115,6 @@ const moveScreenStart:React.DragEventHandler<HTMLDivElement> = (e) => {
 
       <div className={styles.tip_container}>
         <span className={styles.tip}>Tip : 그림을 마우스 휠로 스크롤하시면 해당영역을 더 상세하게 볼 수 있습니다</span>
-        <span className={styles.tip}>Tip2 : 해당영역을 드래그하시면 위치를 이동 할 수 있습니다</span>
       </div>
 
     <KeyDetector sendKeyValue={handleKeyDetector}/>

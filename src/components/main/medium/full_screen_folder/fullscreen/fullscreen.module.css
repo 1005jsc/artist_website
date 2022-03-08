@@ -1,0 +1,29 @@
+.work_img {
+	/* flex: 8; */
+	height: 90%;
+}
+
+/* 
+.home_button {
+	position: relative;
+	right: 0rem;
+	bottom: -42.6%;
+	width: 10rem;
+	height: 5rem;
+	margin-left: 4rem;
+} */
+
+.div_for_space {
+	position: relative;
+	flex: 1;
+	height: 100%;
+}
+
+.home_button {
+	position: absolute;
+	right: 6rem;
+	bottom: 5%;
+	width: 10rem;
+	height: 5rem;
+	margin-left: 3rem;
+}
