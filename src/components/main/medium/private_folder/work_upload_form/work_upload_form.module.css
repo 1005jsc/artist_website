@@ -82,10 +82,15 @@
 	border: 0;
 }
 
+.small_input_div {
+	display: inline-block;
+	width: 25rem;
+	/* border: 1px solid black; */
+}
 .number_input {
 	font-size: 2rem;
 	border: 0;
-	width: 4rem;
+	width: 4.3rem;
 }
 
 .units {
@@ -197,4 +202,22 @@
 
 .fifth_buttons:hover {
 	transform: scale(1.02);
+}
+
+.notice_wrong_password {
+	position: relative;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
+}
+
+.notice_wrong_image_upload {
+	position: absolute;
+	left: 32rem;
+	top: -1.5rem;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
 }

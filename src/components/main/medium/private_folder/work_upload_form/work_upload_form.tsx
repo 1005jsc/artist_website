@@ -74,6 +74,19 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
 
 
+    const [workImageUrlNull, setWorkImageUrlNull] = useState<boolean>(false)
+    const [workNameNull, setWorkNameNull] = useState<boolean>(false)
+    const [workCompletionDateNull, setWorkCompletionDateNull] = useState<boolean>(false)
+    const [workSizeNull, setWorkSizeNull] = useState<boolean>(false)
+
+
+
+    let workImageUrlNulll = false
+    let workNameNulll= false
+    let workCompletionDateNulll = false
+    let workSizeNulll = false
+
+
 
 
 
@@ -81,16 +94,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
     e.preventDefault()
 
-    if(myFunctions.checkWordFromUrl('work_fix', url)){
-      navigate('/main/private/loggedin/work_fix/work_fix_done')
-
-    }else if(myFunctions.checkWordFromUrl('work_upload', url)){
-
-      navigate('/main/private/loggedin/work_upload/work_upload_done')
-    }else{
-      console.log('url or navigate error')
-    }
-
+   
 
     let workNameValue
     let workCompletionDateValue
@@ -112,6 +116,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
     workNameValue=workNameRef.current.value      
     }else{
             workNameValue = null
+      
     }
 
     if(workCompletionDateRef.current){
@@ -236,7 +241,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
     
   // 작품 데이터(3/3)
     const workSerialNumberNum = myFunctions.generateAKey(0)
-  
     const workOnSaleData =workOnSaleValue
     
 
@@ -267,8 +271,92 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       }
 
 
+      // 업로드전에 중요 파라메타 4가지의 널 체크 ( 더 깨끗하게 짤수 있는가는 모르겠는데 일단 )
+      // 병렬적인 널체크 
 
-      databaseService.uploadWorkData(workData.workSerialNumber, workData)
+      
+
+
+
+
+      if(workData.workImageUrl){
+        workImageUrlNulll= false
+      }else{
+        workImageUrlNulll = true
+      }
+
+
+
+
+      
+      if(workData.workName){
+        workNameNulll= false
+      }else{
+        workNameNulll= true
+      }
+
+
+      if(workData.workCompletionDate){
+        workCompletionDateNulll= false
+      }else{
+        workCompletionDateNulll= true
+
+      }
+
+
+      if(workData.workSize ){
+        if(workData.workSize.length >= 8){
+          workSizeNulll= false
+        }else{
+          workSizeNulll= true
+        }
+        
+      }
+
+
+
+
+      setWorkImageUrlNull(workImageUrlNulll)
+      setWorkNameNull(workNameNulll)
+      setWorkCompletionDateNull(workCompletionDateNulll)
+      setWorkSizeNull(workSizeNulll)
+
+
+
+
+      // 성공 시 드디어 데이터를 업로드 한다 
+      if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
+
+        console.log(workData)
+
+        if(myFunctions.checkWordFromUrl('work_fix', url)){
+          navigate('/main/private/loggedin/work_fix/work_fix_done')
+    
+        }else if(myFunctions.checkWordFromUrl('work_upload', url)){
+    
+          navigate('/main/private/loggedin/work_upload/work_upload_done')
+        }else{
+          console.log('url or navigate error')
+        }
+        databaseService.uploadWorkData(workData.workSerialNumber, workData)
+      }else{
+        window.scrollTo({
+          top:0
+        })
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
   }catch(err){
@@ -377,6 +465,8 @@ let obj2 = {} as TypeOfExhibitionHistory
     <div className={styles.div2}>
       <span className={styles.div2_title}>1. 작품사진 올리기</span>
     </div>
+    {workImageUrlNull&&<span className={styles.notice_wrong_image_upload}>필수: 작품 완성일자를 넣어주세요</span>}
+
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
     <button className={styles.image_upload_button}
@@ -402,19 +492,27 @@ let obj2 = {} as TypeOfExhibitionHistory
 
         <label className={styles.lable}>작품 이름:</label>
         <input ref={workNameRef} className={styles.input}type="text" name="work_name" placeholder='제목 입력'/>
+        {workNameNull&&<span className={styles.notice_wrong_password}>필수: 작품 이름을 넣어주세요</span>}
+
       </div>
 
       <div className={styles.lable_div}>
         <label className={styles.lable}>작품 완성일자:</label>
           <input ref={workCompletionDateRef} className={styles.input}type="text" name="work_completion_date" placeholder='형식: 20210401'/>
+          {workCompletionDateNull&&<span className={styles.notice_wrong_password}>필수: 작품 완성일자를 넣어주세요</span>}
+      
       </div>
     
       <div className={styles.lable_div}>
         <label className={styles.lable}>작품 치수:</label>
-          <input ref={workSizeOneRef} className={styles.number_input}type="text" name="work_size_one" />
+        <div className={styles.small_input_div}>
+          <input ref={workSizeOneRef} className={styles.number_input}type="text" name="work_size_one" placeholder="가로"/>
           <span className={styles.units}>cm x </span>
-          <input ref={workSizeTwoRef} className={styles.number_input}type="text" name="work_size_two"  />
+          <input ref={workSizeTwoRef} className={styles.number_input}type="text" name="work_size_two" placeholder="세로" />
           <span className={styles.units}>cm </span>
+        </div>
+          {workSizeNull&&<span className={styles.notice_wrong_password}>필수: 작품 치수를 기입해주세요	</span>}
+        
       </div>
       
       <div className={styles.lable_div}>

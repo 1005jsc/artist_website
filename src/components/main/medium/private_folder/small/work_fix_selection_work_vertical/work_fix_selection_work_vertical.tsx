@@ -14,7 +14,7 @@ type WorkFixSelectionWorkProps = {
 const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSelectedWorkToUpper}:WorkFixSelectionWorkProps) => {
 
   const [workOnClick, setWorkOnClick] = useState<boolean>(false)
-
+  console.log(work)
 
 
   useEffect(() => {
@@ -26,8 +26,14 @@ const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSel
     }
   }, [exhibitionWorksOnClickArray, work.workSerialNumber])
 
+
   let workUrl
-  if(work.workImageUrl !==null){
+
+  if(work.workImageUrl ==null){
+
+    workUrl=undefined
+ 
+  }else{
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
     (Object.values(work.workImageUrl)[0],'small', 216)
   }
