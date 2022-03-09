@@ -211,3 +211,22 @@
 	font-size: 2rem;
 	color: white;
 }
+
+.notice_upload_error {
+	position: relative;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-left: 3rem;
+	bottom: 0.2rem;
+}
+
+.notice_wrong_image_upload {
+	position: absolute;
+	left: 32rem;
+	top: -1.5rem;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
+}

@@ -327,7 +327,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       // 성공 시 드디어 데이터를 업로드 한다 
       if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
 
-        console.log(workData)
 
         if(myFunctions.checkWordFromUrl('work_fix', url)){
           navigate('/main/private/loggedin/work_fix/work_fix_done')

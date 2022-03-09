@@ -228,6 +228,21 @@ useEffect(() => {
 
 
 
+const [exhibitionTitleNull, setExhibitionTitleNull] = useState<boolean>(false)
+const [exhibitionNameNull, setExhibitionNameNull] = useState<boolean>(false)
+const [exhibitionStartDateNull, setExhibitionStartDateNull] = useState<boolean>(false)
+const [exhibitionEndDateNull, setExhibitionEndDateNull] = useState<boolean>(false)
+
+
+let exhibitionTitleNulll = false
+let exhibitionNameNulll = false
+let exhibitionStartDateNulll = false
+let exhibitionEndDateNulll = false
+
+
+
+
+
 // 전시회 데이터 (2/3)
 
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -314,7 +329,6 @@ try{
 
 
   
-  // exhibitionWorksOnClick
 
 
 
@@ -341,7 +355,6 @@ try{
     exhibitionMemo :exhibitionMemoValue,
         
   }
-  databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
 
   // 전시장 외부사진 (5/5)
   let  idAndUrls 
@@ -362,19 +375,73 @@ try{
 
 
 
+  if(exhibitionData.exhibitionTitle){
+    exhibitionTitleNulll= false
+  }else{
+
+    exhibitionTitleNulll= true
+  }
+
+  
+  if(exhibitionData.exhibitionName){
+    exhibitionNameNulll= false
+  }else{
+
+    exhibitionNameNulll= true
+  }
+  if(exhibitionData.exhibitionStartDate){
+    if(exhibitionData.exhibitionStartDate.length == 8){
+      exhibitionStartDateNulll= false
+    }else{
+  
+      exhibitionStartDateNulll= true
+    }
+  }else{
+    exhibitionStartDateNulll= true
+
+  }
+  if(exhibitionData.exhibitionEndDate){
+    if(exhibitionData.exhibitionEndDate.length == 8){
+      exhibitionEndDateNulll= false
+    }else{
+  
+      exhibitionEndDateNulll= true
+    }
+  }else{
+    exhibitionEndDateNulll= true
+
+  }
+  
+
+  console.log(exhibitionTitleNulll)
+  console.log(exhibitionNameNulll)
+  console.log(exhibitionStartDateNulll)
+  console.log(exhibitionEndDateNulll)
+  console.log(exhibitionData.exhibitionStartDate)
+  console.log(exhibitionData.exhibitionEndDate)
+
+
+  setExhibitionTitleNull(exhibitionTitleNulll)
+  setExhibitionNameNull(exhibitionNameNulll)
+  setExhibitionStartDateNull(exhibitionStartDateNulll)
+  setExhibitionEndDateNull(exhibitionEndDateNulll)
 
 
 
 
+  // 성공 시 
+  if(!exhibitionTitleNulll&&!exhibitionNameNulll&&!exhibitionStartDateNulll&&!exhibitionEndDateNulll){
 
+    databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
+    navigate('/main/private/loggedin/exhibition_upload/exhibition_upload_done')
+  }else{
+    
+    window.scrollTo({
+      top:0
+    })
+  }
 
-
-
-
-
-
-
-  navigate('/main/private/loggedin/exhibition_upload/exhibition_upload_done')
+  
 
 
 }catch(err){
@@ -482,6 +549,7 @@ let obj2 = {} as TypeOfWorks
     <div className={styles.div2}>
       <span className={styles.div2_title}>1. 전시회 포스터 등록하기</span>
     </div>
+
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
     <button className={styles.image_upload_button}
@@ -507,11 +575,15 @@ let obj2 = {} as TypeOfWorks
 
         <label className={styles.lable}>전시회 타이틀:</label>
         <input ref={exhibitionTitleRef} className={styles.input}type="text" name="exhibition_title" placeholder='예: 국윤미술관 기획초대전'/>
+    {exhibitionTitleNull&&<span className={styles.notice_upload_error}>필수: 전시회 타이틀을 넣어주세요</span>}
+      
       </div>
       <div className={styles.lable_div}>
 
         <label className={styles.lable}>전시회 이름:</label>
         <input ref={exhibitionNameRef} className={styles.input}type="text" name="exhibition_name" placeholder='예: 조용남 展 -시간을 담다-'/>
+    {exhibitionNameNull&&<span className={styles.notice_upload_error}>필수: 전시회 이름을 넣어주세요</span>}
+      
       </div>
       
       <div className={styles.lable_div}>
@@ -523,11 +595,15 @@ let obj2 = {} as TypeOfWorks
       <div className={styles.lable_div}>
         <label className={styles.lable}>전시회 시작일:</label>
           <input ref={exhibitionStartDateRef} className={styles.input}type="text" name="exhibition_start_date" placeholder='형식: 20210401'/>
+    {exhibitionStartDateNull&&<span className={styles.notice_upload_error}>필수: 전시회 시작일을 여덟자리 숫자로 넣어주세요</span>}
+      
       </div>
 
       <div className={styles.lable_div}>
         <label className={styles.lable}>전시회 종료일:</label>
           <input ref={exhibitionEndDateRef} className={styles.input}type="text" name="exhibition_end_date" placeholder='형식: 20210501'/>
+    {exhibitionEndDateNull&&<span className={styles.notice_upload_error}>필수: 전시회 종료일을 여덟자리 숫자로 넣어주세요</span>}
+      
       </div>
 
       <div className={styles.lable_div}>

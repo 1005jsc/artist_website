@@ -14,7 +14,6 @@ type WorkFixSelectionWorkProps = {
 const WorkFixSelectionWorkVertical = ({work,exhibitionWorksOnClickArray, passSelectedWorkToUpper}:WorkFixSelectionWorkProps) => {
 
   const [workOnClick, setWorkOnClick] = useState<boolean>(false)
-  console.log(work)
 
 
   useEffect(() => {
