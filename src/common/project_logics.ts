@@ -362,6 +362,35 @@ class artistWebsiteExportLogics {
       return okay
   }
 
+  // workSize의 타입을 제대로 할 수 있는 방법이 있을까?
+
+  workSizeValueDividerIntoWorkSizeOneAndWorkSizeTwo= (workSize:(string|null)) => {
+
+    let hi
+    let hi3
+    let hi4
+    let workSizeOneOne =0
+    let workSizeTwoTwo =0
+    if(workSize){
+      hi = workSize 
+      if(hi.length >= 6){
+        hi3 = hi.replace(/[^0-9]/g, ' ')?.substring(0,5)
+        hi4 = hi?.replace(/[^0-9]/g, ' ')?.substring(5)
+      }else{
+        hi3 = '0'
+        hi4 = '0'
+      }
+        workSizeOneOne = parseInt(hi3)
+        workSizeTwoTwo = parseInt(hi4)
+    }
+
+    return [workSizeOneOne, workSizeTwoTwo]
+
+
+
+  }
+
+
 
 
 }

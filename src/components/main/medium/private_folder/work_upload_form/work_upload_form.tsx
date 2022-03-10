@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
-import { TypeOfExhibitionHistory, TypeOfExhibitions, TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
+import { TypeOfExhibitionHistory,  TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold,    TypeOfWork,    TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
-import PreviewImage from '../../../small/preview_image/preview_image';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
 import WorkFormExhibitionsSelect from '../small/work_form_exhibitions_select/work_form_exhibitions_select';
 import styles from "./work_upload_form.module.css";
@@ -81,11 +80,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
 
 
-    let workImageUrlNulll = false
-    let workNameNulll= false
-    let workCompletionDateNulll = false
-    let workSizeNulll = false
-
 
 
 
@@ -96,8 +90,13 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
    
 
+    let workImageUrlNulll = false
+    let workNameNulll= false
+    let workCompletionDateNulll = false
+    let workSizeNulll = false
+
     let workNameValue
-    let workCompletionDateValue
+    let workCompletionDateValue 
     let workSizeOneValue
     let workSizeTwoValue
     let workMaterialSelectValue
@@ -120,7 +119,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
     }
 
     if(workCompletionDateRef.current){
-    workCompletionDateValue=workCompletionDateRef.current.value
+    workCompletionDateValue=workCompletionDateRef.current.value 
     }else{
     workCompletionDateValue = null
     }
@@ -297,7 +296,16 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
 
       if(workData.workCompletionDate){
-        workCompletionDateNulll= false
+
+        if(workData.workCompletionDate.length == 8 ) {
+
+          workCompletionDateNulll= false
+        }else{
+
+          workCompletionDateNulll= true
+        }
+
+
       }else{
         workCompletionDateNulll= true
 
@@ -498,7 +506,7 @@ let obj2 = {} as TypeOfExhibitionHistory
       <div className={styles.lable_div}>
         <label className={styles.lable}>작품 완성일자:</label>
           <input ref={workCompletionDateRef} className={styles.input}type="text" name="work_completion_date" placeholder='형식: 20210401'/>
-          {workCompletionDateNull&&<span className={styles.notice_wrong_password}>필수: 작품 완성일자를 넣어주세요</span>}
+          {workCompletionDateNull&&<span className={styles.notice_wrong_password}>필수: 작품 완성일자를 여덟자리 숫자로 넣어주세요</span>}
       
       </div>
     

@@ -64,7 +64,7 @@ export type TypeOfWork = {
   lastUpdate:number|string|null;
   workImageUrl: TypeOfPhotoAssets|null;
   workName:string|null;
-  workCompletionDate:string|number|null;
+  workCompletionDate:string|null;
   workSize:string|null;
   workMaterial:string|null;
   workOnSale: TypeOfSoldNotSold;

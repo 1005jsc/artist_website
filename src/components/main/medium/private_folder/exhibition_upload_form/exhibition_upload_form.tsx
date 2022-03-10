@@ -234,10 +234,6 @@ const [exhibitionStartDateNull, setExhibitionStartDateNull] = useState<boolean>(
 const [exhibitionEndDateNull, setExhibitionEndDateNull] = useState<boolean>(false)
 
 
-let exhibitionTitleNulll = false
-let exhibitionNameNulll = false
-let exhibitionStartDateNulll = false
-let exhibitionEndDateNulll = false
 
 
 
@@ -248,6 +244,10 @@ let exhibitionEndDateNulll = false
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
 
+    let exhibitionTitleNulll = false
+    let exhibitionNameNulll = false
+    let exhibitionStartDateNulll = false
+    let exhibitionEndDateNulll = false
     
   
   let exhibitionTitleValue
@@ -413,12 +413,6 @@ try{
   }
   
 
-  console.log(exhibitionTitleNulll)
-  console.log(exhibitionNameNulll)
-  console.log(exhibitionStartDateNulll)
-  console.log(exhibitionEndDateNulll)
-  console.log(exhibitionData.exhibitionStartDate)
-  console.log(exhibitionData.exhibitionEndDate)
 
 
   setExhibitionTitleNull(exhibitionTitleNulll)

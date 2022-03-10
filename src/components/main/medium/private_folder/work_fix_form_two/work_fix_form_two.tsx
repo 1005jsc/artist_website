@@ -18,26 +18,30 @@ type WorkFixFormTwoProps = {
 const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
   
   const database = useOutletContext<Database>()
+  const location = useLocation()
 
   const [worksFromFormOneSerialNumbers, setWorksFromFormOneSerialNumbers]= useState<Array<number>>([])
   const [worksFromFormOne, setWorksFromFormOne] = useState<TypeOfWorks|null>(null)
   
+  // 여기가 선택된 work 
   const [workOnSelect, setWorkOnSelect] = useState<TypeOfWork|null>(null)
-  const location = useLocation()
   
+  // 더이상 작업할 work가 없을때 work fix form 에게 끝났다고 신호를 보낸다  
+  const [jobDone, setJobDone] = useState<boolean>(false)
+
+// 1. 고칠 작품 렌더하기
   useEffect(() => {
     const locationState = location.state as Array<any>
     const array1 = locationState[0] as number[]
     const object1 = locationState[1] as TypeOfWorks
+
     const array2 = [...array1]
     const object2 = {...object1}
     
     setWorksFromFormOneSerialNumbers(array2)
     setWorksFromFormOne(object2)
-    
-
-
   }, [])
+
 
   const worksArray = worksFromFormOneSerialNumbers.map((serialNumber) => {
     if(worksFromFormOne){
@@ -45,14 +49,43 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
     }
   })
 
-
-
-
   const receiveWork = (work:TypeOfWork) => {
     setWorkOnSelect(work)
   }
 
+// 2. 작품 다한거 리스트에 빼기
 
+
+const handleWorkFixFinished = (fixedWorkSerialNumber:number) => {
+
+  const worksFrom = {...worksFromFormOne}
+  delete worksFrom[fixedWorkSerialNumber]
+  const worksFromSerialNumbers = Object.keys(worksFrom)
+  const worksFromSerialNumbers2 = worksFromSerialNumbers.map((value) => {
+    return parseInt(value)
+  })
+
+
+  if(worksFromSerialNumbers2.length >= 1){
+  }else{
+    setJobDone(true)
+  
+  }
+
+
+  setWorksFromFormOne(worksFrom)
+  setWorksFromFormOneSerialNumbers(worksFromSerialNumbers2)
+  
+  
+}
+
+
+
+
+
+
+
+// 3. 모달 
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [workSerialNumberToDelete, setWorkSerialNumberToDelete] = useState<number|null>(null)
   const mortalOpen = (workSerialNumber:number) => {
@@ -60,10 +93,7 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
     setWorkSerialNumberToDelete(workSerialNumber)
   }
 
-
-
-
-
+// 4. 작품 제거하기
 
   const handleDeleteYes:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -197,7 +227,7 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
 
 
     </div>
-    {workOnSelect&&<WorkFixForm workToFix={workOnSelect} deleteWork={mortalOpen}workImageUploadService={workImageUploadService}/>}
+    {workOnSelect&&<WorkFixForm jobDone={jobDone} workToFix={workOnSelect} workFixFinished={handleWorkFixFinished} deleteWork={mortalOpen}workImageUploadService={workImageUploadService}/>}
 
   </div>
 

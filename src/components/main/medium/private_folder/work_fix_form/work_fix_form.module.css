@@ -91,6 +91,8 @@
 }
 
 .lable_div {
+	display: flex;
+	align-items: center;
 	margin-bottom: 2rem;
 	margin-left: 6rem;
 }
@@ -114,6 +116,7 @@
 }
 
 .units {
+	margin-right: 0.6rem;
 	font-size: 2rem;
 }
 
@@ -222,4 +225,12 @@
 
 .fifth_buttons:hover {
 	transform: scale(1.02);
+}
+
+.notice_wrong_password {
+	position: relative;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
 }

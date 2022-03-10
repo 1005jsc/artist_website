@@ -1,6 +1,7 @@
 import React, { useEffect,  useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
+import { myLogics } from '../../../../../common/project_logics';
 import { TypeOfExhibitionHistory, TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
@@ -12,43 +13,256 @@ import styles from "./work_fix_form.module.css";
 type WorkFixFormProps = {
   workImageUploadService: WorkImageUpload;
   workToFix: TypeOfWork;
-  deleteWork: (workSerialNumber:number) => void
+  deleteWork: (workSerialNumber:number) => void;
+  workFixFinished: (k: number) => void;
+  jobDone:boolean;
 }
 
-const WorkFixForm = ({workImageUploadService, workToFix, deleteWork}:WorkFixFormProps) => {
+const WorkFixForm = ({workImageUploadService, workToFix, workFixFinished,jobDone, deleteWork}:WorkFixFormProps) => {
   const databaseService= useOutletContext<Database>();
   const [url, setUrl] = useState<string|null>()
 
   useEffect(() => {
     setUrl(window.location.href)
   })
+  const navigate = useNavigate()
 
-// 작품 사진 (1/)
+
+
+
+
+  if(jobDone){
+      if(myFunctions.checkWordFromUrl('work_fix', url)){
+            navigate('/main/private/loggedin/work_fix/work_fix_done')
+      
+          }else if(myFunctions.checkWordFromUrl('work_upload', url)){
+      
+            navigate('/main/private/loggedin/work_upload/work_upload_done')
+          }else{
+            console.log('url or navigate error')
+          }
+  }
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+
+  // 여기가 매우 복잡하니 목차를 만듬 
+
+  // 크게 3가지 
+
+
+
+
+  // 0 utility 및 필요한 state정의 
+
+  
+
+
+
+  // Ⅰ 외부정보 받아오기 
+  
+
+    //  - 외부정보 받아오기, workToFix 를 props로 받아서 workToFixState로 넣기
+    //  - 외부정보를 배분하기, defaultValue의 값을 바꿔넣기 
+
+
+
+  // Ⅱ 작품 데이터
+
+
+
+    //  - 사진 : 사진(3/3)
+    //  - 작품이름
+    //  - 작품완성일자
+    //  - 작품 치수
+    //  - 재료
+    //  - 작품 매매정보
+    //  - 전시내역
+    //  - 메모
+
+    //  - 위 데이터중 따로 자료처리구조를 만든 경우
+    //  - 작품 치수
+    //  - 작품 매매정보
+    //  - 전시내역
+
+
+
+  // Ⅲ 작품 업로드
+
+    //  - 마지막으로 주요 데이터에 널 값이 있을시 경고주기
+
+    //  - 널 문제가 해결되면 해당 작품 업로드: 널체크(3/3)
+    
+    //  - 업로드 후 다음 작품 수정 작업 시작 
+    
+    //  - 모든 작품 수정이 완료되면 완료 페이지로 넘어가기
+
+
+  // Ⅳ 작품 지우기
+
+
+
+
+//////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+
+
+
+
+
+// utility 및 필요한 state 정의
+
+
+
+
+
+
+
+ // 가장 먼저 props로 받아온 work의 데이터를  work to fix state 안에 넣는다
+
+const [workToFixState, setWorkToFixState] = useState<TypeOfWork|undefined>(workToFix)
+const [workSoldToFixState, setWorkSoldToFixState] = useState<TypeOfWorkSold|null>(null)
+
+
+
+  // 사진 (1/3)
   const [workPreviewUrl, setWorkPreviewUrl] = useState<string|null>(null)
   const [workFile, setWorkFile] = useState<File|null>(null)
 
   const [otherSelected, setOtherSelected]= useState<boolean>(false)
   const [soldSelected, setSoldSelected]= useState<boolean>(false)
-  const navigate = useNavigate()
-
-  // 작품 데이터  (1/)
 
 
 
+  //널 체크를 위한 state들 (1/)
+  
 
-
-  // 구매정보 데이터 (1/3)
-
-
-
-  const [workToFixState, setWorkToFixState] = useState<TypeOfWork>(workToFix)
-  const [workSoldToFixState, setWorkSoldToFixState] = useState<TypeOfWorkSold|null>(null)
+  const [workImageUrlNull, setWorkImageUrlNull] = useState<boolean>(false)
+  const [workNameNull, setWorkNameNull] = useState<boolean>(false)
+  const [workCompletionDateNull, setWorkCompletionDateNull] = useState<boolean>(false)
+  const [workSizeNull, setWorkSizeNull] = useState<boolean>(false)
 
 
 
 
 
-// 작품 사진(2/3)
+
+////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+// Ⅰ 외부정보 받아오기 
+
+//  - 외부정보 받아오기, workToFix 를 props로 받아서 workToFixState로 넣기
+
+
+
+
+
+// defaultValue의 부모 div를 억지로 리렌더링시켜서 defaultValue의 값을 바꿔넣기  
+
+
+
+
+
+
+
+const [workNameDefaultValue, setWorkNameDefaultValue] = useState<string>(workToFix.workName!)
+const [workCompletionDateDefaultValue, setWorkCompletionDateDefaultValue] = useState<string>(workToFix.workCompletionDate!)
+const [workMaterialDefaultValue, setWorkMaterialDefaultValue] = useState<string|null>(null)
+const [workOnSaleDefaultValue, setWorkOnSaleDefaultValue] = useState<TypeOfSoldNotSold>(null)
+const [workSoldBuyerName, setWorkSoldBuyerName] = useState<string|undefined>(undefined)
+const [workSoldBuyerPhoneNumber, setWorkSoldBuyerPhoneNumber] = useState<string|number|undefined>(undefined)
+const [workSoldBuyerEmail, setWorkSoldBuyerEmail] = useState<string|undefined>(undefined)
+const [workSoldPurchaseLocation, setWorkSoldPurchaseLocation] = useState<string|undefined>(undefined)
+const [workSoldPurchaseDate, setWorkSoldPurchaseDate] = useState<string|number|undefined>(undefined)
+const [workSoldPurchasePrize, setWorkSoldPurchasePrize] = useState<string|number|undefined>(undefined)
+const [workMemoDefaultValue, setWorkMemoDefaultValue] = useState<string|null>(null)
+const [workSizeOneDefaultValue, setWorkSizeOneDefaultValue ] = useState<number|undefined>()
+const [workSizeTwoDefaultValue, setWorkSizeTwoDefaultValue ] = useState<number|undefined>()
+
+  useEffect(() => {
+    // console.log(workToFix)
+
+
+
+    setWorkToFixState(workToFix)
+    if(workToFix.workSold){
+      setWorkSoldToFixState(workToFix.workSold)
+      
+    }else{
+      setWorkSoldToFixState(null)
+    }
+
+    if(workToFix.workOnSale === 'sold'){
+      setSoldSelected(true)
+    }
+
+    if(workToFix.workSize){
+
+      const yes = myLogics.workSizeValueDividerIntoWorkSizeOneAndWorkSizeTwo(workToFix.workSize)
+      setWorkSizeOneDefaultValue(yes[0])
+      setWorkSizeTwoDefaultValue(yes[1])
+    }
+
+    setWorkNameDefaultValue(workToFix.workName!)
+    setWorkCompletionDateDefaultValue(workToFix.workCompletionDate!)
+    setWorkMaterialDefaultValue(workToFix.workMaterial)
+    setWorkOnSaleDefaultValue(workToFix.workOnSale)
+    setWorkSoldBuyerName(workToFix.workSold?(workToFix.workSold.buyerName?workToFix.workSold.buyerName:undefined):undefined)
+    setWorkSoldBuyerPhoneNumber(workToFix.workSold?(workToFix.workSold.buyerPhoneNumber?workToFix.workSold.buyerPhoneNumber:undefined):undefined)
+    setWorkSoldBuyerEmail(workToFix.workSold?(workToFix.workSold.buyerEmail?workToFix.workSold.buyerEmail:undefined):undefined)
+    setWorkSoldPurchaseLocation(workToFix.workSold?(workToFix.workSold.purchaseLocation?workToFix.workSold.purchaseLocation:undefined):undefined)
+    setWorkSoldPurchaseDate(workToFix.workSold?(workToFix.workSold.purchaseDate?workToFix.workSold.purchaseDate:undefined):undefined)
+    setWorkSoldPurchasePrize(workToFix.workSold?(workToFix.workSold.purchasePrize?workToFix.workSold.purchasePrize:undefined):undefined)
+    setWorkMemoDefaultValue(workToFix.workMemo)
+    
+  }, [workToFix])
+
+
+
+
+    // work-size
+
+
+    useEffect(() => {
+      if(workOnSaleDefaultValue == 'sold'){
+        setSoldSelected(true)
+      }else{
+        setSoldSelected(false)
+      }
+    }, [workOnSaleDefaultValue])
+
+
+
+////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+// Ⅱ작품 데이터 관리
+
+
+
+
+// 사진 (2/3)
   const handleWorkUpload:React.ChangeEventHandler<HTMLInputElement> = (e) => {
     e.preventDefault()
     let file;
@@ -62,57 +276,290 @@ const WorkFixForm = ({workImageUploadService, workToFix, deleteWork}:WorkFixForm
         }
       }
     
+  
+  }
+
+
+  const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    const yes:HTMLElement =  e.currentTarget.nextElementSibling as HTMLInputElement
+    yes.click()
+  
+  }
+  
+  
+
+
+
+
+    // 재료
+  const handleMaterial:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    e.preventDefault()
+    const selectValue= e.currentTarget.value
+    if(selectValue==='other'){
+      setOtherSelected(true)
+    }else{
+      setOtherSelected(false)
+    }
+
+  }
+
+  const handleSold:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    e.preventDefault()
+    const selectValue= e.currentTarget.value
+    if(selectValue=='sold'){
+      setSoldSelected(true)
+    }else{
+      setSoldSelected(false)
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+// 수정되는 데이터 관리
+
+
+// onChange 에 관한것 edit을 위한 함수들
+
+const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  e.preventDefault()
+  // 여기 왜이런지 모르겠음 
+  // 여기에 들어오는거 
+  // size, onSale은 따로
+  const fixWork:any = {...workToFixState}  
+  const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
+ 
+  if(yes==='workSizeOne' ){
+    const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
+    const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
+    let workHorizontalOrVertical:TypeOfHorizontalOrVerticalOrSquare = null
     
+    
+  if(workSizeTwoValue/workSizeOneValue < 7/9){
+    workHorizontalOrVertical = 'horizontal'
+  }else if(7/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/7){
+    workHorizontalOrVertical = 'square'
+  }else{
+    workHorizontalOrVertical = 'vertical'
+
+  }
+
+  fixWork['workSize']= `${e.target.value}cm x ${workSizeTwoValue}`
+  fixWork['workHorizontalOrVertical'] = workHorizontalOrVertical
+
+  }else if(yes === 'workSizeTwo'){
+
+    const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
+    const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
+
+    let workHorizontalOrVerticalOrSquare:TypeOfHorizontalOrVerticalOrSquare = null
+    
+    
+  
+
+  if(workSizeOneValue&&workSizeTwoValue){
+    if(workSizeTwoValue/workSizeOneValue < 8/9){
+      workHorizontalOrVerticalOrSquare = 'horizontal'
+    }else if(8/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/8){
+      workHorizontalOrVerticalOrSquare = 'square'
+    }else{
+      workHorizontalOrVerticalOrSquare = 'vertical'
+
+    }
+  
+  }
+
+    fixWork['workSize']= `${workSizeOneValue}cm x ${e.target.value}`
+    fixWork['workHorizontalOrVerticalOrSquare'] = workHorizontalOrVerticalOrSquare
+
+
+  }else{
+    if(e.target.value){
+      fixWork[yes]= e.target.value
+    }
+  }
+      
+
+  const fixWork2 = fixWork as TypeOfWork
+  setWorkToFixState(fixWork2)
+
+  
+
+}
+
+
+const handleWorkDataChangeSelect:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+  // workMaterial, workOnSale 두가지 
+  e.preventDefault()
+  const fixWork:any = {...workToFixState}  
+  const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
+  if(yes==='workMaterial'){
+
+ 
+    if(e.target.value){
+      fixWork[yes]= e.target.value
     }
 
 
-useEffect(() => {
-  if(workToFix.workOnSale === 'sold'){
-    setSoldSelected(true)
-  }
-}, [])
+  }else if (yes==='workOnSale') {
+    if(e.target.value){
+      fixWork[yes]= e.target.value as TypeOfSoldNotSold
+    }
 
-useEffect(() => {
-  setWorkToFixState(workToFix)
-  if(workToFix.workSold){
-    setWorkSoldToFixState(workToFix.workSold)
-    
+
   }else{
-    setWorkSoldToFixState(null)
-
+    return
   }
-}, [])
+  const fixWork2 = fixWork as TypeOfWork
+  setWorkToFixState(fixWork2)
+
+}
+
+
+const handleWorkDataChangeTextArea:React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+  e.preventDefault()
+  const fixWork:any = {...workToFixState}  
+  const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
+
+  if(e.target.value){
+    fixWork[yes]= e.target.value
+  }
+  const fixWork2 = fixWork as TypeOfWork
+  setWorkToFixState(fixWork2)
 
 
 
-    // 작품 데이터(2/3)
+}
+
+
+
+const handleWorkSoldChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  e.preventDefault()
+    const fixWorkSold = {...workSoldToFixState}
+    // 여기가 널일때 
+    const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWorkSold
+    
+    // 여기서 잘 작동을 할까??
+    if(e.target.value){
+      fixWorkSold[yes]= e.target.value
+    }
+  
+  const fixWorkSold2 = fixWorkSold as TypeOfWorkSold
+  setWorkSoldToFixState(fixWorkSold2)
+
+
+
+}
+
+
+
+
+// 전시회 부분
+
+
+
+const [exhibitionOnClick, setExhibitionOnClick]= useState<Array<number>>([])
+const [exhibitionOnClickUrls, setExhibitionOnClickUrls] = useState<TypeOfExhibitionHistory>({})
+
+useEffect(() => {
+
+  if(workToFix.workExhibitionHistory){
+    const array1 = Object.values({...workToFix.workExhibitionHistory})
+    setExhibitionOnClick(array1)
+    setExhibitionOnClickUrls(workToFix.workExhibitionHistory)
+  }else{
+    setExhibitionOnClick([])
+    setExhibitionOnClickUrls({})
+  }
+}, [workToFix])
+
+
+
+
+let array1 = [] as number[]
+let obj1 = {} as TypeOfExhibitionHistory
+let obj2 = {} as TypeOfExhibitionHistory
+  const handleExhibitionSelect = (exhibitionSerialNumber:number, exhibitionName:string) => {
+    array1 = [...exhibitionOnClick]
+    obj1 = {...exhibitionOnClickUrls}
+
+
+    if(array1.find((value) => value === exhibitionSerialNumber)){
+      const array2 = array1.filter(value => value !== exhibitionSerialNumber)
+      delete obj1[exhibitionSerialNumber]
+      
+
+      setExhibitionOnClick(array2)
+      setExhibitionOnClickUrls(obj1)
+      
+    }else{
+      array1.push(exhibitionSerialNumber)
+      obj2[exhibitionName]= exhibitionSerialNumber
+      
+      
+      obj1= {...exhibitionOnClickUrls, ...obj2}
+      setExhibitionOnClickUrls(obj1)
+      setExhibitionOnClick(array1)
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+// Ⅲ 작품 업로드
+
+
+
+
+
+
+
+
+
+
+    // 수정된 정보로 작품 업로드(2/3)
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
+
+    let workImageUrlNulll =false
+    let workNameNulll=false
+    let workCompletionDateNulll=false
+    let workSizeNulll=false
+
+
     e.preventDefault()
 
-    if(myFunctions.checkWordFromUrl('work_fix', url)){
-      navigate('/main/private/loggedin/work_fix/work_fix_done')
-
-    }else if(myFunctions.checkWordFromUrl('work_upload', url)){
-
-      navigate('/main/private/loggedin/work_upload/work_upload_done')
-    }else{
-      console.log('url or navigate error')
-    }
-
-
     
-  
-
-
-  
-
-  
-    // 구매 여부 데이터 (3/3)
-    
-
       
   try{
-    // 작품 사진 (3/3)
+    // 사진 (3/3)
     let workImage
     if(workFile){
       workImage = await workImageUploadService.uploadSingleImage(workFile)
@@ -121,17 +568,84 @@ useEffect(() => {
     }
     
   
-  
-
-      const rightBeforeSubmission = {...workToFixState} as TypeOfWork
-      rightBeforeSubmission['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
-      rightBeforeSubmission['workSold'] = workSoldToFixState
-      rightBeforeSubmission['workExhibitionHistory'] = exhibitionOnClickUrls
-      rightBeforeSubmission['lastUpdate']=myFunctions.generateAKey(0)
+    if(workToFixState){
 
     
-      databaseService.uploadWorkData(rightBeforeSubmission.workSerialNumber, rightBeforeSubmission)
-    
+
+      const rightBeforeSubmissionOne = {...workToFixState} as TypeOfWork
+
+
+      rightBeforeSubmissionOne['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
+      rightBeforeSubmissionOne['workSold'] = workSoldToFixState
+      rightBeforeSubmissionOne['workExhibitionHistory'] = exhibitionOnClickUrls
+      rightBeforeSubmissionOne['lastUpdate']=myFunctions.generateAKey(0)
+
+
+      // 널 체크 (2/3)
+
+      if(rightBeforeSubmissionOne.workImageUrl){
+        workImageUrlNulll = false
+      }else{
+        workImageUrlNulll = true
+      }
+
+      if(rightBeforeSubmissionOne.workName){
+        console.log(rightBeforeSubmissionOne.workName)
+        workNameNulll= false
+      }else{
+        workNameNulll= true
+      }
+
+
+
+      if(rightBeforeSubmissionOne.workCompletionDate){
+
+        if(rightBeforeSubmissionOne.workCompletionDate.length == 8 ) {
+          workCompletionDateNulll= false
+        }else{
+          workCompletionDateNulll= true
+        }        
+      }else{
+        workCompletionDateNulll= true
+
+      }
+
+
+      if(rightBeforeSubmissionOne.workSize ){
+        if(rightBeforeSubmissionOne.workSize.length >= 8){
+          workSizeNulll= false
+        }else{
+          workSizeNulll= true
+        }
+        
+      }
+
+   
+
+
+      setWorkImageUrlNull(workImageUrlNulll)
+      setWorkNameNull(workNameNulll)
+      setWorkCompletionDateNull(workCompletionDateNulll)
+      setWorkSizeNull(workSizeNulll)
+
+      // 널체크 (3/3)
+      if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
+        databaseService.uploadWorkData(rightBeforeSubmissionOne.workSerialNumber, rightBeforeSubmissionOne)
+        
+        workFixFinished(rightBeforeSubmissionOne.workSerialNumber)
+        console.log('i am here')
+      }else{
+        console.log('i am not here')
+      }
+
+
+      window.scrollTo({
+        top:0
+      })
+      
+    }
+
+
 
   }catch(err){
   console.log(err)
@@ -152,251 +666,55 @@ useEffect(() => {
 
 
 
-  const handleMaterial:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-      e.preventDefault()
-    const selectValue= e.currentTarget.value
-    if(selectValue==='other'){
-      setOtherSelected(true)
-    }else{
-      setOtherSelected(false)
-    }
-
-  }
-
-  const handleSold:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    e.preventDefault()
-  const selectValue= e.currentTarget.value
-  if(selectValue=='sold'){
-    setSoldSelected(true)
-  }else{
-    setSoldSelected(false)
-  }
-
-}
 
 
 
 
 
-const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
-  e.preventDefault()
-  const yes:HTMLElement =  e.currentTarget.nextElementSibling as HTMLInputElement
-  yes.click()
-
-}
-
-
-// 들어오는 데이터 관리
-
-
-// 작품 치수 defaultValue 로직
-  let hi
-  let hi3
-  let hi4
-  let hi5
-  let hi6
-  if(workToFix.workSize){
-    hi = workToFix.workSize 
-    if(hi.length >= 6){
-      hi3 = hi.replace(/[^0-9]/g, ' ')?.substring(0,5)
-      hi4 = hi?.replace(/[^0-9]/g, ' ')?.substring(5)
-    }else{
-      hi3 = '0'
-      hi4 = '0'
-    }
-      hi5 = parseInt(hi3)
-      hi6 = parseInt(hi4)
-  }
-  
-
-  // onChange 에 관한것 edit을 위한 함수들
-
-  const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault()
-    // 여기 왜이런지 모르겠음 
-    // 여기에 들어오는거 
-    // size, onSale은 따로
-    const fixWork:any = {...workToFixState}  
-    const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
-   
-    if(yes==='workSizeOne' ){
-      const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
-      const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
-      let workHorizontalOrVertical:TypeOfHorizontalOrVerticalOrSquare = null
-      
-      
-    if(workSizeTwoValue/workSizeOneValue < 7/9){
-      workHorizontalOrVertical = 'horizontal'
-    }else if(7/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/7){
-      workHorizontalOrVertical = 'square'
-    }else{
-      workHorizontalOrVertical = 'vertical'
-
-    }
-
-    fixWork['workSize']= `${e.target.value}cm x ${workSizeTwoValue}`
-    fixWork['workHorizontalOrVertical'] = workHorizontalOrVertical
-
-    }else if(yes === 'workSizeTwo'){
-
-      const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
-      const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
-
-      let workHorizontalOrVertical:TypeOfHorizontalOrVerticalOrSquare = null
-      
-      
-      if(workSizeOneValue&&workSizeTwoValue){
-      if(workSizeOneValue >= workSizeTwoValue){
-        workHorizontalOrVertical = 'horizontal'
-      }else{
-        workHorizontalOrVertical = 'vertical'
-      }
-    }
-
-      fixWork['workSize']= `${workSizeOneValue}cm x ${e.target.value}`
-      fixWork['workHorizontalOrVertical'] = workHorizontalOrVertical
-
-
-    }else{
-      if(e.target.value){
-        fixWork[yes]= e.target.value
-      }
-    }
-        
-
-    const fixWork2 = fixWork as TypeOfWork
-    setWorkToFixState(fixWork2)
-
-    
-  
-  }
-
-
-  const handleWorkDataChangeSelect:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
-    // workMaterial, workOnSale 두가지 
-    e.preventDefault()
-    const fixWork:any = {...workToFixState}  
-    const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
-    if(yes==='workMaterial'){
-
-   
-      if(e.target.value){
-        fixWork[yes]= e.target.value
-      }
-
-
-    }else if (yes==='workOnSale') {
-      if(e.target.value){
-        fixWork[yes]= e.target.value as TypeOfSoldNotSold
-      }
-
-
-    }else{
-      return
-    }
-    const fixWork2 = fixWork as TypeOfWork
-    setWorkToFixState(fixWork2)
-
-  }
-  const handleWorkDataChangeTextArea:React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    e.preventDefault()
-    const fixWork:any = {...workToFixState}  
-    const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
-
-    if(e.target.value){
-      fixWork[yes]= e.target.value
-    }
-    const fixWork2 = fixWork as TypeOfWork
-    setWorkToFixState(fixWork2)
 
 
 
-  }
-
-  const handleWorkSoldChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault()
-      const fixWorkSold = {...workSoldToFixState}
-      // 여기가 널일때 
-      const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWorkSold
-      
-      // 여기서 잘 작동을 할까??
-      if(e.target.value){
-        fixWorkSold[yes]= e.target.value
-      }
-    
-    const fixWorkSold2 = fixWorkSold as TypeOfWorkSold
-    setWorkSoldToFixState(fixWorkSold2)
-  
-  
-  
-  }
-
-  
-
-
-// 전시회 부분
 
 
 
-  const [exhibitionOnClick, setExhibitionOnClick]= useState<Array<number>>([])
-  const [exhibitionOnClickUrls, setExhibitionOnClickUrls] = useState<TypeOfExhibitionHistory>({})
-  
-  useEffect(() => {
-
-    if(workToFix.workExhibitionHistory){
-      
-      const array1 = Object.values({...workToFix.workExhibitionHistory})
-      setExhibitionOnClick(array1)
-      setExhibitionOnClickUrls(workToFix.workExhibitionHistory)
-    }else{
-      setExhibitionOnClick([])
-      setExhibitionOnClickUrls({})
-
-    }
 
 
-  }, [])
+////////////////////////////////
 
 
-  
-  
-  let array1 = [] as number[]
-  let obj1 = {} as TypeOfExhibitionHistory
-  let obj2 = {} as TypeOfExhibitionHistory
-    const handleExhibitionSelect = (exhibitionSerialNumber:number, exhibitionName:string) => {
-      array1 = [...exhibitionOnClick]
-      obj1 = {...exhibitionOnClickUrls}
-      if(array1.find((value) => value === exhibitionSerialNumber)){
-        const array2 = array1.filter(value => value !== exhibitionSerialNumber)
-        delete obj1[exhibitionSerialNumber]
-        
-  
-        setExhibitionOnClick(array2)
-        setExhibitionOnClickUrls(obj1)
-        
-      }else{
-        array1.push(exhibitionSerialNumber)
-        obj2[exhibitionName]= exhibitionSerialNumber
-        
-        
-        obj1= {...exhibitionOnClickUrls, ...obj2}
-        setExhibitionOnClickUrls(obj1)
-        setExhibitionOnClick(array1)
-      }
-    }
-  
-  
+
+
+  // Ⅳ 작품 지우기 
+
     const handleDeleteInfo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
       e.preventDefault()
-
-      
       deleteWork(workToFix.workSerialNumber)
-
-
     }
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -412,6 +730,8 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     <div className={styles.div2}>
       <span className={styles.div2_title}>1. 작품사진 바꾸기</span>
     </div>
+    {workImageUrlNull&&<span className={styles.notice_wrong_image_upload}>필수: 작품 완성일자를 넣어주세요</span>}
+
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
     <button className={styles.image_upload_button}
@@ -434,32 +754,46 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
       <br/> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;최대한 빼먹지 말고 가입하기</span>
     <div className={`${styles.div3} ${styles.div3_2}`}>
       
-      <div className={styles.lable_div}>
-
-        <label className={styles.lable}>작품 이름:</label>
+      <div className={`${styles.lable_div} ${styles.kk}`} key={workNameDefaultValue} >
+              <label className={styles.lable}>작품 이름:</label>
         <input  className={styles.input}type="text" name="work_name" placeholder='제목 입력' 
-        defaultValue={workToFix.workName?workToFix.workName:undefined} onChange={handleWorkDataChangeInput}/>
+      
+        defaultValue={workNameDefaultValue?workNameDefaultValue:undefined} onChange={handleWorkDataChangeInput}/>
+        {workNameNull&&<span className={styles.notice_wrong_password}>필수: 작품 이름을 넣어주세요</span>}
+
       </div>
 
-      <div className={styles.lable_div}>
+    
+
+      <div className={styles.lable_div} key={workCompletionDateDefaultValue} >
         <label className={styles.lable}>작품 완성일자:</label>
-          <input  className={styles.input}type="text" name="work_completion_date" placeholder='형식: 20210401'
-          defaultValue={workToFix.workCompletionDate?workToFix.workCompletionDate:undefined} onChange={handleWorkDataChangeInput}/>
+          <input  className={styles.input}type="text" name="work_completion_date" placeholder='형식: 20210401' 
+          defaultValue={workCompletionDateDefaultValue?workCompletionDateDefaultValue:undefined} onChange={handleWorkDataChangeInput}/>
+          {workCompletionDateNull&&<span className={styles.notice_wrong_password}>필수: 작품 완성일자를 여덟자리 숫자로 넣어주세요</span>}
+      
       </div>
     
       <div className={styles.lable_div}>
         <label className={styles.lable}>작품 치수:</label>
-          <input  className={styles.number_input}type="text" name="work_size_one" defaultValue={hi5} onChange={handleWorkDataChangeInput}/>
+        <div key={workSizeOneDefaultValue}>
+        
+          <input  className={styles.number_input}type="text" name="work_size_one" defaultValue={workSizeOneDefaultValue} onChange={handleWorkDataChangeInput}/>
           <span className={styles.units}>cm x </span>
-          <input  className={styles.number_input}type="text" name="work_size_two" defaultValue={hi6} onChange={handleWorkDataChangeInput}/>
-          <span className={styles.units}>cm </span>
+        </div>
+        <div key={workSizeTwoDefaultValue}>
+          
+            <input  className={styles.number_input}type="text" name="work_size_two" defaultValue={workSizeTwoDefaultValue} onChange={handleWorkDataChangeInput}/>
+            <span className={styles.units}>cm </span>
+        </div>
+          {workSizeNull&&<span className={styles.notice_wrong_password}>필수: 작품 치수를 기입해주세요	</span>}
+      
       </div>
       
-      <div className={styles.lable_div}>
+      <div className={styles.lable_div} key={workMaterialDefaultValue}>
         <label className={styles.lable}>재 료:</label>
         <select  className={styles.select} name="work_material" onChange={(e)=> {handleMaterial(e)
         handleWorkDataChangeSelect(e)}}
-        defaultValue={workToFix.workMaterial?workToFix.workMaterial:undefined}>
+        defaultValue={workMaterialDefaultValue?workMaterialDefaultValue:undefined}>
           <option value="Acrylic on canvas">Acrylic on canvas</option>
           <option value="Acrylic on paper">Acrylic on paper</option>
           <option value="Mixed media">Mixed media</option>
@@ -486,59 +820,59 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
       <span className={styles.div2_title}>3. 작품 매매 정보</span>
     </div>
     <div className={styles.div3_3}>
-    <div className={styles.lable_div}>
+    <div className={styles.lable_div} key={workOnSaleDefaultValue}>
         <label className={styles.lable}>작품 매매 여부:</label>
         <select className={styles.select} name="work_on_sale" id=""onChange={(e) => {handleSold(e)
-          handleWorkDataChangeSelect(e)}} defaultValue={workToFix.workOnSale?workToFix.workOnSale:undefined}>
+          handleWorkDataChangeSelect(e)}} defaultValue={workOnSaleDefaultValue?workOnSaleDefaultValue:undefined}>
           <option value="not_sold">안 팔림</option>
           <option value="sold">팔림</option>
         </select>
-        </div>
+    </div>
         {soldSelected&& (<div className={styles.customer_info}>
 
         <div className={styles.customer_info_title_wrapper}>
           <span className={styles.customer_info_title}>작품 구매자 기본정보</span>  
         </div>
 
-        <div className={styles.three}>
+        <div className={styles.three} key={workSoldBuyerName}>
           <label className={styles.lable}>구매자: </label>
           <input  className={styles.input}type="text" name="buyer_name" placeholder='이름'
-          defaultValue={workSoldToFixState?.buyerName?workSoldToFixState?.buyerName:undefined}
+          defaultValue={workSoldBuyerName?workSoldBuyerName:undefined}
           onChange={handleWorkSoldChangeInput}/>
         </div>
 
-        <div className={styles.three}>
+        <div className={styles.three} key={workSoldBuyerPhoneNumber}>
           <label className={styles.lable}>구매자 전화번호:</label>
           <input  className={styles.input}type="text" name="buyer_phone_number" placeholder='010-****-****'
-          defaultValue={workSoldToFixState?.buyerPhoneNumber?workSoldToFixState?.buyerPhoneNumber:undefined}
+          defaultValue={workSoldBuyerPhoneNumber?workSoldBuyerPhoneNumber:undefined}
           onChange={handleWorkSoldChangeInput}/>
         </div>
 
-        <div className={styles.three}>
+        <div className={styles.three}  key={workSoldBuyerEmail}>
           <label className={styles.lable}>구매자 이메일 주소:</label>
           <input  className={styles.input}type="text" name="buyer_email" placeholder='name123@naver.com' 
-          defaultValue={workSoldToFixState?.buyerEmail?workSoldToFixState?.buyerEmail:undefined}
+          defaultValue={workSoldBuyerEmail?workSoldBuyerEmail:undefined}
           onChange={handleWorkSoldChangeInput}/>
         </div>
 
-        <div className={styles.three}>
+        <div className={styles.three} key={workSoldPurchaseLocation}>
           <label className={styles.lable}>구매 장소:</label>
           <input  className={styles.input}type="text" name="purchase_location" placeholder='광주 국윤미술관' 
-          defaultValue={workSoldToFixState?.purchaseLocation?workSoldToFixState?.purchaseLocation:undefined}
+          defaultValue={workSoldPurchaseLocation?workSoldPurchaseLocation:undefined}
           onChange={handleWorkSoldChangeInput}/>
         </div>
 
-        <div className={styles.three}>
+        <div className={styles.three} key={workSoldPurchaseDate}>
           <label className={styles.lable}>구매 일시:</label>
           <input  className={styles.input}type="text" name="purchase_date" placeholder='형식: 20210401' 
-          defaultValue={workSoldToFixState?.purchaseDate?workSoldToFixState?.purchaseDate:undefined}
+          defaultValue={workSoldPurchaseDate?workSoldPurchaseDate:undefined}
           onChange={handleWorkSoldChangeInput}/>
         </div>
 
-        <div className={styles.three}>
+        <div className={styles.three} key={workSoldPurchasePrize}>
           <label className={styles.lable}>구매 가격:</label>
           <input  className={styles.input}type="text" name="purchase_prize" placeholder='0,000,000원' 
-          defaultValue={workSoldToFixState?.purchasePrize?workSoldToFixState?.purchasePrize:undefined}
+          defaultValue={workSoldPurchasePrize?workSoldPurchasePrize:undefined}
           onChange={handleWorkSoldChangeInput}/>
         </div>
         <div className={styles.empty_container_three}></div>
@@ -579,12 +913,12 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     </div>
   </div>  
   
-  <div className={styles.div1}>
+  <div className={styles.div1} key={workMemoDefaultValue}>
     <div className={styles.div2}>
       <span className={styles.div2_title}>5. 메모</span>
     </div>
     
-    <textarea  className={styles.textarea} name="work_memo" id="" defaultValue={workToFix.workMemo?workToFix.workMemo:undefined}
+    <textarea  className={styles.textarea} name="work_memo" id="" defaultValue={workMemoDefaultValue?workMemoDefaultValue:undefined}
     onChange={handleWorkDataChangeTextArea}>
 
     </textarea>
@@ -603,8 +937,7 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
 
           <div className={styles.button_container}>
 
-        <input type="submit" className={styles.fifth_buttons} value='작품의 데이터만 우선 저장만 하고 나중에 보여주기' />
-        <button className={styles.fifth_buttons}>작품 업로드하고 웹사이트에도 바로 띄우기 </button>
+        <input type="submit" className={styles.fifth_buttons} value='수정된 작품 업로드하고 웹사이트에도 바로 띄우기' />
 
           </div>
 
