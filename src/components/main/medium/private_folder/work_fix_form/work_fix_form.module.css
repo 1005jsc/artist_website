@@ -112,7 +112,7 @@
 .number_input {
 	font-size: 2rem;
 	border: 0;
-	width: 4rem;
+	width: 4.4rem;
 }
 
 .units {
@@ -124,7 +124,6 @@
 	border: 0;
 	font-size: 2rem;
 	margin-right: 2rem;
-	/* color: #757575; */
 }
 
 .select:hover {
@@ -228,9 +227,7 @@
 }
 
 .notice_wrong_password {
-	position: relative;
-
 	font-size: 1.6rem;
 	background-color: pink;
-	margin-top: 5rem;
+	margin-left: 3rem;
 }

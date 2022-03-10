@@ -25,6 +25,8 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
   
   // 여기가 선택된 work 
   const [workOnSelect, setWorkOnSelect] = useState<TypeOfWork|null>(null)
+  const [workOnSelectPrevious, setWorkOnSelectPrevious] = useState<TypeOfWork|null>(null)
+  const [workCanceled, setWorkCanceled] = useState<TypeOfWork|null>(null)
   
   // 더이상 작업할 work가 없을때 work fix form 에게 끝났다고 신호를 보낸다  
   const [jobDone, setJobDone] = useState<boolean>(false)
@@ -42,13 +44,12 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
     setWorksFromFormOne(object2)
   }, [])
 
-
+  // {16468848175: {…}, 16468696731: {…}} 를 [{…}, {…}] 로 고쳐주기
   const worksArray = worksFromFormOneSerialNumbers.map((serialNumber) => {
     if(worksFromFormOne){
       return worksFromFormOne[serialNumber]
     }
   })
-
   const receiveWork = (work:TypeOfWork) => {
     setWorkOnSelect(work)
   }
@@ -56,25 +57,70 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
 // 2. 작품 다한거 리스트에 빼기
 
 
-const handleWorkFixFinished = (fixedWorkSerialNumber:number) => {
-
-  const worksFrom = {...worksFromFormOne}
-  delete worksFrom[fixedWorkSerialNumber]
-  const worksFromSerialNumbers = Object.keys(worksFrom)
-  const worksFromSerialNumbers2 = worksFromSerialNumbers.map((value) => {
-    return parseInt(value)
-  })
-
-
-  if(worksFromSerialNumbers2.length >= 1){
-  }else{
-    setJobDone(true)
+const handleWorkFixFinished = (fixedWorkSerialNumber:number, state:'cancel'|'upload') => {
+  if(state === 'upload'){
+    const worksFrom = {...worksFromFormOne}
+    setWorkOnSelectPrevious(worksFrom[fixedWorkSerialNumber])
+    delete worksFrom[fixedWorkSerialNumber]
+    const worksFromSerialNumbers = Object.keys(worksFrom)
+    const worksFromSerialNumbers2 = worksFromSerialNumbers.map((value) => {
+      return parseInt(value)
+    })
   
+  
+    if(worksFromSerialNumbers2.length >= 1){
+    }else{
+      setJobDone(true)
+    
+    }
+  
+  
+  
+    // 여기서 다음 work를 셀렉트 하게 하기 
+    let hey
+    if(worksFromFormOne){
+      hey = worksFromFormOne[worksFromSerialNumbers2[0]]
+    }
+    if(hey){
+      setWorkOnSelect(hey)
+    }
+    
+  
+  
+    setWorksFromFormOne(worksFrom)
+    setWorksFromFormOneSerialNumbers(worksFromSerialNumbers2)
+    
+  }else if(state === 'cancel'){
+    const worksFrom = {...worksFromFormOne}
+    setWorkCanceled(worksFrom[fixedWorkSerialNumber])
+    delete worksFrom[fixedWorkSerialNumber]
+    const worksFromSerialNumbers = Object.keys(worksFrom)
+    const worksFromSerialNumbers2 = worksFromSerialNumbers.map((value) => {
+      return parseInt(value)
+    })
+  
+  
+    if(worksFromSerialNumbers2.length >= 1){
+    }else{
+      setJobDone(true)
+    
+    }
+  
+  
+  
+    let hey
+    if(worksFromFormOne){
+      hey = worksFromFormOne[worksFromSerialNumbers2[0]]
+    }
+    if(hey){
+      setWorkOnSelect(hey)
+    }
+    
+  
+  
+    setWorksFromFormOne(worksFrom)
+    setWorksFromFormOneSerialNumbers(worksFromSerialNumbers2)
   }
-
-
-  setWorksFromFormOne(worksFrom)
-  setWorksFromFormOneSerialNumbers(worksFromSerialNumbers2)
   
   
 }
@@ -199,13 +245,16 @@ const handleWorkFixFinished = (fixedWorkSerialNumber:number) => {
     </div>
 
   </Modal>
-  <div className={styles.explanations_container}>
-    <h2 className={styles.explanation}>- 수정할 작품을 하나씩 클릭하고 수정하면 됨 </h2>
-  </div>
   
   <div className={styles.works_to_fix_container}>
-    <span className={styles.s1}>수정할 작품들</span>
-
+    <div className={styles.s1_and_fix_finished}>
+      <span className={styles.explanation}>- 수정할 작품을 하나씩 클릭하고 수정 </span>
+      <span className={styles.s1}>남은 수정할 작품들 총 &nbsp;&nbsp;{worksFromFormOneSerialNumbers.length}&nbsp;&nbsp;개</span>
+    </div>
+      {/* 여기를 아예 다른 느낌을 줘야되는데 폰트를 다르게 주면 될듯   */}
+      {workOnSelectPrevious&&<h1 className={styles.fix_finished}>작품 &nbsp;&nbsp;{workOnSelectPrevious.workName}&nbsp;&nbsp; 수정완료!!</h1>}
+      {workCanceled&&<h1 className={styles.fix_finished}>작품 &nbsp;&nbsp;{workCanceled.workName}&nbsp;&nbsp; 수정취소</h1>}
+      
     <div className={styles.grey_container}>
 
     <div className={`${styles.work_bundle}`}>

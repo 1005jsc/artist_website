@@ -16,11 +16,27 @@
 .s1 {
 	font-size: 2rem;
 	font-weight: 600;
+	margin-right: 2.2rem;
 }
 
 .works_to_fix_container {
+	position: relative;
 	margin-top: 4rem;
-	/* border: 1px solid black; */
+}
+
+.s1_and_fix_finished {
+	display: flex;
+	justify-content: space-between;
+}
+
+.fix_finished {
+	display: block;
+	font-size: 2.2rem;
+	font-weight: 600;
+	margin-top: 6rem;
+	margin-bottom: 6rem;
+	margin-left: 10rem;
+	/* text-decoration: underline; */
 }
 
 .grey_container {

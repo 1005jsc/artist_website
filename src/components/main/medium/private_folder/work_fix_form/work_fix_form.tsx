@@ -14,7 +14,7 @@ type WorkFixFormProps = {
   workImageUploadService: WorkImageUpload;
   workToFix: TypeOfWork;
   deleteWork: (workSerialNumber:number) => void;
-  workFixFinished: (k: number) => void;
+  workFixFinished: (k: number, state:'cancel'|'upload' ) => void;
   jobDone:boolean;
 }
 
@@ -330,59 +330,87 @@ const [workSizeTwoDefaultValue, setWorkSizeTwoDefaultValue ] = useState<number|u
 
 const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
   e.preventDefault()
+  // 파라메터 7개중 3개
+  // worksize, workname, workcompletiondate
+  
+  
+  
+  
+  
+  
   // 여기 왜이런지 모르겠음 
   // 여기에 들어오는거 
   // size, onSale은 따로
+
+
+
   const fixWork:any = {...workToFixState}  
   const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
  
   if(yes==='workSizeOne' ){
-    const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
-    const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
-    let workHorizontalOrVertical:TypeOfHorizontalOrVerticalOrSquare = null
-    
-    
-  if(workSizeTwoValue/workSizeOneValue < 7/9){
-    workHorizontalOrVertical = 'horizontal'
-  }else if(7/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/7){
-    workHorizontalOrVertical = 'square'
-  }else{
-    workHorizontalOrVertical = 'vertical'
+    if(e.target.value.length >= 2){
+      setWorkSizeNull(false)
+      const workSizeOneValue = parseInt(e.target.value)
+      const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
+      let workHorizontalOrVerticalOrSquare:TypeOfHorizontalOrVerticalOrSquare = null
+      
+      
+      if(workSizeTwoValue/workSizeOneValue < 7/9){
+        workHorizontalOrVerticalOrSquare = 'horizontal'
+      }else if(7/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/7){
+        workHorizontalOrVerticalOrSquare = 'square'
+      }else{
+        workHorizontalOrVerticalOrSquare = 'vertical'
+      }
+  
+      fixWork['workSize']= `${workSizeOneValue}cm x ${workSizeTwoValue}`
+      fixWork['workHorizontalOrVertical'] = workHorizontalOrVerticalOrSquare
 
-  }
 
-  fixWork['workSize']= `${e.target.value}cm x ${workSizeTwoValue}`
-  fixWork['workHorizontalOrVertical'] = workHorizontalOrVertical
+    }else{
+      setWorkSizeNull(true)
+    }
+    
 
   }else if(yes === 'workSizeTwo'){
-
-    const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
-    const workSizeTwoValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(5)!)
-
-    let workHorizontalOrVerticalOrSquare:TypeOfHorizontalOrVerticalOrSquare = null
-    
+    if(e.target.value.length >=2){
+      setWorkSizeNull(false)
+      const workSizeOneValue = parseInt(workToFix.workSize?.replace(/[^0-9]/g, ' ')?.substring(0,5)!)
+      const workSizeTwoValue = parseInt(e.target.value)
+  
+      let workHorizontalOrVerticalOrSquare:TypeOfHorizontalOrVerticalOrSquare = null
+      
+      
     
   
-
-  if(workSizeOneValue&&workSizeTwoValue){
-    if(workSizeTwoValue/workSizeOneValue < 8/9){
-      workHorizontalOrVerticalOrSquare = 'horizontal'
-    }else if(8/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/8){
-      workHorizontalOrVerticalOrSquare = 'square'
+      if(workSizeOneValue&&workSizeTwoValue){
+        if(workSizeTwoValue/workSizeOneValue < 8/9){
+          workHorizontalOrVerticalOrSquare = 'horizontal'
+        }else if(8/9<=workSizeTwoValue/workSizeOneValue&&workSizeTwoValue/workSizeOneValue<=9/8){
+          workHorizontalOrVerticalOrSquare = 'square'
+        }else{
+          workHorizontalOrVerticalOrSquare = 'vertical'
+  
+        }
+      
+      }
+  
+      fixWork['workSize']= `${workSizeOneValue}cm x ${workSizeTwoValue}`
+      fixWork['workHorizontalOrVerticalOrSquare'] = workHorizontalOrVerticalOrSquare
+  
     }else{
-      workHorizontalOrVerticalOrSquare = 'vertical'
-
+      setWorkSizeNull(true)
     }
-  
-  }
-
-    fixWork['workSize']= `${workSizeOneValue}cm x ${e.target.value}`
-    fixWork['workHorizontalOrVerticalOrSquare'] = workHorizontalOrVerticalOrSquare
-
+    
 
   }else{
     if(e.target.value){
       fixWork[yes]= e.target.value
+      console.log(workToFixState)
+      
+    }else{
+      fixWork[yes]= ''
+      console.log(workToFixState)
     }
   }
       
@@ -390,9 +418,12 @@ const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
   const fixWork2 = fixWork as TypeOfWork
   setWorkToFixState(fixWork2)
 
-  
-
 }
+
+
+
+
+
 
 
 const handleWorkDataChangeSelect:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
@@ -441,6 +472,8 @@ const handleWorkDataChangeTextArea:React.ChangeEventHandler<HTMLTextAreaElement>
 
 
 const handleWorkSoldChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  //이름 , 완성일자
+  
   e.preventDefault()
     const fixWorkSold = {...workSoldToFixState}
     // 여기가 널일때 
@@ -449,11 +482,15 @@ const handleWorkSoldChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
     // 여기서 잘 작동을 할까??
     if(e.target.value){
       fixWorkSold[yes]= e.target.value
+    }else{
+      fixWorkSold[yes]= ''
+      
     }
   
   const fixWorkSold2 = fixWorkSold as TypeOfWorkSold
+  console.log(fixWorkSold2)
   setWorkSoldToFixState(fixWorkSold2)
-
+  
 
 
 }
@@ -560,22 +597,12 @@ let obj2 = {} as TypeOfExhibitionHistory
       
   try{
     // 사진 (3/3)
-    let workImage
-    if(workFile){
-      workImage = await workImageUploadService.uploadSingleImage(workFile)
-    }else{
-      workImage = null
-    }
     
   
     if(workToFixState){
-
-    
-
       const rightBeforeSubmissionOne = {...workToFixState} as TypeOfWork
 
 
-      rightBeforeSubmissionOne['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
       rightBeforeSubmissionOne['workSold'] = workSoldToFixState
       rightBeforeSubmissionOne['workExhibitionHistory'] = exhibitionOnClickUrls
       rightBeforeSubmissionOne['lastUpdate']=myFunctions.generateAKey(0)
@@ -590,7 +617,6 @@ let obj2 = {} as TypeOfExhibitionHistory
       }
 
       if(rightBeforeSubmissionOne.workName){
-        console.log(rightBeforeSubmissionOne.workName)
         workNameNulll= false
       }else{
         workNameNulll= true
@@ -618,6 +644,8 @@ let obj2 = {} as TypeOfExhibitionHistory
           workSizeNulll= true
         }
         
+      }else{
+        workSizeNulll= true
       }
 
    
@@ -630,12 +658,21 @@ let obj2 = {} as TypeOfExhibitionHistory
 
       // 널체크 (3/3)
       if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
+
+        let workImage
+        if(workFile){
+          workImage = await workImageUploadService.uploadSingleImage(workFile)
+        }else{
+          workImage = null
+        }
+        
+        rightBeforeSubmissionOne['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
+
+
         databaseService.uploadWorkData(rightBeforeSubmissionOne.workSerialNumber, rightBeforeSubmissionOne)
         
-        workFixFinished(rightBeforeSubmissionOne.workSerialNumber)
-        console.log('i am here')
-      }else{
-        console.log('i am not here')
+        workFixFinished(rightBeforeSubmissionOne.workSerialNumber, 'upload')
+        setWorkToFixState(undefined)
       }
 
 
@@ -693,7 +730,20 @@ let obj2 = {} as TypeOfExhibitionHistory
 
 
 
+    // 작품 업로드 취소하기 
 
+  const handleCancelUpload:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+
+        workFixFinished(workToFix.workSerialNumber, 'cancel')
+        setWorkToFixState(undefined)
+      
+
+
+      window.scrollTo({
+        top:0
+      })
+  }
 
 
 
@@ -777,15 +827,15 @@ let obj2 = {} as TypeOfExhibitionHistory
         <label className={styles.lable}>작품 치수:</label>
         <div key={workSizeOneDefaultValue}>
         
-          <input  className={styles.number_input}type="text" name="work_size_one" defaultValue={workSizeOneDefaultValue} onChange={handleWorkDataChangeInput}/>
+          <input  className={styles.number_input}type="text" name="work_size_one" defaultValue={workSizeOneDefaultValue} placeholder='가로'onChange={handleWorkDataChangeInput}/>
           <span className={styles.units}>cm x </span>
         </div>
         <div key={workSizeTwoDefaultValue}>
           
-            <input  className={styles.number_input}type="text" name="work_size_two" defaultValue={workSizeTwoDefaultValue} onChange={handleWorkDataChangeInput}/>
+            <input  className={styles.number_input}type="text" name="work_size_two" defaultValue={workSizeTwoDefaultValue} placeholder='세로'onChange={handleWorkDataChangeInput}/>
             <span className={styles.units}>cm </span>
         </div>
-          {workSizeNull&&<span className={styles.notice_wrong_password}>필수: 작품 치수를 기입해주세요	</span>}
+          {workSizeNull&&<span className={styles.notice_wrong_password}>필수: 올바른 작품 치수를 반드시 기입해주세요	</span>}
       
       </div>
       
@@ -937,8 +987,8 @@ let obj2 = {} as TypeOfExhibitionHistory
 
           <div className={styles.button_container}>
 
-        <input type="submit" className={styles.fifth_buttons} value='수정된 작품 업로드하고 웹사이트에도 바로 띄우기' />
-
+        <input type="submit" className={styles.fifth_buttons} value='수정된 작품 업로드하기' />
+        <button className={styles.fifth_buttons} onClick={handleCancelUpload}>수정된 작품 업로드 취소하기</button>
           </div>
 
     </div>
