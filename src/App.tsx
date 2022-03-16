@@ -37,6 +37,8 @@ import ExhibitionImageUpload from './services/exhibition_image_uploads';
 import Modal from 'react-modal';
 import SingleWork from './components/main/medium/work_folder/single_work/single_work';
 import Fullscreen from './components/main/medium/full_screen_folder/fullscreen/fullscreen';
+import BasicTemplate from './components/introuduction/intro_work_folder/basic_template/basic_template';
+import Navigator from './components/introuduction/navigator_folder/navigator/navigator';
 
 
 type AppProps = {
@@ -116,7 +118,6 @@ const handleLogin = (password:string|number) => {
           <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
           <Route path="work:work_id" element={<SingleWork/>}/>
           <Route path="work" element={<SingleWork/>}/>
-
         </Route>
 
         
@@ -158,8 +159,6 @@ const handleLogin = (password:string|number) => {
 
               </Route>
               
-
-              
               <Route path="suggestion_box" element={<SuggestionBox/>}/>
           </Route>
 
@@ -172,7 +171,9 @@ const handleLogin = (password:string|number) => {
       </Route>
     
       
-
+      <Route path={'/introduction'} element={<Navigator/>}>
+        <Route path="" element={<BasicTemplate/>}/>
+      </Route>
 
 
 

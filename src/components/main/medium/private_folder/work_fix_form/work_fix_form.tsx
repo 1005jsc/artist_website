@@ -335,9 +335,6 @@ const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
   
   
   
-  
-  
-  
   // 여기 왜이런지 모르겠음 
   // 여기에 들어오는거 
   // size, onSale은 따로
@@ -363,7 +360,7 @@ const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
         workHorizontalOrVerticalOrSquare = 'vertical'
       }
   
-      fixWork['workSize']= `${workSizeOneValue}cm x ${workSizeTwoValue}`
+      fixWork['workSize']= `${workSizeOneValue}cm x ${workSizeTwoValue}cm`
       fixWork['workHorizontalOrVertical'] = workHorizontalOrVerticalOrSquare
 
 
@@ -395,7 +392,7 @@ const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
       
       }
   
-      fixWork['workSize']= `${workSizeOneValue}cm x ${workSizeTwoValue}`
+      fixWork['workSize']= `${workSizeOneValue}cm x ${workSizeTwoValue}cm`
       fixWork['workHorizontalOrVerticalOrSquare'] = workHorizontalOrVerticalOrSquare
   
     }else{
