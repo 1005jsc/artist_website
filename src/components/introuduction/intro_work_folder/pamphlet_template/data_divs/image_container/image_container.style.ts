@@ -1,15 +1,19 @@
 
 import  styled  from 'styled-components';
 export const ImageDiv = styled.div`
-width: 60rem;
-height: 41.5rem;
+
 
 
 
 `
 
-export const ImageImg = styled.img`
+export const ImageHorizontalImg = styled.img`
 
 width: 100%;
+
+`
+export const ImageVerticalImg = styled.img`
+
+height: 100%;
 
 `

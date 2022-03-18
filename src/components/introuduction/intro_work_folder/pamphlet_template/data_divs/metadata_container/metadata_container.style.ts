@@ -17,7 +17,7 @@ export const MetadataSpan1 = styled.span`
 ` 
 
 export const MetadataSpan2 = styled.span`
-  margin-left: 1rem;
+  margin-left: 1.3rem;
   font-size: 1.2rem;
   font-weight: 400;
 
