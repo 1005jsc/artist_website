@@ -8,6 +8,7 @@ type FirstDivProps = {
 }
 
 
+
 export const FirstDiv = ({children}:FirstDivProps) => {
 
   return <B.BasicTemplateSection>
@@ -29,5 +30,13 @@ export const SecondDiv = ({children}:SecondDivProps) => {
 
   {children}
   </B.BasicTemplateSecondDiv>
+
+}
+export const MiddleDiv = ({children}:SecondDivProps) => {
+
+  return <B.BasicTemplateMiddleDiv>
+
+  {children}
+  </B.BasicTemplateMiddleDiv>
 
 }

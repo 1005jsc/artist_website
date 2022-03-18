@@ -19,3 +19,13 @@ export const BasicTemplateSecondDiv = styled.div`
 	height: 58rem;
 	border: 1px solid black;
 `
+export const BasicTemplateMiddleDiv = styled.div`
+display: flex;
+  position: absolute;
+  top:0;
+  left:0;
+	width: 72rem;
+	height: 100%;
+	border-right: 1px dotted black;
+  // background-color : #274289;
+`
