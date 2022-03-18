@@ -26,9 +26,11 @@ const MetadataContainerNo1 = styled(MetadataContainer)`
 	left: 0;
 `
 const PageNo1 = styled(Page)`
+  display: inline-block;
   position: absolute;
 	bottom: 2.8rem;
-	left: 50%;
+  width: 1.4rem;
+	left: calc(50%-0.7rem);
 `
 
 const ImageContainerNo1 = styled(ImageContainer)`

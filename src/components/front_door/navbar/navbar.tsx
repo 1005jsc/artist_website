@@ -6,7 +6,7 @@ const Navbar = () => {
 
   const [navbarVisible, setNavbarVisible ] = useState<boolean>(false)
   const navigate = useNavigate()
-  const [onHover, setOnHover] = useState<boolean>(true)
+  const [onHover, setOnHover] = useState<boolean>(false)
 
   const navigateTo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -20,7 +20,6 @@ const Navbar = () => {
   useEffect(() => {
     setTimeout(() => {setNavbarVisible(true)}, 3000)
   }, [])
-
 
 
 
