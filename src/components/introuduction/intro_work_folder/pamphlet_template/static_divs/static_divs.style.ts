@@ -17,7 +17,7 @@ export const BasicTemplateSecondDiv = styled.div`
   position: relative;
 	width: 132rem;
 	height: 58rem;
-	border: 1px solid black;
+	// border: 1px solid black;
 `
 export const BasicTemplateMiddleDiv = styled.div`
 display: flex;
@@ -26,6 +26,6 @@ display: flex;
   left:0;
 	width: 72rem;
 	height: 100%;
-	border-right: 1px dotted black;
+	// border-right: 1px dotted black;
   // background-color : #274289;
 `

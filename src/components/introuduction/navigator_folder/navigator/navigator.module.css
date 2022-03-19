@@ -12,7 +12,7 @@
 	align-items: center;
 	top: 0;
 	width: 100%;
-	height: 11rem;
+	height: 9rem;
 	background-color: rgb(0, 0, 0, 0.2);
 	opacity: 1;
 
@@ -31,7 +31,7 @@
 
 	bottom: 0;
 	width: 100%;
-	height: 11rem;
+	height: 9rem;
 	background-color: rgb(0, 0, 0, 0.2);
 	opacity: 1;
 
@@ -51,14 +51,14 @@
 
 /* 버튼 css */
 .button_top {
-	font-size: 4rem;
+	font-size: 3.6rem;
 	font-weight: 500;
 	color: white;
 	background-color: transparent;
 }
 
 .button_bottom {
-	font-size: 3.2rem;
+	font-size: 2.8rem;
 	padding: 1rem;
 	padding-left: 1.8rem;
 	padding-right: 1.8rem;
@@ -91,17 +91,23 @@
 
 .arrow_left {
 	height: 100%;
-	animation: arrowMoveBackToRight 0.7s;
+	transition: transform 0.7s ease-out;
+	transform: translateX(0%);
 }
+
 .arrow_left:hover {
-	animation: arrowMoveToLeft 1s;
+	transition: transform 0.5s ease-out;
+	transform: translateX(-15%);
 }
+
 .arrow_right {
 	height: 100%;
-	animation: arrowMoveBackToLeft 0.7s;
+	transition: transform 0.7s ease-out;
+	transform: translateX(0%);
 }
 .arrow_right:hover {
-	animation: arrowMoveToRight 1s;
+	transition: transform 0.5s ease-out;
+	transform: translateX(15%);
 }
 
 .page_indicator_div {
@@ -112,39 +118,4 @@
 .page_now {
 	position: relative;
 	bottom: 0.15rem;
-}
-
-@keyframes arrowMoveToRight {
-	0% {
-		transform: translate3d(0, 0, 0);
-	}
-	to {
-		transform: translateX(15%);
-	}
-}
-
-@keyframes arrowMoveToLeft {
-	0% {
-		transform: translate3d(0, 0, 0);
-	}
-	to {
-		transform: translateX(-15%);
-	}
-}
-
-@keyframes arrowMoveBackToRight {
-	0% {
-		transform: translate3d(-12%, 0, 0);
-	}
-	to {
-		transform: translateX(0);
-	}
-}
-@keyframes arrowMoveBackToLeft {
-	0% {
-		transform: translate3d(12%, 0, 0);
-	}
-	to {
-		transform: translateX(0);
-	}
 }

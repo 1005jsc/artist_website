@@ -1,0 +1,34 @@
+.popup_container {
+	position: fixed;
+	bottom: 50rem;
+	left: 5rem;
+	width: 46rem;
+	height: 16rem;
+	background-color: #e6e6e6;
+	/* background-color: #f7f7da; */
+	border-radius: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	padding: 2.4rem;
+}
+
+.s1 {
+	font-size: 1.6rem;
+	line-height: 3rem;
+}
+
+.okay {
+	position: absolute;
+	width: 8rem;
+	height: 3.4rem;
+	bottom: 2rem;
+	right: 2.8rem;
+	border-radius: 0.6rem;
+	border: 0.2rem solid #063842;
+	font-size: 1.6rem;
+	line-height: 1rem;
+	transition: border 0.9s;
+}
+.okay:hover {
+	border: 0.2rem solid rgb(247, 5, 5, 0.6);
+}

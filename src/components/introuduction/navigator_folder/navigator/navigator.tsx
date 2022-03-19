@@ -4,6 +4,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as Pamphlet from '../../intro_work_folder/pamphlet_template/pamphlet_designs';
 import { NavigatorSection } from './navigator.style';
 import { totalIntroductionPageCount } from './../../../../index';
+import KeyDetector from '../../../utility/key_detector/key_detector';
+import PopupSample from '../../popup/popup_sample';
+import { Popup } from '../../popup/popup';
+import  styled  from 'styled-components';
+import { PopupDivProps } from '../../popup/popup.style';
 
 const Navigator = () => {
 
@@ -12,7 +17,16 @@ const Navigator = () => {
   const totalPage = totalIntroductionPageCount
   
   const navigate = useNavigate()
-  const [onHover, setOnHover] = useState<boolean>(true)
+  const [onHover, setOnHover] = useState<boolean>(false)
+
+  // 페이지 조작하기
+  const [pageNow, setPageNow] = useState<number>(page?parseInt(page):1)
+
+  useEffect(() => {
+    navigate(`/introduction?page=${pageNow}`)
+
+  }, [pageNow])
+
 
   const navigateTo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -25,9 +39,7 @@ const Navigator = () => {
     }
   }
 
-
-  const [pageNow, setPageNow] = useState<number>(page?parseInt(page):1)
-
+  
 
 
   const arrowButtonNavigateTo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -38,16 +50,13 @@ const Navigator = () => {
       let pageYes = pageNow 
       if(1<=pageYes+ moveTo&&pageYes+ moveTo <= totalPage){
         pageYes = pageYes + moveTo
-        navigate(`/introduction?page=${pageYes}`)
         setPageNow(pageYes)
       }else if(pageYes+ moveTo <= 0){
         pageYes = 1
-        navigate(`/introduction?page=${pageYes}`)
         
         setPageNow(pageYes)
       }else if(pageYes+ moveTo > totalPage ){
         pageYes = totalPage
-        navigate(`/introduction?page=${pageYes}`)
 
         setPageNow(pageYes)
       }
@@ -55,14 +64,61 @@ const Navigator = () => {
     }
 
   }
+
   
 
 
+  const handleKeyDetector = (keyValue:string) => {
+    if(!onHover){
+      if(keyValue === 'Enter'||keyValue ==='Escape'||keyValue ===' '){
+        setOnHover(true)
+      }
+    }else if(onHover){
+      if(keyValue === 'Enter'||keyValue ==='Escape'||keyValue ===' '){
+        setOnHover(false)
+      }else if(keyValue ==='ArrowRight'){
+      }
+    }
+    let moveTo = 0
+    if(keyValue === 'ArrowRight'){
+      moveTo = 1
+    }else if(keyValue === 'ArrowLeft'){
+      moveTo = -1
+    }
+
+    let pageYes = pageNow 
+    if(1<=pageYes+ moveTo&&pageYes+ moveTo <= totalPage){
+      pageYes = pageYes + moveTo
+      setPageNow(pageYes)
+    }else if(pageYes+ moveTo <= 0){
+      pageYes = 1
+      
+      setPageNow(pageYes)
+    }else if(pageYes+ moveTo > totalPage ){
+      pageYes = totalPage
+
+      setPageNow(pageYes)
+    }  
 
 
+  }
+  
 
 
+// 팝업 
 
+  const [popUpShow, setPopUpShow] = useState<boolean>(false)
+
+useEffect(() => {
+  setPopUpShow(true)
+}, [])
+
+// 옆에서 퉁~! 튀어나오는 애니메이션 추가하기
+
+
+const handlePopupAnimation = () => {
+  setPopUpShow(!popUpShow)
+}
 
 
 
@@ -128,8 +184,11 @@ const Navigator = () => {
     <button className={styles.button_bottom} data-path="main" onClick={navigateTo}>홈으로 가기</button></>}
 
       </div>
-
     
+    <Popup popUpShow={popUpShow} handleOkay={handlePopupAnimation}>
+    
+    </Popup>
+    <KeyDetector sendKeyValue={handleKeyDetector}/>
     </div>
     
     

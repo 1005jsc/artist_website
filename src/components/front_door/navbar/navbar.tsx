@@ -6,7 +6,7 @@ const Navbar = () => {
 
   const [navbarVisible, setNavbarVisible ] = useState<boolean>(false)
   const navigate = useNavigate()
-  const [onHover, setOnHover] = useState<boolean>(false)
+  const [onHover, setOnHover] = useState<boolean>(true)
 
   const navigateTo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
