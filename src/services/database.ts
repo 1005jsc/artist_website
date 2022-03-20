@@ -21,10 +21,13 @@ class Database {
 
 
 
-  uploadPhotoUrl(worksOrExhibitions:'works'|'exhibitions',workOrExhibitionid:string|number, imageOrPhotoType:AllImageOrPhotoList,museumPhotoId:string|number, url:string){
+  uploadPhotoUrl(worksOrExhibitions:'works'|'exhibitions',workOrExhibitionid:string|number,
+  imageOrPhotoType:AllImageOrPhotoList,museumPhotoId:string|number, url:string){
     set(ref(Database.myDatabase,
       `root/${worksOrExhibitions}/${workOrExhibitionid}/${imageOrPhotoType}/${museumPhotoId}`), url)
-  }
+
+  
+}
   
   uploadWorkToExhibitionWorks(exhibitionId:number, workId:number, inputData:any){
     set(ref(Database.myDatabase,

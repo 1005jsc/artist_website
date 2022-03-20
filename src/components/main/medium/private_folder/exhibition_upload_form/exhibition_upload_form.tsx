@@ -358,18 +358,10 @@ try{
 
   // 전시장 외부사진 (5/5)
   let  idAndUrls 
-  if(museumPhotos){
-    idAndUrls= museumPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+2), asset.url]})
-    idAndUrls.forEach((value) => {databaseService.uploadPhotoUrl('exhibitions', exhibitionSerialNumberNum, 'exhibitionBuildingPhotoUrl', value[0], value[1])
-    })
-  }
+  
 
-  //전시회 사진 (5/5)
-  let  idAndUrls2 
-  if(exhibitionPhotos){
-    idAndUrls2= exhibitionPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+3), asset.url]})
-    idAndUrls2.forEach((value) => {databaseService.uploadPhotoUrl('exhibitions',exhibitionSerialNumberNum, 'exhibitionPhotoUrl',value[0], value[1] )})
-  }
+//전시회 사진 (5/5)
+let  idAndUrls2 
 
 
 
@@ -425,8 +417,33 @@ try{
 
   // 성공 시 
   if(!exhibitionTitleNulll&&!exhibitionNameNulll&&!exhibitionStartDateNulll&&!exhibitionEndDateNulll){
-
+    console.log(exhibitionData)
     databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
+
+
+    if(museumPhotos){
+      idAndUrls= museumPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+2), asset.url]})
+      idAndUrls.forEach((value) => {databaseService.uploadPhotoUrl('exhibitions', exhibitionSerialNumberNum, 'exhibitionBuildingPhotoUrl', value[0], value[1])
+    })
+  }else{
+    console.log('something wrong with museumPhotos')
+  }
+
+
+    if(exhibitionPhotos){
+      idAndUrls2= exhibitionPhotos.map((asset, index) => {return [myFunctions.generateAKey(index+3), asset.url]})
+      idAndUrls2.forEach((value) => {databaseService.uploadPhotoUrl('exhibitions',exhibitionSerialNumberNum, 'exhibitionPhotoUrl',value[0], value[1] )
+    })
+      
+    }else{
+      console.log('something wrong with exhibitionPhotos')
+    }
+  
+
+
+
+
+
     navigate('/home/private/loggedin/exhibition_upload/exhibition_upload_done')
   }else{
     

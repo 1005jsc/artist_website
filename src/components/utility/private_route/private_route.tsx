@@ -13,7 +13,7 @@ type PrivateRouteProps = {
 const PrivateRoute = ({login, ...rest}: PrivateRouteProps) => {
 
   if(!login){
-    return <Navigate to="/main/private" replace={true}/> 
+    return <Navigate to="/home/private" replace={true}/> 
   }
   
 

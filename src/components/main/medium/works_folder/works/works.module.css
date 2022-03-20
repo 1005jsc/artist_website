@@ -5,11 +5,7 @@
 }
 
 .background_img {
-	/* height: 100%; */
-	/* background-image: url('../../../../../asset/img/artist_img/old_img/cho_yong_nam10.jpg');
-	background-repeat: no-repeat; */
 	width: 100%;
-	/* overflow: hidden; */
 	position: sticky;
 	top: 0rem;
 	z-index: 1;

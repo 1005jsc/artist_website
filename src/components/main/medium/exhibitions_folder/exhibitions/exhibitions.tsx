@@ -25,19 +25,19 @@ const Exhibitions = ({databaseService}:ExhibitionProps) => {
 
 
 
-
   return <section className={styles.container}>
   
   {<div className={styles.background_img}>
-    <img src={bulidingPhotoUrl?bulidingPhotoUrl:''} alt="" /></div>}
+    <img className={styles.img} src={bulidingPhotoUrl?bulidingPhotoUrl:''} alt="" /></div>}
+
+
   <div className={styles.container2}>
     <div className={styles.title_container}>
   <span className={styles.title}>전시</span>
   </div>
     <Outlet context={{databaseService, backgroundImageUpdate}}/>
 
-
-    </div>
+  </div>
 </section>
 
 }
