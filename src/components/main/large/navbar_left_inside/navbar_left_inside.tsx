@@ -46,6 +46,21 @@ const NavbarLeftInside = ({loginState}:NavbarLeftInsideProps) => {
 
   }, [url])
 
+  const navigateToTwo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    const thisPath = e.currentTarget.dataset.path
+    
+    if(thisPath === '/'){
+      navigate(`/`)
+    }else if(thisPath === 'introduction'){
+      navigate(`/introduction?page=1`)
+    }
+
+
+
+  }
+  
+
   return <>
   
   <div className={styles.logo_sample}>Logo</div>
@@ -54,7 +69,7 @@ const NavbarLeftInside = ({loginState}:NavbarLeftInsideProps) => {
 <div className={styles.navbar_container}>
   
     <div className={` ${styles.c1} `}>
-      <span className={` ${styles.s1} `}data-path="biography" onClick={navigateTo}>작가소개</span>
+      <span className={` ${styles.s1} `}data-path="biography" onClick={navigateTo}>작가노트</span>
     
       {(emptyOnClick||biographyOnClick)&&<div className={styles.c2}>
         <span className={`${styles.s2}`}data-path="biography/note" onClick={navigateTo}>- 작가노트</span>
@@ -88,6 +103,17 @@ const NavbarLeftInside = ({loginState}:NavbarLeftInsideProps) => {
 
     <div className={` ${styles.c1} `}>
       <span className={`${styles.contacts_left} ${styles.s1}`} data-path="contacts" onClick={navigateTo}>연락처</span>
+    </div>
+
+</div>
+
+
+  <div className={styles.go_back_div}>
+    <div className={` ${styles.b1} `}>
+      <button className={`${styles.f1}`} data-path="/" onClick={navigateToTwo}>메인으로 돌아가기</button>
+    </div>
+    <div className={` ${styles.b1} `}>
+      <button className={`${styles.f2}`} data-path="introduction" onClick={navigateToTwo}>작가, 작품소개 다시보기</button>
     </div>
 
 </div>

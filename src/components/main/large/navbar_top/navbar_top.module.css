@@ -7,6 +7,7 @@
 }
 
 .button_container {
+	/* width: 100%; */
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -14,8 +15,8 @@
 }
 
 .top_button {
-	margin-right: 2.1vw;
-	margin-left: 2.1vw;
+	margin-right: 3rem;
+	margin-left: 3rem;
 	background-color: transparent;
 	height: 3.2rem;
 	font-size: 2.3rem;

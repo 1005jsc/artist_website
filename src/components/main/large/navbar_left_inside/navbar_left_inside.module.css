@@ -36,10 +36,9 @@
 	background-color: #c4c4c4;
 	padding-left: 2rem;
 	padding-right: 2.2rem;
-	padding-top: 4.2rem;
-	padding-bottom: 4.2rem;
-	top: 30rem;
-	/* margin-top: 10rem; */
+	padding-top: 3.2rem;
+	padding-bottom: 3.2rem;
+	top: 24rem;
 }
 
 /* c1 container의 1번째라는 말 */
@@ -57,7 +56,7 @@
 
 /* s1 span의 1번째라는 말  */
 .s1 {
-	font-size: 2rem;
+	font-size: 1.8rem;
 	margin-bottom: 1rem;
 	/* margin-left: 1rem; */
 }
@@ -91,4 +90,41 @@
 }
 .open_door:hover {
 	cursor: pointer;
+}
+
+.b1 {
+	/* margin-bottom: 1.6rem; */
+}
+.f1 {
+	font-size: 1.3rem;
+	margin-bottom: 1rem;
+	line-height: 2.4rem;
+	background-color: transparent;
+}
+.f1:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+.f2 {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+	line-height: 2.4rem;
+	background-color: transparent;
+}
+.f2:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+
+.go_back_div {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: 19.4rem;
+	background-color: transparent;
+	padding-left: 1.6rem;
+	padding-right: 2.2rem;
+	padding-top: 2.2rem;
+	padding-bottom: 2.2rem;
+	top: 64rem;
 }

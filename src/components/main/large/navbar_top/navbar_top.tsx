@@ -24,7 +24,7 @@ const NavbarTop = () => {
   return <nav className={styles.navbar_top_container}>
 
   <div className={styles.button_container} >
-    <button className={`${styles.introdution} ${styles.top_button}`} data-path="biography" onClick={navigateTo}>작가소개</button>
+    <button className={`${styles.introdution} ${styles.top_button}`} data-path="biography" onClick={navigateTo}>작가노트</button>
     <button className={`${styles.work} ${styles.top_button}`} data-path="works" onClick={navigateTo} >작품</button>
     <button className={`${styles.exhibition} ${styles.top_button}`} data-path="exhibitions" onClick={navigateTo} >전시</button>
     <button className={`${styles.critics} ${styles.top_button}`} data-path="critics" onClick={navigateTo} >평론가의 글</button>
