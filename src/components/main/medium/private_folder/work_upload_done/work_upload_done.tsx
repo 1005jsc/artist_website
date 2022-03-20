@@ -10,7 +10,7 @@ const WorkUploadDone = () => {
   const handleClickOne:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate('/main/works')
+    navigate('/home/works')
 
 
   }
@@ -18,7 +18,7 @@ const WorkUploadDone = () => {
   const handleClickTwo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate('/main/private/loggedin/work_upload/')
+    navigate('/home/private/loggedin/work_upload/')
 
 
   }

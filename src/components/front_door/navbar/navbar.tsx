@@ -30,7 +30,7 @@ const Navbar = () => {
   <div  className={` ${styles.navbar_both} ` + 
     (onHover ? `${styles.navbar_top}` : `${styles.top_off_hover}`) } 
     >
-    {onHover&&<button className={styles.button_top} data-path="main" onClick={navigateTo} >조용남 작가 웹사이트</button>}
+    {onHover&&<button className={styles.button_top} data-path="home" onClick={navigateTo} >조용남 작가 웹사이트</button>}
   </div>
 
 
@@ -40,7 +40,7 @@ const Navbar = () => {
   onMouseLeave={() => setOnHover(false)}>
     {onHover&&<>
     <button className={`${styles.button_bottom} `} data-path="introduction?page=1" onClick={navigateTo}>작가, 작품소개 보러가기</button>
-    <button className={`${styles.button_bottom} `} data-path="main" onClick={navigateTo}>홈으로 바로가기</button></>}
+    <button className={`${styles.button_bottom} `} data-path="home" onClick={navigateTo}>홈으로 바로가기</button></>}
     </div>
   </>}
     

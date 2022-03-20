@@ -5,7 +5,7 @@ import { ImageQualityTypes } from './project_types'
 
 
 class artWebsiteExportFunctions{
-  static urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
+  static urlWordSearchRegex = /(?:\/home?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
   static cloudinaryImageUrlRegex = /(https?:\/\/res\.cloudinary\.com\/koreachief\/image\/upload\/)([a-zA-Z0-9\W]+)/
 
   checkVacantUrl = ( url: string|null|undefined) => {

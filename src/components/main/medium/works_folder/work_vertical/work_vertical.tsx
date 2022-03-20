@@ -26,7 +26,7 @@ const WorkVertical = ({work, year, works, worksYear}:WorkVerticalProps) => {
 
   const handleNavigate:React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
-    navigate(`/main/works/work?work_id=${work.workSerialNumber}`, {
+    navigate(`/home/works/work?work_id=${work.workSerialNumber}`, {
       state:[works, worksYear]
     })
 

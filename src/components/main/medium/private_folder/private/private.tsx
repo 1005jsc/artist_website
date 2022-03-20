@@ -25,7 +25,7 @@ const Private = ({authService}:PrivateProps) => {
     e.preventDefault()
 
     authService.AuthGoogleLogout(() => {
-      return navigateLogin('/main')})
+      return navigateLogin('/home')})
   }
   
   

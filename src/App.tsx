@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styles from "./app.module.css"
 import BackgroundImage from './components/front_door/background_image/background_image';
-import Main from './components/main/large/main/main';
+import Home from './components/main/large/home/home';
 import Biography from './components/main/medium/biography_folder/biography/biography';
 import Works from './components/main/medium/works_folder/works/works';
 import Critics from './components/main/medium/critics_folder/critics/critics';
@@ -92,10 +92,10 @@ const handleLogin = (password:string|number) => {
           <Route path='' element={<Navbar/>}/>
       </Route>
 
-      <Route path="/main/works/fullscreen" element={<Fullscreen />}/>
+      <Route path="/home/works/fullscreen" element={<Fullscreen />}/>
       
 
-      <Route path="/main" element={<Main login={login} handleLogin={handleLogin} />} >
+      <Route path="/home" element={<Home login={login} handleLogin={handleLogin} />} >
 
         <Route path='' element={<Biography/>}>
           <Route path="" element={<BiographyWords/>}/>
@@ -134,7 +134,7 @@ const handleLogin = (password:string|number) => {
 
         <Route path="contacts" element={<Contacts/>}/>
 
-        
+
         <Route path="private" element={<Private authService={authService} />}>
           <Route path="" element={<Login authService={authService}/>}/>
           <Route path="loggedin" element={<PrivateRoute login={login}/>}>

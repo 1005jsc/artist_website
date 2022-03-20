@@ -337,11 +337,11 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
 
         if(myFunctions.checkWordFromUrl('work_fix', url)){
-          navigate('/main/private/loggedin/work_fix/work_fix_done')
+          navigate('/home/private/loggedin/work_fix/work_fix_done')
     
         }else if(myFunctions.checkWordFromUrl('work_upload', url)){
     
-          navigate('/main/private/loggedin/work_upload/work_upload_done')
+          navigate('/home/private/loggedin/work_upload/work_upload_done')
         }else{
           console.log('url or navigate error')
         }

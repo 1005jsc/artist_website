@@ -44,7 +44,7 @@ const WorksNav = ({getUrl, databaseService}:WorksNavProps) => {
     e.preventDefault()
     const path = e.currentTarget.dataset.path
     if(path){
-      navigate(`/main/works/${path}`)
+      navigate(`/home/works/${path}`)
     }
   }
 
@@ -67,7 +67,7 @@ const WorksNav = ({getUrl, databaseService}:WorksNavProps) => {
   const navigateToFullscreen:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate(`/main/works/fullscreen`,{
+    navigate(`/home/works/fullscreen`,{
       state:[works, null]
     } )
 

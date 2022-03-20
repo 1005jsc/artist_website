@@ -30,7 +30,7 @@ const WorkFixFormOne = () => {
     e.preventDefault()
 
 
-    navigate('/main/private/loggedin/work_fix/work_fix_form_two', {
+    navigate('/home/private/loggedin/work_fix/work_fix_form_two', {
       state:[exhibitionWorksOnClick, exhibitionWorksOnClickUrls]
     
     })

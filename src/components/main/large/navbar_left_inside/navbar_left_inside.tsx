@@ -32,7 +32,7 @@ const NavbarLeftInside = ({loginState}:NavbarLeftInsideProps) => {
     const thisPath = e.currentTarget.dataset.path
     
     if(thisPath){
-      navigate(`/main/${thisPath}`)
+      navigate(`/home/${thisPath}`)
     }
     
 

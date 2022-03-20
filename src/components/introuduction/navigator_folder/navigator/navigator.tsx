@@ -186,7 +186,7 @@ const Navigator = () => {
     
     
     
-    <button className={styles.button_bottom} data-path="main" onClick={navigateTo}>홈으로 가기</button></>}
+    <button className={styles.button_bottom} data-path="home" onClick={navigateTo}>홈으로 가기</button></>}
 
       </div>
     

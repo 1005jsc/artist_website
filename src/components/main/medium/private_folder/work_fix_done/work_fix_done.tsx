@@ -11,7 +11,7 @@ const WorkFixDone = () => {
   const handleClickOne:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate('/main/works', {replace:true})
+    navigate('/home/works', {replace:true})
 
 
   }
@@ -19,7 +19,7 @@ const WorkFixDone = () => {
   const handleClickTwo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    navigate('/main/private/loggedin/work_fix/', {replace:true})
+    navigate('/home/private/loggedin/work_fix/', {replace:true})
 
 
   }

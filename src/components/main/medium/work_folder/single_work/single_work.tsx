@@ -134,12 +134,12 @@ const navigate = useNavigate()
     console.log(e.currentTarget.dataset.side )
 
     if(e.currentTarget.dataset.side === 'left'){
-      navigate(`/main/works/work?work_id=${leftWorkId}`, {
+      navigate(`/home/works/work?work_id=${leftWorkId}`, {
         state:[works, worksYear]
       })
       window.location.reload()
     }else if(e.currentTarget.dataset.side === 'right'){
-      navigate(`/main/works/work?work_id=${rightWorkId}`, {
+      navigate(`/home/works/work?work_id=${rightWorkId}`, {
         state:[works, worksYear]
       })
       window.location.reload()
@@ -167,12 +167,12 @@ const navigate = useNavigate()
     e.preventDefault()
 
     if(worksYear == [] || worksYear ==undefined){
-      navigate(`/main/works/fullscreen`, 
+      navigate(`/home/works/fullscreen`, 
       {
         state:[works, workId]
       })
     }else{
-      navigate(`/main/works/fullscreen`, 
+      navigate(`/home/works/fullscreen`, 
       {
         state:[worksYear, workId]
       })

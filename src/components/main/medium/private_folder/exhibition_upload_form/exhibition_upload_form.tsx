@@ -427,7 +427,7 @@ try{
   if(!exhibitionTitleNulll&&!exhibitionNameNulll&&!exhibitionStartDateNulll&&!exhibitionEndDateNulll){
 
     databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
-    navigate('/main/private/loggedin/exhibition_upload/exhibition_upload_done')
+    navigate('/home/private/loggedin/exhibition_upload/exhibition_upload_done')
   }else{
     
     window.scrollTo({

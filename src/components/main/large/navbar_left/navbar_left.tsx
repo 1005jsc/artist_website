@@ -21,7 +21,7 @@ const NabvarLeft = ({loginState, doorknobOpen, closeDoorknob, openDoorknob}:Navb
   const [firstRender, setFirstRender] = useState<boolean>(false)
   const location = useLocation()
   useEffect(() => {
-      if(location.pathname === '/main/works/work'){
+      if(location.pathname === '/home/works/work'){
         setUrlWordWorkCheck(true)
         setUrlNotWork(false)
         setFirstRender(true)

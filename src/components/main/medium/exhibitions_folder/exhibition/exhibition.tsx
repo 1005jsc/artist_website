@@ -21,7 +21,7 @@ const Exhibition = ({exhibition}:ExhibitionProps) => {
     e.preventDefault()
     
     
-  const urlWordSearchRegex = /(?:\/main?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
+  const urlWordSearchRegex = /(?:\/home?)(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?(\/[\w\d]+)?/
   const urlNow = window.location.href 
   
   const result = urlNow.match(urlWordSearchRegex)
@@ -29,13 +29,13 @@ const Exhibition = ({exhibition}:ExhibitionProps) => {
   
   if(result?.includes('/works')){
 
-    navigate(`/main/works/${path!}`, {
+    navigate(`/home/works/${path!}`, {
       state: [exhibition]
       
     } )
   }else if(result?.includes('/exhibitions')){
 
-    navigate(`/main/exhibitions/${path!}`, {
+    navigate(`/home/exhibitions/${path!}`, {
       state: [exhibition]
       
     })

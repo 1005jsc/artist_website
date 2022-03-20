@@ -20,7 +20,7 @@ const Works = ({databaseService}:WorksProps) => {
   
 
   useEffect(() => {
-    if(urlNow === '/main/works'||urlNow === '/main/works/year'||urlNow === '/main/works/larger'||urlNow === '/main/works/smaller'){
+    if(urlNow === '/home/works'||urlNow === '/home/works/year'||urlNow === '/home/works/larger'||urlNow === '/home/works/smaller'){
       setShowBackgroundPic(true)
     }else{
       setShowBackgroundPic(false)

@@ -14,7 +14,7 @@ const LoginSuccess = () => {
     e.preventDefault()
     const path = e.currentTarget.dataset.path
     if(path){
-      navigate(`/main/private/loggedin/${path}`)
+      navigate(`/home/private/loggedin/${path}`)
     }
   }
 

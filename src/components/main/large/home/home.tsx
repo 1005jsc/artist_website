@@ -1,18 +1,18 @@
 import ContentBox from '../content_box/content_box';
 import NabvarLeft from '../navbar_left/navbar_left';
-import styles from "./main.module.css";
+import styles from "./home.module.css";
 
 import { HandleLoginType } from '../../../../common/project_types';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-type MainProps = {
+type HomeProps = {
   login: boolean;
   handleLogin: HandleLoginType;
 }
 
 
-const Main = ({handleLogin, login}:MainProps) => {
+const Home = ({handleLogin, login}:HomeProps) => {
 
   const [doorknobOpenClicked, setDoorknobOpenClicked] = useState<boolean>(false)
 
@@ -26,7 +26,7 @@ const Main = ({handleLogin, login}:MainProps) => {
   
   const location = useLocation()
   useEffect(() => {
-      if(location.pathname === '/main/works/work'){
+      if(location.pathname === '/home/works/work'){
         setUrlNotWork(false)
         setFirstRender(true)
 
@@ -63,4 +63,4 @@ const Main = ({handleLogin, login}:MainProps) => {
 </section>
 
 }
-export default Main;
+export default Home;

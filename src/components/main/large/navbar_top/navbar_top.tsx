@@ -14,7 +14,7 @@ const NavbarTop = () => {
     e.preventDefault()
     const path = e.currentTarget.dataset.path
     if(path){
-      navigate(`/main/${path}`)
+      navigate(`/home/${path}`)
     }
 
 
