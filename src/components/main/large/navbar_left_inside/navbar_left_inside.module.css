@@ -21,7 +21,7 @@
 
 .logo_sample {
 	text-align: center;
-	width: 21.4rem;
+	width: 19.4rem;
 	height: 12.6rem;
 	border: 1px solid black;
 	margin-top: 2rem;
@@ -32,7 +32,7 @@
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	width: 21.4rem;
+	width: 19.4rem;
 	background-color: #c4c4c4;
 	padding-left: 2rem;
 	padding-right: 2.2rem;

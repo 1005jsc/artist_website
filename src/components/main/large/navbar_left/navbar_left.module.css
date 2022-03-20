@@ -35,7 +35,7 @@
 		width: 4.32rem;
 	}
 	to {
-		width: 28.8rem;
+		width: 23.8rem;
 	}
 }
 
@@ -49,7 +49,7 @@
 }
 @keyframes closeEffect {
 	0% {
-		width: 28.8rem;
+		width: 23.8rem;
 	}
 	to {
 		width: 4.32rem;
