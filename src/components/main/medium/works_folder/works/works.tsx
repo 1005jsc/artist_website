@@ -44,8 +44,9 @@ const Works = ({databaseService}:WorksProps) => {
   return <section className={styles.container}>
     
     {showBackgroundPic&&<div className={styles.background_img}>
-      <img src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/></div>}
+      <img className={styles.img}src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/></div>}
     
+    <div className={showBackgroundPic?styles.yes:styles.no}>
     <div className={styles.container2}>
     <div className={styles.title_container}>
     <span className={styles.title}>작품</span>
@@ -58,7 +59,7 @@ const Works = ({databaseService}:WorksProps) => {
       <Outlet context={{databaseService, backgroundImageUpdate}}/>
     </div>
     </div>
-    
+    </div>
   </section>
 
 }
