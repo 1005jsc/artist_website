@@ -15,7 +15,7 @@ const WorkMediumDisplay = ({imgClickModalOpen, workUrl}:WorkMediumDisplayProps) 
 
   return<div className={styles.work_disp_cont_2}>
       
-      <img className={styles.work}src={workUrl} onClick={handleOpen} alt="" />
+      <img className={styles.work}src={workUrl?workUrl:'/icons/image_not_avaliable_horizontal.svg'} onClick={handleOpen} alt="" />
 
 
   </div>

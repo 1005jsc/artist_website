@@ -37,7 +37,7 @@ const WorkSquare = ({work, year, works, worksYear}:WorkSquareProps) => {
     <div className={styles.work_frame}>
       <div className={styles.image_frame}>
               
-        <img className={styles.work_img} src={workUrl} alt='' />
+        <img className={styles.work_img} src={workUrl?workUrl:'/icons/image_not_avaliable_square.svg'} alt='' />
 
       </div>
     <div className={styles.work_metadata}>

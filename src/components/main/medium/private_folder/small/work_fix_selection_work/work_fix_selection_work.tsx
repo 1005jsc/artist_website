@@ -54,7 +54,7 @@ const WorkFixSelectionWork = ({work, exhibitionWorksOnClickArray, passSelectedWo
   return <div className={styles.work_container} >
   <div className={workOnClick?`${styles.work_frame} ${styles.work_frame_onclick}`:`${styles.work_frame}`} onClick={handleClick}>
     <div className={styles.image_frame}>
-        <img className={styles.work_img} src={workUrl} alt="" />
+        <img className={styles.work_img} src={workUrl?workUrl:'/icons/image_not_avaliable_horizontal.svg'} alt="" />
     </div>
  
 

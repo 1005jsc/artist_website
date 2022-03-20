@@ -60,7 +60,7 @@ const Exhibition = ({exhibition}:ExhibitionProps) => {
   return <div className={styles.exhibition_bundle} >
     <div className={styles.exhibition_container} data-path='exhibition_works'onClick={navigateTo}>
   <div className={styles.image_container}>
-  <img className={styles.exhibition_img}src={exhibition.exhibitionPosterUrl?Object.values(exhibition.exhibitionPosterUrl)[0]:undefined} alt="" />
+  <img className={styles.exhibition_img}src={exhibition.exhibitionPosterUrl?Object.values(exhibition.exhibitionPosterUrl)[0]:'/icons/image_not_avaliable_vertical.svg'} alt="" />
   </div>  
   <div className={styles.exhibition_metadata}>
     <p className={styles.p1}>{exhibition.exhibitionTitle}</p>

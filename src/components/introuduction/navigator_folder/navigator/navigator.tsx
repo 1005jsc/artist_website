@@ -5,10 +5,7 @@ import * as Pamphlet from '../../intro_work_folder/pamphlet_template/pamphlet_de
 import { NavigatorSection } from './navigator.style';
 import { totalIntroductionPageCount } from './../../../../index';
 import KeyDetector from '../../../utility/key_detector/key_detector';
-import PopupSample from '../../popup/popup_sample';
 import { Popup } from '../../popup/popup';
-import  styled  from 'styled-components';
-import { PopupDivProps } from '../../popup/popup.style';
 
 const Navigator = () => {
 
@@ -26,6 +23,17 @@ const Navigator = () => {
     navigate(`/introduction?page=${pageNow}`)
 
   }, [pageNow])
+
+  useEffect((
+    ) => {
+    if(pageNow === 21){
+      setOnHover(true)
+    }
+  },
+  [pageNow])
+
+
+
 
 
   const navigateTo:React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -105,20 +113,17 @@ const Navigator = () => {
   
 
 
-// 팝업 
-
+  // 팝업 
+  
   const [popUpShow, setPopUpShow] = useState<boolean>(false)
-
-useEffect(() => {
-  setPopUpShow(true)
-}, [])
-
-// 옆에서 퉁~! 튀어나오는 애니메이션 추가하기
-
-
-const handlePopupAnimation = () => {
-  setPopUpShow(!popUpShow)
-}
+  
+  useEffect(() => {
+    setPopUpShow(true)
+  }, [])
+  
+  const handlePopupAnimation = () => {
+    setPopUpShow(false)
+  }
 
 
 

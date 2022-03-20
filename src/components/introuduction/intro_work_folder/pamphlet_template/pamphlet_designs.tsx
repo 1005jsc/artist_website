@@ -3,11 +3,10 @@ import { FirstDiv, MiddleDiv, SecondDiv } from './static_divs/static_divs'
 import  styled  from 'styled-components';
 import { ImageContainer } from './data_divs/image_container/image_container';
 import { MetadataContainer } from './data_divs/metadata_container/metadata_container';
-import { PageCenter, PageRight } from './data_divs/page/page';
+import { PageCenter, PageLeft, PageRight } from './data_divs/page/page';
 
 import * as T  from './data_divs/text_container/text_container.style';
 import * as M  from './data_divs/metadata_container/metadata_container.style';
-import * as P from './data_divs/page/page.style';
 import * as I from './data_divs/image_container/image_container.style';
 
 
@@ -47,13 +46,13 @@ right: 0;
       </TextContainerNo1>
 
     <MetadataContainerNo1>
-      <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-      <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+      <M.MetadataSpan1>시간을 담다 Ⅹ</M.MetadataSpan1>
+      <M.MetadataSpan2>91 ⅹ 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
     
     </MetadataContainerNo1>
 
     <ImageContainerNo1>
-      <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528653_600kb_mb5qre.jpg" alt=""/>
+      <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647512513/artist-website/pamphlet_assets/A_9528657_600kb_llg9dy.jpg" alt=""/>
     </ImageContainerNo1>
 
   </SecondDiv>
@@ -105,14 +104,14 @@ right: 0;
   <SecondDiv>
 
   <MetadataContainerNo2One>
-      <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-      <M.MetadataSpan2>91 x 60.5cm Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+      <M.MetadataSpan1>시간을 담다 Ⅳ</M.MetadataSpan1>
+      <M.MetadataSpan2>40 ⅹ 54cm Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2>
     
     </MetadataContainerNo2One>
 
     <MetadataContainerNo2Two>
-      <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-      <M.MetadataSpan2>91 x 60.5cm Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+      <M.MetadataSpan1>시간을 담다 Ⅱ</M.MetadataSpan1>
+      <M.MetadataSpan2>32 ⅹ 41cm Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2>
     
     </MetadataContainerNo2Two>
 
@@ -162,8 +161,8 @@ right: 0;
 <SecondDiv>
 
 <MetadataContainerNo3>
-      <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-      <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+      <M.MetadataSpan1>시간을 걷다 Ⅲ </M.MetadataSpan1>
+      <M.MetadataSpan2>91 ⅹ 65cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
     
     </MetadataContainerNo3>
 
@@ -171,7 +170,7 @@ right: 0;
   </SecondDiv>  
 
   <ImageContainerNo3>
-      <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528653_600kb_mb5qre.jpg" alt=""/>
+      <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528659_600kb_ulidk1.jpg" alt=""/>
     </ImageContainerNo3>
 
   <PageCenter>
@@ -219,11 +218,6 @@ return <FirstDivNo4>
     </ImageContainerNo4>
 <SecondDiv>
 
-<MetadataContainerNo4>
-      <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-      <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-    
-    </MetadataContainerNo4>
 
 
 
@@ -279,25 +273,25 @@ width: 60rem;
 
 <SecondDiv>
     <MetadataContainerNo5One>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+        <M.MetadataSpan1>시간을 담다 Ⅵ</M.MetadataSpan1>
+        <M.MetadataSpan2>162 ⅹ 97cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
       
       </MetadataContainerNo5One>
       <MetadataContainerNo5Two>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+        <M.MetadataSpan1>무제</M.MetadataSpan1>
+        <M.MetadataSpan2>34.5 ⅹ 27cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2022</M.MetadataSpan2>
       
       </MetadataContainerNo5Two>
 
       <ImageContainerNo5One>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528653_600kb_mb5qre.jpg" alt=""/>
+        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528649_600kb_ncjx4o.jpg" alt=""/>
       </ImageContainerNo5One>
       <ImageContainerNo5Two>
-        <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528653_600kb_mb5qre.jpg" alt=""/>
+        <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647621303/artist-website/pamphlet_assets/A_9534126_600kb_voif1k.jpg" alt=""/>
       </ImageContainerNo5Two>
   </SecondDiv>  
   <PageCenter>
-          19
+          5
       </PageCenter>
 </FirstDiv>
 
@@ -331,8 +325,8 @@ export const No6 = () => {
   <SecondDiv>
   
       <MetadataContainerNo6>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+        <M.MetadataSpan1>시간을 담다 Ⅲ</M.MetadataSpan1>
+        <M.MetadataSpan2>91 ⅹ 65cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
       
       </MetadataContainerNo6>
   
@@ -343,11 +337,11 @@ export const No6 = () => {
   
   
     <ImageContainerNo6>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528653_600kb_mb5qre.jpg" alt=""/>
+        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528655_600kb_tb7rpo.jpg" alt=""/>
       </ImageContainerNo6>
   
       <PageRight>
-          19
+          6
       </PageRight>
   
   </FirstDiv>
@@ -389,8 +383,8 @@ export const No6 = () => {
 
 
     <MetadataContainerNo7>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+        <M.MetadataSpan1>삶을 담다Ⅳ</M.MetadataSpan1>
+        <M.MetadataSpan2>19 ⅹ 33cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2>
       
       </MetadataContainerNo7>
   
@@ -434,7 +428,7 @@ export const No6 = () => {
       </ImageContainerNo8>
 
   <MetadataContainerNo8>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
+        <M.MetadataSpan1>시간을 담다 Ⅺ</M.MetadataSpan1>
         <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
       
       </MetadataContainerNo8>
@@ -477,12 +471,14 @@ export const No6 = () => {
     <SecondDiv>
       
     <MetadataContainerNo9>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+        <M.MetadataSpan1>시간을 담다 Ⅶ</M.MetadataSpan1>
+        <M.MetadataSpan2>162 ⅹ 112cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
       
       </MetadataContainerNo9>
     </SecondDiv>  
-
+    <PageLeft>
+      9
+    </PageLeft>
     
     </FirstDiv>
     
@@ -546,32 +542,32 @@ export const No6 = () => {
     <SecondDiv>
 
     <ImageContainerNo11One>
-    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515344/artist-website/pamphlet_assets/A_9528647_600kb_a3cle8.jpg" alt=""/>
+    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528648_600kb_xxwtkd.jpg" alt=""/>
   </ImageContainerNo11One>
 
 
   <ImageContainerNo11Two>
-    <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515344/artist-website/pamphlet_assets/A_9528647_600kb_a3cle8.jpg" alt=""/>
+    <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515344/artist-website/pamphlet_assets/A_9528658_600kb_bbs3yk.jpg" alt=""/>
   </ImageContainerNo11Two>
 
 
   <MetadataContainerNo11One>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+    <M.MetadataSpan1>시간을 담다 Ⅷ</M.MetadataSpan1>
+    <M.MetadataSpan2>162 ⅹ 112cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
   
   </MetadataContainerNo11One>
 
 
   <MetadataContainerNo11Two>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+    <M.MetadataSpan1>시간을 담다 Ⅸ</M.MetadataSpan1>
+    <M.MetadataSpan2>91 ⅹ 65cm &nbsp;Mixed media &nbsp;&nbsp;2020</M.MetadataSpan2>
   
   </MetadataContainerNo11Two>
 
       </SecondDiv>  
 
       <PageCenter>
-      10
+      11
   </PageCenter>
     
     </FirstDiv>
@@ -580,102 +576,102 @@ export const No6 = () => {
     
     
   
-    export const No12 = () => {
+  export const No12 = () => {
+
   
     
-      
-      const MetadataContainerNo12 = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 0;
-        right: 0;
-      `
-    
-      const ImageContainerNo12 = styled(ImageContainer)`
+    const MetadataContainerNo12 = styled(MetadataContainer)`
       position: absolute;
-      height: 54rem;
-      
+      bottom: 0;
+      right: 0;
+    `
+  
+    const ImageContainerNo12 = styled(ImageContainer)`
+    position: absolute;
+    height: 54rem;
+    
+    left: 0;
+    
+    `
+    
+    
+    
+      return <FirstDiv>
+        
+        
+        
+    <ImageContainerNo12>
+      <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528656_600kb_z8lr2z.jpg" alt=""/>
+    </ImageContainerNo12>
+  
+
+    <SecondDiv>
+
+
+    <MetadataContainerNo12>
+  <M.MetadataSpan1>삶을 담다 Ⅴ</M.MetadataSpan1>
+  <M.MetadataSpan2>91 x 60.5cm &nbsp;Mixed media &nbsp;&nbsp;2020</M.MetadataSpan2>
+
+</MetadataContainerNo12>
+
+
+      </SecondDiv>  
+
+
+      <PageCenter>
+    12
+</PageCenter>
+    
+    </FirstDiv>
+    
+    }
+    
+
+
+  export const No13 = () => {
+  
+
+    const MetadataContainerNo13 = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 0;
       left: 0;
-      
-      `
-      
-      
-      
-        return <FirstDiv>
-          
-          
-          
-      <ImageContainerNo12>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528656_600kb_z8lr2z.jpg" alt=""/>
-      </ImageContainerNo12>
-    
+    `
   
-      <SecondDiv>
+    const ImageContainerNo13 = styled(ImageContainer)`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60rem;
+    
+    `
+    
+    
+    
+      return <FirstDiv>  
+    
 
 
-      <MetadataContainerNo12>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+    <SecondDiv>
   
-  </MetadataContainerNo12>
+    <ImageContainerNo13>
+    <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515346/artist-website/pamphlet_assets/A_95286721_600kb_dudhhj.jpg" alt=""/>
+  </ImageContainerNo13>
 
+    <MetadataContainerNo13>
+<M.MetadataSpan1>삶을 담다 Ⅰ</M.MetadataSpan1>
+<M.MetadataSpan2>23 ⅹ 16cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2>
 
-        </SecondDiv>  
+</MetadataContainerNo13>
+      </SecondDiv>  
 
-
-        <PageCenter>
-      12
-  </PageCenter>
-      
-      </FirstDiv>
-      
-      }
-      
-
-
-      export const No13 = () => {
-      
+      <PageCenter>
+  13
+</PageCenter>
     
-        const MetadataContainerNo13 = styled(MetadataContainer)`
-          position: absolute;
-          bottom: 0;
-          left: 0;
-        `
-      
-        const ImageContainerNo13 = styled(ImageContainer)`
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 60rem;
-        
-        `
-        
-        
-        
-         return <FirstDiv>  
-        
-
+    </FirstDiv>
     
-        <SecondDiv>
-     
-        <ImageContainerNo13>
-        <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528656_600kb_z8lr2z.jpg" alt=""/>
-      </ImageContainerNo13>
+    }
     
-        <MetadataContainerNo13>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo13>
-          </SecondDiv>  
-
-          <PageCenter>
-      13
-  </PageCenter>
-        
-        </FirstDiv>
-        
-        }
-        
 
 
   export const No14 = () => {
@@ -717,8 +713,8 @@ export const No6 = () => {
       </TextContainerNo14>
 
       <MetadataContainerNo14>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+    <M.MetadataSpan1>빛을 담다 Ⅰ </M.MetadataSpan1>
+    <M.MetadataSpan2>72.5 ⅹ 72.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
   
   </MetadataContainerNo14>
 
@@ -730,247 +726,270 @@ export const No6 = () => {
 
       </SecondDiv>  
     
+    <PageCenter>
+      14
+    </PageCenter>
+
     </FirstDiv>
     
     }
     
        
-    export const No15 = () => {
-      
+  export const No15 = () => {
     
-      
-      const MetadataContainerNo15One = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 0;
-        left: 0;
-      `
-      
-      const MetadataContainerNo15Two = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 0;
-        right: 0;
-      `
+  
     
-      const ImageContainerNo15One = styled(ImageContainer)`
+    const MetadataContainerNo15One = styled(MetadataContainer)`
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
-      width: 54rem;
-      
-      `
-      const ImageContainerNo15Two = styled(ImageContainer)`
+    `
+    
+    const MetadataContainerNo15Two = styled(MetadataContainer)`
       position: absolute;
-      top: 0;
+      bottom: 0;
       right: 0;
-      width: 54rem;
-      
-      `
-      
-      
-      
-       return <FirstDiv>  
-      
- 
+    `
   
-      <SecondDiv>
-
-      <MetadataContainerNo15One>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo15One>
-
-  <MetadataContainerNo15Two>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo15Two>
-
-  <ImageContainerNo15One>
-        <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515346/artist-website/pamphlet_assets/A_9528663_600kb_ssdmy1.jpg" alt=""/>
-      </ImageContainerNo15One>
-
-
-      <ImageContainerNo15Two>
-        <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515346/artist-website/pamphlet_assets/A_9528664_600kb_crjz4o.jpg" alt=""/>
-      </ImageContainerNo15Two>
-
-
-
-
-
-
-        </SecondDiv>  
-      
-      <PageCenter>
-        15
-      </PageCenter>
-
-
-      </FirstDiv>
-      
-      }
-      
-      export const No16 = () => {
-      
-      
-        const MetadataContainerNo16 = styled(MetadataContainer)`
-          position: absolute;
-          bottom: 0;
-          right: 0;
-        `
-      
-        const ImageContainerNo16One = styled(ImageContainer)`
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 72rem;
-        `
-        const ImageContainerNo16Two = styled(ImageContainer)`
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 38rem;
-        
-        `
-        
-        
-        
-         return <FirstDiv>  
-        <ImageContainerNo16One>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528661_600kb_vtkbol.jpg" alt=""/>
-      </ImageContainerNo16One>
-
+    const ImageContainerNo15One = styled(ImageContainer)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 54rem;
+    
+    `
+    const ImageContainerNo15Two = styled(ImageContainer)`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 54rem;
+    
+    `
     
     
-        <SecondDiv>
-        <ImageContainerNo16Two>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528661_600kb_vtkbol.jpg" alt=""/>
-      </ImageContainerNo16Two>
-
-      <MetadataContainerNo16>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo16>
-          </SecondDiv>  
-        
-        </FirstDiv>
-        
-        }
-        
-     
-    export const No17 = () => {
-  
     
-      
-      const MetadataContainerNo17One = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 4.4rem;
-        right: 0;
-      `
-      const MetadataContainerNo17Two = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 2.2rem;
-        right: 0;
-      `
-      const MetadataContainerNo17Three = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 0;
-        right: 0;
-      `
-    
-      const ImageContainerNo17 = styled(ImageContainer)`
-      position:absolute;
-      top:10rem;
-      left:0;      
-      height: 38rem;
-      `
-      const SecondDivNo17 = styled(SecondDiv)`
-      
-      
-      `
-      
-      
       return <FirstDiv>  
-      
- 
-  
-      <SecondDivNo17>
-
-      <ImageContainerNo17>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528675_600kb_yewbbb.jpg" alt=""/>
-      </ImageContainerNo17>
-
-      <MetadataContainerNo17One>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo17One>
-  <MetadataContainerNo17Two>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo17Two>
-  <MetadataContainerNo17Three>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-  
-  </MetadataContainerNo17Three>
-        </SecondDivNo17>  
-      
-      </FirstDiv>
-      
-      }
-      
     
 
-      export const No18 = () => {
-  
-      
-        
-        const MetadataContainerNo18 = styled(MetadataContainer)`
-          position: absolute;
-          bottom: 0;
-          right: 0;
-        `
-      
-        const ImageContainerNo18 = styled(ImageContainer)`
-        position: absolute;
-        left:0;
-        height: 100%;
-        `
-        
-        
-        
-          return <FirstDiv>  
-        
 
+    <SecondDiv>
+
+    <MetadataContainerNo15One>
+  <M.MetadataSpan1>빛을 담다 Ⅱ</M.MetadataSpan1>
+  <M.MetadataSpan2>91 ⅹ 65cm &nbsp;Mixed media &nbsp;&nbsp;2020</M.MetadataSpan2>
+
+</MetadataContainerNo15One>
+
+<MetadataContainerNo15Two>
+  <M.MetadataSpan1>빛을 담다 Ⅲ</M.MetadataSpan1>
+  <M.MetadataSpan2>91 x 65cm &nbsp;Mixed media &nbsp;&nbsp;2020</M.MetadataSpan2>
+
+</MetadataContainerNo15Two>
+
+<ImageContainerNo15One>
+      <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515346/artist-website/pamphlet_assets/A_9528663_600kb_ssdmy1.jpg" alt=""/>
+    </ImageContainerNo15One>
+
+
+    <ImageContainerNo15Two>
+      <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515346/artist-website/pamphlet_assets/A_9528664_600kb_crjz4o.jpg" alt=""/>
+    </ImageContainerNo15Two>
+
+
+
+
+
+
+      </SecondDiv>  
     
-        <SecondDiv>
-        <ImageContainerNo18>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515344/artist-website/pamphlet_assets/A_9528645_600kb_twn1vu.jpg" alt=""/>
-      </ImageContainerNo18>
+    <PageCenter>
+      15
+    </PageCenter>
 
 
-        <MetadataContainerNo18>
-    <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-    <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+    </FirstDiv>
+    
+    }
+    
+  export const No16 = () => {
   
-  </MetadataContainerNo18>
+  
+    const MetadataContainerNo16 = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    `
+  
+    const ImageContainerNo16One = styled(ImageContainer)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 72rem;
+    `
+    const ImageContainerNo16Two = styled(ImageContainer)`
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 38rem;
+    
+    `
+    
+    
+    
+      return <FirstDiv>  
+    <ImageContainerNo16One>
+    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528661_600kb_vtkbol.jpg" alt=""/>
+  </ImageContainerNo16One>
 
-          </SecondDiv>  
-        
-        <PageRight>
-          18
-        </PageRight>
 
 
-        </FirstDiv>
-        
-        }
-        
-      
+    <SecondDiv>
+    <ImageContainerNo16Two>
+    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515345/artist-website/pamphlet_assets/A_9528661_600kb_vtkbol.jpg" alt=""/>
+  </ImageContainerNo16Two>
+
+  <MetadataContainerNo16>
+<M.MetadataSpan1>빛을 담다 Ⅳ</M.MetadataSpan1>
+<M.MetadataSpan2>72.7 ⅹ 72.7cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+
+</MetadataContainerNo16>
+      </SecondDiv>  
+    
+    <PageRight>
+      16
+    </PageRight>
+    </FirstDiv>
+    
+    }
+    
+  
+  export const No17 = () => {
+
+  
+    
+    const MetadataContainerNo17One = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 4.4rem;
+      right: 0;
+    `
+    const MetadataContainerNo17Two = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 2.2rem;
+      right: 0;
+    `
+    const MetadataContainerNo17Three = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    `
+  
+    const ImageContainerNo17 = styled(ImageContainer)`
+    position:absolute;
+    top:10rem;
+    left:0;      
+    height: 38rem;
+    `
+    const SecondDivNo17 = styled(SecondDiv)`
+    
+    
+    `
+    
+    
+    return <FirstDiv>  
+    
+
+
+    <SecondDivNo17>
+
+    <ImageContainerNo17>
+      <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528675_600kb_yewbbb.jpg" alt=""/>
+    </ImageContainerNo17>
+
+    <MetadataContainerNo17One>
+  <M.MetadataSpan1>길을 걷다 Ⅰ</M.MetadataSpan1>
+  <M.MetadataSpan2>25 ⅹ 33.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2>
+
+</MetadataContainerNo17One>
+<MetadataContainerNo17Two>
+  <M.MetadataSpan1>길을 걷다 Ⅱ</M.MetadataSpan1>
+  <M.MetadataSpan2>25 ⅹ 33.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+
+</MetadataContainerNo17Two>
+<MetadataContainerNo17Three>
+  <M.MetadataSpan1>길을 걷다 Ⅲ</M.MetadataSpan1>
+  <M.MetadataSpan2>25 ⅹ 33.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+
+</MetadataContainerNo17Three>
+      </SecondDivNo17>  
+    
+    <PageCenter>
+      17
+    </PageCenter>
+    </FirstDiv>
+    
+    }
+    
+    
+
+  export const No18 = () => {
+
+  
+    
+    const MetadataContainerNo18 = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    `
+  
+    const ImageContainerNo18 = styled(ImageContainer)`
+    position: absolute;
+    left:0;
+    height: 100%;
+    `
+    const MetaDataSpanNo18One = styled(M.MetadataSpan1)`
+    color: white;
+    `
+    
+    const MetaDataSpanNo18Two = styled(M.MetadataSpan2)`
+    margin-left: 1rem;
+    color: white;
+    `
+    const MetaDataSpanNo18Three = styled(M.MetadataSpan2)`
+    margin-left: 1rem;
+    `
+    
+    
+      return <FirstDiv>  
+    <ImageContainerNo18>
+    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515344/artist-website/pamphlet_assets/A_9528645_600kb_twn1vu.jpg" alt=""/>
+  </ImageContainerNo18>
+
+
+    <SecondDiv>
+    
+    
+
+    <MetadataContainerNo18>
+{/* <M.MetadataSpan1>시간을 걷다 Ⅳ</M.MetadataSpan1>
+<M.MetadataSpan2>162 ⅹ 97cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2> */}
+<MetaDataSpanNo18One>시간을 걷다 Ⅳ</MetaDataSpanNo18One>
+<MetaDataSpanNo18Two>162</MetaDataSpanNo18Two>
+<MetaDataSpanNo18Three>ⅹ 97cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</MetaDataSpanNo18Three>
+
+</MetadataContainerNo18>
+
+      </SecondDiv>  
+    
+    <PageRight>
+      18
+    </PageRight>
+
+
+    </FirstDiv>
+    
+    }
+    
+  
   
   export const No19 = () => {
 
@@ -990,88 +1009,88 @@ export const No6 = () => {
     }
     
   
-    export const No20 = () => {
-      
+  export const No20 = () => {
     
-      
-      const MetadataContainerNo20One = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 0;
-        left: 0;
-      `
-      
-      const MetadataContainerNo20Two = styled(MetadataContainer)`
-        position: absolute;
-        bottom: 0;
-        right: 0;
-      `
+  
     
-      const ImageContainerNo20One = styled(ImageContainer)`
+    const MetadataContainerNo20One = styled(MetadataContainer)`
       position: absolute;
-      top: 29rem;
+      bottom: 0;
       left: 0;
-      height: 22rem;
-      
-      `
-      const ImageContainerNo20Two = styled(ImageContainer)`
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 60rem;
-      
-      `
-      
-      
-      
-       return <FirstDiv>  
-      
- 
-  
-      <SecondDiv>
-      <MetadataContainerNo20One>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-      
-      </MetadataContainerNo20One>
-      <MetadataContainerNo20Two>
-        <M.MetadataSpan1>시간을 담다 10</M.MetadataSpan1>
-        <M.MetadataSpan2>91 x 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
-      
-      </MetadataContainerNo20Two>
-
-      <ImageContainerNo20One>
-        <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647640216/artist-website/pamphlet_assets/A_9528644_600kb_rhkrto.jpg" alt=""/>
-      </ImageContainerNo20One>
-
-      <ImageContainerNo20Two>
-        <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528678_600kb_vekjdh.jpg" alt=""/>
-      </ImageContainerNo20Two>
-
-        </SecondDiv>  
-      
-      <PageCenter>
-        20
-      </PageCenter>
-
-      </FirstDiv>
-      
-      }
-      
-   
-    export const No21 = () => {
+    `
     
-   
+    const MetadataContainerNo20Two = styled(MetadataContainer)`
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    `
   
-    const ImageContainerNo21 = styled(ImageContainer)`
-    height: 100%;
+    const ImageContainerNo20One = styled(ImageContainer)`
+    position: absolute;
+    top: 29rem;
+    left: 0;
+    height: 22rem;
+    
+    `
+    const ImageContainerNo20Two = styled(ImageContainer)`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60rem;
+    
     `
     
     
     
-    return <ImageContainerNo21>
-     <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647641246/artist-website/pamphlet_assets/DSC04987_600kb_cropped_pjcji3.jpg" alt=""/>
-   </ImageContainerNo21>
+      return <FirstDiv>  
+    
+
+
+    <SecondDiv>
+    <MetadataContainerNo20One>
+      <M.MetadataSpan1>길을 걷다 Ⅷ</M.MetadataSpan1>
+      <M.MetadataSpan2>162 ⅹ 112cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020</M.MetadataSpan2>
+    
+    </MetadataContainerNo20One>
+    <MetadataContainerNo20Two>
+      <M.MetadataSpan1>시간을 담다 Ⅴ</M.MetadataSpan1>
+      <M.MetadataSpan2>41 ⅹ 31cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2019</M.MetadataSpan2>
+    
+    </MetadataContainerNo20Two>
+
+    <ImageContainerNo20One>
+      <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647640216/artist-website/pamphlet_assets/A_9528644_600kb_rhkrto.jpg" alt=""/>
+    </ImageContainerNo20One>
+
+    <ImageContainerNo20Two>
+      <I.ImageHorizontalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647515343/artist-website/pamphlet_assets/A_9528678_600kb_vekjdh.jpg" alt=""/>
+    </ImageContainerNo20Two>
+
+      </SecondDiv>  
+    
+    <PageCenter>
+      20
+    </PageCenter>
+
+    </FirstDiv>
+    
     }
     
+  
+  export const No21 = () => {
+  
+  
+
+  const ImageContainerNo21 = styled(ImageContainer)`
+  height: 100%;
+  `
+  
+  
+  
+  return <ImageContainerNo21>
+    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647641246/artist-website/pamphlet_assets/DSC04987_600kb_cropped_pjcji3.jpg" alt=""/>
+  </ImageContainerNo21>
+  }
+  
 
 

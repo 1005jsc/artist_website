@@ -12,7 +12,7 @@ position: fixed;
 bottom: 30rem;
 // left: 5rem;
 left: ${({popUpShow}:PopupDivProps) => (popUpShow?"5rem":'-60rem')};
-width: 46rem;
+width: 48rem;
 height: 16rem;
 background-color: #e6e6e6;
 /* background-color: #f7f7da; */

@@ -219,15 +219,15 @@ const navigate = useNavigate()
 
   <div className={styles.small_works_display_container}>
     <div className={styles.work_sub_container}>
-      {workSubLeft&&<img onClick={handleNextImg}className={styles.mini_img}src={workSubLeft}data-side='left' alt="" />}
+      {workSubLeft&&<img onClick={handleNextImg}className={styles.mini_img}src={workSubLeft?workSubLeft:'/icons/image_not_avaliable_horizontal.svg'}data-side='left' alt="" />}
 
     </div>
     <div className={styles.work_sub_main}>
-      {workSubMain&&<img className={styles.mini_center_img}src={workSubMain} alt="" onClick={handleModalOpen} />}
+      {workSubMain&&<img className={styles.mini_center_img}src={workSubMain?workSubMain:'/icons/image_not_avaliable_horizontal.svg'} alt="" onClick={handleModalOpen} />}
 
     </div>
     <div className={styles.work_sub_container}>
-      {workSubRight&&<img onClick={handleNextImg}className={styles.mini_img}src={workSubRight}data-side='right' alt="" />}
+      {workSubRight&&<img onClick={handleNextImg}className={styles.mini_img}src={workSubRight?workSubRight:'/icons/image_not_avaliable_horizontal.svg'}data-side='right' alt="" />}
 
     </div>
     

@@ -132,8 +132,8 @@ const handleLogin = (password:string|number) => {
         </Route>
 
 
-
         <Route path="contacts" element={<Contacts/>}/>
+
         
         <Route path="private" element={<Private authService={authService} />}>
           <Route path="" element={<Login authService={authService}/>}/>
