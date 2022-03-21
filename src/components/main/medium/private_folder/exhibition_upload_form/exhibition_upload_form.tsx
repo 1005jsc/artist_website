@@ -234,7 +234,7 @@ const [exhibitionStartDateNull, setExhibitionStartDateNull] = useState<boolean>(
 const [exhibitionEndDateNull, setExhibitionEndDateNull] = useState<boolean>(false)
 
 
-
+const [loading, setLoading] = useState<boolean>(false)
 
 
 
@@ -301,29 +301,17 @@ try{
 
   // 포스터 (3/3)
   let exhibitionPoster
-  if(posterFile){
-    exhibitionPoster = await exhibitionImageUploadService.uploadSingleImage(posterFile)
-  }else{
-    exhibitionPoster = null
-  }
-  
+ 
   
   // 전시관 외부사진 (4/5)
   let museumPhotos
-  if (museumUploadArray2){
-    museumPhotos = await exhibitionImageUploadService.uploadMultipleImage(museumUploadArray2)
-  }else{
-  museumPhotos = null
-  }
+  
 
   // 전시회 사진 (4/5)
   let exhibitionPhotos
-  if (exhibitionUploadArray2){
-    exhibitionPhotos = await exhibitionImageUploadService.uploadMultipleImage(exhibitionUploadArray2)
-  }else{
-  exhibitionPhotos = null
-  }
 
+
+ 
 
   // // 전시회 작품 데이터 (2/2)
 
@@ -342,7 +330,8 @@ try{
 
     exhibitionSerialNumber : exhibitionSerialNumberNum,
     lastUpdate: new Date().toLocaleString(),
-    exhibitionPosterUrl : exhibitionPoster?{[myFunctions.generateAKey(1)]:exhibitionPoster.url}:null,
+    // exhibitionPosterUrl : exhibitionPoster?{[myFunctions.generateAKey(1)]:exhibitionPoster.url}:null,
+    exhibitionPosterUrl : null,
     exhibitionName : exhibitionNameValue,
     exhibitionTitle : exhibitionTitleValue,
     exhibitionLocation :exhibitionLocationValue,
@@ -418,7 +407,37 @@ let  idAndUrls2
   // 성공 시 
   if(!exhibitionTitleNulll&&!exhibitionNameNulll&&!exhibitionStartDateNulll&&!exhibitionEndDateNulll){
     console.log(exhibitionData)
+
+
+    setLoading(true)
+
+
     databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
+
+    if(posterFile){
+      exhibitionPoster = await exhibitionImageUploadService.uploadSingleImage(posterFile)
+    }else{
+      exhibitionPoster = null
+    }
+    
+  
+  
+    if (museumUploadArray2){
+      museumPhotos = await exhibitionImageUploadService.uploadMultipleImage(museumUploadArray2)
+    }else{
+    museumPhotos = null
+    }
+  
+  
+  
+    if (exhibitionUploadArray2){
+      exhibitionPhotos = await exhibitionImageUploadService.uploadMultipleImage(exhibitionUploadArray2)
+    }else{
+    exhibitionPhotos = null
+    }
+
+
+  databaseService.uploadPhotoUrl('exhibitions',exhibitionSerialNumberNum,'exhibitionPosterUrl', exhibitionSerialNumberNum +1, exhibitionPoster.url)
 
 
     if(museumPhotos){
@@ -441,7 +460,7 @@ let  idAndUrls2
   
 
 
-
+    setLoading(false)
 
 
     navigate('/home/private/loggedin/exhibition_upload/exhibition_upload_done')
@@ -697,7 +716,13 @@ let obj2 = {} as TypeOfWorks
     <div className={styles.empty_container_sixth_last}></div>
   </div>  
 
-  <input className={styles.to_next}  type="submit" />
+        {!loading?<input className={styles.to_next}  type="submit" />:
+        <div className={styles.loading_box}>
+        <div className={styles.loading}></div>
+      </div>
+        }
+        
+  
   
 </form>
 

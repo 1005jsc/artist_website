@@ -247,9 +247,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       const workData:TypeOfWork = {
         workSerialNumber :workSerialNumberNum,
         lastUpdate: new Date().toLocaleString(),
-        // workImageUrl: workImage?{[myFunctions.generateAKey(1)]:workImage.url}:null, 
         workImageUrl: null, 
-        // 사진은 일단 무조건 밑에 따로 넣자 
         workName: workNameValue,
         workCompletionDate: workCompletionDateValue,
         workSize : workSizeData,

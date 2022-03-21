@@ -212,6 +212,40 @@
 	color: white;
 }
 
+.loading_box {
+	outline: 0;
+	border: 0;
+	margin-left: 5rem;
+	margin-bottom: 16rem;
+	width: 11rem;
+	height: 5.4rem;
+	background-color: #a877e8;
+	border-radius: 1rem;
+	font-size: 2rem;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loading {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	border: 0.3rem solid #c4c4c4;
+	border-top: 0.3rem solid #063842;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 .notice_upload_error {
 	position: relative;
 

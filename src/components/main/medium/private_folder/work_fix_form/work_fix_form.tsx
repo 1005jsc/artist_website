@@ -575,7 +575,7 @@ let obj2 = {} as TypeOfExhibitionHistory
 
 
 
-
+const [loading, setLoading] = useState<boolean>(false)
 
 
 
@@ -656,6 +656,7 @@ let obj2 = {} as TypeOfExhibitionHistory
       // 널체크 (3/3)
       if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
 
+        setLoading(true)
         let workImage
         if(workFile){
           workImage = await workImageUploadService.uploadSingleImage(workFile)
@@ -670,6 +671,9 @@ let obj2 = {} as TypeOfExhibitionHistory
         
         workFixFinished(rightBeforeSubmissionOne.workSerialNumber, 'upload')
         setWorkToFixState(undefined)
+        setLoading(false)
+
+
       }
 
 
@@ -983,8 +987,12 @@ let obj2 = {} as TypeOfExhibitionHistory
     <div className={styles.div3}>
 
           <div className={styles.button_container}>
+{!loading?<input type="submit" className={styles.fifth_buttons} value='수정된 작품 업로드하기' />:<div className={styles.loading_box}>
+                <div className={styles.loading}></div>
+        </div>
 
-        <input type="submit" className={styles.fifth_buttons} value='수정된 작품 업로드하기' />
+}
+        
         <button className={styles.fifth_buttons} onClick={handleCancelUpload}>수정된 작품 업로드 취소하기</button>
           </div>
 
