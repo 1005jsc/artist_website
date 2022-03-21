@@ -99,3 +99,23 @@
 .modal_button:hover {
 	transform: scale(1.04);
 }
+
+.go_to_private {
+	position: absolute;
+	top: 60rem;
+	left: 28%;
+	width: 44rem;
+	height: 7rem;
+	margin-bottom: 3rem;
+	border-radius: 1.6rem;
+	background-color: #65f273;
+	font-size: 2.2rem;
+	font-weight: 550;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+}
+
+.go_to_private:hover {
+	transform: scale(1.02);
+}

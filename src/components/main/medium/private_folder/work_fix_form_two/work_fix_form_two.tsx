@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useLocation, useOutletContext } from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { TypeOfExhibitions, TypeOfWork, TypeOfWorks } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
@@ -31,6 +31,10 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
   // 더이상 작업할 work가 없을때 work fix form 에게 끝났다고 신호를 보낸다  
   const [jobDone, setJobDone] = useState<boolean>(false)
 
+  // 만약 select 된 work 이 하나도 없을떄 
+  const [noWorkToBeSelected, setNoWorkToBeSelected] = useState<boolean>(false)
+
+  const navigate = useNavigate()
 // 1. 고칠 작품 렌더하기
   useEffect(() => {
     const locationState = location.state as Array<any>
@@ -39,9 +43,14 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
 
     const array2 = [...array1]
     const object2 = {...object1}
+    console.log(array2)
+    if(array2.length === 0){
+      setNoWorkToBeSelected(true)
+    }else{
+      setWorksFromFormOneSerialNumbers(array2)
+      setWorksFromFormOne(object2)
+    }
     
-    setWorksFromFormOneSerialNumbers(array2)
-    setWorksFromFormOne(object2)
   }, [])
 
   // {16468848175: {…}, 16468696731: {…}} 를 [{…}, {…}] 로 고쳐주기
@@ -199,6 +208,11 @@ const handleWorkFixFinished = (fixedWorkSerialNumber:number, state:'cancel'|'upl
   }
 
 
+  const handleGoBack:React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    navigate('/home/private/loggedin')
+  }
+
 
 
 
@@ -281,6 +295,9 @@ const handleWorkFixFinished = (fixedWorkSerialNumber:number, state:'cancel'|'upl
   </div>
 
 
+
+  {noWorkToBeSelected&&<button className={styles.go_to_private} onClick={handleGoBack}>작가의 개인공간으로 돌아가기</button>}
+    
 
 
 
