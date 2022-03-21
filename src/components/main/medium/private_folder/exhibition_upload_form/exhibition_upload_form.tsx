@@ -235,6 +235,7 @@ const [exhibitionEndDateNull, setExhibitionEndDateNull] = useState<boolean>(fals
 
 
 const [loading, setLoading] = useState<boolean>(false)
+const [imageSizeError, setImageSizeError] = useState<boolean>(false)
 
 
 
@@ -297,63 +298,66 @@ const [loading, setLoading] = useState<boolean>(false)
   }else{exhibitionMemoValue = null
 
   }
-try{
 
-  // 포스터 (3/3)
-  let exhibitionPoster
+
+ // 포스터 (3/3)
+ let exhibitionPoster
  
   
-  // 전시관 외부사진 (4/5)
-  let museumPhotos
-  
+ // 전시관 외부사진 (4/5)
+ let museumPhotos
+ 
 
-  // 전시회 사진 (4/5)
-  let exhibitionPhotos
+ // 전시회 사진 (4/5)
+ let exhibitionPhotos
+
+
+
+
+ // // 전시회 작품 데이터 (2/2)
 
 
  
 
-  // // 전시회 작품 데이터 (2/2)
-
-
-  
 
 
 
+ 
 
-  
-
-  // 전시회 데이터(3/3)
-  const exhibitionSerialNumberNum = myFunctions.generateAKey(0)
-  const exhibitionData:TypeOfExhibition = {
+ // 전시회 데이터(3/3)
+ const exhibitionSerialNumberNum = myFunctions.generateAKey(0)
+ const exhibitionData:TypeOfExhibition = {
 
 
-    exhibitionSerialNumber : exhibitionSerialNumberNum,
-    lastUpdate: new Date().toLocaleString(),
-    // exhibitionPosterUrl : exhibitionPoster?{[myFunctions.generateAKey(1)]:exhibitionPoster.url}:null,
-    exhibitionPosterUrl : null,
-    exhibitionName : exhibitionNameValue,
-    exhibitionTitle : exhibitionTitleValue,
-    exhibitionLocation :exhibitionLocationValue,
-    exhibitionStartDate :exhibitionStartDateValue,
-    exhibitionEndDate :exhibitionEndDateValue,
-    exhibitionSponser :exhibitionSponserValue,
-    exhibitionWorks: exhibitionWorksOnClickUrls, 
-    exhibitionBuildingPhotoUrl : null, // null이라고 놀라지말고 바로 밑에 firebase를 이용해서 데이터를 다시 올리는 로직을 이용해서 데이터를 집어 넣고 있으니 안심하셈  
-    exhibitionPhotoUrl : null, // 완성 더 손댈 필요 없음 
-    exhibitionMemo :exhibitionMemoValue,
-        
-  }
+   exhibitionSerialNumber : exhibitionSerialNumberNum,
+   lastUpdate: new Date().toLocaleString(),
+   // exhibitionPosterUrl : exhibitionPoster?{[myFunctions.generateAKey(1)]:exhibitionPoster.url}:null,
+   exhibitionPosterUrl : null,
+   exhibitionName : exhibitionNameValue,
+   exhibitionTitle : exhibitionTitleValue,
+   exhibitionLocation :exhibitionLocationValue,
+   exhibitionStartDate :exhibitionStartDateValue,
+   exhibitionEndDate :exhibitionEndDateValue,
+   exhibitionSponser :exhibitionSponserValue,
+   exhibitionWorks: exhibitionWorksOnClickUrls, 
+   exhibitionBuildingPhotoUrl : null, // null이라고 놀라지말고 바로 밑에 firebase를 이용해서 데이터를 다시 올리는 로직을 이용해서 데이터를 집어 넣고 있으니 안심하셈  
+   exhibitionPhotoUrl : null, // 완성 더 손댈 필요 없음 
+   exhibitionMemo :exhibitionMemoValue,
+       
+ }
 
-  // 전시장 외부사진 (5/5)
-  let  idAndUrls 
-  
+ // 전시장 외부사진 (5/5)
+ let  idAndUrls 
+ 
 
 //전시회 사진 (5/5)
 let  idAndUrls2 
 
 
 
+try{
+
+ 
 
 
   if(exhibitionData.exhibitionTitle){
@@ -406,12 +410,7 @@ let  idAndUrls2
 
   // 성공 시 
   if(!exhibitionTitleNulll&&!exhibitionNameNulll&&!exhibitionStartDateNulll&&!exhibitionEndDateNulll){
-    console.log(exhibitionData)
-
-
     setLoading(true)
-
-
     databaseService.uploadExhibitionData(exhibitionData.exhibitionSerialNumber, exhibitionData)
 
     if(posterFile){
@@ -475,7 +474,21 @@ let  idAndUrls2
 
 
 }catch(err){
+
+  exhibitionPoster = null
+  exhibitionPhotos = null
+  museumPhotos = null
+
+  databaseService.deleteExhibitionData(exhibitionData.exhibitionSerialNumber)
   console.log(err)
+
+  setImageSizeError(true)
+  setLoading(false)
+
+  window.scrollTo({
+    top:0
+  })
+
   console.log('failed')
 }
 
@@ -578,6 +591,8 @@ let obj2 = {} as TypeOfWorks
   <div className={styles.div1}>
     <div className={styles.div2}>
       <span className={styles.div2_title}>1. 전시회 포스터 등록하기</span>
+    {imageSizeError&&<span className={styles.notice_image_size_error}>업로드 실패! : 업로드하는 사진중에 파일용량이 너무 큰 사진이 있습니다.<br></br> 10MB 이하인 사진으로만 업로드하십시오.</span>}
+
     </div>
 
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>

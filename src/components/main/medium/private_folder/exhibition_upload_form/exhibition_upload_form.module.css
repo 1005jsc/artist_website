@@ -254,3 +254,14 @@
 	margin-left: 3rem;
 	bottom: 0.2rem;
 }
+
+.notice_image_size_error {
+	position: absolute;
+	left: 50rem;
+	top: -14.9rem;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
+	line-height: 2.6rem;
+}
