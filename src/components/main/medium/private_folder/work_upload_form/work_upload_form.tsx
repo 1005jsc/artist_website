@@ -84,12 +84,14 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
   // 로딩 중 
 
   const [loading, setLoading] = useState<boolean>(false)
+  const [imageSizeError, setImageSizeError] = useState<boolean>(false)
 
 
 
 
     // 작품 데이터(2/3)
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
+    setImageSizeError(false)
     e.preventDefault()
 
    
@@ -232,49 +234,51 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       purchasePrize:     purchasePrizeValue
 
     }
-      
-  try{
-    // 작품 사진 (3/3)
-    let workImage
-   
-  // 작품 데이터(3/3)
-    const workSerialNumberNum = myFunctions.generateAKey(0)
-    const workOnSaleData =workOnSaleValue
-    
 
+  // 작품 사진 (3/3)
+  let workImage
+
+  const workSerialNumberNum = myFunctions.generateAKey(0)
+  const workOnSaleData =workOnSaleValue
+  
+
+
+
+    const workData:TypeOfWork = {
+      workSerialNumber :workSerialNumberNum,
+      lastUpdate: new Date().toLocaleString(),
+      workImageUrl: null, 
+      workName: workNameValue,
+      workCompletionDate: workCompletionDateValue,
+      workSize : workSizeData,
+      workMaterial: workMaterialData,
+      workOnSale: workOnSaleData,
+      workSold: workSoldData,
+      workExhibitionHistory: exhibitionOnClickUrls,
+      workMemo: workMemoValue,
+      workHorizontalOrVerticalOrSquare: workHorizontalOrVerticalOrSquare
+    }
+
+    let array1
+    if(exhibitionOnClickUrls){
+      array1 = Object.values(exhibitionOnClickUrls)
+      array1.forEach((exhibitionId) => {
+      databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)})
+    }else{
+      // console.log('no exhibiton urls ')
+    }
 
   
-      const workData:TypeOfWork = {
-        workSerialNumber :workSerialNumberNum,
-        lastUpdate: new Date().toLocaleString(),
-        workImageUrl: null, 
-        workName: workNameValue,
-        workCompletionDate: workCompletionDateValue,
-        workSize : workSizeData,
-        workMaterial: workMaterialData,
-        workOnSale: workOnSaleData,
-        workSold: workSoldData,
-        workExhibitionHistory: exhibitionOnClickUrls,
-        workMemo: workMemoValue,
-        workHorizontalOrVerticalOrSquare: workHorizontalOrVerticalOrSquare
-      }
-
-      let array1
-      if(exhibitionOnClickUrls){
-        array1 = Object.values(exhibitionOnClickUrls)
-        array1.forEach((exhibitionId) => {
-        databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)})
-      }else{
-        // console.log('no exhibiton urls ')
-      }
-
+  try{
+   
+  // 작품 데이터(3/3)
+   
 
       // 업로드전에 중요 파라메타 4가지의 널 체크 ( 더 깨끗하게 짤수 있는가는 모르겠는데 일단 )
       // 병렬적인 널체크 
 
       
 
-      console.log(workFile)
 
 
       if(workFile){
@@ -333,26 +337,26 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
       // 성공 시 드디어 데이터를 업로드 한다 
       if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
-
+        
         setLoading(true)
       
         if(workFile){
           workImage = await workImageUploadService.uploadSingleImage(workFile)
-        
+          
         }else{
           workImage = null
         }
         
         databaseService.uploadWorkData(workData.workSerialNumber, workData)
         databaseService.uploadPhotoUrl('works',workData.workSerialNumber,'workImageUrl', workData.workSerialNumber+1, workImage.url)
-
+        
         setLoading(false)
-
+        
         if(myFunctions.checkWordFromUrl('work_fix', url)){
           navigate('/home/private/loggedin/work_fix/work_fix_done')
-    
+          
         }else if(myFunctions.checkWordFromUrl('work_upload', url)){
-    
+          
           navigate('/home/private/loggedin/work_upload/work_upload_done')
         }else{
           console.log('url or navigate error')
@@ -368,18 +372,23 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
 
 
-
-
-
-
-
-
-
     
 
   }catch(err){
+    // 보통 이미지 사이즈 에러임
+    // 완벽한 에러 핸들링은 아니다 하지만 일단 접한 에러는 사이즈 에러니까 이것만이라도 일단 잡자 
+    workImage = null
+    databaseService.deleteWorkData(workData.workSerialNumber)
+
+
   console.log(err)
-  console.log('failed')
+  setImageSizeError(true)
+  setLoading(false)
+  window.scrollTo({
+          top:0
+        })
+
+
   }
 
 
@@ -484,6 +493,7 @@ let obj2 = {} as TypeOfExhibitionHistory
       <span className={styles.div2_title}>1. 작품사진 올리기</span>
     </div>
     {workImageUrlNull&&<span className={styles.notice_wrong_image_upload}>필수: 작품 사진을 올려주세요</span>}
+    {imageSizeError&&<span className={styles.notice_image_size_error}>작품 사진의 파일이 너무 큽니다 10MB 이하인 작품 사진을 업로드하시고 다시 업로드하십시오</span>}
 
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
