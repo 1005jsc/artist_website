@@ -67,20 +67,22 @@ class artWebsiteExportFunctions{
 
 
   imageUrlMakerByRequestedQuality = (url: string, quality:ImageQualityTypes,width?: number|'null', height?:number|'null' ) => {
+    let urlFormer
+    let urlLater
+    if(url===undefined||url===null){
+      return undefined
+  
+    }else{
+      const result = url.match(artWebsiteExportFunctions.cloudinaryImageUrlRegex)
+      if(result== null){
+        return undefined
+      }
+      urlFormer = result[1]
+      urlLater = result[2]
 
-    if(url===undefined){
-      return '1'
     }
-    if(url==null){
-      return '2'
-    }
-    const result = url.match(artWebsiteExportFunctions.cloudinaryImageUrlRegex)
-    if(result== null){
-      return '3'
-    }
-    const urlFormer = result[1]
-    const urlLater = result[2]
-
+    
+    
     let width1
     let height1
     if(width == 'null'){

@@ -17,9 +17,11 @@ const Work = ({work, year, works, worksYear}:WorkProps) => {
   const navigate = useNavigate()
 
   let workUrl
-  if(work.workImageUrl !==null){
+  if(work.workImageUrl !==null&& work.workImageUrl !==undefined){
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
     (Object.values(work.workImageUrl)[0],'small', 216)
+  }else{
+    workUrl=undefined
   }
   
 

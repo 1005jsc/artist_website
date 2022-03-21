@@ -198,10 +198,46 @@
 	border: 0;
 	outline: none;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .fifth_buttons:hover {
 	transform: scale(1.02);
+}
+
+.loading_box {
+	width: 70%;
+	height: 7rem;
+	margin-bottom: 3rem;
+	border-radius: 1.6rem;
+	background-color: #65f273;
+	font-size: 2.2rem;
+	font-weight: 550;
+	border: 0;
+	outline: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loading {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	border: 0.3rem solid #c4c4c4;
+	border-top: 0.3rem solid #063842;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 .notice_wrong_password {

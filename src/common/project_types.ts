@@ -14,7 +14,7 @@ export type LoginContextType = {
 export type AllImageOrPhotoList = 
 'exhibitionPosterUrl'|'exhibitionWorks'|
 'exhibitionBuildingPhotoUrl'|
-'exhibitionPhotoUrl'|'workPhotoUrl'
+'exhibitionPhotoUrl'|'workPhotoUrl'|'workImageUrl'
 
 export type TypeOfPhotoAssets = {
   [index:number]: string

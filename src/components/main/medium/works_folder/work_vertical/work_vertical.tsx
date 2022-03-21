@@ -19,9 +19,11 @@ const WorkVertical = ({work, year, works, worksYear}:WorkVerticalProps) => {
   const navigate = useNavigate()
 
   let workUrl
-  if(work.workImageUrl !==null){
+  if(work.workImageUrl !==null&& work.workImageUrl !==undefined){
     workUrl = myFunctions.imageUrlMakerByRequestedQuality
     (Object.values(work.workImageUrl)[0],'small', 216)
+  }else{
+    workUrl=undefined
   }
 
   const handleNavigate:React.MouseEventHandler<HTMLDivElement> = (e) => {

@@ -81,6 +81,10 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
 
 
+  // 로딩 중 
+
+  const [loading, setLoading] = useState<boolean>(false)
+
 
 
 
@@ -232,12 +236,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
   try{
     // 작품 사진 (3/3)
     let workImage
-    if(workFile){
-      workImage = await workImageUploadService.uploadSingleImage(workFile)
-    }else{
-      workImage = null
-    }
-    
+   
   // 작품 데이터(3/3)
     const workSerialNumberNum = myFunctions.generateAKey(0)
     const workOnSaleData =workOnSaleValue
@@ -248,7 +247,9 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       const workData:TypeOfWork = {
         workSerialNumber :workSerialNumberNum,
         lastUpdate: new Date().toLocaleString(),
-        workImageUrl: workImage?{[myFunctions.generateAKey(1)]:workImage.url}:null, 
+        // workImageUrl: workImage?{[myFunctions.generateAKey(1)]:workImage.url}:null, 
+        workImageUrl: null, 
+        // 사진은 일단 무조건 밑에 따로 넣자 
         workName: workNameValue,
         workCompletionDate: workCompletionDateValue,
         workSize : workSizeData,
@@ -275,10 +276,10 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
 
       
 
+      console.log(workFile)
 
 
-
-      if(workData.workImageUrl){
+      if(workFile){
         workImageUrlNulll= false
       }else{
         workImageUrlNulll = true
@@ -335,6 +336,19 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       // 성공 시 드디어 데이터를 업로드 한다 
       if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
 
+        setLoading(true)
+      
+        if(workFile){
+          workImage = await workImageUploadService.uploadSingleImage(workFile)
+        
+        }else{
+          workImage = null
+        }
+        
+        databaseService.uploadWorkData(workData.workSerialNumber, workData)
+        databaseService.uploadPhotoUrl('works',workData.workSerialNumber,'workImageUrl', workData.workSerialNumber+1, workImage.url)
+
+        setLoading(false)
 
         if(myFunctions.checkWordFromUrl('work_fix', url)){
           navigate('/home/private/loggedin/work_fix/work_fix_done')
@@ -345,7 +359,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
         }else{
           console.log('url or navigate error')
         }
-        databaseService.uploadWorkData(workData.workSerialNumber, workData)
       }else{
         window.scrollTo({
           top:0
@@ -472,7 +485,7 @@ let obj2 = {} as TypeOfExhibitionHistory
     <div className={styles.div2}>
       <span className={styles.div2_title}>1. 작품사진 올리기</span>
     </div>
-    {workImageUrlNull&&<span className={styles.notice_wrong_image_upload}>필수: 작품 완성일자를 넣어주세요</span>}
+    {workImageUrlNull&&<span className={styles.notice_wrong_image_upload}>필수: 작품 사진을 올려주세요</span>}
 
     <span className={styles.caution}>- 주의: 무조건 고화질로 올리되, 10MB이하로 올릴 것</span>
     <div className={`${styles.div3} ${styles.div3_1}`}>
@@ -653,8 +666,13 @@ let obj2 = {} as TypeOfExhibitionHistory
 
           <div className={styles.button_container}>
 
-        <input type="submit" className={styles.fifth_buttons} value='작품의 데이터만 우선 저장만 하고 나중에 보여주기' />
-        {/* <button className={styles.fifth_buttons}>작품 업로드하고 웹사이트에도 바로 띄우기 </button> */}
+  {!loading?<input type="submit" className={styles.fifth_buttons} value='작품의 데이터만 우선 저장만 하고 나중에 보여주기' />
+        :<div className={styles.loading_box}>
+                <div className={styles.loading}></div>
+        </div>
+        
+        }
+        
 
           </div>
 
