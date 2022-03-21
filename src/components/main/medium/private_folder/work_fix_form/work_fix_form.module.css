@@ -264,3 +264,13 @@
 	background-color: pink;
 	margin-left: 3rem;
 }
+
+.notice_image_size_error {
+	position: absolute;
+	left: 34rem;
+	top: 75.2rem;
+
+	font-size: 1.6rem;
+	background-color: pink;
+	margin-top: 5rem;
+}

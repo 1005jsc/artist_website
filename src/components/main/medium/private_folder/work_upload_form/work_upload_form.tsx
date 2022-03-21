@@ -61,10 +61,17 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       file = e.target.files[0]
       setWorkFile(file)
       let reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => {
-        setWorkPreviewUrl(reader.result as string)
+      if(reader&&file){
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+          setWorkPreviewUrl(reader.result as string)
         }
+      }else{
+        setWorkFile(null)
+        setWorkPreviewUrl(null)
+      }
+
+        
       }
     
     

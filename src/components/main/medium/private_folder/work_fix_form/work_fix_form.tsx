@@ -33,11 +33,11 @@ const WorkFixForm = ({workImageUploadService, workToFix, workFixFinished,jobDone
 
   if(jobDone){
       if(myFunctions.checkWordFromUrl('work_fix', url)){
-            navigate('/main/private/loggedin/work_fix/work_fix_done')
+            navigate('/home/private/loggedin/work_fix/work_fix_done')
       
           }else if(myFunctions.checkWordFromUrl('work_upload', url)){
       
-            navigate('/main/private/loggedin/work_upload/work_upload_done')
+            navigate('/home/private/loggedin/work_upload/work_upload_done')
           }else{
             console.log('url or navigate error')
           }
@@ -270,11 +270,19 @@ const [workSizeTwoDefaultValue, setWorkSizeTwoDefaultValue ] = useState<number|u
       file = e.target.files[0]
       setWorkFile(file)
       let reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => {
-        setWorkPreviewUrl(reader.result as string)
+      if(reader&&file){
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+          setWorkPreviewUrl(reader.result as string)
         }
+      }else{
+        setWorkFile(null)
+        setWorkPreviewUrl(null)
       }
+      
+
+    }
+
     
   
   }
@@ -327,6 +335,10 @@ const [workSizeTwoDefaultValue, setWorkSizeTwoDefaultValue ] = useState<number|u
 
 
 // onChange 에 관한것 edit을 위한 함수들
+
+
+const [imageSizeError, setImageSizeError] = useState<boolean>(false)
+
 
 const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e) => {
   e.preventDefault()
@@ -590,6 +602,7 @@ const [loading, setLoading] = useState<boolean>(false)
 
     e.preventDefault()
 
+    let workImage
     
       
   try{
@@ -657,11 +670,11 @@ const [loading, setLoading] = useState<boolean>(false)
       if(!workImageUrlNulll&&!workNameNulll&&!workCompletionDateNulll&&!workSizeNulll){
 
         setLoading(true)
-        let workImage
         if(workFile){
           workImage = await workImageUploadService.uploadSingleImage(workFile)
         }else{
           workImage = null
+          console.log('here')
         }
         
         rightBeforeSubmissionOne['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
@@ -686,8 +699,13 @@ const [loading, setLoading] = useState<boolean>(false)
 
 
   }catch(err){
+    workImage = null
   console.log(err)
-  console.log('failed')
+  setImageSizeError(true)
+  setLoading(false)
+  window.scrollTo({
+          top:0
+        })
   }
 
 
@@ -775,6 +793,7 @@ const [loading, setLoading] = useState<boolean>(false)
       <span className={styles.s1}>수정하기</span>
       <button className={styles.delete_info} onClick={handleDeleteInfo}>작품정보 지우기</button>
     </div>
+    {imageSizeError&&<span className={styles.notice_image_size_error}>작품 사진의 파일이 너무 큽니다 10MB 이하인 작품 사진을 업로드하시고 다시 업로드하십시오</span>}
 
 
   <div className={styles.div1}>

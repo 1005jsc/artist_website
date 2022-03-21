@@ -76,11 +76,17 @@ if(e.target.files){
   file = e.target.files[0]
   setPosterFile(file)
   let reader = new FileReader()
-  reader.readAsDataURL(file)
-  reader.onload = () => {
-    setPosterPreviewUrl(reader.result as string)
+  if(reader&&file){
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      setPosterPreviewUrl(reader.result as string)
     }
+  }else{
+    setPosterFile(null)
+    setPosterPreviewUrl(null)
   }
+}
+  
 }
 
 
@@ -184,12 +190,20 @@ const handleExhibitionPhotoUpload:React.ChangeEventHandler<HTMLInputElement> = a
       const aray2 = [...aray1]
       setExhibitionUploadArray1(aray2)
       const reader = new FileReader()
-      reader.readAsDataURL(files[i])
-      reader.onload= () => {
-        array1.push(reader.result as string)
-        const array2 = [...array1]
-        setExhibitionPreviewArray1(array2)
+      if(reader&&files){
+        reader.readAsDataURL(files[i])
+        reader.onload= () => {
+          array1.push(reader.result as string)
+          const array2 = [...array1]
+          setExhibitionPreviewArray1(array2)
+        }
+      }else{
+      setExhibitionUploadArray1([])
+
+        setExhibitionPreviewArray1([])
+
       }
+      
     }
   }
 }

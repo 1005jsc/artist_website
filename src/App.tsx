@@ -24,7 +24,6 @@ import WorkUploadDone from './components/main/medium/private_folder/work_upload_
 import WorkFixDone from './components/main/medium/private_folder/work_fix_done/work_fix_done';
 import ExhibitionUploadDone from './components/main/medium/private_folder/exhibition_upload_done/exhibition_upload_done';
 import SuggestionBox from './components/main/medium/private_folder/suggestion_box/suggestion_box';
-import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
 import WorkFix from './components/main/medium/private_folder/work_fix/work_fix';
 import WorkFixFormOne from './components/main/medium/private_folder/work_fix_form_one/work_fix_form_one';
 import WorkFixFormTwo from './components/main/medium/private_folder/work_fix_form_two/work_fix_form_two';
@@ -38,6 +37,7 @@ import Modal from 'react-modal';
 import SingleWork from './components/main/medium/work_folder/single_work/single_work';
 import Fullscreen from './components/main/medium/full_screen_folder/fullscreen/fullscreen';
 import Navigator from './components/introuduction/navigator_folder/navigator/navigator';
+import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
 
 
 type AppProps = {
