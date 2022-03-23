@@ -192,7 +192,7 @@ const Fullscreen = () => {
   const handleGoToHome:React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     
-    navigate(`/main/works`)
+    navigate(`/home/works`)
 }
 
   const handleMenuClickOff:React.MouseEventHandler<HTMLDivElement> = (e) => {

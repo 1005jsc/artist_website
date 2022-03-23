@@ -38,6 +38,7 @@ import SingleWork from './components/main/medium/work_folder/single_work/single_
 import Fullscreen from './components/main/medium/full_screen_folder/fullscreen/fullscreen';
 import Navigator from './components/introuduction/navigator_folder/navigator/navigator';
 import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
+import NotFound from './components/utility/not_found/not_found';
 
 
 type AppProps = {
@@ -181,7 +182,7 @@ const handleLogin = (password:string|number) => {
 
 
 
-
+      <Route path="*" element={<NotFound />} />
 
 
     </Routes>
