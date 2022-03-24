@@ -41,8 +41,6 @@
 	margin: 0.4rem;
 }
 
-/* 줌엔 패닝 기능 만들어주기 */
-
 .grey_background {
 	position: relative;
 	display: flex;
@@ -54,17 +52,16 @@
 	/* overflow: hidden; */
 }
 
+/* 줌엔 패닝 기능 만들어주기 */
 .img_container {
+	height: 100%;
 	position: relative;
 	overflow: hidden;
-
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .work_large_image {
+	width: 100%;
+
 	/* height: 100%; */
 	/* overflow: hidden; */
 }

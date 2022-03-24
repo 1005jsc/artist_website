@@ -63,7 +63,9 @@ const NavbarLeftInside = ({loginState}:NavbarLeftInsideProps) => {
 
   return <>
   
-  <div className={styles.logo_sample}>Logo</div>
+  <div className={styles.logo_sample}>
+    <img src="/logo/logo.png" alt="" className={styles.logo} />
+  </div>
   {login&&<span className={styles.loggedin_banner}>로그인 되었습니다 -작가 조용남-</span>}
  
 <div className={styles.navbar_container}>

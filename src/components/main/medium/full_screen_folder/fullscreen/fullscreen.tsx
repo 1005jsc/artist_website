@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./fullscreen.module.css";
 import { useLocation, useNavigate } from 'react-router-dom';
 import  styled  from 'styled-components';
 import { TypeOfPhotoAssets, TypeOfWork } from '../../../../../common/project_types';
 import { myFunctions } from './../../../../../common/project_functions';
+import KeyDetector from '../../../../utility/key_detector/key_detector';
 
 
 
@@ -13,7 +14,8 @@ const Fullscreen = () => {
 
   const navigate = useNavigate()
   const location = useLocation()
-
+  const leftArrowRef = useRef<HTMLButtonElement|null>(null)
+  const rightArrowRef = useRef<HTMLButtonElement|null>(null)
 
   
   const [works, setWorks] = useState<TypeOfWork[]>([])
@@ -22,6 +24,8 @@ const Fullscreen = () => {
   
   const [menuOnClick, setMenuOnClick] = useState<boolean>(false)
   const [autoPlay, setAutoPlay] = useState<boolean>(false)
+
+  const [remoteShow, setRemoteShow] = useState<boolean>(true)
 
 
   // 렌더링 시 작품 데이터 불러오기
@@ -201,8 +205,32 @@ const Fullscreen = () => {
   }
 
 
+const keyValueReceive = (keyValue:string) => {
+
+  if(keyValue ==='ArrowRight'){
+    let rightArrowButton;
+    if(rightArrowRef.current){
+      rightArrowButton = rightArrowRef.current
+
+      rightArrowButton.click()
+    }
+
+  }else if(keyValue === 'ArrowLeft') {
+    let leftArrowButton;
+    if(leftArrowRef.current){
+      leftArrowButton = leftArrowRef.current
+
+      leftArrowButton.click()
+    }
+  }
+  // esc, enter, spacebar누르면 리모컨이 켰다 꺼진다 
+
+  if(keyValue === 'Enter'||keyValue ==='Escape'||keyValue ===' '){
+    setRemoteShow(!remoteShow)
+  }
 
 
+}
 
 
 
@@ -224,12 +252,12 @@ const Fullscreen = () => {
 
 
 
+
   return <Fullscreen>
     <div className={styles.div_for_space}></div>
             <img className={styles.work_img} src={workFullscreen? workFullscreen : firstFullScreenImg} alt="" />
     <div className={styles.div_for_space}>
-
-      <div className={styles.remote_control}>
+<div className={remoteShow?`${styles.remote_control}`:`${styles.remote_send_away}`}>
           <button className={styles.menu_button} onClick={handleMenuOnClick} >menu</button>
           
           {menuOnClick&&<><div className={styles.menu}>
@@ -243,16 +271,17 @@ const Fullscreen = () => {
 
 
           <div className={styles.arrows}>
-              <button className={styles.arrow} data-direction="back" onClick={handleArrowClick}><img className={styles.left}src="/icons/left_arrow_carot.svg" alt="" /> </button>
-              <button className={styles.arrow} data-direction="front" onClick={handleArrowClick}><img className={styles.right}src="/icons/right_arrow_carot.svg" alt="" /></button>
+              <button ref={leftArrowRef}className={styles.arrow} data-direction="back" onClick={handleArrowClick}><img className={styles.left}src="/icons/left_arrow_carot.svg" alt="" /> </button>
+              <button ref={rightArrowRef}className={styles.arrow} data-direction="front" onClick={handleArrowClick}><img className={styles.right}src="/icons/right_arrow_carot.svg" alt="" /></button>
           </div>
       </div>
+      
 
     </div>
     <div className=""></div>
 
 
+    <KeyDetector sendKeyValue={keyValueReceive}/>
   </Fullscreen>
-
 }
 export default Fullscreen;

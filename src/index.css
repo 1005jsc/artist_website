@@ -1,7 +1,7 @@
 html {
 	/* height: 100vh; */
-	/* font-size: 62.5%; */
-	font-size: calc(10vw / 14.4);
+	font-size: 62.5%;
+	/* font-size: calc(10vw / 14.4); */
 	/* 여기서는 1440으로 만들어도되 어짜피 반응형으로 줄어드니까  */
 }
 
@@ -15,7 +15,7 @@ body {
 	height: 100%;
 	overflow: auto;
 	min-width: 1190px;
-	/* width: 1440px; */
+	width: 1440px;
 	/* 일단 1440으로 정해놓고, 
   rem단위로 만들고 
   다 만들었을때

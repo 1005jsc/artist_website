@@ -9,13 +9,11 @@ export type PopupDivProps = {
 
 export const PopupDiv = styled.div`
 position: fixed;
-bottom: 30rem;
-// left: 5rem;
+bottom: 17rem;
 left: ${({popUpShow}:PopupDivProps) => (popUpShow?"5rem":'-60rem')};
 width: 48rem;
 height: 16rem;
 background-color: #e6e6e6;
-/* background-color: #f7f7da; */
 border-radius: 0.8rem;
 display: flex;
 flex-direction: column;
