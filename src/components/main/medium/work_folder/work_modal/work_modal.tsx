@@ -13,8 +13,6 @@ type WorkModalProps = {
 
 type FrameProps = {
   ratio: number;
-  wheelStartX: number;
-  wheelStartY: number;
   mouseStartX:number;
   mouseStartY:number;
 
@@ -113,14 +111,10 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
   // const wheelMouseParameterX = (e.clientX / parentX)
   // const wheelMouseParameterY = (e.clientY / parentY)
 
-  // console.log(wheelMouseParameterX)
-  // console.log(wheelMouseParameterY)
 
   // setWheelStartX(wheelMouseParameterX)
   // setWheelStartY(wheelMouseParameterY)
 
-  // console.log(e.clientX)
-  // console.log(e.clientY)
 
 
   setMouseStartX(e.clientX)
@@ -128,10 +122,12 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
 
 
   const ratioValue = ratio - 0.0008 * e.deltaY
-  if((ratioValue >= 0.1199)&&(ratioValue <= 1.56)){
-    // console.log(ratioValue)
+  if((ratioValue >= 0.1099)&&(ratioValue <= 1.66)&&(ratioValue < 0.18)&&(ratioValue > 1.26)){
+    setRatio(0.8*ratioValue)
+  }else if((ratioValue >= 0.18)&&(ratioValue <= 1.26)) {
     setRatio(ratioValue)
-  }else{
+  }
+  else{
     console.log(`off ratiovalue`)
   }
 
@@ -143,16 +139,9 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
 
 // const Frame = styled.div`
 //   position: relative;
-//   // top: -50%;
-//   // left: -50%;
 //   top: 0%;
 //   left: 0%;
-//   // width: ${({ratio}:StockContainerProps) => 100 / ratio}%;
-//   // height: ${({ratio}:StockContainerProps) => 100 / ratio}%;
-//   // width: 70%;
-//   // height: 50%;
 //   transform: scale(${({ratio}:StockContainerProps) => 3*ratio});
-//   // transform-origin: left top;
 
 // `
 
@@ -160,12 +149,8 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
 const Frame = styled.div`
   position: relative;
   transform: scale(${({ratio}:FrameProps) => 2.2*ratio});
-  transform-origin: ${({mouseStartX, ratio}:FrameProps) => mouseStartX}px ${({mouseStartY, ratio}:FrameProps) => {
-    console.log(mouseStartY)
-    console.log(mouseStartY*0.8)
+  transform-origin: ${({mouseStartX}:FrameProps) => mouseStartX}px ${({mouseStartY}:FrameProps) => {
     return mouseStartY}}px;
-  
-
 `
 
 
