@@ -225,8 +225,10 @@ const keyValueReceive = (keyValue:string) => {
   }
   // esc, enter, spacebar누르면 리모컨이 켰다 꺼진다 
 
-  if(keyValue === 'Enter'||keyValue ==='Escape'||keyValue ===' '){
+  if(keyValue === 'Enter'||keyValue ===' '){
     setRemoteShow(!remoteShow)
+  }else if(keyValue ==='Escape'){
+    window.history.back();
   }
 
 

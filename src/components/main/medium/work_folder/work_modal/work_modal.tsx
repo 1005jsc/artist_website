@@ -158,7 +158,6 @@ const Frame = styled.div`
 
 
 
-
   return <div className={styles.modal_background} onClick={handleModalOff} >
 
     <section  className={styles.modal_container}>
@@ -174,7 +173,6 @@ const Frame = styled.div`
             <div className={styles.delete_button_cont}><ModalDeleteButton handleDelete={modalOff}/></div>
             
             <Frame ratio={ratio} wheelStartX={wheelStartX} wheelStartY={wheelStartY} mouseStartX={mouseStartX} mouseStartY={mouseStartY}
-            
 
             onWheel={wheelHandler}
             draggable

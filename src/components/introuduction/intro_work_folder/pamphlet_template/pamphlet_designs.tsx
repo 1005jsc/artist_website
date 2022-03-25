@@ -1104,7 +1104,7 @@ export const No6 = () => {
   
   
   return <ImageContainerNo21>
-    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1647641246/artist-website/pamphlet_assets/DSC04987_600kb_cropped_pjcji3.jpg" alt=""/>
+    <I.ImageVerticalImg src="https://res.cloudinary.com/koreachief/image/upload/v1648167604/artist-website/pamphlet_assets/opening_last_page_egjiho.png" alt=""/>
   </ImageContainerNo21>
   }
   

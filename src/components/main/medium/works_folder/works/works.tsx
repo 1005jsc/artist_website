@@ -44,7 +44,7 @@ const Works = ({databaseService}:WorksProps) => {
   return <section className={styles.container}>
     
     {showBackgroundPic&&<div className={styles.background_img}>
-      <img className={styles.img}src="/img/artist_img/old_img/cho_yong_nam10.jpg" alt=""/></div>}
+      <img className={styles.img}src="/img/artist_img/works_cho_yong_nam.jpg" alt=""/></div>}
     
     <div className={showBackgroundPic?styles.yes:styles.no}>
     <div className={styles.container2}>
