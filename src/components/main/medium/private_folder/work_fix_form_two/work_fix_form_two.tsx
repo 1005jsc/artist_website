@@ -230,10 +230,10 @@ const handleWorkFixFinished = (fixedWorkSerialNumber:number, state:'cancel'|'upl
     },
     content: {
       position: 'absolute',
-      top: '22rem',
+      top: '18rem',
       left: '28rem',
       right: '28rem',
-      bottom: '32rem',
+      bottom: '20rem',
       border: '1px solid #ccc',
       background: '#fff',
       overflow: 'auto',

@@ -76,14 +76,14 @@
 	align-items: center;
 	flex-flow: column;
 	position: relative;
-	top: 12rem;
+	top: 7rem;
 }
 .modal_cont_two {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	top: 19rem;
+	top: 12rem;
 }
 .modal_button {
 	color: white;
