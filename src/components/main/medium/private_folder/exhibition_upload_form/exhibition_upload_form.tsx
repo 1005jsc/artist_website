@@ -632,14 +632,14 @@ let obj2 = {} as TypeOfWorks
       
       <div className={styles.lable_div}>
 
-        <label className={styles.lable}>전시회 타이틀:</label>
+        <label className={styles.lable}>타이틀:</label>
         <input ref={exhibitionTitleRef} className={styles.input}type="text" name="exhibition_title" placeholder='예: 국윤미술관 기획초대전'/>
     {exhibitionTitleNull&&<span className={styles.notice_upload_error}>필수: 전시회 타이틀을 넣어주세요</span>}
       
       </div>
       <div className={styles.lable_div}>
 
-        <label className={styles.lable}>전시회 이름:</label>
+        <label className={styles.lable}>이름:</label>
         <input ref={exhibitionNameRef} className={styles.input}type="text" name="exhibition_name" placeholder='예: 조용남 展 -시간을 담다-'/>
     {exhibitionNameNull&&<span className={styles.notice_upload_error}>필수: 전시회 이름을 넣어주세요</span>}
       
@@ -647,26 +647,26 @@ let obj2 = {} as TypeOfWorks
       
       <div className={styles.lable_div}>
 
-        <label className={styles.lable}>전시회 장소:</label>
+        <label className={styles.lable}>장소:</label>
         <input ref={exhibitionLocationRef} className={styles.input}type="text" name="exhibition_location" placeholder='주소'/>
       </div>
 
       <div className={styles.lable_div}>
-        <label className={styles.lable}>전시회 시작일:</label>
+        <label className={styles.lable}>시작일:</label>
           <input ref={exhibitionStartDateRef} className={styles.input}type="text" name="exhibition_start_date" placeholder='형식: 20210401'/>
     {exhibitionStartDateNull&&<span className={styles.notice_upload_error}>필수: 전시회 시작일을 여덟자리 숫자로 넣어주세요</span>}
       
       </div>
 
       <div className={styles.lable_div}>
-        <label className={styles.lable}>전시회 종료일:</label>
+        <label className={styles.lable}>종료일:</label>
           <input ref={exhibitionEndDateRef} className={styles.input}type="text" name="exhibition_end_date" placeholder='형식: 20210501'/>
     {exhibitionEndDateNull&&<span className={styles.notice_upload_error}>필수: 전시회 종료일을 여덟자리 숫자로 넣어주세요</span>}
       
       </div>
 
       <div className={styles.lable_div}>
-        <label className={styles.lable}>전시회 주최:</label>
+        <label className={styles.lable}>주최:</label>
           <input ref={exhibitionSponserRef} className={styles.input}type="text" name="exhibition_sponser" placeholder='전시회 주최 작성'/>
       </div>
     

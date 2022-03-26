@@ -261,17 +261,12 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       workMaterial: workMaterialData,
       workOnSale: workOnSaleData,
       workSold: workSoldData,
-      workExhibitionHistory: exhibitionOnClickUrls,
+      workExhibitionHistory: exhibitionOnClick,
       workMemo: workMemoValue,
       workHorizontalOrVerticalOrSquare: workHorizontalOrVerticalOrSquare
     }
 
-    let array1
-    if(exhibitionOnClickUrls){
-      array1 = Object.values(exhibitionOnClickUrls)
-      array1.forEach((exhibitionId) => {
-      databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)})
-    }
+    
 
   
   try{
@@ -354,7 +349,19 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
         
         databaseService.uploadWorkData(workData.workSerialNumber, workData)
         databaseService.uploadPhotoUrl('works',workData.workSerialNumber,'workImageUrl', workData.workSerialNumber+1, workImage.url)
+        let array1
+        if(exhibitionOnClick){
+          array1 = [...exhibitionOnClick]
+          const yes = workImage.url
+          array1.forEach((exhibitionId) => {
+          databaseService.uploadWorkToExhibitionWorks(exhibitionId, workSerialNumberNum, workData)
+          databaseService.uploadWorkImageToExhibitionWorks(exhibitionId,workData.workSerialNumber,workData.workSerialNumber+1, 
+            yes)
+            
         
+        })
+        }
+          
         setLoading(false)
         
         if(myFunctions.checkWordFromUrl('work_fix', url)){
@@ -456,30 +463,20 @@ const handleInputClick:React.MouseEventHandler<HTMLButtonElement> = (e) => {
 
 
 const [exhibitionOnClick, setExhibitionOnClick]= useState<Array<number>>([])
-const [exhibitionOnClickUrls, setExhibitionOnClickUrls] = useState<TypeOfExhibitionHistory|null>(null)
 
 
 
 
 let array1 = [] as number[]
-let obj1 = {} as TypeOfExhibitionHistory
-let obj2 = {} as TypeOfExhibitionHistory
-  const handleExhibitionSelect = (exhibitionSerialNumber:number, exhibitionName:string) => {
+  const handleExhibitionSelect = (exhibitionSerialNumber:number) => {
     array1 = [...exhibitionOnClick]
-    obj1 = {...exhibitionOnClickUrls}
     if(array1.find((value) => value === exhibitionSerialNumber)){
       const array2 = array1.filter(value => value !== exhibitionSerialNumber)
-      delete obj1[exhibitionSerialNumber]
       
-
       setExhibitionOnClick(array2)
-      setExhibitionOnClickUrls(obj1)
       
     }else{
       array1.push(exhibitionSerialNumber)
-      obj2[exhibitionName]= exhibitionSerialNumber
-      obj1= {...exhibitionOnClickUrls, ...obj2}
-      setExhibitionOnClickUrls(obj1)
       setExhibitionOnClick(array1)
 
     }
@@ -488,6 +485,9 @@ let obj2 = {} as TypeOfExhibitionHistory
     
   }
 
+  useEffect(() => {
+    console.log(exhibitionOnClick)
+  }, [exhibitionOnClick])
 
 
   return <form className={styles.form} onSubmit={handleSubmit}>
@@ -645,13 +645,9 @@ let obj2 = {} as TypeOfExhibitionHistory
     <div className={styles.div2}>
       <span className={styles.div2_title}>4. 전시 내역</span>
     </div>
-    <span className={`${styles.caution} ${styles.caution_4}`}>- 아래 전시회들 가운데 본 작품이 출전한 전시회가 있을 시 
-    클릭</span>
+    <span className={`${styles.caution} ${styles.caution_4}`}>- 본 작품 전시회가 있을 시 클릭</span>
     <div className={styles.div3_4}>
-        <WorkFormExhibitionsSelect 
-        exhibitionOnClickArray={exhibitionOnClick}
-        
-        sendExhibitionToUpperComponent={handleExhibitionSelect}/>
+        <WorkFormExhibitionsSelect exhibitionOnClickArray={exhibitionOnClick} sendExhibitionToUpperComponent={handleExhibitionSelect}/>
 
     </div>
   </div>  

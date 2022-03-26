@@ -47,8 +47,6 @@ const handleKeyDetector = (keyValue:string) => {
 
 // 스크롤의 기준점
 
-const [wheelStartX, setWheelStartX ] = useState<number>(0)
-const [wheelStartY, setWheelStartY ] = useState<number>(0)
 
 const [mouseStartX, setMouseStartX] = useState<number>(0)
 const [mouseStartY, setMouseStartY] = useState<number>(0)
@@ -121,7 +119,7 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
   setMouseStartY(e.clientY)
 
 
-  const ratioValue = ratio - 0.0008 * e.deltaY
+  const ratioValue = ratio - 0.0004 * e.deltaY
   if((ratioValue >= 0.1099)&&(ratioValue <= 1.66)&&(ratioValue < 0.18)&&(ratioValue > 1.26)){
     setRatio(0.8*ratioValue)
   }else if((ratioValue >= 0.18)&&(ratioValue <= 1.26)) {
@@ -172,7 +170,7 @@ const Frame = styled.div`
           <div className={styles.img_container}>
             <div className={styles.delete_button_cont}><ModalDeleteButton handleDelete={modalOff}/></div>
             
-            <Frame ratio={ratio} wheelStartX={wheelStartX} wheelStartY={wheelStartY} mouseStartX={mouseStartX} mouseStartY={mouseStartY}
+            <Frame ratio={ratio}   mouseStartX={mouseStartX} mouseStartY={mouseStartY}
 
             onWheel={wheelHandler}
             draggable

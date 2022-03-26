@@ -43,7 +43,6 @@ const WorkFixFormTwo = ({workImageUploadService}:WorkFixFormTwoProps) => {
 
     const array2 = [...array1]
     const object2 = {...object1}
-    console.log(array2)
     if(array2.length === 0){
       setNoWorkToBeSelected(true)
     }else{
@@ -265,7 +264,6 @@ const handleWorkFixFinished = (fixedWorkSerialNumber:number, state:'cancel'|'upl
       <span className={styles.explanation}>- 수정할 작품을 하나씩 클릭하고 수정 </span>
       <span className={styles.s1}>남은 수정할 작품들 총 &nbsp;&nbsp;{worksFromFormOneSerialNumbers.length}&nbsp;&nbsp;개</span>
     </div>
-      {/* 여기를 아예 다른 느낌을 줘야되는데 폰트를 다르게 주면 될듯   */}
       {workOnSelectPrevious&&<h1 className={styles.fix_finished}>작품 &nbsp;&nbsp;{workOnSelectPrevious.workName}&nbsp;&nbsp; 수정완료!!</h1>}
       {workCanceled&&<h1 className={styles.fix_finished}>작품 &nbsp;&nbsp;{workCanceled.workName}&nbsp;&nbsp; 수정취소</h1>}
       

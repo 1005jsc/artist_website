@@ -4,7 +4,7 @@ import WorkFormExhibitionsSelectExhibition from './../work_form_exhibitions_sele
 
 type WorkFormExhibitionsSelectBundleContainerProps = {
   arrayAboutWorkYearAndWork: any[]
-  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number, exhibitionName:string) => void
+  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number) => void
   exhibitionOnClickArray : number[]
 }
 

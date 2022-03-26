@@ -7,7 +7,7 @@ import styles from "./work_form_exhibitions_select_exhibition.module.css";
 type WorkFormExhibitionsSelectExhibitionProps = {
   exhibitionOnClickArray : number[]
   exhibition:TypeOfExhibition;
-  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number, exhibitionName:string) => void
+  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number) => void
 }
 
 
@@ -29,12 +29,8 @@ const WorkFormExhibitionsSelectExhibition = ({exhibition, exhibitionOnClickArray
 
   const sendExhibitionData:React.MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault()
-    if(exhibition.exhibitionName){
-
-      sendExhibitionToUpperComponent(exhibition.exhibitionSerialNumber, exhibition.exhibitionName)
-    }else{
-      sendExhibitionToUpperComponent(exhibition.exhibitionSerialNumber, 'default_exhibition_name')
-
+    if(exhibition){
+      sendExhibitionToUpperComponent(exhibition.exhibitionSerialNumber)
     }
   
   }

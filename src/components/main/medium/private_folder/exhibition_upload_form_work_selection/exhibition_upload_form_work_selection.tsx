@@ -57,9 +57,9 @@ const ExhibitionUploadFormWorkSelection = ({exhibitionWorksOnClickArray, passSel
         <button className={dataPathValue==='year'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
         :`${styles.works_buttons} ` }data-path="year" onClick={handleClick}>연도별</button>
         <button className={dataPathValue==='larger'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
-        :`${styles.works_buttons} ` } data-path="larger" onClick={handleClick}>크기가 큰 순</button>
+        :`${styles.works_buttons} ` } data-path="larger" onClick={handleClick}>사이즈가 큰 순</button>
         <button className={dataPathValue==='smaller'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
-        :`${styles.works_buttons} ` } data-path="smaller" onClick={handleClick}>크기가 작은 순</button>
+        :`${styles.works_buttons} ` } data-path="smaller" onClick={handleClick}>사이즈가 작은 순</button>
         <button className={dataPathValue==='exhibition'?`${styles.works_buttons} ${styles.works_buttons_onclick}`
         :`${styles.works_buttons} ` } data-path="exhibition" onClick={handleClick}>전시 출품작</button>
       </div>

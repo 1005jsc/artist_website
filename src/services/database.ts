@@ -33,6 +33,16 @@ class Database {
     set(ref(Database.myDatabase,
     `root/exhibitions/${exhibitionId}/exhibitionWorks/${workId}`), inputData)
   }
+
+  uploadExhibitionHistoryToWork( workId:number, inputData:any){
+    set(ref(Database.myDatabase,
+    `root/works/${workId}/workExhibitionHistory`), inputData)
+  }
+
+  uploadWorkImageToExhibitionWorks(exhibitionId:number, workId:number,workImageUrlId:number, url:string|null){
+    set(ref(Database.myDatabase,
+    `root/exhibitions/${exhibitionId}/exhibitionWorks/${workId}/workImageUrl/${workImageUrlId}`), url)
+  }
   
 
 

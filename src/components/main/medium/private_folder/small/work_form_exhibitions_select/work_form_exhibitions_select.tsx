@@ -7,7 +7,7 @@ import WorkFormExhibitionsSelectBundleContainer from './../work_form_exhibitions
 import { myLogics } from '../../../../../../common/project_logics';
 
 type WorkFormExhibitionsSelectProps = {
-  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number, exhibitionName:string) => void
+  sendExhibitionToUpperComponent:(exhibitionSerialNumber:number) => void
   exhibitionOnClickArray: number[];
 }
 

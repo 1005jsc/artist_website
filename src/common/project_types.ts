@@ -85,9 +85,7 @@ export type TypeOfWorkSold = {
   purchasePrize:string|number|null;
 }
 
-export type TypeOfExhibitionHistory = {
-  [exhibitionName:string]: number;
-}
+export type TypeOfExhibitionHistory = number[]
 
 
 // image

@@ -2,7 +2,7 @@ import React, { useEffect,  useState } from "react"
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { myFunctions } from '../../../../../common/project_functions';
 import { myLogics } from '../../../../../common/project_logics';
-import { TypeOfExhibitionHistory, TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
+import { TypeOfExhibitionHistory, TypeOfExhibitions, TypeOfHorizontalOrVerticalOrSquare, TypeOfSoldNotSold, TypeOfWork, TypeOfWorkSold } from '../../../../../common/project_types';
 import Database from '../../../../../services/database';
 import WorkImageUpload from '../../../../../services/work_image_uploads';
 import PreviewImageSingle from '../../../small/preview_image_single/preview_image_single';
@@ -27,6 +27,19 @@ const WorkFixForm = ({workImageUploadService, workToFix, workFixFinished,jobDone
   })
   const navigate = useNavigate()
 
+  const [everyExhibitionArray, setEveryExhibitionArray ] = useState<number[]>([])
+
+  useEffect(() => {
+    let array1
+    let array2 = [] as number[]
+    databaseService.getExhibitionData((data) => {
+      array1 = Object.keys(data)
+      for(let i=0; i<array1.length; i++){
+        array2.push(parseInt(array1[i]))
+      }
+      setEveryExhibitionArray(array2)
+    })
+  }, [])
 
 
 
@@ -352,7 +365,6 @@ const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
   // size, onSale은 따로
 
 
-
   const fixWork:any = {...workToFixState}  
   const yes = myFunctions.snakeCaseToLowerCamelCase(e.target.name) as keyof TypeOfWork|'workSizeOne'|'workSizeTwo'
  
@@ -507,53 +519,40 @@ const handleWorkSoldChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
 
 
 
-// 전시회 부분
+// 전시회 초기값 받아오기
 
 
 
-const [exhibitionOnClick, setExhibitionOnClick]= useState<Array<number>>([])
-const [exhibitionOnClickUrls, setExhibitionOnClickUrls] = useState<TypeOfExhibitionHistory>({})
+const [exhibitionOnClickArray, setExhibitionOnClickArray]= useState<TypeOfExhibitionHistory>([])
 
 useEffect(() => {
-
+  
   if(workToFix.workExhibitionHistory){
-    const array1 = Object.values({...workToFix.workExhibitionHistory})
-    setExhibitionOnClick(array1)
-    setExhibitionOnClickUrls(workToFix.workExhibitionHistory)
-  }else{
-    setExhibitionOnClick([])
-    setExhibitionOnClickUrls({})
+    const array1 = Object.values({...workToFix.workExhibitionHistory}) as TypeOfExhibitionHistory
+    setExhibitionOnClickArray(array1)
+
   }
 }, [workToFix])
 
 
 
 
-let array1 = [] as number[]
-let obj1 = {} as TypeOfExhibitionHistory
-let obj2 = {} as TypeOfExhibitionHistory
-  const handleExhibitionSelect = (exhibitionSerialNumber:number, exhibitionName:string) => {
-    array1 = [...exhibitionOnClick]
-    obj1 = {...exhibitionOnClickUrls}
-
+  let array1 = [] as number[]
+  const handleExhibitionSelect = (exhibitionSerialNumber:number) => {
+    array1 = [...exhibitionOnClickArray]
 
     if(array1.find((value) => value === exhibitionSerialNumber)){
       const array2 = array1.filter(value => value !== exhibitionSerialNumber)
-      delete obj1[exhibitionSerialNumber]
-      
-
-      setExhibitionOnClick(array2)
-      setExhibitionOnClickUrls(obj1)
+      setExhibitionOnClickArray(array2)
       
     }else{
       array1.push(exhibitionSerialNumber)
-      obj2[exhibitionName]= exhibitionSerialNumber
-      
-      
-      obj1= {...exhibitionOnClickUrls, ...obj2}
-      setExhibitionOnClickUrls(obj1)
-      setExhibitionOnClick(array1)
+      setExhibitionOnClickArray(array1)
     }
+
+
+
+
   }
 
 
@@ -590,7 +589,6 @@ let obj2 = {} as TypeOfExhibitionHistory
 const [loading, setLoading] = useState<boolean>(false)
 
 
-
     // 수정된 정보로 작품 업로드(2/3)
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = async(e) => {
 
@@ -602,20 +600,22 @@ const [loading, setLoading] = useState<boolean>(false)
 
     e.preventDefault()
 
+    // 사진 (3/3)
     let workImage
     
       
   try{
-    // 사진 (3/3)
     
   
     if(workToFixState){
       const rightBeforeSubmissionOne = {...workToFixState} as TypeOfWork
 
-
       rightBeforeSubmissionOne['workSold'] = workSoldToFixState
-      rightBeforeSubmissionOne['workExhibitionHistory'] = exhibitionOnClickUrls
+    
       rightBeforeSubmissionOne['lastUpdate']=myFunctions.generateAKey(0)
+
+
+
 
 
       // 널 체크 (2/3)
@@ -674,14 +674,85 @@ const [loading, setLoading] = useState<boolean>(false)
           workImage = await workImageUploadService.uploadSingleImage(workFile)
         }else{
           workImage = null
-          console.log('here')
+        }
+        rightBeforeSubmissionOne['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
+      
+        databaseService.uploadWorkData(rightBeforeSubmissionOne.workSerialNumber, rightBeforeSubmissionOne)
+
+
+
+     
+        
+        if(workImage){
+
+        let array1 =[] as number[]
+        let array2 =[] as number[] 
+          
+
+        array1 = [... exhibitionOnClickArray]
+        array2 = everyExhibitionArray.filter((value) => !array1.includes(value) )
+
+
+       
+          const yes1 = workImage.url
+
+          array1.forEach((exhibitionId) => {
+            databaseService.uploadWorkToExhibitionWorks(exhibitionId, rightBeforeSubmissionOne.workSerialNumber, rightBeforeSubmissionOne)
+            databaseService.uploadWorkImageToExhibitionWorks(exhibitionId,rightBeforeSubmissionOne.workSerialNumber,rightBeforeSubmissionOne.workSerialNumber+1, 
+              yes1)
+          
+          })
+  
+          array2.forEach((exhibitionId) => {
+            databaseService.deleteWorksInExhibitionData(exhibitionId,rightBeforeSubmissionOne.workSerialNumber)        
+          })
+
+
+
+        
+        }else{
+          
+      
+        let array1 = [] as number[]
+        let array2 =[] as number[] 
+          
+
+          array1 = [... exhibitionOnClickArray]
+          array2 = everyExhibitionArray.filter((value) => !array1.includes(value) )
+
+
+        let okay:string|null = ''
+        if(workToFixState.workImageUrl){
+          okay = Object.values(workToFixState.workImageUrl)[0]
+        }else{
+          okay = null
         }
         
-        rightBeforeSubmissionOne['workImageUrl'] = workImage?{[myFunctions.generateAKey(1)]:workImage.url}:workToFixState.workImageUrl
-
-
-        databaseService.uploadWorkData(rightBeforeSubmissionOne.workSerialNumber, rightBeforeSubmissionOne)
+        databaseService.uploadExhibitionHistoryToWork(rightBeforeSubmissionOne.workSerialNumber, array1)
+        array1.forEach((exhibitionId) => {
+          
+          databaseService.uploadWorkToExhibitionWorks(exhibitionId, rightBeforeSubmissionOne.workSerialNumber, rightBeforeSubmissionOne)
+          databaseService.uploadWorkImageToExhibitionWorks(exhibitionId,rightBeforeSubmissionOne.workSerialNumber,rightBeforeSubmissionOne.workSerialNumber+1, 
+            okay)
         
+        })
+        
+        
+        
+        
+        array2.forEach((exhibitionId) => {
+          
+          
+            databaseService.deleteWorksInExhibitionData(exhibitionId,rightBeforeSubmissionOne.workSerialNumber)        
+          })
+          
+          
+        
+
+
+
+        }
+
         workFixFinished(rightBeforeSubmissionOne.workSerialNumber, 'upload')
         setWorkToFixState(undefined)
         setLoading(false)
@@ -976,7 +1047,7 @@ const [loading, setLoading] = useState<boolean>(false)
     <div className={styles.div3_4}>
       
     <WorkFormExhibitionsSelect 
-        exhibitionOnClickArray={exhibitionOnClick}
+        exhibitionOnClickArray={exhibitionOnClickArray}
         
         sendExhibitionToUpperComponent={handleExhibitionSelect}/>
 
