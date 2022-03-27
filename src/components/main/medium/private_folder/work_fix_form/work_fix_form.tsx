@@ -208,7 +208,6 @@ const [workSizeOneDefaultValue, setWorkSizeOneDefaultValue ] = useState<number|u
 const [workSizeTwoDefaultValue, setWorkSizeTwoDefaultValue ] = useState<number|undefined>()
 
   useEffect(() => {
-    // console.log(workToFix)
 
 
 
@@ -427,11 +426,9 @@ const handleWorkDataChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
   }else{
     if(e.target.value){
       fixWork[yes]= e.target.value
-      console.log(workToFixState)
       
     }else{
       fixWork[yes]= ''
-      console.log(workToFixState)
     }
   }
       
@@ -509,7 +506,6 @@ const handleWorkSoldChangeInput:React.ChangeEventHandler<HTMLInputElement> = (e)
     }
   
   const fixWorkSold2 = fixWorkSold as TypeOfWorkSold
-  console.log(fixWorkSold2)
   setWorkSoldToFixState(fixWorkSold2)
   
 

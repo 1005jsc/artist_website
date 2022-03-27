@@ -485,9 +485,6 @@ let array1 = [] as number[]
     
   }
 
-  useEffect(() => {
-    console.log(exhibitionOnClick)
-  }, [exhibitionOnClick])
 
 
   return <form className={styles.form} onSubmit={handleSubmit}>

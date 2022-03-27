@@ -17,6 +17,13 @@ type FrameProps = {
   mouseStartY:number;
 
 }
+type PictureProps = {
+  ratio: number;
+  mouseStartX:number;
+  mouseStartY:number;
+
+}
+
 
 
 
@@ -81,10 +88,10 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
   setMouseStartY(offsetY)
 
 
-  const ratioValue = ratio - 0.0008 * e.deltaY
-  if((ratioValue >= 0.1299)&&(ratioValue <= 1.66)&&(ratioValue < 0.18)&&(ratioValue > 2.26)){
+  const ratioValue = ratio - 0.0004 * e.deltaY
+  if((ratioValue >= 0.1099)&&(ratioValue <= 1.66)&&(ratioValue < 0.18)&&(ratioValue > 1.26)){
     setRatio(0.8*ratioValue)
-  }else if((ratioValue >= 0.18)&&(ratioValue <= 2.26)) {
+  }else if((ratioValue >= 0.18)&&(ratioValue <= 1.26)) {
     setRatio(ratioValue)
   }
   else{
@@ -100,16 +107,11 @@ const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
 
 const Frame = styled.div`
 position: relative;
-transition: all 2s ease-out;
-transform: scale(${({ratio}:FrameProps) => {
-  return 2.2*ratio}});
-transform-origin: ${({mouseStartX}:FrameProps) => mouseStartX}px ${({mouseStartY}:FrameProps) =>  mouseStartY}px;
-
-  
+  transform: scale(${({ratio}:FrameProps) => 2.2*ratio});
+  transform-origin: ${({mouseStartX}:FrameProps) => mouseStartX}px ${({mouseStartY}:FrameProps) => {
+    return mouseStartY}}px;
   top: ${({ratio, mouseStartX}:FrameProps) => {return -mouseStartX*ratio + mouseStartX}};
   left: ${({ratio, mouseStartY}:FrameProps) => {return -mouseStartY*ratio + mouseStartY}};
-
-  
 
 `
 

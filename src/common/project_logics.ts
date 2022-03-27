@@ -246,7 +246,7 @@ class artistWebsiteExportLogics {
         const workMainAlmostOriginal1 = array1[index]['workImageUrl']
         if( workMainAlmostOriginal1 !== null){
           workMainAlmostOriginal=myFunctions.imageUrlMakerByRequestedQuality(
-            Object.values(workMainAlmostOriginal1)[0],'almost-original'
+            Object.values(workMainAlmostOriginal1)[0],'original'
           )
           
         }else{
