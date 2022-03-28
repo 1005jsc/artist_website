@@ -5,6 +5,7 @@ import WorkModal from '../work_modal/work_modal';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { TypeOfWork } from '../../../../../common/project_types';
 import { myLogics } from '../../../../../common/project_logics';
+import { PopupInModal } from '../popup_in_modal/popup_in_modal';
 
 const SingleWork = () => {
 
@@ -131,7 +132,6 @@ const navigate = useNavigate()
   const handleNextImg:React.MouseEventHandler<HTMLImageElement> = (e) => {
     e.preventDefault()
     // 양 사이드의 작은 이미지들, 누르면 다음 작품을 보여주게된다 
-    console.log(e.currentTarget.dataset.side )
 
     if(e.currentTarget.dataset.side === 'left'){
       navigate(`/home/works/work?work_id=${leftWorkId}`, {
@@ -194,9 +194,8 @@ const navigate = useNavigate()
 
 
 
-
-
   return <section className={styles.single_work_container}>
+  
 
   {modalOpen&&<WorkModal workUrl={workMainAlmostOriginal} modalOff={handleModalOff}/>}
 
@@ -236,7 +235,7 @@ const navigate = useNavigate()
 
   </div>
 
-  <div className={styles.metadata}>
+  <div className={styles.metadata} >
       {workNow&&<p className={styles.p1}>{workNow.workName}</p>}
       {workNow&&<p className={styles.p1}>{workNow.workSize}</p>}
       {workNow&&<p className={styles.p1}>{workNow.workMaterial}</p>}

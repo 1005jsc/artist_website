@@ -55,8 +55,6 @@ const Home = ({handleLogin, login}:HomeProps) => {
     openDoorknob={handleDoorknobOpen}
     loginState={login}/></div>
     <div className={urlNotWork?styles.left_empty_not_work:firstRender?styles.left_empty_first_render:((doorknobOpenClicked?styles.left_empty_closed:styles.left_empty))}></div>
-    {/* <div className={firstRender?styles.left_empty_first_render:(urlNotWork?styles.left_empty_not_work:(doorknobOpenClicked?styles.left_empty_closed:styles.left_empty))}></div> */}
-    {/* <div className={(doorknobOpenClicked?styles.left_empty_closed:styles.left_empty)}></div> */}
     <div className={styles.content_box}><ContentBox loginState={login} handleLogin={handleLogin}/></div>
 
     

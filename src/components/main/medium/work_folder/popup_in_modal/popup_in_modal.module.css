@@ -1,17 +1,3 @@
-.popup_container {
-	position: fixed;
-	bottom: 50rem;
-	left: 5rem;
-	width: 46rem;
-	height: 16rem;
-	background-color: #e6e6e6;
-	/* background-color: #f7f7da; */
-	border-radius: 0.8rem;
-	display: flex;
-	flex-direction: column;
-	padding: 2.4rem;
-}
-
 .s1 {
 	font-size: 1.6rem;
 	line-height: 3rem;

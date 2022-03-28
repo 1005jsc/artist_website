@@ -129,7 +129,7 @@ class artWebsiteExportFunctions{
       case 'full-screen':
         return `${urlFormer}q_10/${urlLater}`;
       case 'almost-original':
-        return `${urlFormer}q_60/${urlLater}`;
+        return `${urlFormer}q_80/${urlLater}`;
       case 'original':
         return   `${urlFormer}${urlLater}`
       default:

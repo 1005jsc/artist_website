@@ -39,7 +39,7 @@ const Navbar = () => {
     onMouseEnter={() => setOnHover(true)}
   onMouseLeave={() => setOnHover(false)}>
     {onHover&&<>
-    <button className={`${styles.button_bottom} `} data-path="introduction?page=1" onClick={navigateTo}>작가, 작품소개 보러가기</button>
+    <button className={`${styles.button_bottom} `} data-path="introduction?page=1" onClick={navigateTo}>작품소개 보러가기</button>
     <button className={`${styles.button_bottom} `} data-path="home" onClick={navigateTo}>홈으로 바로가기</button></>}
     </div>
   </>}

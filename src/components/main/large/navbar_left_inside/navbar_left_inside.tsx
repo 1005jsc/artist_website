@@ -115,7 +115,7 @@ const NavbarLeftInside = ({loginState}:NavbarLeftInsideProps) => {
       <button className={`${styles.f1}`} data-path="/" onClick={navigateToTwo}>메인으로 돌아가기</button>
     </div>
     <div className={` ${styles.b1} `}>
-      <button className={`${styles.f2}`} data-path="introduction" onClick={navigateToTwo}>작가, 작품소개 다시보기</button>
+      <button className={`${styles.f2}`} data-path="introduction" onClick={navigateToTwo}>작품소개 다시보기</button>
     </div>
 
 </div>
