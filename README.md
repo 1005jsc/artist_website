@@ -1,7 +1,7 @@
 # Cho Yong Nam Official Art Website
 
 https://cho-yong-nam-artist.netlify.app
-click [here](https://cho-yong-nam-artist.netlify.app)
+
 
 
 This is a website for presenting Artist Cho Yong Nam's works via website.
