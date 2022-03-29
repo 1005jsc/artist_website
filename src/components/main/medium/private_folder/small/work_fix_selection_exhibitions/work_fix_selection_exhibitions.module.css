@@ -22,10 +22,8 @@
 }
 
 .exhibition_bundle {
-	/* margin: auto; */
 	display: flex;
 	justify-content: center;
 	width: 51.6rem;
-	/* flex: 1 1 50%; */
 	padding-top: 2rem;
 }

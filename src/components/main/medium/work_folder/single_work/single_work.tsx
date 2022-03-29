@@ -5,7 +5,7 @@ import WorkModal from '../work_modal/work_modal';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { TypeOfWork } from '../../../../../common/project_types';
 import { myLogics } from '../../../../../common/project_logics';
-import { PopupInModal } from '../popup_in_modal/popup_in_modal';
+import {RemoveScroll} from 'react-remove-scroll';
 
 const SingleWork = () => {
 
@@ -186,7 +186,15 @@ const navigate = useNavigate()
   }
 
 
+useEffect(() => {
 
+  if(modalOpen){
+
+  }
+
+
+},
+[ modalOpen])
 
 
 
@@ -197,7 +205,9 @@ const navigate = useNavigate()
   return <section className={styles.single_work_container}>
   
 
-  {modalOpen&&<WorkModal workUrl={workMainAlmostOriginal} modalOff={handleModalOff}/>}
+  {modalOpen&&
+  <RemoveScroll>
+  <WorkModal workUrl={workMainAlmostOriginal} modalOff={handleModalOff}/></RemoveScroll>}
 
 
   <div className={styles.work_disp_cont_1}>

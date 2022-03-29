@@ -4,4 +4,6 @@
 	margin: auto;
 	flex-wrap: wrap;
 	padding-top: 2rem;
+	max-height: 64rem;
+	overflow-y: auto;
 }
