@@ -12,7 +12,7 @@ This is a website for presenting Artist Cho Yong Nam's works via website.
 
 ## License and Copyrights
  
-Any using website's asset without permission is not allowed. 
+Any use of website's asset without permission is not allowed. 
 
 All of Cho Yong Nam's works and assets related to his works are entitle to protection under Korean Fine Arts Association.
 
