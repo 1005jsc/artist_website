@@ -6,7 +6,7 @@ https://cho-yong-nam-artist.netlify.app
 
 This is a website for presenting Artist Cho Yong Nam's works via online.
 
-
+Best by min-width: 1190 px, max-width: 2000 px 
 
 
 
