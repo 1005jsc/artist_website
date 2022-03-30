@@ -34,6 +34,5 @@ code {
 @media screen and (max-width: 1190px) {
 	html {
 		font-size: 62.5%;
-		/* 이 퍼센트값은 나중에 정해도 됨  */
 	}
 }
