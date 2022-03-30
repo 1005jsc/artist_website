@@ -26,5 +26,5 @@ Copyright © 2023- Artist Cho Yong Nam
 
 Artist Cho Yong Nam : d33cho@hanmail.net
 
-Web Publisher Cho Jae Sin: 1005jsc@naver.com
+Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 
