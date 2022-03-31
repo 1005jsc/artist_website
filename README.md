@@ -18,7 +18,7 @@ Best by min-width: 1190 px, max-width: 2000 px
  
 Any use of website's asset without permission is rejected. 
 
-All of Cho Yong Nam's works and assets related to his works are entitle to protection under Korean Fine Arts Association.
+All of Cho Yong Nam's works and assets related to his works are entitle to protection under Gwangju Fine Arts Association.
 
 Copyright © 2023- Artist Cho Yong Nam
 
