@@ -1,42 +1,21 @@
-import React from "react"
+import React from 'react';
 import * as B from './static_divs.style';
 
-
-
 type FirstDivProps = {
-  children: React.ReactNode;
-}
+	children?: React.ReactNode;
+};
 
-
-
-export const FirstDiv = ({children}:FirstDivProps) => {
-
-  return <B.BasicTemplateSection>
-
-  {children}
-
-  </B.BasicTemplateSection>
-
-}
-
+export const FirstDiv = ({ children }: FirstDivProps) => {
+	return <B.BasicTemplateSection>{children}</B.BasicTemplateSection>;
+};
 
 type SecondDivProps = {
-  children: React.ReactNode;
-}
+	children?: React.ReactNode;
+};
 
-export const SecondDiv = ({children}:SecondDivProps) => {
-
-  return <B.BasicTemplateSecondDiv>
-
-  {children}
-  </B.BasicTemplateSecondDiv>
-
-}
-export const MiddleDiv = ({children}:SecondDivProps) => {
-
-  return <B.BasicTemplateMiddleDiv>
-
-  {children}
-  </B.BasicTemplateMiddleDiv>
-
-}
+export const SecondDiv = ({ children }: SecondDivProps) => {
+	return <B.BasicTemplateSecondDiv>{children}</B.BasicTemplateSecondDiv>;
+};
+export const MiddleDiv = ({ children }: SecondDivProps) => {
+	return <B.BasicTemplateMiddleDiv>{children}</B.BasicTemplateMiddleDiv>;
+};
