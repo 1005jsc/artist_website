@@ -81,7 +81,7 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 
  <table>
 	<tr>
-	    <td width="80px" align="center">작가소개</td>
+	    <td width="100px" align="center">작가소개</td>
 	    <td >'작가노트', '작가연혁', '평론가의 글', '연락처'등 작가님에 대한 정보를 얻을 수 있습니다. </td>
 	    <td><img src="./readme_assets/gifs/1.gif" alt="작가소개1gif" width="300px"  /> </td>
 	</tr>
@@ -120,7 +120,7 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 	    <td colspan="3" align="center">'작가의 개인공간'에서만 가능한 서비스입니다.<br/>작가만이 로그인을 통해 입장이 가능합니다.</td>
 	</tr>
 	<tr>
-	    <td width="85px" align="center">작품 업로드</td>
+	    <td width="120px" align="center">작품 업로드</td>
 	    <td >작가의 작품이미지 및 작품정보를 웹사이트에 업로드합니다</td>
 	    <td><img src="./readme_assets/gifs/7.gif" alt="작품업로드7gif" width="300px"  /> </td>
 	</tr>
