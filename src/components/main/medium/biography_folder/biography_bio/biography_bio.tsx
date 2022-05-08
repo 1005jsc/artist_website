@@ -13,22 +13,20 @@ const BiographyBio = () => {
     <span className={`${styles.profile}`}>Korea</span>
     <span className={`${styles.profile}`}>1961 ~</span>
   </div>
-
+  <br/>
+  <br/>
+  <br/>
   <div className={styles.dividers}>
     <p className={styles.p1}>학력 및 경력</p>
     <div className={styles.contents}>
-      <p className={styles.p2}>1989 동국대학교 예술대학 미술학과 졸업/동 교육대학원 졸업1</p>
-      <p className={styles.p2}>1989 동국대학교 예술대학 미술학과 졸업/동 교육대학원 졸업2</p>
-      <p className={styles.p2}>1989 동국대학교 예술대학 미술학과 졸업/동 교육대학원 졸업3</p>
-      <p className={styles.p2}>1989 동국대학교 예술대학 미술학과 졸업/동 교육대학원 졸업4</p>
+      <p className={styles.p2}>조선대학교 대학원 졸업</p>
     </div>
   </div>
 
   <div className={styles.dividers}>
     <p className={styles.p1}>수상</p>
     <div className={styles.contents}>
-      <p className={styles.p2}>1989 동국대학교 예술대학 미술학과 졸업/동 교육대학원 졸업1</p>
-      <p className={styles.p2}>1989 동국대학교 예술대학 미술학과 졸업/동 교육대학원 졸업2</p>
+      <p className={styles.p2}>광주광역시 미술대전 34회 우수상 수상</p>
     </div>
   </div>
 
@@ -39,14 +37,14 @@ const BiographyBio = () => {
     </div>
   </div>
 
-  <div className={styles.dividers}>
+  {/* <div className={styles.dividers}>
     <p className={styles.p1}>작품소장</p>
     <div className={styles.contents}>
       <p className={styles.p2}>리움미술관 -Korea Seoul-</p>
       <p className={styles.p2}>도쿄돔 -Japan Tokyo-</p>
       <p className={styles.p2}>파리 루브르박물관 2점 -France Paris-</p>
     </div>
-  </div>
+  </div> */}
 
   </div>
 

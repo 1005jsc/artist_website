@@ -77,6 +77,7 @@ const WorkModal = ({ modalOff, workUrl }: WorkModalProps) => {
 		transition: all 2s ease-out;
 		transform: scale(
 			${({ ratio }: FrameProps) => {
+				console.log(2.2*ratio)
 				return 2.2 * ratio;
 			}}
 		);
