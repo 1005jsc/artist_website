@@ -138,7 +138,67 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
   </table>
 
 
+<br />
 
+<div id="3"></div>
+
+## 기술 스택
+<br />
+
+| <img src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" width="50px" height="50px" /> | <img src="https://profilinator.rishav.dev/skills-assets/typescript-original.svg" alt="TypeScript" width="50px" height="50px" /> |
+| :----------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------: |
+|                                                             HTML5                                                              |                                                             CSS3                                                             |                                                           TypeScript                                                            |
+
+| <img src="https://profilinator.rishav.dev/skills-assets/react-original-wordmark.svg" alt="React.js" width="50px" height="50px" /> | <img src="https://avatars.githubusercontent.com/u/20658825?s=200&v=4" alt="Styled-component" width="50px" height="50px" /> | <img src="https://cdn.freebiesupply.com/logos/large/2x/react-router-logo-png-transparent.png" alt="Redux-Saga"  height="40px" /> | 
+| :----------: | :--------------: | :-----------: | 
+| React                                                               |                                                         Styled-Component                                                         |                                                   React-Router|                                                                 
+
+| <img src="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-vertical.png?hl=ko" alt="Firebase"  height="50px" /> | <img src="https://res.cloudinary.com/damien1/w_150,c_scale,q_auto,f_auto/blog/cloudinary_vertical_logo_for_white_bg.svg" alt="Redux" width="50px" height="50px" /> | 
+| :----------: | :--------------: |  
+| Firebase|Cloudinary|                                                                             
+
+
+<br />
+
+<br />
+
+<div id="4"></div>
+
+## 프로젝트 구성도
+<br />
+
+
+|                                   아키텍처(Architecture)                                   |
+| :----------------------------------------------------------------------------------------: |
+| <img src="./readme_assets//imgs/project_architecture.svg" alt="아키텍처(Architecture)" width="1000px" /> |
+
+
+
+
+
+<br />
+
+<div id="5"></div>
+
+## 개발기간
+<br />
+
+
+|디자인 및 에셋 준비기간| 21.12.20 ~ 22.01.23 (35일)|
+|:--:|:--:|
+|코딩기간| 22.01.24 ~ 22.04.01 (68일)|
+|**총 기간**| **21.12.20 ~ 22.04.01 (103일)**|
+
+<br />
+
+<div id="6"></div>
+
+## 개발과정
+
+
+
+
+<br />
 
 
 
