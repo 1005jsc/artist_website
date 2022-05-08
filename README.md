@@ -34,8 +34,8 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 
 <div align="center">
   <br />
-  <img src="./readme_assets/imgs/main.jpg" alt="SSAFY MATE" width="300px"  />
   <br />
+  <img src="./readme_assets/imgs/main.jpg" alt="SSAFY MATE" width="300px"  />
   <br />
   <br />
   <h1>조용남 작가 웹사이트</ㅔ>
@@ -81,7 +81,7 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 
  <table>
 	<tr>
-	    <td width="76px">작가소개</td>
+	    <td width="80px" align="center">작가소개</td>
 	    <td >'작가노트', '작가연혁', '평론가의 글', '연락처'등 작가님에 대한 정보를 얻을 수 있습니다. </td>
 	    <td><img src="./readme_assets/gifs/1.gif" alt="작가소개1gif" width="300px"  /> </td>
 	</tr>
