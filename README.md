@@ -36,7 +36,7 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
   <br />
   <br />
   
-  <a href="https://cho-yong-nam-artist.netlify.app"><img src="./readme_assets/imgs/main.jpg" alt="SSAFY MATE" width="300px"  /></a>
+  <a href="https://cho-yong-nam-artist.netlify.app"><img src="./readme_assets/imgs/main.jpg" alt="SSAFY MATE" width="500px"  /></a>
   <br />
   <br />
 <a href="https://cho-yong-nam-artist.netlify.app"><h1>조용남 작가 웹사이트</h1></a>
@@ -120,7 +120,7 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 
  <table>
     <tr>
-	    <td colspan="3" align="center">'작가의 개인공간'에서만 가능한 서비스입니다.<br/>작가만이 로그인을 통해 입장이 가능합니다.</td>
+	    <td colspan="3" align="center">'작가의 개인공간'에서만 가능한 서비스입니다.<br/>작가만이 로그인을 통해 입장이 가능합니다.<br/></td>
 	</tr>
 	<tr>
 	    <td width="130px" align="center">작품 업로드</td>
