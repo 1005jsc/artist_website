@@ -35,10 +35,12 @@ Designed and Published by Cho Jae Sin: 1005jsc@naver.com
 <div align="center">
   <br />
   <br />
-  <img src="./readme_assets/imgs/main.jpg" alt="SSAFY MATE" width="300px"  />
+  
+  <a href="https://cho-yong-nam-artist.netlify.app"><img src="./readme_assets/imgs/main.jpg" alt="SSAFY MATE" width="300px"  /></a>
   <br />
   <br />
-  <h1>조용남 작가 웹사이트</ㅔ>
+<a href="https://cho-yong-nam-artist.netlify.app"><h1>조용남 작가 웹사이트</h1></a>
+  
   <br />
 </div>
 
