@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
 const KeyDetector = ({sendKeyValue}) => {
 
-  // const [keyPressWord, setKeyPressWord] = useState(null)
   const keyPress = (e) => {
     
-    // setKeyPressWord(e.key)
     sendKeyValue(e.key)
   }
 

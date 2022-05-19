@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect,  useState } from "react"
 import styles from './navigator.module.css'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import * as Pamphlet from '../../intro_work_folder/pamphlet_template/pamphlet_designs';
