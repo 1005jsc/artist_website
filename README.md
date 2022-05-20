@@ -20,7 +20,7 @@ Any use of website's asset without permission is rejected.
 
 All of Cho Yong Nam's works and assets related to his works are entitled to protection under Gwangju Fine Arts Association.
 
-Copyright © 2023- Artist Cho Yong Nam
+Copyright © 2022- Artist Cho Yong Nam
 
 ## Contacts
 
