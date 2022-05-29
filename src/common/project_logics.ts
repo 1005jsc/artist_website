@@ -181,7 +181,7 @@ class artistWebsiteExportLogics {
   }
 
   returnExhibitionWorkAndYearArray = (exhibitions:TypeOfExhibitions|null) => {
-    let exhibitionsKeys
+  let exhibitionsKeys
   let exhibitionYears: string[] 
   let exhibitionsYears: string[] 
   let exhibitionsDates
@@ -284,7 +284,7 @@ class artistWebsiteExportLogics {
         
         if(index+1 < array1.length){
           const workRight1 = array1[index+1]['workImageUrl']
-          const workRightSerialNumber = array1[index+1]['workSerialNumber']
+          // const workRightSerialNumber = array1[index+1]['workSerialNumber']
           if( workRight1 !== null){
             workRight = 
             myFunctions.imageUrlMakerByRequestedQuality(

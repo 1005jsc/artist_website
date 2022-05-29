@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import DeleteButton from '../../../../utility/delete_button/delete_button';
 import KeyDetector from '../../../../utility/key_detector/key_detector';
 import ModalDeleteButton from '../modal_delete_button/modal_delete_button';
 import styles from './work_modal.module.css';
@@ -46,9 +45,13 @@ const WorkModal = ({ modalOff, workUrl }: WorkModalProps) => {
 	const wheelHandler: React.WheelEventHandler<HTMLDivElement> = (e) => {
 		let imageContainer;
 		let offsetX = 0;
+		
 		if (imageContainerRef.current) {
 			imageContainer = imageContainerRef.current;
 			offsetX = e.clientX - imageContainer.getBoundingClientRect().left;
+			console.log(`e.client: ${e.clientX} ${e.clientX}`)
+			console.log(`${imageContainer.getBoundingClientRect().left} ${imageContainer.getBoundingClientRect().top}`)
+		
 		}
 
 		let offsetY = 0;
@@ -75,25 +78,26 @@ const WorkModal = ({ modalOff, workUrl }: WorkModalProps) => {
 	const Frame = styled.div`
 		position: relative;
 		transition: all 2s ease-out;
+	
 		transform: scale(
-			${({ ratio }: FrameProps) => {
-				console.log(2.2*ratio)
-				return 2.2 * ratio;
-			}}
-		);
-		transform-origin: ${({ mouseStartX }: FrameProps) => mouseStartX}px
-			${({ mouseStartY }: FrameProps) => mouseStartY}px;
+				${({ ratio }: FrameProps) => {
+					console.log(2.2*ratio)
+					return 2.2 * ratio;
+				}}
+			);
 
-		top: ${({ ratio, mouseStartX }: FrameProps) => {
-			return -mouseStartX * ratio + mouseStartX;
-		}};
-		left: ${({ ratio, mouseStartY }: FrameProps) => {
-			return -mouseStartY * ratio + mouseStartY;
-		}};
+
+		transform-origin: ${({ mouseStartX }: FrameProps) => mouseStartX}px
+		${({ mouseStartY }: FrameProps) => mouseStartY}px;
+		
+		
+			
+
+	
 	`;
 
 	const Picture = styled.div`
-  width; 100%;
+    width; 100%;
     `;
 
 	const [popUpShow, setPopUpShow] = useState<boolean>(false);
@@ -142,3 +146,17 @@ const WorkModal = ({ modalOff, workUrl }: WorkModalProps) => {
 	);
 };
 export default WorkModal;
+
+
+// top: ${({ ratio, mouseStartX }: FrameProps) => {
+// 	return -mouseStartX * ratio + mouseStartX;
+// }};
+
+// left: ${({ ratio, mouseStartY }: FrameProps) => {
+// 	return -mouseStartY * ratio + mouseStartY;
+// }};
+
+
+
+
+

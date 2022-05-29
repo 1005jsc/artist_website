@@ -13,6 +13,7 @@ const databaseService = new Database()
 const workImageUploadService = new WorkImageUpload()
 const exhibitionImageUploadService = new ExhibitionImageUpload()
 export const totalIntroductionPageCount = 21
+// export const totalIntroductionPageCount = 23
 
 ReactDOM.render(
   <React.StrictMode>

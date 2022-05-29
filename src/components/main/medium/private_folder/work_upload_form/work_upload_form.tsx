@@ -65,6 +65,7 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
         reader.readAsDataURL(file)
         reader.onload = () => {
           setWorkPreviewUrl(reader.result as string)
+
         }
       }else{
         setWorkFile(null)
@@ -220,7 +221,6 @@ const WorkUploadForm = ({workImageUploadService: workImageUploadService}:WorkUpl
       workHorizontalOrVerticalOrSquare = 'square'
     }else{
       workHorizontalOrVerticalOrSquare = 'vertical'
-
     }
   
   }

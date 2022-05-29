@@ -5,12 +5,13 @@ export const BasicTemplateSection = styled.section`
   width: 100%;
 	height: 72rem;
 	background-color: #ffffff;
-
+	// border: 1px solid black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	position: relative;
+	
 `
 
 export const BasicTemplateSecondDiv = styled.div`
@@ -26,6 +27,6 @@ display: flex;
   left:0;
 	width: 72rem;
 	height: 100%;
-	// border-right: 1px dotted black;
-  // background-color : #274289;
+// 	border-right: 1px dotted black;
+//   background-color : #274289;
 `

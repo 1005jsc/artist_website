@@ -26,7 +26,7 @@ const Navigator = () => {
 
   useEffect((
     ) => {
-    if(pageNow === 21){
+    if(pageNow === totalPage){
       setOnHover(true)
     }
   },
@@ -153,6 +153,8 @@ const Navigator = () => {
       {page==='19'&& <Pamphlet.No19/>}
       {page==='20'&& <Pamphlet.No20/>}
       {page==='21'&& <Pamphlet.No21/>}
+      {/* {page==='22'&& <Pamphlet.No22/>}
+      {page==='23'&& <Pamphlet.No23/>} */}
       <div className={onHover?`${styles.navbar_top}`:`${styles.navbar_top} ${styles.navbar_top_off}`}>
         {onHover&&<button className={styles.button_top} >조용남 작가 웹사이트</button>}
 

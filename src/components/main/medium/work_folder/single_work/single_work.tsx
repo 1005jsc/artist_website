@@ -186,18 +186,6 @@ const navigate = useNavigate()
   }
 
 
-useEffect(() => {
-
-  if(modalOpen){
-
-  }
-
-
-},
-[ modalOpen])
-
-
-
 
 
 

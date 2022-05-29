@@ -1,4 +1,4 @@
-import { TextDiv, TextSpan } from './text_container.style'
+import { TextDiv} from './text_container.style'
 
 
 type TextContainerProps = {

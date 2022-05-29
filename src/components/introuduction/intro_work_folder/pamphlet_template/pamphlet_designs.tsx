@@ -948,3 +948,94 @@ export const No21 = () => {
 		</ImageContainerNo21>
 	);
 };
+
+
+
+
+
+
+export const No22 = () => {
+
+	return (
+		<FirstDiv>
+			<SecondDiv>
+				
+
+			</SecondDiv>
+			<MiddleDiv/>
+
+
+			<PageCenter>22</PageCenter>
+		</FirstDiv>
+	);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const No23 = () => {
+	const TextContainerNo23 = styled(TextContainer)`
+		position: absolute;
+		top: 0;
+		left: 0;
+	`;
+
+	const MetadataContainerNo23 = styled(MetadataContainer)`
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	`;
+
+	const ImageContainerNo23 = styled(ImageContainer)`
+		width: 60rem;
+		height: 41.5rem;
+		position: absolute;
+		top: 0;
+		right: 0;
+	`;
+
+	return (
+		<FirstDiv>
+			<SecondDiv>
+				<TextContainerNo23>
+					<T.TextSpan>
+						“제 작업의 근원은 문자 추상을 기본으로 합니다. 40년 전 처음 그림을
+						시작하면서부터 생각했던 일관된 소재였고 특별히 누구에게서 영향을
+						받았거나 문자를 선택한 특별한 계기는 없었습니다. 문자추상을 통해
+						나의 생각과 삶을 담을 수 있었고 형태의 변형을 통하여 나름대로의
+						즐거움과 작업의 재미를 느낄 수 있었습니다. 문자형태의 변형은 제
+						그림에서 가장 중요한 과제이고 창의적인 표현을 할 수 있게 만드는 가장
+						기초적인 조형언어입니다.” -작가노트-에서 발췌
+					</T.TextSpan>
+				</TextContainerNo23>
+
+				<MetadataContainerNo23>
+					<M.MetadataSpan1>샘플임 Ⅹ</M.MetadataSpan1>
+					<M.MetadataSpan2>
+						91 ⅹ 60.5cm &nbsp;Acrylic on canvas &nbsp;&nbsp;2020
+					</M.MetadataSpan2>
+				</MetadataContainerNo23>
+
+				<ImageContainerNo23>
+					<I.ImageHorizontalImg
+						src="https://res.cloudinary.com/koreachief/image/upload/v1647512513/artist-website/pamphlet_assets/A_9528657_600kb_llg9dy.jpg"
+						alt=""
+					/>
+				</ImageContainerNo23>
+			</SecondDiv>
+
+			<PageCenter>1</PageCenter>
+		</FirstDiv>
+	);
+};
