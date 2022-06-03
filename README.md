@@ -294,7 +294,7 @@ https://www.youtube.com/watch?v=G1wj3bRP9-w
 
 <br />
 
-**주요기능 구현** 에 관한 내용은 [**작가 웹사이트 주요기능 구현**](https://github.com/1005jsc/artist_website)을 방문하여 확인 가능
+### **주요기능 구현** 에 관한 내용은 [**작가 웹사이트 주요기능 구현**](https://github.com/1005jsc/artist_website)을 방문하여 확인 가능
 
 <br />
 
