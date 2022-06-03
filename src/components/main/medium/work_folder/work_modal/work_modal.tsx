@@ -49,7 +49,7 @@ const WorkModal = ({ modalOff, workUrl }: WorkModalProps) => {
 		if (imageContainerRef.current) {
 			imageContainer = imageContainerRef.current;
 			offsetX = e.clientX - imageContainer.getBoundingClientRect().left;
-			console.log(`e.client: ${e.clientX} ${e.clientX}`)
+			console.log(`e.client: ${e.clientX} ${e.clientY}`)
 			console.log(`${imageContainer.getBoundingClientRect().left} ${imageContainer.getBoundingClientRect().top}`)
 		
 		}
