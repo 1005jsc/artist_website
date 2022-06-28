@@ -241,7 +241,7 @@ https://www.youtube.com/watch?v=G1wj3bRP9-w
 | 6.  |                        디자인을 기반으로 html, css 작성                        |                                                                        |
 | 7.  |       App에 React-router로 경로를 정해 주고 button에 navigate경로를 지정       |                                                                        |
 | 8.  | 백엔드 api 제공업체들을 통해 로그인, 실시간 데이터베이스, 이미지 저장등을 구현 | 로그인, 실시간 데이터베이스 -> firebase<br/>이미지 저장 -> cloudinary  |
-| 9.  |                                데이터 타입 설정                                |                                                                        |
+| 9.  |                                데이터 타입 설정                                |                typescript를 이용한 데이터들의 타입 설정                |
 | 10. |                     웹사이트의 자바스크립트적인 기능 구현                      |                                                                        |
 | 11. |                                 Netlify로 배포                                 |                                                                        |
 | 12. |                              결과물 평가 및 반성                               |                                                                        |
