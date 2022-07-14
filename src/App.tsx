@@ -1,6 +1,6 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import styles from "./app.module.css"
+import styles from './app.module.css';
 import BackgroundImage from './components/front_door/background_image/background_image';
 import Home from './components/main/large/home/home';
 import Biography from './components/main/medium/biography_folder/biography/biography';
@@ -40,157 +40,132 @@ import Navigator from './components/introuduction/navigator_folder/navigator/nav
 import WorkUploadForm from './components/main/medium/private_folder/work_upload_form/work_upload_form';
 import NotFound from './components/utility/not_found/not_found';
 
-
 type AppProps = {
-  authService : AuthService;
-  databaseService:Database;
-  workImageUploadService:WorkImageUpload;
-  exhibitionImageUploadService:ExhibitionImageUpload;
-}
+  authService: AuthService;
+  databaseService: Database;
+  workImageUploadService: WorkImageUpload;
+  exhibitionImageUploadService: ExhibitionImageUpload;
+};
 
-
-const App = ({authService, databaseService,exhibitionImageUploadService, workImageUploadService}:AppProps) =>{
-
-  const [login, setLogin] = useState<boolean>(false)
+const App = ({
+  authService,
+  databaseService,
+  exhibitionImageUploadService,
+  workImageUploadService,
+}: AppProps) => {
+  const [login, setLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    authService.AuthUserCheck((result:any) => {
-      if(result){
-        
-        setLogin(true)
-      }else{
-        setLogin(false)
+    authService.AuthUserCheck((result: any) => {
+      if (result) {
+        setLogin(true);
+      } else {
+        setLogin(false);
       }
-    })
-    
-  
-}, [login, authService])
-  
+    });
+  }, [login, authService]);
 
+  const handleLogin = (password: string | number) => {
+    if (password === process.env.REACT_APP_ART_WEBSITE_PRIVATE_ADMIN_PASSWORD) {
+      authService.AuthGooglePopupLogin();
+      setLogin(true);
+      return true;
+    } else {
+      return false;
+    }
+  };
 
-
-
-const handleLogin = (password:string|number) => {
-  
-  if(password===process.env.REACT_APP_ART_WEBSITE_PRIVATE_ADMIN_PASSWORD){
-    authService.AuthGooglePopupLogin()
-    setLogin(true)
-    return true
-  }else{
-    return false
-  }
-}
-
-  return <section className={styles.myApp}>
-      
-      
-    <Routes>
-
-    
-      <Route path='' element={<BackgroundImage/>}>
-          <Route path='' element={<Navbar/>}/>
-      </Route>
-
-      <Route path="/home/works/fullscreen" element={<Fullscreen />}/>
-      
-
-      <Route path="/home" element={<Home login={login} handleLogin={handleLogin} />} >
-
-        <Route path='' element={<Biography/>}>
-          <Route path="" element={<BiographyWords/>}/>
-        </Route>
-        
-        <Route path='biography' element={<Biography/>}>
-          <Route path="" element={<BiographyWords/>}/>
-          <Route path="note" element={<BiographyWords/>}/>
-          <Route path="bio" element={<BiographyBio/>}/>
-        </Route>
-          
-        
-        <Route path="works" element={<Works databaseService={databaseService}/>}>
-          <Route path="" element={<WorkYear/>}/>
-          <Route path="year" element={<WorkYear/>}/>
-          <Route path="larger" element={<WorkSize/>}/>
-          <Route path="smaller" element={<WorkSize/>}/>
-          <Route path="exhibition" element={<WorkExhibition/>}/>
-          <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
-          <Route path="work:work_id" element={<SingleWork/>}/>
-          <Route path="work" element={<SingleWork/>}/>
+  return (
+    <section className={styles.myApp}>
+      <Routes>
+        <Route path="" element={<BackgroundImage />}>
+          <Route path="" element={<Navbar />} />
         </Route>
 
-        
-        <Route path="exhibitions" element={<Exhibitions databaseService={databaseService}/>}>
-          <Route path="" element={<WorkExhibition/>}/>
-          <Route path="exhibition_works" element={<WorkExhibitionWorks/>}/>
-        </Route>
+        <Route path="/home/works/fullscreen" element={<Fullscreen />} />
 
-
-        <Route path="critics" element={<Critics/>}>
-          <Route path="" element={<Critics/>}/>
-
-        </Route>
-
-
-        <Route path="contacts" element={<Contacts/>}/>
-
-
-        <Route path="private" element={<Private authService={authService} />}>
-          <Route path="" element={<Login authService={authService}/>}/>
-          <Route path="loggedin" element={<PrivateRoute login={login}/>}>
-              <Route path="" element={<LoginSuccess />}/>
-              <Route path="work_upload" element={<WorkUpload databaseService={databaseService}/>}>
-                <Route path="" element={<WorkUploadForm workImageUploadService={workImageUploadService}/>}/>
-                <Route path="work_upload_done" element={<WorkUploadDone/>}/>
-              </Route>
-
-              <Route path="work_fix" element={<WorkFix databaseService={databaseService}/>}>
-                <Route path="" element={<WorkFixFormOne/>}/>
-                <Route path="work_fix_form_two" element={<WorkFixFormTwo workImageUploadService={workImageUploadService}/>}/>
-                <Route path="work_fix_done" element={<WorkFixDone/>}/>
-
-              </Route>
-
-              <Route path="exhibition_upload" element={<ExhibitionUpload databaseService={databaseService}/>}>
-                
-                <Route path="" element={<ExhibitionUploadForm exhibitionImageUploadService={exhibitionImageUploadService}/>}/>
-                <Route path="exhibition_upload_done" element={<ExhibitionUploadDone/>}/>
-
-              </Route>
-              
-              <Route path="suggestion_box" element={<SuggestionBox/>}/>
+        <Route path="/home" element={<Home login={login} handleLogin={handleLogin} />}>
+          <Route path="" element={<Biography />}>
+            <Route path="" element={<BiographyWords />} />
           </Route>
 
+          <Route path="biography" element={<Biography />}>
+            <Route path="" element={<BiographyWords />} />
+            <Route path="note" element={<BiographyWords />} />
+            <Route path="bio" element={<BiographyBio />} />
+          </Route>
 
+          <Route path="works" element={<Works databaseService={databaseService} />}>
+            <Route path="" element={<WorkYear />} />
+            <Route path="year" element={<WorkYear />} />
+            <Route path="larger" element={<WorkSize />} />
+            <Route path="smaller" element={<WorkSize />} />
+            <Route path="exhibition" element={<WorkExhibition />} />
+            <Route path="exhibition_works" element={<WorkExhibitionWorks />} />
+            <Route path="work:work_id" element={<SingleWork />} />
+            <Route path="work" element={<SingleWork />} />
+          </Route>
 
+          <Route path="exhibitions" element={<Exhibitions databaseService={databaseService} />}>
+            <Route path="" element={<WorkExhibition />} />
+            <Route path="exhibition_works" element={<WorkExhibitionWorks />} />
+          </Route>
 
+          <Route path="critics" element={<Critics />}>
+            <Route path="" element={<Critics />} />
+          </Route>
+
+          <Route path="contacts" element={<Contacts />} />
+
+          <Route path="private" element={<Private authService={authService} />}>
+            <Route path="" element={<Login authService={authService} />} />
+            <Route path="loggedin" element={<PrivateRoute login={login} />}>
+              <Route path="" element={<LoginSuccess />} />
+              <Route path="work_upload" element={<WorkUpload databaseService={databaseService} />}>
+                <Route
+                  path=""
+                  element={<WorkUploadForm workImageUploadService={workImageUploadService} />}
+                />
+                <Route path="work_upload_done" element={<WorkUploadDone />} />
+              </Route>
+
+              <Route path="work_fix" element={<WorkFix databaseService={databaseService} />}>
+                <Route path="" element={<WorkFixFormOne />} />
+                <Route
+                  path="work_fix_form_two"
+                  element={<WorkFixFormTwo workImageUploadService={workImageUploadService} />}
+                />
+                <Route path="work_fix_done" element={<WorkFixDone />} />
+              </Route>
+
+              <Route
+                path="exhibition_upload"
+                element={<ExhibitionUpload databaseService={databaseService} />}
+              >
+                <Route
+                  path=""
+                  element={
+                    <ExhibitionUploadForm
+                      exhibitionImageUploadService={exhibitionImageUploadService}
+                    />
+                  }
+                />
+                <Route path="exhibition_upload_done" element={<ExhibitionUploadDone />} />
+              </Route>
+
+              <Route path="suggestion_box" element={<SuggestionBox />} />
+            </Route>
+          </Route>
         </Route>
-        
-      
-      </Route>
-    
-      
-      <Route path={'/introduction'} element={<Navigator/>}/>
-      <Route path={'/introduction:page'} element={<Navigator/>}/>
 
+        <Route path={'/introduction'} element={<Navigator />} />
+        <Route path={'/introduction:page'} element={<Navigator />} />
 
-
-
-
-
-
-
-
-      <Route path="*" element={<NotFound />} />
-
-
-    </Routes>
-
-
-  </section> 
-
-
-}
-Modal.setAppElement('#root')
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </section>
+  );
+};
+Modal.setAppElement('#root');
 
 export default App;
-
